@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Access &mdash; MIT ORCD User Documentation  documentation</title>
+  <title>Good Practices when using cluster filesystems &mdash; MIT ORCD User Documentation  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="canonical" href="https://researchcomputing.mit.edu/orcd_systems/engaging/accounts.html"/>
+    <link rel="canonical" href="https://researchcomputing.mit.edu/filesystems_and_file_transfer/best_practices/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,7 +20,9 @@
         <script src="../../_static/js/custom.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Basic software and package installation" href="../../basic_software_and_package_installation/index.html" />
+    <link rel="prev" title="File transfers to and from clusters" href="../how_to_transfer_files/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,31 +42,31 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">ORCD Systems</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html">Engaging Cluster</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#getting-access">Getting Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#quick-links">Quick Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../orcd_systems/index.html">ORCD Systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../orcd_systems/engaging/index.html">Engaging Cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../orcd_systems/engaging/index.html#getting-access">Getting Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../orcd_systems/engaging/index.html#quick-links">Quick Links</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../satori/index.html">Satori</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../satori/index.html#how-to-get-an-account">How to Get an Account</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../satori/index.html#quick-links">Quick Links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../orcd_systems/satori/index.html">Satori</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../orcd_systems/satori/index.html#how-to-get-an-account">How to Get an Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../orcd_systems/satori/index.html#quick-links">Quick Links</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../supercloud/index.html">SuperCloud</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../supercloud/index.html#how-to-get-an-account">How to Get an Account</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../supercloud/index.html#quick-links">Quick Links</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../orcd_systems/supercloud/index.html">SuperCloud</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../orcd_systems/supercloud/index.html#how-to-get-an-account">How to Get an Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../orcd_systems/supercloud/index.html#quick-links">Quick Links</a></li>
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../filesystems_and_file_transfer/index.html">Filesystems and File Transfer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/general_shared_filesystems/index.html">General Use Shared File Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/project_filesystems/index.html">Project Specific Filesystems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/how_to_transfer_files/index.html">File transfers to and from clusters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/best_practices/index.html">Good Practices when using cluster filesystems</a></li>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Filesystems and File Transfer</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_shared_filesystems/index.html">General Use Shared File Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../project_filesystems/index.html">Project Specific Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_transfer_files/index.html">File transfers to and from clusters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Good Practices when using cluster filesystems</a></li>
 </ul>
 </li>
 </ul>
@@ -92,9 +94,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Getting Access</li>
+          <li class="breadcrumb-item"><a href="../index.html">Filesystems and File Transfer</a></li>
+      <li class="breadcrumb-item active">Good Practices when using cluster filesystems</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/mit-orcd/orcd-docs-edit/blob/main/orcd_systems/engaging/accounts.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/mit-orcd/orcd-docs-edit/blob/main/filesystems_and_file_transfer/best_practices/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -102,17 +105,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="getting-access">
-<h1>Getting Access<a class="headerlink" href="#getting-access" title="Permalink to this heading"></a></h1>
-<p>Accounts on the engaging cluster are connected to your main MIT institutional kerberos id.
-Connecting to the cluster for the first time through its web portal automatically activates
-an account with basic access to resources.</p>
+  <div class="section" id="good-practices-when-using-cluster-filesystems">
+<h1>Good Practices when using cluster filesystems<a class="headerlink" href="#good-practices-when-using-cluster-filesystems" title="Permalink to this heading"></a></h1>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../how_to_transfer_files/index.html" class="btn btn-neutral float-left" title="File transfers to and from clusters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../basic_software_and_package_installation/index.html" class="btn btn-neutral float-right" title="Basic software and package installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
