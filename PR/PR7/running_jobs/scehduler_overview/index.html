@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>General Use Shared File Systems &mdash; MIT ORCD User Documentation  documentation</title>
+  <title>Scheduler Overview &mdash; MIT ORCD User Documentation  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="canonical" href="https://researchcomputing.mit.edu/filesystems_and_file_transfer/general_shared_filesystems/index.html"/>
+    <link rel="canonical" href="https://researchcomputing.mit.edu/running_jobs/scehduler_overview/index.html"/>
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,9 +20,7 @@
         <script src="../../_static/js/custom.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Project Specific Filesystems" href="../project_filesystems/index.html" />
-    <link rel="prev" title="Filesystems and File Transfer" href="../index.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,12 +59,12 @@
 </ul>
 </li>
 </ul>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Filesystems and File Transfer</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">General Use Shared File Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project_filesystems/index.html">Project Specific Filesystems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../how_to_transfer_files/index.html">File transfers to and from clusters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../best_practices/index.html">Good Practices when using cluster filesystems</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../filesystems_and_file_transfer/index.html">Filesystems and File Transfer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/general_shared_filesystems/index.html">General Use Shared File Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/project_filesystems/index.html">Project Specific Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/how_to_transfer_files/index.html">File transfers to and from clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../filesystems_and_file_transfer/best_practices/index.html">Good Practices when using cluster filesystems</a></li>
 </ul>
 </li>
 </ul>
@@ -79,14 +77,14 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../running_jobs/index.html">Running Jobs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html">How to run different workloads</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html#running-throughput-jobs">Running throughput jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html#running-distributed-multinode-jobs">Running distributed/multinode jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html#running-multicore-jobs">Running multicore jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html#running-gpu-jobs">Running GPU jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html#running-an-interactive-job">Running an interactive job</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../running_jobs/how_to_run_different_sorts_workloads/index.html#running-a-jupyter-notebook-job">Running a Jupyter notebook job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Running Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html">How to run different workloads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html#running-throughput-jobs">Running throughput jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html#running-distributed-multinode-jobs">Running distributed/multinode jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html#running-multicore-jobs">Running multicore jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html#running-gpu-jobs">Running GPU jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html#running-an-interactive-job">Running an interactive job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../how_to_run_different_sorts_workloads/index.html#running-a-jupyter-notebook-job">Running a Jupyter notebook job</a></li>
 </ul>
 </li>
 </ul>
@@ -110,10 +108,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Filesystems and File Transfer</a></li>
-      <li class="breadcrumb-item active">General Use Shared File Systems</li>
+      <li class="breadcrumb-item active">Scheduler Overview</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/mit-orcd/orcd-docs-edit/blob/main/filesystems_and_file_transfer/general_shared_filesystems/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/mit-orcd/orcd-docs-edit/blob/main/running_jobs/scehduler_overview/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -121,17 +118,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="general-use-shared-file-systems">
-<h1>General Use Shared File Systems<a class="headerlink" href="#general-use-shared-file-systems" title="Permalink to this heading"></a></h1>
+  <div class="section" id="scheduler-overview">
+<h1>Scheduler Overview<a class="headerlink" href="#scheduler-overview" title="Permalink to this heading"></a></h1>
 </div>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Filesystems and File Transfer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../project_filesystems/index.html" class="btn btn-neutral float-right" title="Project Specific Filesystems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
