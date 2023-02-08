@@ -153,7 +153,8 @@ by the group through MIT Web Moira, <a class="reference external" href="https://
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>NESE disk</td>
+<tr class="row-even"><td>NESE encrypted at rest
+disk.</td>
 <td>$2.50/month
 50TB minimum,
 10TB increments.</td>
@@ -165,23 +166,26 @@ backup.</td>
 </tbody>
 </table>
 </div></blockquote>
+<p>The NESE encrypted at rest disk uses a large centrally managed storage cloud at the MGHPCC
+facility. Any shared ORCD cluster at the MGHPCC can access this storage. Data on NESE disk
+is transparently encrypted at rest.</p>
 <div class="section" id="managing-access-using-mit-web-moira">
 <h2>Managing access using MIT Web Moira<a class="headerlink" href="#managing-access-using-mit-web-moira" title="Permalink to this heading"></a></h2>
 <p>Individual group storage is configured so that access is limited to a set
 of accounts belonging to a web moira list that is defined for the group
 store. The owner and administrators of group storage can manage
-access by modifying the membership of the moira list by accessing the members
-list under <a class="reference external" href="https://groups.mit.edu/webmoira/list/" target="_blank">https://groups.mit.edu/webmoira/list/</a>. The name of the
-list corresponds to the group name associated with the ORCD shared
+access themselves, by modifying the membership of an associated moira list
+under <a class="reference external" href="https://groups.mit.edu/webmoira/list/" target="_blank">https://groups.mit.edu/webmoira/list/</a>. The name of the
+list corresponds to the UNIX group name associated with the ORCD shared
 cluster storage.</p>
 <div class="section" id="moira-web-interface-example">
 <h3>Moira Web Interface Example<a class="headerlink" href="#moira-web-interface-example" title="Permalink to this heading"></a></h3>
 <p>The figure below shows a screenshot of the web moira management page at
 <a class="reference external" href="https://groups.mit.edu/webmoira/list/cnh_research_computing" target="_blank">https://groups.mit.edu/webmoira/list/cnh_research_computing</a> for a hypothetical
-storage group named _cnh_research_computing_. The intrface provides a
+storage group named <code class="docutils literal notranslate"><span class="pre">cnh_research_computing</span></code>. The interface provides a
 self-service mechanism for controlling access to any storage belonging to
 this group. MIT account ids can be added and
-removed as needed from this list by the storage access administrators as needed.</p>
+removed as needed from this list by the storage access administrators.</p>
 <a class="reference internal image-reference" href="../../_images/moira-example.jpg"><img alt="Screen shot of Moira interface" src="../../_images/moira-example.jpg" style="width: 1069.0px; height: 564.0px;" /></a>
 </div>
 </div>
