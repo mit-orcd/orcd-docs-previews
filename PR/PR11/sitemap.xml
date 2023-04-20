@@ -6,6 +6,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://orcd.mit.edu/data-security/</loc>
+         <lastmod>2023-04-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://orcd.mit.edu/orcd-systems/</loc>
+         <lastmod>2023-04-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://orcd.mit.edu/images/</loc>
          <lastmod>2023-04-20</lastmod>
          <changefreq>daily</changefreq>
