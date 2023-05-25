@@ -21,7 +21,7 @@
     
     
       
-        <title>Installing and Using Mujoco - ORCD Docs</title>
+        <title>Installing and Using MuJoCo - ORCD Docs</title>
       
     
     
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing and Using Mujoco
+              Installing and Using MuJoCo
             
           </span>
         </div>
@@ -323,12 +323,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Installing and Using Mujoco
+          Installing and Using MuJoCo
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Installing and Using Mujoco
+        Installing and Using MuJoCo
       </a>
       
         
@@ -348,17 +348,17 @@
       
         <li class="md-nav__item">
   <a href="#install-the-mujoco-binaries" class="md-nav__link">
-    Install the Mujoco Binaries
+    Install the MuJoCo Binaries
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#mujoco-on-engaging" class="md-nav__link">
-    Mujoco on Engaging
+    MuJoCo on Engaging
   </a>
   
-    <nav class="md-nav" aria-label="Mujoco on Engaging">
+    <nav class="md-nav" aria-label="MuJoCo on Engaging">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -377,7 +377,7 @@
         
           <li class="md-nav__item">
   <a href="#using-mujoco-in-a-job" class="md-nav__link">
-    Using Mujoco in a Job
+    Using MuJoCo in a Job
   </a>
   
 </li>
@@ -389,10 +389,10 @@
       
         <li class="md-nav__item">
   <a href="#mujoco-on-supercloud" class="md-nav__link">
-    Mujoco on SuperCloud
+    MuJoCo on SuperCloud
   </a>
   
-    <nav class="md-nav" aria-label="Mujoco on SuperCloud">
+    <nav class="md-nav" aria-label="MuJoCo on SuperCloud">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -479,17 +479,17 @@
       
         <li class="md-nav__item">
   <a href="#install-the-mujoco-binaries" class="md-nav__link">
-    Install the Mujoco Binaries
+    Install the MuJoCo Binaries
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#mujoco-on-engaging" class="md-nav__link">
-    Mujoco on Engaging
+    MuJoCo on Engaging
   </a>
   
-    <nav class="md-nav" aria-label="Mujoco on Engaging">
+    <nav class="md-nav" aria-label="MuJoCo on Engaging">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -508,7 +508,7 @@
         
           <li class="md-nav__item">
   <a href="#using-mujoco-in-a-job" class="md-nav__link">
-    Using Mujoco in a Job
+    Using MuJoCo in a Job
   </a>
   
 </li>
@@ -520,10 +520,10 @@
       
         <li class="md-nav__item">
   <a href="#mujoco-on-supercloud" class="md-nav__link">
-    Mujoco on SuperCloud
+    MuJoCo on SuperCloud
   </a>
   
-    <nav class="md-nav" aria-label="Mujoco on SuperCloud">
+    <nav class="md-nav" aria-label="MuJoCo on SuperCloud">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -570,20 +570,22 @@
 
 
 
-<h1 id="installing-and-using-mujoco">Installing and Using Mujoco</h1>
-<p>Whether you are installing on Engaging, SuperCloud, or Satori, you’ll first have to install the Mujoco binaries. This process is the same on all systems.</p>
-<h2 id="install-the-mujoco-binaries">Install the Mujoco Binaries</h2>
-<p>First, install Mujoco itself somewhere in your home directory. This is as simple as downloading the Mujoco binaries, which can be found on their web page. For the release that you want, select the file that ends with “linux-x86_64.tar.gz”, for example for 2.3.0 select <a href="https://github.com/deepmind/mujoco/releases/download/2.3.0/mujoco-2.3.0-linux-x86_64.tar.gz">mujoco-2.3.0-linux-x86_64.tar.gz</a>. Right click, and copy the link address. Then you can download on one of the login nodes with the “wget” command, and untar:</p>
+<h1 id="installing-and-using-mujoco">Installing and Using MuJoCo</h1>
+<p>MuJoCo is a free and open source physics engine that aims to facilitate research and development in robotics, biomechanics, graphics and animation, and other areas where fast and accurate simulation is needed.</p>
+<p>You can learn about MuJoCo here: <a href="https://mujoco.org">https://mujoco.org</a>.</p>
+<p>Whether you are installing on Engaging or SuperCloud, you’ll first have to install the MuJoCo binaries. This process is the same on all systems.</p>
+<h2 id="install-the-mujoco-binaries">Install the MuJoCo Binaries</h2>
+<p>First, install MuJoCo itself somewhere in your home directory. This is as simple as downloading the MuJoCo binaries, which can be found on their web page. For the release that you want, select the file that ends with “linux-x86_64.tar.gz”, for example for 2.3.0 select <a href="https://github.com/deepmind/mujoco/releases/download/2.3.0/mujoco-2.3.0-linux-x86_64.tar.gz">mujoco-2.3.0-linux-x86_64.tar.gz</a>. Right click, and copy the link address. Then you can download on one of the login nodes with the “wget” command, and untar:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span>https://github.com/deepmind/mujoco/releases/download/2.3.0/mujoco-2.3.0-linux-x86_64.tar.gz
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>mujoco-2.3.0-linux-x86_64.tar.gz
 </span></code></pre></div>
-<p>In order for mujoco-py to find the Mujoco binaries, set the following paths:</p>
+<p>In order for mujoco-py to find the MuJoCo binaries, set the following paths:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MUJOCO_PY_MUJOCO_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/path/to/mujoco230/
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:<span class="nv">$MUJOCO_PY_MUJOCO_PATH</span>/bin
 </span></code></pre></div>
-<h2 id="mujoco-on-engaging">Mujoco on Engaging</h2>
+<h2 id="mujoco-on-engaging">MuJoCo on Engaging</h2>
 <h3 id="install-dependency">Install Dependency</h3>
-<p>On Engaging, Mujoco requires an additional dependency, patchelf, that is very straightforward to install. First select a version on <a href="https://github.com/NixOS/patchelf/releases">this page</a>, right click the link that includes “-x86_64.tar.gz” and select “Copy link address” or similar. In this example I am using version 0.17.0. Then in a terminal on Engaging, create and go to the directory where you want to put the dependency and download the software with the wget or curl command and untar the download:</p>
+<p>On Engaging, MuJoCo requires an additional dependency, patchelf, that is very straightforward to install. First select a version on <a href="https://github.com/NixOS/patchelf/releases">this page</a>, right click the link that includes “-x86_64.tar.gz” and select “Copy link address” or similar. In this example I am using version 0.17.0. Then in a terminal on Engaging, create and go to the directory where you want to put the dependency and download the software with the wget or curl command and untar the download:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>path/to/mujoco/deps
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>wget<span class="w"> </span>https://github.com/NixOS/patchelf/releases/download/0.17.0/patchelf-0.17.0-x86_64.tar.gz
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>patchelf-0.17.0-x86_64.tar.gz
@@ -620,8 +622,8 @@
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">qpos</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="using-mujoco-in-a-job">Using Mujoco in a Job</h3>
-<p>To use Mujoco you’ll need to first load the same Python or Anaconda module you used to install mujoco-py. If you installed it into a conda environment or python virtual environment, load that environment as well. We recommend you do this in your job submission script rather than in your .bashrc or at the command line before you submit the job. This way you know your job is configured properly every time it runs. You can use the following test scripts to test your Mujoco setup in a job environment, and as a starting point for your own job:</p>
+<h3 id="using-mujoco-in-a-job">Using MuJoCo in a Job</h3>
+<p>To use MuJoCo you’ll need to first load the same Python or Anaconda module you used to install mujoco-py. If you installed it into a conda environment or python virtual environment, load that environment as well. We recommend you do this in your job submission script rather than in your .bashrc or at the command line before you submit the job. This way you know your job is configured properly every time it runs. You can use the following test scripts to test your MuJoCo setup in a job environment, and as a starting point for your own job:</p>
 <div class="language-py highlight"><span class="filename">mujoco_test.py</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span> <span class="nn">mujoco_py</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">import</span> <span class="nn">os</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
@@ -642,10 +644,10 @@
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># Run the script</span>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>python<span class="w"> </span>mujoco_test.py
 </span></code></pre></div>
-<h2 id="mujoco-on-supercloud">Mujoco on SuperCloud</h2>
-<p>Mujoco, particularly mujoco-py, can be tricky to install on SuperCloud as it uses file locking during the install and whenever the package is loaded. File locking is disabled on the SuperCloud shared filesystem performance reasons, but is available on the local disk of each node. Therefore, one workaround is to install mujoco-py on the local disk of one of the login nodes and then copy the install to your home directory. To load the package, the install then needs to be copied to the local disk.</p>
+<h2 id="mujoco-on-supercloud">MuJoCo on SuperCloud</h2>
+<p>MuJoCo, particularly mujoco-py, can be tricky to install on SuperCloud as it uses file locking during the install and whenever the package is loaded. File locking is disabled on the SuperCloud shared filesystem performance reasons, but is available on the local disk of each node. Therefore, one workaround is to install mujoco-py on the local disk of one of the login nodes and then copy the install to your home directory. To load the package, the install then needs to be copied to the local disk.</p>
 <p>We’ve found the most success by doing this with a python virtual environment. By using a python virtual environment you can install any additional packages you need with mujoco-py, and they can be used along with packages in our anaconda module, unlike conda environments.</p>
-<p>If you haven't already, first follow the instructions above to <a href="#install-the-mujoco-binaries">install the Mujoco binaries</a>.</p>
+<p>If you haven't already, first follow the instructions above to <a href="#install-the-mujoco-binaries">install the MuJoCo binaries</a>.</p>
 <h3 id="create-the-virtual-environment">Create the Virtual Environment</h3>
 <p>Next create the virtual environment on the local disk of the login node and install mujoco-py (install the version you would like to use):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>module<span class="w"> </span>load<span class="w"> </span>anaconda/2023a
@@ -654,7 +656,7 @@
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">source</span><span class="w"> </span>/state/partition1/user/<span class="nv">$USER</span>/mujoco_env/bin/activate
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;mujoco-py&lt;2.2,&gt;=2.1&#39;</span>
 </span></code></pre></div>
-<p>Now install any other packages you need to run your Mujoco jobs. With virtual environments you won’t see any of the packages you’ve previously installed with <code>pip install --user</code> or what you may have installed in another environment. You should still be able to use any of the packages in the anaconda module you’ve loaded, so no need to install any of those.</p>
+<p>Now install any other packages you need to run your MuJoCo jobs. With virtual environments you won’t see any of the packages you’ve previously installed with <code>pip install --user</code> or what you may have installed in another environment. You should still be able to use any of the packages in the anaconda module you’ve loaded, so no need to install any of those.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pkgname1
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>pip<span class="w"> </span>install<span class="w"> </span>pkgname2
 </span></code></pre></div>
