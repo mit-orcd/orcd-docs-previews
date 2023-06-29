@@ -377,11 +377,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-a-pytorch-example-with-a-freash-miniconda-and-pytorch" class="md-nav__link">
-    Running a pytorch example with a freash miniconda and pytorch
+  <a href="#running-a-nightly-build-pytorch-example-with-a-freash-miniconda-and-pytorch" class="md-nav__link">
+    Running a nightly build pytorch example with a freash miniconda and pytorch
   </a>
   
-    <nav class="md-nav" aria-label="Running a pytorch example with a freash miniconda and pytorch">
+    <nav class="md-nav" aria-label="Running a nightly build pytorch example with a freash miniconda and pytorch">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -434,33 +434,35 @@
 
 
 <h1 id="getting-started-on-8-way-h100-nodes-on-satori">Getting started on 8-way H100 nodes on Satori</h1>
-<p>A first set of H100 GPU systems has been added to Satori 
+<p>A first set of H100 GPU systems has been added to Satori.
 These are for priority use by IBM Watson AI Lab research collaborators.
-Currently ( 2023-06-19 ) there are 4 H100 systems installed. 
+They are also available for general opportunistic use when they are idle.</p>
+<p>Currently ( 2023-06-19 ) there are 4 H100 systems installed. 
 Each system has 8 H100 GPU cards, two Intel 8468 CPUs each with
 48 physical cores and 1TiB of main memory.</p>
 <p>Below are some instructions for getting started with these systems. </p>
 <h2 id="access-to-the-nodes">Access to the nodes</h2>
-<p>To access the nodes you need your satori login id to be listed in the Webmoira 
+<p>To access the nodes in the priority group you need your satori login id to be listed in the Webmoira 
 group <a href="https://groups.mit.edu/webmoira/list/sched_oliva">https://groups.mit.edu/webmoira/list/sched_oliva</a>. 
 Either Alex Andonian and Vincent Sitzmann are able to add accounts to the <code>sched_oliva</code> moira list.</p>
 <h2 id="interactive-access-through-slurm">Interactive access through Slurm</h2>
-<p>To an entire node through Slurm the command below can be used from the satori login node</p>
+<p>To access an entire node through Slurm, the command below can be used from the satori login node</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:8<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span><span class="m">0</span><span class="w"> </span>-c<span class="w"> </span><span class="m">192</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
 </span></code></pre></div>
 <p>this command will launch an interactive shell on one of the nodes (when a full node becomes available). 
 From this shell the NVidia status command 
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nvidia-smi
 </span></code></pre></div>
-should list 8 H100 GPUs as available. Single node, multi-gpu training examples (for example
-<a href="https://github.com/artidoro/qlora">https://github.com/artidoro/qlora</a> ) should be able to run 
+should list 8 H100 GPUs as available. </p>
+<p>Single node, multi-gpu training examples (for example
+<a href="https://github.com/artidoro/qlora">https://github.com/artidoro/qlora</a> ) should run 
 on all 8 GPUs. </p>
 <p>To use a single GPU interactively the following command can be used
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--mem<span class="o">=</span><span class="m">128</span><span class="w"> </span>-c<span class="w"> </span><span class="m">24</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
 </span></code></pre></div></p>
-<p>this will request a single GPU and will allow other slurm sessions to run on other GPUs 
+<p>this will request a single GPU. This request will allow other Slurm sessions to run on other GPUs 
 simultaneously with this session.</p>
-<h2 id="running-a-pytorch-example-with-a-freash-miniconda-and-pytorch">Running a pytorch example with a freash miniconda and pytorch</h2>
+<h2 id="running-a-nightly-build-pytorch-example-with-a-freash-miniconda-and-pytorch">Running a nightly build pytorch example with a freash miniconda and pytorch</h2>
 <p>A miniconda environment can be used to run the latest nightly build pytorch code on these 
 systems. To do this, first create a software install directory and install the needed pytorch software</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nobackup/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/pytorch_h100_testing/conda_setup
@@ -512,7 +514,7 @@ path to a directory where you have already installed a conda environment in a su
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>nvidia-smi
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>RUNDIR=/nobackup/users/cnh/h100-testing/minic
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>RUNDIR=/nobackup/users/${USER}/h100-testing/minic
 </span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>cd ${RUNDIR}
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
 </span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>. ./minic/bin/activate
