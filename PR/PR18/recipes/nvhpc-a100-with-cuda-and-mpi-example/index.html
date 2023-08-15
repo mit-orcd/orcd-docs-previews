@@ -356,6 +356,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-nvhpc" class="md-nav__link">
+    About NVHPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -407,9 +429,12 @@
 
 
 <h1 id="example-of-a-minimal-program-using-the-nvhpc-stack-with-cuda-aware-mpi">Example of a minimal program using the nvhpc stack with CUDA aware MPI</h1>
-<p>NVHPC is an integrated collection of software tools and libraries distributed by NVidia. It is described [here] (https://developer.nvidia.com/hpc-sdk).
+<h2 id="about-nvhpc">About NVHPC</h2>
+<p>NVHPC is an integrated collection of software tools and libraries distributed by NVidia. An overview document describing nvhpc 
+can be found <a href="https://developer.nvidia.com/hpc-sdk">here</a>.
 The aim of the nvhpc team is to provide up to date, preconfigured suites of compilers, libraries and tools that are 
-optimized for NVidia GPU hardware. It supports single and multi-GPU execution.</p>
+specifically optimized for NVidia GPU hardware. It supports single and multi-GPU execution.</p>
+<h2 id="usage">Usage</h2>
 <p>The NVHPC environment is installed as a module and can be made visible in a session using the command</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>load<span class="w"> </span>nvhpc/2023_233/nvhpc/23.3
 </span></code></pre></div>
