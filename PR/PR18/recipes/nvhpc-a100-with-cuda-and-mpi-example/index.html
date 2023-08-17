@@ -439,14 +439,17 @@ specifically optimized for NVidia GPU hardware. It supports single and multi-GPU
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>load<span class="w"> </span>nvhpc/2023_233/nvhpc/23.3
 </span></code></pre></div>
 <p>this will add a specific version of the nvhpc software (version 23.3 released in 2023) to a shell or batch script. The
-software added includes</p>
+software added includes compilers for C, C++ and Fortran; base GPU optimized numerical libraries for linear algebra, Fourier
+transforms and others; GPU optimized communication libraries supporting MPI, SHMEM and NCCL APIs.</p>
+<p>An environment variable, <code>NVHPC_ROOT</code>, is also set. This can be used in scripts to refernce the locations of libraries that
+when needed.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 16, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2023</span>
       
     
   </small>
