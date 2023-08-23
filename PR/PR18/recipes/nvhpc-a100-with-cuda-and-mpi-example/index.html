@@ -448,6 +448,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-compile-program" class="md-nav__link">
+    4. Compile program
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -602,6 +609,12 @@ running in different processes.</p>
 </span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="s">  MPI_Finalize();</span>
 </span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="s">}</span>
 </span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="s">EOFA</span>
+</span></code></pre></div>
+<h4 id="4-compile-program">4. Compile program</h4>
+<p>Here we use nvhpc MPI wrapper to compile. The two environment variables we set earlier ( <code>cuincdir</code> and <code>culibdir</code> ) are used to
+let the compile step know where to find the relevant CUDA header and library files. The CUDA runtime library ( <code>cudart</code> ) is added
+as a location for finding CUDA functions the code utilizes.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mpicc<span class="w"> </span>test.c<span class="w"> </span>-I<span class="si">${</span><span class="nv">cuincdir</span><span class="si">}</span><span class="w"> </span>-L<span class="si">${</span><span class="nv">culibdir</span><span class="si">}</span><span class="w"> </span>-lcudart
 </span></code></pre></div>
 
   <hr>
