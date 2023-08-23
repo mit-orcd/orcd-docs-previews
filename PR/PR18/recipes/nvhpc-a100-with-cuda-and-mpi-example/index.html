@@ -455,6 +455,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#5-exectue-program" class="md-nav__link">
+    5. Exectue program
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -615,6 +622,21 @@ running in different processes.</p>
 let the compile step know where to find the relevant CUDA header and library files. The CUDA runtime library ( <code>cudart</code> ) is added
 as a location for finding CUDA functions the code utilizes.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mpicc<span class="w"> </span>test.c<span class="w"> </span>-I<span class="si">${</span><span class="nv">cuincdir</span><span class="si">}</span><span class="w"> </span>-L<span class="si">${</span><span class="nv">culibdir</span><span class="si">}</span><span class="w"> </span>-lcudart
+</span></code></pre></div>
+<h4 id="5-exectue-program">5. Exectue program</h4>
+<p>Once code has been compiled the <code>mpiexec</code> command that is part of the <code>nvhpc</code> module can be used to run the test program.
+The <code>nvhpc</code> module defaults to using its builtin version of OpneMPI. The OpenMPI option <code>btl_openib_warn_no_device_params_found</code>
+is passed into the OpenMPI runtime library. This option supresses a warning that OpenMPI can generate when it encounters
+a network device card that is not present in a built-in list that OpenMPI has historically included.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mpiexec<span class="w"> </span>--mca<span class="w"> </span>btl_openib_warn_no_device_params_found<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span>./a.out<span class="w"> </span>
+</span></code></pre></div>
+<p>Running this program using the command above should produce the following output.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Number of GPUs found = 1
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Number of GPUs found = 1
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Assigned GPU 0 to MPI rank 0 of 2.
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>rBuf_h[0] = -1.000000
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Assigned GPU 0 to MPI rank 1 of 2.
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>rBuf_h[0] = 1.000000
 </span></code></pre></div>
 
   <hr>
