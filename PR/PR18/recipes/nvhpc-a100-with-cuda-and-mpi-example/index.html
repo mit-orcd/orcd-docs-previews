@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/recipes/nvhpc-a100-with-cuda-and-mpi-example/">
       
       
+        <link rel="prev" href="../mujoco/">
+      
+      
+        <link rel="next" href="../../tags/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -310,17 +314,19 @@
       
   
   
+    
+  
   
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
@@ -333,7 +339,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
@@ -355,6 +361,128 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Example of a minimal program using the nvhpc stack with CUDA aware MPI
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Example of a minimal program using the nvhpc stack with CUDA aware MPI
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-nvhpc" class="md-nav__link">
+    About NVHPC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage-example" class="md-nav__link">
+    Basic Usage Example
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-activate-the-relevant-nvhpc-module" class="md-nav__link">
+    1. Activate the relevant NVHPC module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-paths-needed-for-compile-step" class="md-nav__link">
+    2. Set paths needed for compile step
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-a-c-program-for-that-excutes-some-simple-multi-node-multi-gpu-test-code" class="md-nav__link">
+    3. Create a C program for that excutes some simple multi-node, multi-GPU test code.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-compile-program" class="md-nav__link">
+    4. Compile program
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-execute-program" class="md-nav__link">
+    5. Execute program
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-of-slurm-job-file-for-excuting-this-example" class="md-nav__link">
+    Example of Slurm job file for excuting this example
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
