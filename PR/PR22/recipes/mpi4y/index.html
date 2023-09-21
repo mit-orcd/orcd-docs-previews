@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/filesystems-file-transfer/filesystems/">
+        <link rel="canonical" href="https://orcd.mit.edu/recipes/mpi4y/">
       
       
-        <link rel="prev" href="../../orcd-systems/">
-      
-      
-        <link rel="next" href="../project-filesystems/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>General Use Filesystems - ORCD Docs</title>
+        <title>Installing and Using GROMACS - ORCD Docs</title>
       
     
     
@@ -73,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#general-use-filesystems" class="md-skip">
+        <a href="#installing-and-using-gromacs" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              General Use Filesystems
+              Installing and Using GROMACS
             
           </span>
         </div>
@@ -234,19 +230,17 @@
       
   
   
-    
-  
   
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
@@ -259,7 +253,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Filesystems and File Transfer
@@ -270,29 +264,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    General Use Filesystems
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/filesystems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -301,54 +275,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    SuperCloud
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#engaging" class="md-nav__link">
-    Engaging
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#satori" class="md-nav__link">
-    Satori
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#openmind" class="md-nav__link">
-    OpenMind
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -360,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../project-filesystems/" class="md-nav__link">
+      <a href="../../filesystems-file-transfer/project-filesystems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -440,7 +366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/mujoco/" class="md-nav__link">
+      <a href="../mujoco/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -460,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
+      <a href="../nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -527,30 +453,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    SuperCloud
+  <a href="#mpi4py-on-openmind" class="md-nav__link">
+    Mpi4py on OpenMind
+  </a>
+  
+    <nav class="md-nav" aria-label="Mpi4py on OpenMind">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    Install
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#engaging" class="md-nav__link">
-    Engaging
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#satori" class="md-nav__link">
-    Satori
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#openmind" class="md-nav__link">
-    OpenMind
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -567,188 +485,47 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../tags/#openmind" class="md-tag">OpenMind</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#engaging" class="md-tag">Engaging</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#supercloud" class="md-tag">SuperCloud</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#howto-recipes" class="md-tag">Howto Recipes</a>
+    
+  
+</nav>
 
 
-<h1 id="general-use-filesystems">General Use Filesystems</h1>
-<p>Large HPC systems often have different filesystems for different purposes. ORCD systems are no different, and each have their own approach. This page documents these.</p>
-<h2 id="supercloud">SuperCloud</h2>
-<p>SuperCloud uses Lustre for all central/shared storage (accessible to all nodes in the system). This storage is not backed up. See the SuperCloud <a href="https://supercloud.mit.edu/best-practices-and-performance-tips">Best Practices and Performance Tips</a> page for best practices using the Lustre filesystem. Quotas or limits are set on the storage as guardrails. Additional storage may be granted on a case by case basis. Local disk spaces will be faster than the Lustre shared filesystem, but all are temporary and can only be accessed on the node where they are created.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Access</th>
-<th>Backed up</th>
-<th>Limits</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> Lustre</td>
-<td><code>/home/gridsan/&lt;username&gt;</code></td>
-<td>User only</td>
-<td>Not backed up</td>
-<td>See <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a></td>
-</tr>
-<tr>
-<td>Group Directories <br> Lustre</td>
-<td><code>/home/gridsan/groups/&lt;groupname&gt;</code></td>
-<td>Files shared within a group</td>
-<td>Not backed up</td>
-<td>See <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a></td>
-</tr>
-<tr>
-<td>Job-specific Temporary Storage <br> Local Disk</td>
-<td>Access using the <code>$TMPDIR</code> environment variable</td>
-<td>User or Group</td>
-<td>Not backed up <br>  Temporary directory created at the start of a job and cleaned up at the end of the job</td>
-<td>NA</td>
-</tr>
-<tr>
-<td>Local Disk Space</td>
-<td>Create the directory <code>/state/partition1/user/$USER</code> as needed</td>
-<td>User or Group</td>
-<td>Not backed up <br> Cleaned up monthly during downtimes</td>
-<td>NA</td>
-</tr>
-</tbody>
-</table>
-<h2 id="engaging">Engaging</h2>
-<p>Users each get a small home directory that is backed up and meant for important files. Larger scratch space is not backed up. <a href="../project-filesystems/">Additional storage can be purchased</a>. The Lustre scratch space will be faster than NFS for the majority of workloads, however having large numbers of small files will make it slower than NFS and can slow down the filesystem overall, so it is important to follow the <a href="https://engaging-web.mit.edu/eofe-wiki/best_practices/lustre/">Lustre Best Practices</a>. See the <a href="https://engaging-web.mit.edu/eofe-wiki/storage/">Engaging Documentation Page on Storage</a> for more information.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> NFS</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>100 GB</td>
-<td>Backed up</td>
-<td>Use for important files</td>
-</tr>
-<tr>
-<td>Lustre</td>
-<td><code>/nobackup1/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space <br> Faster than NFS</td>
-</tr>
-<tr>
-<td>NFS</td>
-<td><code>/pool001/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space</td>
-</tr>
-</tbody>
-</table>
-<h2 id="satori">Satori</h2>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>25GB</td>
-<td>Backed up</td>
-<td>Use for important files. Quota increase request to 100GB.</td>
-</tr>
-<tr>
-<td>GPFS</td>
-<td><code>/nobackup/users/&lt;username&gt;</code></td>
-<td>500GB</td>
-<td>Not backed up</td>
-<td>Scratch space. Quota increase request to 2TB.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="openmind">OpenMind</h2>
-<p>OpenMind provides a number of different storage options. See the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/Which-directory-should-I-use%3F">OpenMind Documentation page on Storage</a> for more information, best practices, and recommendations.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>20 GB</td>
-<td>Backed up</td>
-<td>Use for very important files. Physically located on Vast.</td>
-</tr>
-<tr>
-<td>Weka</td>
-<td><code>/om/user/&lt;username&gt;</code> (individual users) and <code>/om/group/&lt;groupname&gt;</code> (groups)</td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Fast internal storage</td>
-</tr>
-<tr>
-<td>Weka Scratch</td>
-<td><code>/om/scratch/&lt;week-day&gt;</code></td>
-<td>N/A</td>
-<td>Not backed up <br> purged 3 weeks after creation</td>
-<td>Scratch space</td>
-</tr>
-<tr>
-<td>Vast</td>
-<td><code>/om2/user/&lt;username&gt;</code> (individual users) and <code>/om2/group/&lt;groupname&gt;</code> (groups)</td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Fast internal storage</td>
-</tr>
-<tr>
-<td>Vast Scratch</td>
-<td><code>/om2/scratch/&lt;week-day&gt;</code></td>
-<td>N/A</td>
-<td>Not backed up <br> purged 2 weeks after creation</td>
-<td>Scratch space</td>
-</tr>
-<tr>
-<td>Lustre Scratch</td>
-<td><code>/nobackup/scratch/&lt;week-day&gt;</code></td>
-<td>N/A</td>
-<td>Not backed up <br> purged 3 weeks after creation</td>
-<td>Scratch space <br>  See <a href="https://www.nas.nasa.gov/hecc/support/kb/lustre-best-practices_226.html">Lustre Best Practices</a> page</td>
-</tr>
-<tr>
-<td>NFS</td>
-<td><code>/om3</code>, <code>/om4</code>, <code>/om5</code></td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Slow internal long-term storage</td>
-</tr>
-<tr>
-<td>NESE</td>
-<td><code>/nese</code></td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Slow internal long-term storage</td>
-</tr>
-</tbody>
-</table>
+
+<h1 id="installing-and-using-gromacs">Installing and Using GROMACS</h1>
+<p>MPI for Python (`mpi4py``) provides Python bindings for the Message Passing Interface (MPI) standard, allowing Python applications to exploit multiple processors on workstations, clusters and supercomputers.</p>
+<p>You can learn about <code>mpi4py</code> here: <a href="https://mpi4py.readthedocs.io/en/stable/">https://mpi4py.readthedocs.io/en/stable/</a>.</p>
+<h2 id="mpi4py-on-openmind">Mpi4py on OpenMind</h2>
+<h3 id="install">Install</h3>
+<p>First, refer to <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-make-Python-ready-for-use%3F">this page</a> to set up your python environement. </p>
+<p>Intall <code>openmpir</code> and <code>mpi4py</code>, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>conda install -c conda-forge openmpi
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>conda install -c conda-forge mpi4py
+</span></code></pre></div></p>
 
   <hr>
 <div class="md-source-file">
