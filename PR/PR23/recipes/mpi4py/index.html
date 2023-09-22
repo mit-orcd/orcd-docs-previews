@@ -527,7 +527,7 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>conda install -c conda-forge mpi4py
 </span></code></pre></div></p>
 <h3 id="run-mpi4py">Run Mpi4py</h3>
-<p>Prepare your Python codes. Example 1: save this code for sending and reciving a dictionary in a file named <code>p2p-send-recv.py</code>.
+<p>Prepare your Python codes. Example 1: The following is a code for sending and reciving a dictionary. Save it in a file named <code>p2p-send-recv.py</code>.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>from mpi4py import MPI
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>comm = MPI.COMM_WORLD
@@ -541,7 +541,7 @@
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    data = comm.recv(source=0, tag=11)
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    print(rank,data)
 </span></code></pre></div></p>
-<p>Example 2: save this code for sending and reciving an array in a file named <code>p2p-array.py</code>.
+<p>Example 2: The following is a code for sending and reciving an array. Save it in a file named <code>p2p-array.py</code>.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>from mpi4py import MPI
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>import numpy
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
@@ -568,7 +568,7 @@
 </span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    comm.Recv(data, source=0, tag=13)
 </span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    print(rank,data)
 </span></code></pre></div></p>
-<p>Prepare a job script. Save the following in a file named <code>p2p-job.sh</code>.
+<p>Prepare a job script. The following is a job script for running <code>mpi4py</code> codes on 8 CPU cores of one node. Save it in a file named <code>p2p-job.sh</code>.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>#!/bin/bash -l
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>#SBATCH -N 1
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>#SBATCH -n 8

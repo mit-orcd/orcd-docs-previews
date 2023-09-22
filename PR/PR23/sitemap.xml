@@ -51,11 +51,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://orcd.mit.edu/recipes/mpi4y/</loc>
-         <lastmod>2023-09-22</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://orcd.mit.edu/recipes/mujoco/</loc>
          <lastmod>2023-09-22</lastmod>
          <changefreq>daily</changefreq>
