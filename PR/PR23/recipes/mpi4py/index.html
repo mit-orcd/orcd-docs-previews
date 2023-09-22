@@ -504,13 +504,7 @@
     
     
     
-      <a href="../../tags/#engaging" class="md-tag">Engaging</a>
-    
-  
-    
-    
-    
-      <a href="../../tags/#supercloud" class="md-tag">SuperCloud</a>
+      <a href="../../tags/#mpi" class="md-tag">mpi</a>
     
   
     
@@ -529,11 +523,11 @@
 <h2 id="mpi4py-on-openmind">Mpi4py on OpenMind</h2>
 <h3 id="install">Install</h3>
 <p>If you use an Anaconda module, no installation is required.</p>
-<p>If you want to use your own Python environment, refer to section 3 on <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-make-Python-ready-for-use%3F">this page</a> to set up your own Anaconda, then intall MPI for Python, 
+<p>If you want to use your own Anaconda, refer to section 3 on <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-make-Python-ready-for-use%3F">this page</a> to set it up, then intall <code>mpi4py</code>, 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>conda install -c conda-forge mpi4py
 </span></code></pre></div></p>
 <h3 id="run-mpi4py">Run Mpi4py</h3>
-<p>Prepare your Python codes. Example 1: save this code for send and recive a dictionary in a file named <code>p2p-send-recv.py</code>.
+<p>Prepare your Python codes. Example 1: save this code for sending and reciving a dictionary in a file named <code>p2p-send-recv.py</code>.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>from mpi4py import MPI
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>comm = MPI.COMM_WORLD
@@ -547,8 +541,8 @@
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    data = comm.recv(source=0, tag=11)
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    print(rank,data)
 </span></code></pre></div></p>
-<p>Example 2: save this code for send and recive an array in a file named <code>p2p-arraypy</code>.
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>rom mpi4py import MPI
+<p>Example 2: save this code for sending and reciving an array in a file named <code>p2p-array.py</code>.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>from mpi4py import MPI
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>import numpy
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>comm = MPI.COMM_WORLD
@@ -586,9 +580,9 @@
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>mpirun -np $SLURM_NTASKS python p2p-array.py
 </span></code></pre></div></p>
 <blockquote>
-<p>If you use your own Anaconda, do not load the module, activate your own Python environment instead. </p>
+<p>If you use your own Anaconda, do not load the Anaconda module. An Openmpi module is needed.</p>
 </blockquote>
-<p>Submit the job
+<p>Finally submit the job,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sbatch p2p-job.sh
 </span></code></pre></div></p>
 
