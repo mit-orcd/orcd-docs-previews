@@ -553,6 +553,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#7-an-example-script-to-compile-and-run-vasp" class="md-nav__link">
+    7. An example script to compile and run VASP
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -687,7 +694,51 @@ shown. The settings shown will also build the Fortran 90 modules that VASP inclu
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="nv">OPENBLAS_ROOT</span><span class="o">=</span><span class="nv">$OPENBLAS_ROOT</span><span class="w"> </span><span class="nv">FFTW_ROOT</span><span class="o">=</span><span class="nv">$FFTW_ROOT</span><span class="w"> </span><span class="nv">SCALAPACK_ROOT</span><span class="o">=</span><span class="nv">$SCALAPACK_ROOT</span><span class="w"> </span><span class="nv">MODS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">DEPS</span><span class="o">=</span><span class="m">1</span>
 </span></code></pre></div>
 <h3 id="6-check-the-vasp-executables">6. Check the VASP executables</h3>
-<p>The above commands should generate VASP executable programs <code>build/std/vasp</code>, <code>build/gam/vasp</code> and</p>
+<p>The above commands should generate VASP executable programs <code>bin/vasp_std</code>, <code>bin/vasp_gam</code> and
+<code>bin/vasp_ncl</code>. To test that these programs can execute the following commands can be used.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">OPENBLAS_ROOT</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">FFTW_ROOT</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">SCALAPACK_ROOT</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>bin/vasp_std
+</span></code></pre></div>
+<p>if the code has compiled sucesfully the follow output should be generated. This output shows that the 
+VASP program can be run. The output shows an error because no input files have been configured.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a> -----------------------------------------------------------------------------
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>|                                                                             |
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>|     EEEEEEE  RRRRRR   RRRRRR   OOOOOOO  RRRRRR      ###     ###     ###     |
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>|     E        R     R  R     R  O     O  R     R     ###     ###     ###     |
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>|     E        R     R  R     R  O     O  R     R     ###     ###     ###     |
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>|     EEEEE    RRRRRR   RRRRRR   O     O  RRRRRR       #       #       #      |
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>|     E        R   R    R   R    O     O  R   R                               |
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>|     E        R    R   R    R   O     O  R    R      ###     ###     ###     |
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>|     EEEEEEE  R     R  R     R  OOOOOOO  R     R     ###     ###     ###     |
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>|                                                                             |
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>|     No INCAR found, STOPPING                                                |
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>|                                                                             |
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>|       ----&gt;  I REFUSE TO CONTINUE WITH THIS SICK JOB ... BYE!!! &lt;----       |
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>|                                                                             |
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a> -----------------------------------------------------------------------------
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a> -----------------------------------------------------------------------------
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>|                                                                             |
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>|     EEEEEEE  RRRRRR   RRRRRR   OOOOOOO  RRRRRR      ###     ###     ###     |
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>|     E        R     R  R     R  O     O  R     R     ###     ###     ###     |
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>|     E        R     R  R     R  O     O  R     R     ###     ###     ###     |
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>|     EEEEE    RRRRRR   RRRRRR   O     O  RRRRRR       #       #       #      |
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>|     E        R   R    R   R    O     O  R   R                               |
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>|     E        R    R   R    R   O     O  R    R      ###     ###     ###     |
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>|     EEEEEEE  R     R  R     R  OOOOOOO  R     R     ###     ###     ###     |
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>|                                                                             |
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>|     No INCAR found, STOPPING                                                |
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>|                                                                             |
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>|       ----&gt;  I REFUSE TO CONTINUE WITH THIS SICK JOB ... BYE!!! &lt;----       |
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>|                                                                             |
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a> -----------------------------------------------------------------------------
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>STOP 1
+</span></code></pre></div>
+<h3 id="7-an-example-script-to-compile-and-run-vasp">7. An example script to compile and run VASP</h3>
+<p>The commands above can be combined into a single script as shown below. This example
+shows a script that can either be run from the command line or submitted to Slrum 
+as a batch job.</p>
 
   <hr>
 <div class="md-source-file">
