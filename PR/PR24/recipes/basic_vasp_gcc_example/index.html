@@ -621,7 +621,7 @@
 
 <h1 id="example-of-a-build-of-the-vasp-software">Example of a build of the VASP software.</h1>
 <h2 id="about-vasp">About VASP</h2>
-<p>VASP is a first principles simulation tool for electronic structure and quantum mechanical molelcular dynamics computations. The name VASP is an acronym of Vienna Ab-initio Simulation Package. The VASP software is used in quantum chemistry to simulate the properties and structure of atomic scale materials. VASP can compute
+<p><a href="https://www.vasp.at">VASP</a> is a first principles simulation tool for electronic structure and quantum mechanical molelcular dynamics computations. The name VASP is an acronym of Vienna Ab-initio Simulation Package. The VASP software is used in quantum chemistry to simulate the properties and structure of atomic scale materials. VASP can compute
 detailed atomic structure of molecules, finding terms such as bond lengths and vibration frequencies.</p>
 <h2 id="building-vasp-software">Building VASP software</h2>
 <p>VASP is distributed as Fortran source code that must be compiled by end-users to create an executable program. This recipe describes how to compile
@@ -643,6 +643,10 @@ store the compiled VASP programs. </p>
 <p>Once the code has been extracted, switch to use the VASP directory for the remaining steps</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>vasp.6.4.2
 </span></code></pre></div>
+<details class="tip">
+<summary>Tip</summary>
+</details>
+<p>For different versions of VASP, the directory name will be different so you may need to adjust the example commands accordingly.</p>
 <h4 id="2-configure-the-compiler-options-file">2. Configure the compiler options file</h4>
 <p>The VASP software is distributed with multiple example compiler options file in the sub-directory <code>arch/</code>. For this example
 we will use the GNU compiler options file <code>makefile.include.gnu_omp</code>. We activate these options by copying file to the
