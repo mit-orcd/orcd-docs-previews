@@ -540,8 +540,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-build-the-code" class="md-nav__link">
-    5. Build the code
+  <a href="#5-compile-the-vasp-code" class="md-nav__link">
+    5. Compile the VASP code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-check-the-vasp-executables" class="md-nav__link">
+    6. Check the VASP executables
   </a>
   
 </li>
@@ -648,16 +655,18 @@ store the compiled VASP programs. </p>
 <p>For different versions of VASP, the download file name and directory name will be different. In that case, remember to adjust the example commands above accordingly.</p>
 </details>
 <h4 id="2-configure-the-compiler-options-file">2. Configure the compiler options file</h4>
-<p>The VASP software is distributed with multiple example compiler options file in the sub-directory <code>arch/</code>. For this example
-we will use the GNU compiler options file <code>makefile.include.gnu_omp</code>. We activate these options by copying file to the
-top-level VASP directory.</p>
+<p>The VASP software is distributed with multiple example compiler options files. 
+These are in the sub-directory <code>arch/</code>. 
+For this example we will use the GNU compiler options file <code>makefile.include.gnu_omp</code>. 
+To activate the chosen options, copy the options file into the top-level VASP directory.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cp<span class="w"> </span>arch/makefile.include.gnu_omp<span class="w"> </span>makefile.include
 </span></code></pre></div>
 <h4 id="3-activate-the-relevant-modules">3. Activate the relevant modules</h4>
-<p>To build the vasp program from the licensed source code several tools and libraries are needed. The modules below
-add the needed software. The <code>gcc</code> and <code>openmpi</code> modules provide compilers (gcc) and computational tools (openmpi) 
-needed for parallel computing with VASP. The <code>lapack</code>, <code>scalapack</code>, <code>fftw</code> and <code>openblas</code> toos are numerical libraries
-that VASP uses.</p>
+<p>To build the vasp program from the licensed source code several tools and libraries are needed. 
+The modules below add the needed software. 
+The <code>gcc</code> and <code>openmpi</code> modules provide compilers (gcc) and computational tools (openmpi) 
+needed for parallel computing with VASP. 
+The <code>lapack</code>, <code>scalapack</code>, <code>fftw</code> and <code>openblas</code> toos are numerical libraries that VASP uses.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>gcc/12.2.0-x86_64
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi/4.1.4-pmi-cuda-ucx-x86_64
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>module<span class="w"> </span>load<span class="w"> </span>netlib-lapack/3.10.1-x86_64
@@ -666,13 +675,19 @@ that VASP uses.</p>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>module<span class="w"> </span>load<span class="w"> </span>openblas/0.3.21-x86_64
 </span></code></pre></div>
 <h4 id="4-set-environment-variables-that-are-needed-for-compilation">4. Set environment variables that are needed for compilation</h4>
+<p>The compilation scripts that come with VASP include variables that must be set to
+the clusters local values. Here we set environment variables to hold those settings.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">SCALAPACK_ROOT</span><span class="o">=</span><span class="sb">`</span>module<span class="w"> </span>-t<span class="w"> </span>show<span class="w">  </span>netlib-scalapack<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>CMAKE_PREFIX_PATH<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F,<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="se">\&quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">FFTW_ROOT</span><span class="o">=</span><span class="sb">`</span>pkgconf<span class="w"> </span>--variable<span class="o">=</span>prefix<span class="w"> </span>fftw3<span class="sb">`</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nv">OPENBLAS_ROOT</span><span class="o">=</span><span class="k">$(</span>dirname<span class="w"> </span><span class="sb">`</span>pkgconf<span class="w"> </span>--variable<span class="o">=</span>libdir<span class="w"> </span>openblas<span class="sb">`</span><span class="k">)</span>
 </span></code></pre></div>
-<h4 id="5-build-the-code">5. Build the code</h4>
+<h4 id="5-compile-the-vasp-code">5. Compile the VASP code</h4>
+<p>To compile the VASP code use the <code>make</code> program, passing it the environment variable settings as
+shown. The settings shown will also build the Fortran 90 modules that VASP includes. Typically th</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="nv">OPENBLAS_ROOT</span><span class="o">=</span><span class="nv">$OPENBLAS_ROOT</span><span class="w"> </span><span class="nv">FFTW_ROOT</span><span class="o">=</span><span class="nv">$FFTW_ROOT</span><span class="w"> </span><span class="nv">SCALAPACK_ROOT</span><span class="o">=</span><span class="nv">$SCALAPACK_ROOT</span><span class="w"> </span><span class="nv">MODS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">DEPS</span><span class="o">=</span><span class="m">1</span>
 </span></code></pre></div>
+<h3 id="6-check-the-vasp-executables">6. Check the VASP executables</h3>
+<p>The above commands should generate VASP executable programs <code>build/std/vasp</code>, <code>build/gam/vasp</code> and</p>
 
   <hr>
 <div class="md-source-file">
