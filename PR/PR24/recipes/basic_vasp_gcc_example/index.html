@@ -11,18 +11,22 @@
         <link rel="canonical" href="https://orcd.mit.edu/recipes/basic_vasp_gcc_example/">
       
       
+        <link rel="prev" href="../nvhpc-a100-with-cuda-and-mpi-example/">
+      
+      
+        <link rel="next" href="../../tags/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.5">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
-        <title>Example of a build of the VASP software. - ORCD Docs</title>
+        <title>VASP - ORCD Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6a10b989.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
@@ -104,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Example of a build of the VASP software.
+              VASP
             
           </span>
         </div>
@@ -332,18 +336,20 @@
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -357,12 +363,52 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpi4py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI for Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -408,37 +454,126 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../gromacs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    VASP
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    GROMACS
+    VASP
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mpi4py/" class="md-nav__link">
+      
         
-  
-  <span class="md-ellipsis">
-    MPI for Python
-  </span>
-  
 
-      </a>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-vasp" class="md-nav__link">
+    About VASP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-vasp-software" class="md-nav__link">
+    Building VASP software
+  </a>
+  
+    <nav class="md-nav" aria-label="Building VASP software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extract-vasp-source-code-files" class="md-nav__link">
+    1. Extract VASP source code files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-the-compiler-options-file" class="md-nav__link">
+    2. Configure the compiler options file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-activate-the-relevant-modules" class="md-nav__link">
+    3. Activate the relevant modules
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-set-environment-variables-that-are-needed-for-compilation" class="md-nav__link">
+    4. Set environment variables that are needed for compilation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-compile-the-vasp-code" class="md-nav__link">
+    5. Compile the VASP code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-check-the-vasp-executables" class="md-nav__link">
+    6. Check the VASP executables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-an-example-script-to-compile-and-run-vasp" class="md-nav__link">
+    7. An example script to compile and run VASP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
