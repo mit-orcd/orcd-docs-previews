@@ -518,6 +518,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-check-what-extra-software-spack-will-build-for-our-lammps-install" class="md-nav__link">
+    2. Check what extra software Spack will build for our LAMMPS install
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -629,6 +636,13 @@ Spack as used in the upstream and provide a path name to the upstream isntallati
 </span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s">EOF</span>
 </span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
 </span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="nb">source</span><span class="w"> </span>spack/share/spack/setup-env.sh
+</span></code></pre></div>
+<h4 id="2-check-what-extra-software-spack-will-build-for-our-lammps-install">2. Check what extra software Spack will build for our LAMMPS install</h4>
+<p>Spack will download and compile extra software that it needs to compile LAMMPS. 
+It is good to check what software Spack selects to build to make sure that 
+the <em>upstream</em> libraries are being used as epxected.</p>
+<p>To check the software Spack will build use the commad.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>spack<span class="w"> </span>spec<span class="w"> </span>-I<span class="w"> </span>-L<span class="w"> </span>lammps%gcc@12.2.0<span class="w"> </span><span class="nv">fftw_precision</span><span class="o">=</span>single<span class="w"> </span>+intel<span class="w"> </span>~kim<span class="w"> </span>+asphere<span class="w"> </span>+class2<span class="w"> </span>+kspace<span class="w"> </span>+manybody<span class="w"> </span>+molecule<span class="w"> </span>+opt<span class="w"> </span>+replica<span class="w"> </span>+rigid<span class="w"> </span>+granular<span class="w"> </span>+openmp-package<span class="w"> </span>+openmp<span class="w"> </span>^openmpi
 </span></code></pre></div>
 
   <hr>
