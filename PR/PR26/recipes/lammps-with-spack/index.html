@@ -575,11 +575,11 @@
 
 <h1 id="example-of-building-custom-lammps-configuration-using-spack">Example of building custom LAMMPS configuration using spack</h1>
 <h2 id="about-lammps">About LAMMPS</h2>
-<p>LAMMPS is a fully open-source molecular dynamics simulator. Its name is an acronym from Large-scale Atomic/Molecular Massively Parallel Simulator.
+<p>LAMMPS is a fully open-source molecular dynamics simulator. 
+Its name is an acronym from <a href="https://www.lammps.org">Large-scale Atomic/Molecular Massively Parallel Simulator</a>.
 It is widely used in materials research. LAMMPS is actively developed
 <a href="https://github.com/lammps">here</a> by a team of collaborators led by researchers from Sandia National Laboratory and 
-Temple University.<br />
-LAMMPS has many different compilation options that can be used to activate different technical and scientific features.</p>
+Temple University. LAMMPS has many different compilation options that can be used to activate different technical and scientific features.</p>
 <h2 id="compiling-and-running-a-custom-lammps-using-spack">Compiling and running a custom LAMMPS using Spack</h2>
 <p>In this recipe we look at setting up a custom configuration of LAMMPS using the <a href="https://github.com/spack/spack">Spack</a> system. The recipe shows
 how to compile LAMMPS in a way that uses an existing Spack install of core tools like MPI and GPU CUDA libraries and tools. The recipe
@@ -591,13 +591,19 @@ below. </p>
 </div>
 <h4 id="1-configure-an-instance-of-spack-in-a-directory-under-your-account">1. Configure an instance of Spack in a directory under your account</h4>
 <p>Spack is a tool for compiling programs in a uniform away. It is designed for use by regular accounts on a computer. It does not need any administrative privileges.
-Here it will be used to compile the LAMMPS software. The compilation example shows using Spack in a way that uses pre-existing Spack built software 
-from another location. This can be useful on a cluster computer where a central team may have already installed and configured some standard foundation software tools, 
-such as a compiler and high-performance tools for using GPUs and/or for parallel communication. Configuring these foundation software tools can involve seaprate
-testing and performance settings, so using a pre-installed foundation is generally useful.</p>
+Here it will be used to compile the LAMMPS software. </p>
 <p>A first step to using Spack is to download the software from its Github repository using the following command.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
 </span></code></pre></div>
+<p>Next we configure Spack, setting the it ot use standard tools that have already been built from a pre-exisiting location.</p>
+<details class="note">
+<summary>Note</summary>
+<p>The compilation example shows using Spack in a way that uses pre-existing Spack built software 
+from another location. This can be useful on a cluster computer where a central team may have already installed and configured some standard foundation software tools, 
+such as a compiler and high-performance tools for using GPUs and/or for parallel communication. Configuring these foundation software tools can involve seaprate
+testing and performance settings, so using a pre-installed foundation is generally useful.</p>
+</details>
+<p>To configure Spack use the following commands.</p>
 
   <hr>
 <div class="md-source-file">
