@@ -598,10 +598,11 @@ Here it will be used to compile the LAMMPS software. </p>
 <p>Next we configure Spack, setting the it ot use standard tools that have already been built from a pre-exisiting location.</p>
 <details class="note">
 <summary>Note</summary>
-<p>The compilation example shows using Spack in a way that uses pre-existing Spack built software 
+<p>The compilation example shows using Spack in a way that uses pre-existing <em>upstream</em> Spack built software 
 from another location. This can be useful on a cluster computer where a central team may have already installed and configured some standard foundation software tools, 
 such as a compiler and high-performance tools for using GPUs and/or for parallel communication. Configuring these foundation software tools can involve seaprate
-testing and performance settings, so using a pre-installed foundation is generally useful.</p>
+testing and performance settings, so using a pre-installed foundation is generally useful. To make a Spack <em>upstream</em> work reliably we need to use the same tag of 
+Spack as used in the upstream and provide a path name to the upstream isntallation.</p>
 </details>
 <p>To configure Spack use the following commands.</p>
 
