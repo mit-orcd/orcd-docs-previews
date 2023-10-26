@@ -644,13 +644,13 @@ the <em>upstream</em> libraries are being used as epxected.</p>
 <p>To check the software Spack will build use the commad.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>spack<span class="w"> </span>spec<span class="w"> </span>-I<span class="w"> </span>-L<span class="w"> </span>lammps%gcc@12.2.0<span class="w"> </span><span class="nv">fftw_precision</span><span class="o">=</span>single<span class="w"> </span>+intel<span class="w"> </span>~kim<span class="w"> </span>+asphere<span class="w"> </span>+class2<span class="w"> </span>+kspace<span class="w"> </span>+manybody<span class="w"> </span>+molecule<span class="w"> </span>+opt<span class="w"> </span>+replica<span class="w"> </span>+rigid<span class="w"> </span>+granular<span class="w"> </span>+openmp-package<span class="w"> </span>+openmp<span class="w"> </span>^openmpi
 </span></code></pre></div>
-<p>this command produces a large amount of output that is described below</p>
+<p>this command produces a large amount of output that is described below.</p>
 <details class="example">
 <summary>Output from spack spec -I -L query</summary>
 <p>The<code>spack spec -I -L</code> command produces a series of lines that show the versions of all the software packages that
 are needed for some software. The first column in these lines show symbols that denote whether an existing 
-version will be used ( [^], or [e] ) or a new version needs to be downloaded and installed ( [+] ). If there
-are many packages marked with the [+] it can be useful to check what options you have selected for the software
+version will be used ( [^], or [e] ) or a new version needs to be downloaded and installed ( [+] ). </p>
+<p>If there are many packages marked with the [+] it can be useful to check what options you have selected for the software
 you are trying to build. Changing these options can affect how Spack decides which packages needs to be
 built frm scratch.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Input spec
@@ -721,13 +721,17 @@ built frm scratch.
 </span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>[^]  omne2gv2jqp4wmdqfnb6wfozhda6mznn              ^xpmem@2.6.5-36%gcc@12.2.0+kernel-module build_system=autotools patches=1a2660a,6be8c5f,7529939 arch=linux-rocky8-x86_64
 </span></code></pre></div></p>
 </details>
+<p>Assuming the <code>spack spec</code> command does not show that a large number of unexpected dependencies will be 
+built then the command <code>spack install</code> can be used to build the software as follows</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>spack<span class="w"> </span>spec<span class="w"> </span>install<span class="w"> </span>lammps%gcc@12.2.0<span class="w"> </span><span class="nv">fftw_precision</span><span class="o">=</span>single<span class="w"> </span>+intel<span class="w"> </span>~kim<span class="w"> </span>+asphere<span class="w"> </span>+class2<span class="w"> </span>+kspace<span class="w"> </span>+manybody<span class="w"> </span>+molecule<span class="w"> </span>+opt<span class="w"> </span>+replica<span class="w"> </span>+rigid<span class="w"> </span>+granular<span class="w"> </span>+openmp-package<span class="w"> </span>+openmp<span class="w"> </span>^openmpi
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 25, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2023</span>
       
     
   </small>
