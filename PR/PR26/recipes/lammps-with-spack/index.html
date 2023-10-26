@@ -526,8 +526,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-check-what-extra-software-spack-will-build-for-our-lammps-install" class="md-nav__link">
-    3. Check what extra software Spack will build for our LAMMPS install
+  <a href="#3-compile-and-install-lammps" class="md-nav__link">
+    3. Compile and install LAMMPS
   </a>
   
 </li>
@@ -730,7 +730,8 @@ built frm scratch.
 </details>
 <p>Assuming the <code>spack spec</code> command does not show that a large number of unexpected dependencies will be 
 built, then the command <code>spack install</code> can be used to build the software.</p>
-<h4 id="3-check-what-extra-software-spack-will-build-for-our-lammps-install">3. Check what extra software Spack will build for our LAMMPS install</h4>
+<h4 id="3-compile-and-install-lammps">3. Compile and install LAMMPS</h4>
+<p>To compile and build LAMMPS once the spack specification is </p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>spack<span class="w"> </span>spec<span class="w"> </span>install<span class="w"> </span>lammps%gcc@12.2.0<span class="w"> </span><span class="nv">fftw_precision</span><span class="o">=</span>single<span class="w"> </span>+intel<span class="w"> </span>~kim<span class="w"> </span>+asphere<span class="w"> </span>+class2<span class="w"> </span>+kspace<span class="w"> </span>+manybody<span class="w"> </span>+molecule<span class="w"> </span>+opt<span class="w"> </span>+replica<span class="w"> </span>+rigid<span class="w"> </span>+granular<span class="w"> </span>+openmp-package<span class="w"> </span>+openmp<span class="w"> </span>^openmpi
 </span></code></pre></div>
 <p>this command will produce output showing progress and generate an executable <code>lmp</code> program file when it 
