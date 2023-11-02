@@ -320,13 +320,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    SuperCloud
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#engaging" class="md-nav__link">
     Engaging
   </a>
@@ -336,6 +329,13 @@
         <li class="md-nav__item">
   <a href="#satori" class="md-nav__link">
     Satori
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supercloud" class="md-nav__link">
+    SuperCloud
   </a>
   
 </li>
@@ -571,13 +571,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    SuperCloud
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#engaging" class="md-nav__link">
     Engaging
   </a>
@@ -587,6 +580,13 @@
         <li class="md-nav__item">
   <a href="#satori" class="md-nav__link">
     Satori
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supercloud" class="md-nav__link">
+    SuperCloud
   </a>
   
 </li>
@@ -615,8 +615,76 @@
 
 <h1 id="general-use-filesystems">General Use Filesystems</h1>
 <p>Large HPC systems often have different filesystems for different purposes. ORCD systems are no different, and each have their own approach. This page documents these.</p>
+<h2 id="engaging">Engaging</h2>
+<p>Users each get a small home directory that is backed up and meant for important files. Larger scratch space is not backed up. <a href="../project-filesystems/">Additional storage can be purchased</a>. The Lustre scratch space will be faster than NFS for the majority of workloads, however having large numbers of small files will make it slower than NFS and can slow down the filesystem overall, so it is important to follow the <a href="https://engaging-web.mit.edu/eofe-wiki/best_practices/lustre/">Lustre Best Practices</a>. See the <a href="https://engaging-web.mit.edu/eofe-wiki/storage/">Engaging Documentation Page on Storage</a> for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th>Path</th>
+<th>Quota</th>
+<th>Backed up</th>
+<th>Purpose/Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home Directory <br> NFS</td>
+<td><code>/home/&lt;username&gt;</code></td>
+<td>100 GB</td>
+<td>Backed up</td>
+<td>Use for important files</td>
+</tr>
+<tr>
+<td>Lustre</td>
+<td><code>/nobackup1/&lt;username&gt;</code></td>
+<td>1 TB</td>
+<td>Not backed up</td>
+<td>Scratch space <br> Faster than NFS</td>
+</tr>
+<tr>
+<td>NFS</td>
+<td><code>/pool001/&lt;username&gt;</code></td>
+<td>1 TB</td>
+<td>Not backed up</td>
+<td>Scratch space</td>
+</tr>
+</tbody>
+</table>
+<h2 id="satori">Satori</h2>
+<!--
+Do we need a short intro paragraph? Other systems have them.
+-->
+
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th>Path</th>
+<th>Quota</th>
+<th>Backed up</th>
+<th>Purpose/Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home Directory</td>
+<td><code>/home/&lt;username&gt;</code></td>
+<td>25GB</td>
+<td>Backed up</td>
+<td>Use for important files. Quota increase request to 100GB.</td>
+</tr>
+<tr>
+<td>GPFS</td>
+<td><code>/nobackup/users/&lt;username&gt;</code></td>
+<td>500GB</td>
+<td>Not backed up</td>
+<td>Scratch space. Quota increase request to 2TB.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="supercloud">SuperCloud</h2>
-<p>SuperCloud uses Lustre for all central/shared storage (accessible to all nodes in the system). This storage is not backed up. See the SuperCloud <a href="https://supercloud.mit.edu/best-practices-and-performance-tips">Best Practices and Performance Tips</a> page for best practices using the Lustre filesystem. Quotas or limits are set on the storage as guardrails. Additional storage may be granted on a case by case basis. Local disk spaces will be faster than the Lustre shared filesystem, but all are temporary and can only be accessed on the node where they are created.</p>
+<p>SuperCloud uses Lustre for all central/shared storage (accessible to all nodes in the system). This storage is not backed up. See the SuperCloud <a href="https://supercloud.mit.edu/best-practices-and-performance-tips">Best Practices and Performance Tips</a> page for best practices using the Lustre filesystem. Quotas or limits are set on the storage as guardrails. Individual and group storage use and quotas can been viewed on the <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a> on the SuperCloud Web Portal (only accessible if you have an account). Additional storage may be granted on a case by case basis. Local disk spaces will be faster than the Lustre shared filesystem, but all are temporary and can only be accessed on the node where they are created.</p>
 <table>
 <thead>
 <tr>
@@ -655,70 +723,6 @@
 <td>User or Group</td>
 <td>Not backed up <br> Cleaned up monthly during downtimes</td>
 <td>NA</td>
-</tr>
-</tbody>
-</table>
-<h2 id="engaging">Engaging</h2>
-<p>Users each get a small home directory that is backed up and meant for important files. Larger scratch space is not backed up. <a href="../project-filesystems/">Additional storage can be purchased</a>. The Lustre scratch space will be faster than NFS for the majority of workloads, however having large numbers of small files will make it slower than NFS and can slow down the filesystem overall, so it is important to follow the <a href="https://engaging-web.mit.edu/eofe-wiki/best_practices/lustre/">Lustre Best Practices</a>. See the <a href="https://engaging-web.mit.edu/eofe-wiki/storage/">Engaging Documentation Page on Storage</a> for more information.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> NFS</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>100 GB</td>
-<td>Backed up</td>
-<td>Use for important files</td>
-</tr>
-<tr>
-<td>Lustre</td>
-<td><code>/nobackup1/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space <br> Faster than NFS</td>
-</tr>
-<tr>
-<td>NFS</td>
-<td><code>/pool001/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space</td>
-</tr>
-</tbody>
-</table>
-<h2 id="satori">Satori</h2>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>25GB</td>
-<td>Backed up</td>
-<td>Use for important files. Quota increase request to 100GB.</td>
-</tr>
-<tr>
-<td>GPFS</td>
-<td><code>/nobackup/users/&lt;username&gt;</code></td>
-<td>500GB</td>
-<td>Not backed up</td>
-<td>Scratch space. Quota increase request to 2TB.</td>
 </tr>
 </tbody>
 </table>
@@ -799,7 +803,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 2, 2023</span>
       
     
   </small>
