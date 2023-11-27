@@ -609,7 +609,8 @@ The approach for using Spack shown here allows regular accounts to build custom 
 compilers, commincations and I/O libraries that have been been built and optimized previously using Spack.</p>
 <div class="admonition note">
 <p class="admonition-title">Prerequisites</p>
-<p>This example assumes you have access to a Slurm partition and are working with a Rocky Linux environment.</p>
+<p>This example assumes you have access to a Slurm partition and are working with a Rocky Linux environment.
+The example also uses git command, so some familiarity with git is useful.</p>
 </div>
 <h4 id="1-configure-an-instance-of-spack-in-a-working-directory-under-your-account">1. Configure an instance of Spack in a working directory under your account</h4>
 <p>A first step to using Spack is to download the software from its Github repository into a working directory using the following command.</p>
@@ -634,23 +635,22 @@ Spack as used in the upstream and provide a path name to the upstream isntallati
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Set any .spack files to be local to this test</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SPACK_USER_CONFIG_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Download spack and set version to match upstream Spack</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">(</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>spack
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>v0.19.1<span class="w"> </span>v0.19.1
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="o">)</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Set upstream and cp reference config files for upstream</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>cp<span class="w"> </span>/software/spack/etc/spack/*yaml<span class="w"> </span>user_config
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>cat<span class="w">  </span>&gt;<span class="w"> </span>user_config/upstreams.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s">upstreams:</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s">  orcd-rcf-2023:</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s">   install_tree: /software/spack-20230328/opt/spack</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s">EOF</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nb">source</span><span class="w"> </span>spack/share/spack/setup-env.sh
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Set checked out version of downloaded Spack to match upstream Spack version</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="o">(</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>spack
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>v0.19.1<span class="w"> </span>v0.19.1
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="o">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># Copy reference config files for upstream and set upstream location</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>cp<span class="w"> </span>/software/spack/etc/spack/*yaml<span class="w"> </span>user_config
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>cat<span class="w">  </span>&gt;<span class="w"> </span>user_config/upstreams.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s">upstreams:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s">  orcd-rcf-2023:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s">   install_tree: /software/spack-20230328/opt/spack</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s">EOF</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nb">source</span><span class="w"> </span>spack/share/spack/setup-env.sh
 </span></code></pre></div>
 <p>Here the directory <code>/software/spack-20230328/opt/spack</code> holds a pre-built set of spack software. By convention this directory
 is dated and software in that directory is unchanged once published.</p>
