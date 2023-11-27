@@ -518,19 +518,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setting-up-a-spack-environment" class="md-nav__link">
+  <a href="#setting-up-a-spack-environment-that-inherits-a-system-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up a Spack environment
+      Setting up a Spack environment that inherits a system setup
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setting up a Spack environment">
+    <nav class="md-nav" aria-label="Setting up a Spack environment that inherits a system setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-configure-an-instance-of-spack-in-a-directory-under-your-account" class="md-nav__link">
+  <a href="#1-configure-an-instance-of-spack-in-a-working-directory-under-your-account" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Configure an instance of Spack in a directory under your account
+      1. Configure an instance of Spack in a working directory under your account
     </span>
   </a>
   
@@ -595,19 +595,30 @@
 
 
 <h1 id="example-of-setting-up-a-spack-environment-that-inherits-from-the-system-setup">Example of setting up a Spack environment that inherits from the system setup</h1>
+<p>This example shows a basic example of using the Spack tool to create a custom software environment.
+The example illustrates configuring Spack to reuse libraries and software that are part of the core Spack setup on a cluster. </p>
 <h2 id="about-spack">About Spack</h2>
-<h2 id="setting-up-a-spack-environment">Setting up a Spack environment</h2>
+<p>The tool <a href="https://spack.readthedocs.io">Spack</a> is a system for self-service building of a large number of different scientific software applications
+and libraries. Spack is an open source tool maintained in public repositories under the <a href="https://github.com/spack">Spack github organization</a>. 
+Development of Spack is led by a team at the <a href="https://computing.llnl.gov/projects/spack-hpc-package-manager">Lawrence Livermore National Laboratory</a>.</p>
+<h2 id="setting-up-a-spack-environment-that-inherits-a-system-setup">Setting up a Spack environment that inherits a system setup</h2>
+<p>The Spack tool has many options and can be used in a variety of ways. Here we show how to configure Spack to <em>inherit</em> pre-built 
+software from a core set of system supported tools that have also been built with Spack. This recipe can be used to self-build custom 
+software that is not available, or that needs special configuration options. Using Spack does not require any privileged system access. 
+The approach for using Spack shown here allows regular accounts to build custom software that builds on top of core system tools like 
+compilers, commincations and I/O libraries that have been been built and optimized previously using Spack.</p>
 <div class="admonition note">
 <p class="admonition-title">Prerequisites</p>
 <p>This example assumes you have access to a Slurm partition and are working with a Rocky Linux environment.</p>
 </div>
-<h4 id="1-configure-an-instance-of-spack-in-a-directory-under-your-account">1. Configure an instance of Spack in a directory under your account</h4>
-<p>Spack is a tool for compiling programs in a uniform away. It is designed for use by regular accounts on a computer. It does not need any administrative privileges.
-Here it will be used to compile the LAMMPS software. </p>
-<p>A first step to using Spack is to download the software from its Github repository using the following command.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
+<h4 id="1-configure-an-instance-of-spack-in-a-working-directory-under-your-account">1. Configure an instance of Spack in a working directory under your account</h4>
+<p>A first step to using Spack is to download the software from its Github repository into a working directory using the following command.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nobackup1/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/spack-testing
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>/nobackup1/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/spack-testing
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
 </span></code></pre></div>
-<p>Next we configure Spack, setting the it ot use standard tools that have already been built from a pre-exisiting location.</p>
+<p>in this example we use <code>/nobackup1/users/${USER}/spack-testing</code> as our workig directory.</p>
+<p>Next we configure Spack, setting the it to use standard tools that have already been built from a pre-exisiting location.</p>
 <details class="note">
 <summary>Note</summary>
 <p>The compilation example shows using Spack in a way that uses pre-existing <em>upstream</em> Spack built software 
@@ -616,32 +627,33 @@ such as a compiler and high-performance tools for using GPUs and/or for parallel
 testing and performance settings, so using a pre-installed foundation is generally useful. To make a Spack <em>upstream</em> work reliably we need to use the same tag of 
 Spack as used in the upstream and provide a path name to the upstream isntallation.</p>
 </details>
-<p>To configure Spack use the following sequence of commands.</p>
+<p>To configure Spack to use the following sequence of commands.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Switch to build location</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nobackup1/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/lammps-testing
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>/nobackup1/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/lammps-testing
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Set any .spack files to be local to this test</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SPACK_USER_CONFIG_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Download spack and set version to match upstream Spack</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="o">(</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>spack
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>v0.19.1<span class="w"> </span>v0.19.1
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="o">)</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># Set upstream and cp reference config files for upstream</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>cp<span class="w"> </span>/software/spack/etc/spack/*yaml<span class="w"> </span>user_config
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>cat<span class="w">  </span>&gt;<span class="w"> </span>user_config/upstreams.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s">upstreams:</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s">  orcd-rcf-2023:</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s">   install_tree: /software/spack-20230328/opt/spack</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s">EOF</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="nb">source</span><span class="w"> </span>spack/share/spack/setup-env.sh
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>/nobackup1/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/spack-testing
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Set any .spack files to be local to this test</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SPACK_USER_CONFIG_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Download spack and set version to match upstream Spack</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/spack/spack.git
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">(</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>spack
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>v0.19.1<span class="w"> </span>v0.19.1
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="o">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Set upstream and cp reference config files for upstream</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/user_config
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>cp<span class="w"> </span>/software/spack/etc/spack/*yaml<span class="w"> </span>user_config
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>cat<span class="w">  </span>&gt;<span class="w"> </span>user_config/upstreams.yaml<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s">upstreams:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s">  orcd-rcf-2023:</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s">   install_tree: /software/spack-20230328/opt/spack</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s">EOF</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nb">source</span><span class="w"> </span>spack/share/spack/setup-env.sh
 </span></code></pre></div>
+<p>Here the directory <code>/software/spack-20230328/opt/spack</code> holds a pre-built set of spack software. By convention this directory
+is dated and software in that directory is unchanged once published.</p>
 <h4 id="2-test-spack-settings">2. Test Spack settings</h4>
 
   <hr>
