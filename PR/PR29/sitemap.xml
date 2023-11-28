@@ -6,7 +6,27 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://orcd.mit.edu/acknowledgements/</loc>
+         <lastmod>2023-11-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://orcd.mit.edu/code-of-conduct/</loc>
+         <lastmod>2023-11-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://orcd.mit.edu/data-security/</loc>
+         <lastmod>2023-11-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://orcd.mit.edu/getting-help/</loc>
+         <lastmod>2023-11-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://orcd.mit.edu/getting-started/</loc>
          <lastmod>2023-11-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
