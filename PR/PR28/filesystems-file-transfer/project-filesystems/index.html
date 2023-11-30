@@ -735,21 +735,15 @@ TODO: List general storage options here? Or leave it out?
 <p>Storage options include NESE encrypted at rest disk. The NESE encrypted at rest disk uses a large centrally managed storage cloud at the MGHPCC
 facility. Any shared ORCD cluster at the MGHPCC can access this storage. Data on NESE disk
 is transparently encrypted at rest.</p>
-<p>For current storage options and pricing and to purchase storage please send an email to <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a>.</p>
+<p>For current storage options and pricing and to purchase storage please send an email to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
 <h2 id="managing-access-using-mit-web-moira">Managing access using MIT Web Moira</h2>
 <p>Individual group storage is configured so that access is limited to a set
 of accounts belonging to a web moira list that is defined for the group
 store. The owner and administrators of group storage can manage
 access themselves, by modifying the membership of an associated moira list
-under <a href="https://groups.mit.edu/webmoira/list/">https://groups.mit.edu/webmoira/list/</a>. The name of the
+under <strong>https://groups.mit.edu/webmoira/list/[list_name]</strong>. The name of the
 list corresponds to the UNIX group name associated with the ORCD shared 
 cluster storage.</p>
-<!--
-Is https://groups.mit.edu/webmoira/list/ the actual URL people are supposed to use, or are they supposed to replace "list" with their list name? When I click on the link it takes me to a page that never finishes loading
-
-Should we give them the URL: https://groups.mit.edu/webmoira/list/<list_name> and not make it clickable? Or did we mean to link to https://groups.mit.edu/webmoira/, which does list all the lists you can administer?
--->
-
 <h3 id="moira-web-interface-example">Moira Web Interface Example</h3>
 <p>The figure below shows a screenshot of the web moira management page at
 <strong>https://groups.mit.edu/webmoira/list/cnh_research_computing</strong> for a hypothetical
@@ -758,16 +752,13 @@ self-service mechanism for controlling access to any storage belonging to
 this group. MIT account IDs can be added and 
 removed as needed from this list by the storage access administrators.</p>
 <p><img alt="Screen shot of Moira interface" src="../moira-example.jpg" /></p>
-<!--
-Another question about what to do with this URL, not meant to be clicked, so make it bold?
--->
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 2, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 28, 2023</span>
       
     
   </small>

@@ -607,13 +607,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-a-nightly-build-pytorch-example-with-a-freash-miniconda-and-pytorch" class="md-nav__link">
+  <a href="#running-a-nightly-build-pytorch-example-with-a-fresh-miniconda-and-pytorch" class="md-nav__link">
     <span class="md-ellipsis">
-      Running a nightly build pytorch example with a freash miniconda and pytorch
+      Running a nightly build pytorch example with a fresh miniconda and pytorch
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Running a nightly build pytorch example with a freash miniconda and pytorch">
+    <nav class="md-nav" aria-label="Running a nightly build pytorch example with a fresh miniconda and pytorch">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -685,14 +685,18 @@ how to run a first example pytorch script on the systems. </p>
 <p>A first set of H100 GPU systems has been added to Satori.
 These are for priority use by IBM Watson AI Lab research collaborators.
 They are also available for general opportunistic use when they are idle.</p>
+<!--
+What slurm flags are needed to use these nodes for "general opportunistic use"?
+-->
+
 <p>Currently ( 2023-06-19 ) there are 4 H100 systems installed. 
 Each system has 8 H100 GPU cards, two Intel 8468 CPUs each with
 48 physical cores and 1TiB of main memory.</p>
 <p>Below are some instructions for getting started with these systems. </p>
 <h2 id="access-to-the-nodes">Access to the nodes</h2>
-<p>To access the nodes in the priority group you need your satori login id to be listed in the Webmoira 
+<p>To access the nodes in the priority group you need your satori login id to be listed in the WebMoira 
 group <a href="https://groups.mit.edu/webmoira/list/sched_oliva">https://groups.mit.edu/webmoira/list/sched_oliva</a>. 
-Either Alex Andonian and Vincent Sitzmann are able to add accounts to the <code>sched_oliva</code> moira list.</p>
+Either Alex Andonian and Vincent Sitzmann are able to add accounts to the <code>sched_oliva</code> Moira list.</p>
 <h2 id="interactive-access-through-slurm">Interactive access through Slurm</h2>
 <p>To access an entire node through Slurm, the command below can be used from the satori login node</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:8<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span><span class="m">0</span><span class="w"> </span>-c<span class="w"> </span><span class="m">192</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
@@ -710,7 +714,7 @@ on all 8 GPUs. </p>
 </span></code></pre></div></p>
 <p>this will request a single GPU. This request will allow other Slurm sessions to run on other GPUs 
 simultaneously with this session.</p>
-<h2 id="running-a-nightly-build-pytorch-example-with-a-freash-miniconda-and-pytorch">Running a nightly build pytorch example with a freash miniconda and pytorch</h2>
+<h2 id="running-a-nightly-build-pytorch-example-with-a-fresh-miniconda-and-pytorch">Running a nightly build pytorch example with a fresh miniconda and pytorch</h2>
 <p>A miniconda environment can be used to run the latest nightly build pytorch code on these 
 systems. To do this, first create a software install directory and install the needed pytorch software</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nobackup/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/pytorch_h100_testing/conda_setup
@@ -729,67 +733,53 @@ systems. To do this, first create a software install directory and install the n
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>pip3<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/nightly/cu121
 </span></code></pre></div></p>
 <p>Once the software is installed, the following script can be used to test the installation.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>test.py<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="s">import torch</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s">device_id = torch.cuda.current_device()</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s">gpu_properties = torch.cuda.get_device_properties(device_id)</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s">print(&quot;Found %d GPUs available. Using GPU %d (%s) of compute capability %d.%d with &quot;</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s">          &quot;%.1fGb total memory.\n&quot; % </span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s">          (torch.cuda.device_count(),</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s">          device_id,</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s">          gpu_properties.name,</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s">          gpu_properties.major,</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="s">          gpu_properties.minor,</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s">          gpu_properties.total_memory / 1e9))</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s">EOF</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>python<span class="w"> </span>test.py
+<div class="language-python highlight"><span class="filename">test.py</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">device_id</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">current_device</span><span class="p">()</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">gpu_properties</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found </span><span class="si">%d</span><span class="s2"> GPUs available. Using GPU </span><span class="si">%d</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">) of compute capability </span><span class="si">%d</span><span class="s2">.</span><span class="si">%d</span><span class="s2"> with &quot;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>          <span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2">Gb total memory.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> 
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>          <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>          <span class="n">device_id</span><span class="p">,</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">major</span><span class="p">,</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">minor</span><span class="p">,</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">))</span>
+</span></code></pre></div>
+Run this script with
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python test.py
 </span></code></pre></div></p>
 <p>To exit the Slurm srun session enter the command
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">exit</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">exit</span>
 </span></code></pre></div></p>
 <h3 id="running-a-simple-batch-script-using-an-installed-miniconda-environment">Running a simple batch script using an installed miniconda environment</h3>
-<p>To run a batch script on one of the H100 nodes in partition sched_oliva first paste the content in the 
-box below into a slurm script file called, for example, <code>test_script.slurm</code> ( change the RUNDIR setting to assign the 
+<p>To run a batch script on one of the H100 nodes in partition <code>sched_oliva</code> first paste the content in the 
+box below into a slurm script file called, for example, <code>test_script.slurm</code> ( change the <code>RUNDIR</code> setting to assign the 
 path to a directory where you have already installed a conda environment in a sub-directory called <code>minic</code> ).</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#!/bin/bash
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>#
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>#SBATCH --gres=gpu:8
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>#SBATCH --partition=sched_oliva
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#SBATCH --time=1:00:00
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#SBATCH --mem=0
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>#
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>nvidia-smi
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>RUNDIR=/nobackup/users/${USER}/h100-testing/minic
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>cd ${RUNDIR}
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>. ./minic/bin/activate
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>conda activate pytorch_test
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>cat &gt; mytest.py &lt;&lt;&#39;EOF&#39;
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>import torch
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>device_id = torch.cuda.current_device()
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>gpu_properties = torch.cuda.get_device_properties(device_id)
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>print(&quot;Found %d GPUs available. Using GPU %d (%s) of compute capability %d.%d with &quot;
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>          &quot;%.1fGb total memory.\n&quot; %
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>          (torch.cuda.device_count(),
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>          device_id,
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>          gpu_properties.name,
-</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>          gpu_properties.major,
-</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>          gpu_properties.minor,
-</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>          gpu_properties.total_memory / 1e9))
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>EOF
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>python mytest.py
+<p>First create the <code>mytest.py</code> script with the contents above.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#!/bin/bash
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>#SBATCH --gres=gpu:8
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>#SBATCH --partition=sched_oliva
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>#SBATCH --time=1:00:00
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>#SBATCH --mem=0
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>#
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>nvidia-smi
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>RUNDIR=/nobackup/users/${USER}/h100-testing/minic
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>cd ${RUNDIR}
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>. ./minic/bin/activate
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>conda activate pytorch_test
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>python mytest.py
 </span></code></pre></div>
 <p>This script can then be submitted to Slurm to run in a background batch node using the command.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sbatch<span class="w"> </span>&lt;<span class="w"> </span>test_script.slurm
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sbatch<span class="w"> </span>&lt;<span class="w"> </span>test_script.slurm
 </span></code></pre></div>
 <h2 id="getting-help">Getting help</h2>
-<p>As always, please feel welcome to email <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a>
+<p>As always, please feel welcome to email <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>
 with questions, comments or suggestions. We would be happy to hear from you!</p>
 
   <hr>
@@ -797,7 +787,7 @@ with questions, comments or suggestions. We would be happy to hear from you!</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 6, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 28, 2023</span>
       
     
   </small>
