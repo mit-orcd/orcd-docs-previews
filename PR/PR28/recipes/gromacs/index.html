@@ -793,10 +793,11 @@
 </div>
 <h2 id="run-gromacs">Run GROMACS</h2>
 <p>Firstly, prepare for an input file. Refer to <a href="https://manual.gromacs.org/documentation/5.1/user-guide/file-formats.html">file formats</a>. Here shows an example with an input file named <code>benchPEP-h.tpr</code> downloaded from <a href="https://www.mpinat.mpg.de/grubmueller/bench">this page</a>. In these examples we have saved the input files in the <code>~/gromacs/bench/</code> directory.</p>
-<p>Secondly, create a batch job script, for example, named <code>job.sh</code>, requesting 2 node with 4 CPU cores and 2 GPUs per node. Here we show and example script for SuperCloud</p>
+<p>Secondly, create a batch job script, for example, named <code>job.sh</code>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p>This job script requests 2 nodes with a total of 8 CPU cores and 50GB of memory.</p>
 <div class="language-bash highlight"><span class="filename">job.sh</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="ch">#!/bin/bash</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1">#SBATCH --job-name=&quot;production run&quot;</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">#SBATCH --partition=sched_mit_hill</span>
@@ -826,6 +827,7 @@
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
+<p>This job requests 2 nodes with 4 CPU cores and 2 GPUs per node.</p>
 <div class="language-bash highlight"><span class="filename">job.sh</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="ch">#!/bin/bash</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#SBATCH --nodes=2              # 2 nodes</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH --ntasks-per-node=2    # 2 MPI tasks per node</span>
