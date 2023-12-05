@@ -582,6 +582,116 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objective:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Steps:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Steps:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-conda-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access Conda channel:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up the Environment:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-miniconda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Miniconda:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-conda-enviornment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Conda Enviornment:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-conda-channels-and-installing-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Conda Channels and Installing PyTorch:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-pytorch-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing PyTorch Installation:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing PyTorch Installation:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explanation-of-the-test-script-testpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explanation of the Test Script (test.py):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Notes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -619,53 +729,60 @@
 
 
 <h1 id="installing-and-using-pytorch-2-on-satori">Installing and Using Pytorch 2 On Satori</h1>
-<p>Objective:
-Installing PyTorch version 2.0.1.</p>
-<p>Installation Steps:</p>
-<p>Access Conda channel:
-There's a Conda channel provided by osuosl.org that hosts PyTorch version 2.0.1.
+<h2 id="objective">Objective:</h2>
+<p>Installing PyTorch version 2.0.1.</p>
+<h2 id="installation-steps">Installation Steps:</h2>
+<h3 id="access-conda-channel">Access Conda channel:</h3>
+<p>There's a Conda channel provided by osuosl.org that hosts PyTorch version 2.0.1.
 https://osuosl.org/services/powerdev/opence</p>
-<p>Setting up the Environment:
-Login to the designated node (e.g., satori-login-001).
+<h3 id="setting-up-the-environment">Setting up the Environment:</h3>
+<p>Login to the designated node (e.g., satori-login-001).
 Use srun command to allocate resources for set time (24hrs in the example) and request one GPU (Volta card).
-Create a project directory for PyTorch installation and testing.</p>
-<p>$ srun --time=24:00:00 --gres=gpu:1 --pty /bin/bash
+Create a project directory for PyTorch installation and testing.
+'''
+$ srun --time=24:00:00 --gres=gpu:1 --pty /bin/bash
 $ mkdir directory
-$ cd directory</p>
-<p>Installing Miniconda:
-Download and install Miniconda (Python package manager) for Linux on ppc64le architecture.
+$ cd directory
+'''</p>
+<h3 id="installing-miniconda">Installing Miniconda:</h3>
+<p>Download and install Miniconda (Python package manager) for Linux on ppc64le architecture.
 Set up Miniconda in a specific directory (./mc3).
+'''
 $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh .
 $ chmod +x ./Miniconda3-latest-Linux-ppc64le.sh
 $ ./Miniconda3-latest-Linux-ppc64le.sh -b -p ./mc3
-$ source ./mc3/bin/activate</p>
-<p>Creating Conda Enviornment:
-Create a Conda environment with Python version 3.10.
+$ source ./mc3/bin/activate
+'''</p>
+<h3 id="creating-conda-enviornment">Creating Conda Enviornment:</h3>
+<p>Create a Conda environment with Python version 3.10.
 Activate the newly created environment.
+'''
 $ conda create --name opence_env_osu_py310 python=3.10
-$ conda activate opence_env_osu_py310</p>
-<p>Configuring Conda Channels and Installing PyTorch:
-Add the Open-CE Conda channel.
-Install PyTorch version 2.0.1 within the created Conda environment.</p>
-<p>$ conda config --prepend channels https://ftp.osuosl.org/pub/open-ce/current
-$ conda install pytorch==2.0.1</p>
-<p>Testing PyTorch Installation:</p>
+$ conda activate opence_env_osu_py310
+'''</p>
+<h3 id="configuring-conda-channels-and-installing-pytorch">Configuring Conda Channels and Installing PyTorch:</h3>
+<p>Add the Open-CE Conda channel.
+Install PyTorch version 2.0.1 within the created Conda environment.
+'''
+$ conda config --prepend channels https://ftp.osuosl.org/pub/open-ce/current
+$ conda install pytorch==2.0.1
+'''</p>
+<h2 id="testing-pytorch-installation">Testing PyTorch Installation:</h2>
 <p>Create a Python script (test.py) to verify PyTorch installation and GPU recognition.
 Run the script to check GPU availability and properties.
-$ python test.py</p>
-<p>Explanation of the Test Script (test.py):
-The Python script test.py performs the following tasks:
+'''
+$ python test.py
+'''</p>
+<h3 id="explanation-of-the-test-script-testpy">Explanation of the Test Script (test.py):</h3>
+<p>The Python script test.py performs the following tasks:
 Imports the PyTorch library.
 Retrieves the current GPU device ID.
 Gathers GPU properties like name, compute capability, and total memory.
 Prints the gathered GPU information.</p>
-<blockquote>
-<blockquote>
-<p>$ cat test.py
-import torch</p>
-</blockquote>
-</blockquote>
-<p>device_id = torch.cuda.current_device()
+<p>'''
+$ cat test.py
+import torch
+device_id = torch.cuda.current_device()
 gpu_properties = torch.cuda.get_device_properties(device_id)</p>
 <p>print("Found %d GPUs available. Using GPU %d (%s) of compute capability %d.%d with "
       "%.1fGb total memory.\n" %
@@ -674,11 +791,9 @@ gpu_properties = torch.cuda.get_device_properties(device_id)</p>
        gpu_properties.name,
        gpu_properties.major,
        gpu_properties.minor,
-       gpu_properties.total_memory / 1e9))</p>
-<blockquote>
-<blockquote></blockquote>
-</blockquote>
-<p>Additional Notes</p>
+       gpu_properties.total_memory / 1e9))
+'''</p>
+<h2 id="additional-notes">Additional Notes</h2>
 <p>By following these steps, you should have installed PyTorch 2.0.1 successfully on Satori and validated its functionality through the provided test script.</p>
 <p>If you have further questions, email ocrd-help@mit.edu.</p>
 
