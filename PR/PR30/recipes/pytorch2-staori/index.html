@@ -608,45 +608,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#access-conda-channel" class="md-nav__link">
+  <a href="#1-setting-up-the-environment" class="md-nav__link">
     <span class="md-ellipsis">
-      Access Conda channel:
+      1. Setting up the Environment:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#setting-up-the-environment" class="md-nav__link">
+  <a href="#2-installing-miniconda" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up the Environment:
+      2. Installing Miniconda:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#installing-miniconda" class="md-nav__link">
+  <a href="#3-creating-conda-enviornment" class="md-nav__link">
     <span class="md-ellipsis">
-      Installing Miniconda:
+      3. Creating Conda Enviornment:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#creating-conda-enviornment" class="md-nav__link">
+  <a href="#4-configuring-conda-channels-and-installing-pytorch" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating Conda Enviornment:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuring-conda-channels-and-installing-pytorch" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuring Conda Channels and Installing PyTorch:
+      4. Configuring Conda Channels and Installing PyTorch:
     </span>
   </a>
   
@@ -732,10 +723,12 @@
 <h2 id="objective">Objective:</h2>
 <p>Installing PyTorch version 2.0.1.</p>
 <h2 id="installation-steps">Installation Steps:</h2>
-<h3 id="access-conda-channel">Access Conda channel:</h3>
+<div class="admonition note accessing conda channel">
+<p class="admonition-title">Note</p>
 <p>There's a Conda channel provided by osuosl.org that hosts PyTorch version 2.0.1.
 https://osuosl.org/services/powerdev/opence</p>
-<h3 id="setting-up-the-environment">Setting up the Environment:</h3>
+</div>
+<h4 id="1-setting-up-the-environment">1. Setting up the Environment:</h4>
 <p>Login to the designated node (e.g., satori-login-001).
 Use srun command to allocate resources for set time (24hrs in the example) and request one GPU (Volta card).
 Create a project directory for PyTorch installation and testing.
@@ -743,7 +736,7 @@ Create a project directory for PyTorch installation and testing.
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$ mkdir directory
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>$ cd directory
 </span></code></pre></div></p>
-<h3 id="installing-miniconda">Installing Miniconda:</h3>
+<h4 id="2-installing-miniconda">2. Installing Miniconda:</h4>
 <p>Download and install Miniconda (Python package manager) for Linux on ppc64le architecture.
 Set up Miniconda in a specific directory (./mc3).
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh .
@@ -751,13 +744,13 @@ Set up Miniconda in a specific directory (./mc3).
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>$ ./Miniconda3-latest-Linux-ppc64le.sh -b -p ./mc3
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>$ source ./mc3/bin/activate
 </span></code></pre></div></p>
-<h3 id="creating-conda-enviornment">Creating Conda Enviornment:</h3>
+<h4 id="3-creating-conda-enviornment">3. Creating Conda Enviornment:</h4>
 <p>Create a Conda environment with Python version 3.10.
 Activate the newly created environment.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ conda create --name opence_env_osu_py310 python=3.10
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$ conda activate opence_env_osu_py310
 </span></code></pre></div></p>
-<h3 id="configuring-conda-channels-and-installing-pytorch">Configuring Conda Channels and Installing PyTorch:</h3>
+<h4 id="4-configuring-conda-channels-and-installing-pytorch">4. Configuring Conda Channels and Installing PyTorch:</h4>
 <p>Add the Open-CE Conda channel.
 Install PyTorch version 2.0.1 within the created Conda environment.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ conda config --prepend channels https://ftp.osuosl.org/pub/open-ce/current
@@ -773,7 +766,7 @@ Run the script to check GPU availability and properties.
 Imports the PyTorch library.
 Retrieves the current GPU device ID.
 Gathers GPU properties like name, compute capability, and total memory.
-Prints the gathered GPU information.</p>
+Prints the gathered GPU information.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ cat test.py
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>import torch
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>device_id = torch.cuda.current_device()
@@ -787,10 +780,10 @@ Prints the gathered GPU information.</p>
 </span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>       gpu_properties.major,
 </span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>       gpu_properties.minor,
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>       gpu_properties.total_memory / 1e9))
-</span></code></pre></div>
+</span></code></pre></div></p>
 <h2 id="additional-notes">Additional Notes</h2>
-<p>By following these steps, you should have installed PyTorch 2.0.1 successfully on Satori and validated its functionality through the provided test script.</p>
-<p>If you have further questions, email ocrd-help@mit.edu.</p>
+<p>By following these steps, you should have installed PyTorch 2.0.1 successfully on Satori and validated its functionality through the provided test script.
+If you have further questions, email ocrd-help@mit.edu.</p>
 
   <hr>
 <div class="md-source-file">
