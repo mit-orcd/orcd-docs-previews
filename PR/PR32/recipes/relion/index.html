@@ -669,6 +669,9 @@
 <p>RELION (for REgularised LIkelihood OptimisatioN, pronounce rely-on) is a software package that employs an empirical Bayesian approach for electron cryo-microscopy (cryo-EM) structure determination. </p>
 <h2 id="relion-on-satori">RELION on Satori</h2>
 <p>This recipe is for building and using RELION on x86 nodes on Satori. It is different from working on IBM power9 nodes on Satori. </p>
+<blockquote>
+<p>Note: The x86 nodes are available to some labs only. </p>
+</blockquote>
 <h3 id="install">Install</h3>
 <p>Go to your directory and download RELION,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cd /nobackup/users/$USER
@@ -677,19 +680,15 @@
 <p>Get an interactive session on x86 nodes of Satori,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>srun -p sched_mit_mbathe -c 2 -t 60 --pty bash
 </span></code></pre></div></p>
-<blockquote>
-<p>Note: The x86 nodes are available to some labs only. </p>
-</blockquote>
-<p>Load necessary modules
+<p>Load modules for the GCC compiler and Openmpi implementation,<br />
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module use /software/spack/share/spack/lmod/linux-rocky8-x86_64/Core
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>module load gcc/12.2.0-x86_64  
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>module load openmpi/4.1.4-pmi-cuda-ucx-x86_64 
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>module load fftw/3.3.10-x86_64
 </span></code></pre></div></p>
 <blockquote>
 <p>Note: These modules are installed for the x86 nodes only. </p>
 </blockquote>
-<p>Build RELION
+<p>Build RELION with CUDA and FFTW features,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cd relion
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git checkout master 
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cd ..
@@ -699,12 +698,61 @@
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>mkdir build
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>cd build
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>cmake -DCMAKE_INSTALL_PREFIX=/home/$USER/relion/4.0.1/install ../../relion
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>cmake -DCMAKE_INSTALL_PREFIX=/home/$USER/relion/4.0.1/install -DFORCE_OWN_FFTW=ON -DAMDFFTW=ON -DCUDA_ARCH=80 ../../relion
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>make
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>make install
 </span></code></pre></div></p>
 <p>It is all set for the installation.</p>
 <h3 id="run-relion">Run RELION</h3>
+<p>There is a nice Graphical User Interface (GUI) for RELION. To use the GUI, first log in Satori with x-forwardig,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh &lt;user&gt;@satori-login-002.mit.edu
+</span></code></pre></div></p>
+<p>Get an interactive session with GPU and x-forwarding support on x86 nodes of Satori,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>srun --x11 -p sched_mit_mbathe --gres=gpu:1 -c 6 -t 60 --pty bash
+</span></code></pre></div></p>
+<p>Load modules for compilers, mpi implementation and FFTW lib, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module use /software/spack/share/spack/lmod/linux-rocky8-x86_64/Core
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>module load gcc/12.2.0-x86_64  
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>module load openmpi/4.1.4-pmi-cuda-ucx-x86_64 
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>module load fftw/3.3.10-x86_64
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>export LD_LIBRARY_PATH=/nfs/software001/home/software-r8-x86_64/spack-20230328/opt/spack/linux-rocky8-x86_64/gcc-12.2.0/fftw-3.3.10-qiaruimvw6zu2h4f5eolqom7tixem6vk/lib:$LD_LIBRARY_PATH
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>export RELION_HOME=/home/shaohao/pkg/relion/4.0.1/install
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>export PATH=${RELION_HOME}/bin:$PATH
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>export LD_LIBRARY_PATH=${RELION_HOME}/lib:$LD_LIBRARY_PATH
+</span></code></pre></div></p>
+<p>Open the RELION GUI, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>relion &amp;
+</span></code></pre></div></p>
+<p>Users can se GUI to edit files or submit jobs. Alternatively, users can prepare a batch job script to submit jobs. Refer to details on <a href="https://hpc.nih.gov/apps/RELION/index.html">this page</a>.</p>
+<p>Here is an exaple job script,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#!/bin/bash
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>#SBATCH --partition=sched_mit_mbathe
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>#SBATCH --nodes=1
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>#SBATCH --time=24:00:00
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#SBATCH -n 96
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#SBATCH --mem=500000
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>#SBATCH --gres=gpu:4
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>#SBATCH --nodelist=node2034
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>#SBATCH --chdir=&#39;.&#39;
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>module use /software/spack/share/spack/lmod/linux-rocky8-x86_64/Core 
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>module load gcc/12.2.0-x86_64  openmpi/4.1.4-pmi-cuda-ucx-x86_64 
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>export LD_LIBRARY_PATH=/nfs/software001/home/software-r8-x86_64/spack-20230328/opt/spack/linux-rocky8-x86_64/gcc-12.2.0/fftw-3.3.10-qiaruimvw6zu2h4f5eolqom7tixem6vk/lib:$LD_LIBRARY_PATH
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>export RELION_HOME=/nobackup/users/bmp/software/relion_4.0.1_schedmitmbathe/relion/build
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>export PATH=${RELION_HOME}/bin:$PATH
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>export LD_LIBRARY_PATH=${RELION_HOME}/lib:$LD_LIBRARY_PATH
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>export RELION_QSUB_NRMPI=&#39;5&#39;
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>export RELION_QSUB_NRTHREADS=&#39;8&#39;
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>export RELION_QUEUE_NAME=&#39;sched_mit_mbathe&#39;
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>export RELION_QSUB_COMMAND=&#39;sbatch&#39;
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>export RELION_QSUB_TEMPLATE=&#39;/home/bmp/scripts/relion4.0.1_schedmitmbathe_base.sh&#39;
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>time mpirun -np 1 --oversubscribe `which relion_refine` --o InitialModel/job008/run --iter 200 --grad --denovo_3dref  --i Import/job004/Parameters.star --ctf --K 1 --sym C1  --flatten_solvent  --zero_mask  --dont_combine_weights_via_disc --preread_images  --pool 3 --pad 1  --particle_diameter 250 --oversampling 1  --healpix_order 1  --offset_range 6  --offset_step 2 --auto_sampling  --tau2_fudge 4 --j 1 --gpu &quot;&quot;  --pipeline_control InitialModel/job008/
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>rm -f InitialModel/job008/RELION_JOB_EXIT_SUCCESS
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>time mpirun -np 1 --oversubscribe `which relion_align_symmetry` --i InitialModel/job008/run_it200_model.star --o InitialModel/job008/initial_model.mrc --sym C1  --apply_sym --select_largest_class  --pipeline_control InitialModel/job008/
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>touch InitialModel/job008/RELION_JOB_EXIT_SUCCESS
+</span></code></pre></div></p>
 
 
 
