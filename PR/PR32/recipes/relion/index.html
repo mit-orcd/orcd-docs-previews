@@ -608,9 +608,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-relion" class="md-nav__link">
+  <a href="#use-relion" class="md-nav__link">
     <span class="md-ellipsis">
-      Run RELION
+      Use RELION
     </span>
   </a>
   
@@ -703,7 +703,7 @@
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>make install
 </span></code></pre></div></p>
 <p>It is all set for the installation.</p>
-<h3 id="run-relion">Run RELION</h3>
+<h3 id="use-relion">Use RELION</h3>
 <p>There is a nice Graphical User Interface (GUI) for RELION. To use the GUI, first log in Satori with x-forwardig,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh &lt;user&gt;@satori-login-002.mit.edu
 </span></code></pre></div></p>
@@ -752,6 +752,9 @@
 </span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>rm -f InitialModel/job008/RELION_JOB_EXIT_SUCCESS
 </span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>time mpirun -np 1 --oversubscribe `which relion_align_symmetry` --i InitialModel/job008/run_it200_model.star --o InitialModel/job008/initial_model.mrc --sym C1  --apply_sym --select_largest_class  --pipeline_control InitialModel/job008/
 </span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>touch InitialModel/job008/RELION_JOB_EXIT_SUCCESS
+</span></code></pre></div></p>
+<p>Put the above lines in a file named <code>job.sh</code>, then submit the job,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sbatch job.sh
 </span></code></pre></div></p>
 
 
