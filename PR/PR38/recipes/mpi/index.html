@@ -750,9 +750,10 @@ For Rocky 8 nodes, load these modules,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load gcc/12.2.0 openmpi/4.1.4
 </span></code></pre></div>
 All these modules have been tested and work well. </p>
-<blockquote>
-<p>Note: Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in <code>module av</code> and thus can be loaded. </p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in <code>module av</code> and thus can be loaded. </p>
 <h2 id="build-mpi-programs">Build MPI programs</h2>
 <p>This session will be focused on building MPI programs in C or Fortran. Python users can refer to <a href="https://orcd-docs.mit.edu/recipes/mpi4py/">this page</a> for using <code>mpi4py</code>.</p>
 <p>Most MPI software need to be built from source codes. First, downloaded the package from the internet. A typycal building process is like this,
@@ -762,9 +763,10 @@ All these modules have been tested and work well. </p>
 </span></code></pre></div>
 Create an install directory in and add its full path after <code>--prefix=</code>. This is where the binaries will be located in.</p>
 <p>This type of MPI sotware include <code>Gromacs</code>, <code>Lammps</code>, <code>NWchem</code>, <code>OpenFOAM</code> and many others. Eevery sofware is different. Refer to its offical instalation guide for details.</p>
-<blockquote>
-<p>Note: Some MPI software are provided with prebuilt binaries only. In this case, download the binaries that are compatible with the <code>linux</code> OS and the <code>x86_64</code> CPU architecture. If possible, try to choose an OpenMPI version (that the binary was built with) as close as possible to that of a module on the cluser. This type of MPI sotware includes <code>ORCA</code>. </p>
-</blockquote>
+<details class="side note">
+<summary>Side</summary>
+</details>
+<p>Some MPI software are provided with prebuilt binaries only. In this case, download the binaries that are compatible with the <code>linux</code> OS and the <code>x86_64</code> CPU architecture. If possible, try to choose an OpenMPI version (that the binary was built with) as close as possible to that of a module on the cluser. This type of MPI sotware includes <code>ORCA</code>. </p>
 <p>Spack is a popular tool to build many software packages systematically on clusters. It makes building processes easy in many cases. If you want to use Spack to build your software package on the cluster, refer to <a href="https://mit-orcd.github.io/orcd-docs-previews/PR/PR29/recipes/spack-basics/">this page</a> for details. </p>
 <p>If you develop your MPI codes, the codes can be compiled and linked like this
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mpicc -O3 name.c -o my_program
@@ -898,7 +900,7 @@ This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 27, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 28, 2024</span>
   </span>
 
     
