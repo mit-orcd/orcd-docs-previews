@@ -731,8 +731,8 @@
 
 
 <h1 id="message-passing-interface-mpi">Message Passing Interface (MPI)</h1>
-<p>Message Passing Interface (MPI) is a standard designed for data communications in parallel computing. The MPI standard defines useful library functions/routines in C, C++, and Fortran. It also works with python interface.   </p>
-<p>There are several implementationos of MPI standard, such as <code>OpenMPI</code>, <code>MPICH</code>, <code>MVAPICH</code>, and <code>Intel MPI</code>. They work with Infiniband network for high-bandwidth data communications.</p>
+<p>Message Passing Interface (MPI) is a standard designed for data communications in parallel computing. The MPI standard defines useful library functions/routines in C, C++, and Fortran. Python interface is available for MPI.   </p>
+<p>There are several MPI implementationos, such as <code>OpenMPI</code>, <code>MPICH</code>, <code>MVAPICH</code>, and <code>Intel MPI</code>, which work with Infiniband network for high-bandwidth data communications.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
@@ -763,8 +763,8 @@ All these modules have been tested and work well. </p>
 </span></code></pre></div>
 Create an install directory in and add its full path after <code>--prefix=</code>. This is where the binaries will be located in.</p>
 <p>This type of MPI sotware include <code>Gromacs</code>, <code>Lammps</code>, <code>NWchem</code>, <code>OpenFOAM</code> and many others. Eevery sofware is different. Refer to its offical instalation guide for details.</p>
-<details class="side note">
-<summary>Side</summary>
+<details>
+<summary>Side note</summary>
 </details>
 <p>Some MPI software are provided with prebuilt binaries only. In this case, download the binaries that are compatible with the <code>linux</code> OS and the <code>x86_64</code> CPU architecture. If possible, try to choose an OpenMPI version (that the binary was built with) as close as possible to that of a module on the cluser. This type of MPI sotware includes <code>ORCA</code>. </p>
 <p>Spack is a popular tool to build many software packages systematically on clusters. It makes building processes easy in many cases. If you want to use Spack to build your software package on the cluster, refer to <a href="https://mit-orcd.github.io/orcd-docs-previews/PR/PR29/recipes/spack-basics/">this page</a> for details. </p>
