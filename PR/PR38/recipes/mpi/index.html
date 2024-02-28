@@ -739,7 +739,7 @@
 </div>
 </div>
 <h2 id="mpi-modules">MPI modules</h2>
-<p>The support team has built several OpnMPI modules on the cluster. To build or run your MPI programs, load the modules of a <code>gcc</code> compiler and an <code>openmpi</code> lib to set up environment varialbes. </p>
+<p>There are OpnMPI modules available on the cluster. Before building or runrning your MPI programs, load the modules of a <code>gcc</code> compiler and an <code>openmpi</code> lib to set up environment varialbes.</p>
 <p>There are two different operations systems (OS) on the cluster: CentOS 7 and Rocky 8. For CentOS 7 nodes, load these modules,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load gcc/6.2.0 openmpi/3.0.4
 </span></code></pre></div>
@@ -752,10 +752,10 @@ For Rocky 8 nodes, load these modules,
 All these modules have been tested and work well. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in <code>module avail</code> and thus can be loaded. </p>
 </div>
-<p>Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in <code>module av</code> and thus can be loaded. </p>
 <h2 id="build-mpi-programs">Build MPI programs</h2>
-<p>This session will be focused on building MPI programs in C or Fortran. Python users can refer to <a href="https://orcd-docs.mit.edu/recipes/mpi4py/">this page</a> for using <code>mpi4py</code>.</p>
+<p>This session will be focused on building MPI programs in C or Fortran. Python users can refer to <a href="https://orcd-docs.mit.edu/recipes/mpi4py/">this page</a> for using the <code>mpi4py</code> package.</p>
 <p>Most MPI software need to be built from source codes. First, downloaded the package from the internet. A typycal building process is like this,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./configure CC=mpicc CXX=mpicxx --prefix=&lt;/path/to/your/installation&gt;
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>make
@@ -765,8 +765,8 @@ Create an install directory in and add its full path after <code>--prefix=</code
 <p>This type of MPI sotware include <code>Gromacs</code>, <code>Lammps</code>, <code>NWchem</code>, <code>OpenFOAM</code> and many others. Eevery sofware is different. Refer to its offical instalation guide for details.</p>
 <details>
 <summary>Side note</summary>
-</details>
 <p>Some MPI software are provided with prebuilt binaries only. In this case, download the binaries that are compatible with the <code>linux</code> OS and the <code>x86_64</code> CPU architecture. If possible, try to choose an OpenMPI version (that the binary was built with) as close as possible to that of a module on the cluser. This type of MPI sotware includes <code>ORCA</code>. </p>
+</details>
 <p>Spack is a popular tool to build many software packages systematically on clusters. It makes building processes easy in many cases. If you want to use Spack to build your software package on the cluster, refer to <a href="https://mit-orcd.github.io/orcd-docs-previews/PR/PR29/recipes/spack-basics/">this page</a> for details. </p>
 <p>If you develop your MPI codes, the codes can be compiled and linked like this
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mpicc -O3 name.c -o my_program
