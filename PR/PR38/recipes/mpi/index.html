@@ -865,7 +865,7 @@ The <code>-c</code> flag is the same as <code>--cpus-per-task</code>. The specif
 </span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>export OMP_NUMB_THREADS=$SLURM_CPUS_PER_TASK
 </span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>mpirun -n $SLURM_NTASKS my_program
 </span></code></pre></div>
-In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_NTASKS_PER_NODE * SLURM_CPUS_PER_TASK</code>, that is $$2 \times 2 \times 8 = 32$$. The job will run 4 MPI tasks (i.e. 2 tasks per node) and 8 threads per task. Equation (1) is satisfied as $4 \times 8 = 32$. </p>
+In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_NTASKS_PER_NODE * SLURM_CPUS_PER_TASK</code>, that is <code>2 * 2 * 8 = 32</code>. The job will run 4 MPI tasks (i.e. 2 tasks per node) and 8 threads per task. Equation (1) is satisfied as <code>4 * 8 = 32</code>. </p>
 <p>Simlar to the previous section, it is recommended to run testing cases to determine the values for the flags <code>-N</code>, <code>-n</code> and <code>-c</code> to obtain a better performance.</p>
 <p>There is another way to submit jobs for hybrid programs, that is not to use the <code>-c</code> flag at all. For example, it also works like this,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>#!/bin/bash
@@ -880,7 +880,7 @@ In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_N
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>MPI_NTASKS=$((SLURM_NTASK / $OMP_NUMB_THREADS))
 </span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>mpirun -n $MPI_NTASKS my_program
 </span></code></pre></div>
-This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per task, so equation (1) is satisfied as $2 \times 8 = 16$. In this case, users need to set the values for Slurm flag <code>-n</code> and the variable <code>OMP_NUMB_THREADS</code>.</p>
+This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per task, so equation (1) is satisfied as <code>2 * 8 = 16</code>. In this case, users need to set the values for Slurm flag <code>-n</code> and the variable <code>OMP_NUMB_THREADS</code>.</p>
 <h2 id="mpi-gpu-jobs">MPI + GPU jobs</h2>
 
 
