@@ -824,8 +824,9 @@ Here it only shows the public partitions that are avaiable to most users. Among 
 <summary>Side note: OpenMP</summary>
 <p>OpenMP is an abbreviation of Open Multi-Processing. It is not related to OpenMPI.</p>
 </details>
-<p>Some programs are designed in a hybrid scheme such that MPI and OpenMP are combined to enable two-level paralellization. A principle to run hybrid MPI-OpenMP programs is to satisfy this queation,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>(Number of MPI Tasks) * (Nubmer of Threads) = Total Number of Cores        (1)
+<p>Some programs are designed in a hybrid scheme such that MPI and OpenMP are combined to enable two-level parallelization. A principle to run hybrid MPI-OpenMP programs is to satisfy this queation,
+!!!
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>(Number of MPI Tasks) * (Nubmer of Threads) = Total Number of Cores           (1)
 </span></code></pre></div></p>
 <details>
 <summary>Side note: hyperthreads</summary>
