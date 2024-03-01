@@ -820,57 +820,56 @@ Here it only shows the public partitions that are avaiable to most users. Among 
 <summary>Side note: OpenMP</summary>
 <p>OpenMP is an abbreviation of Open Multi-Processing. It is not related to OpenMPI.</p>
 </details>
-<p>Some programs are designed in a hybrid scheme such that MPI and OpenMP are combined to enable two-level parallelization. A principle to run hybrid MPI-OpenMP programs is to satisfy this queation,</p>
-<p>\begin{equation}
-   \mbox{(Number of MPI Tasks)} \times \mbox{(Nubmer of Threads)} = \mbox{Total Number of Cores}
-\end{equation}</p>
+<p>Some programs are designed in a hybrid scheme such that MPI and OpenMP are combined to enable two-level parallelization. A principle to run hybrid MPI-OpenMP programs is to satisfy this queation,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>  ***(Number of MPI Tasks) * (Nubmer of Threads) = Total Number of Cores***
+</span></code></pre></div></p>
 <details>
 <summary>Side note: hyperthreads</summary>
 <p>Assume hyperthread technique is not implemented here. If there are two hyerthreads per physical core, the right side of the equation should be <code>2 * (Total Number of Cores)</code> instead.</p>
 </details>
 <p>One way to run hybrid progmrams in Slurm jobs is to use the <code>-n</code> flag for the number of MPI tasks and the <code>-c</code> flag for the number of threads. The follwing example shows a job script that runs a program with 2 MPI tasks and 8 threads per task on a node with 16 cores.<br />
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#!/bin/bash
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#SBATCH -p sched_mit_hill
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>#SBATCH -t 30
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>#SBATCH -N 1
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>#SBATCH -n 2
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>#SBATCH -c 8
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>#SBATCH --mem=10GB
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>module load gcc/6.2.0 openmpi/3.0.4
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>export OMP_NUMB_THREADS=$SLURM_CPUS_PER_TASK
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>mpirun -n $SLURM_NTASKS my_program
-</span></code></pre></div>
-The <code>-c</code> flag is the same as <code>--cpus-per-task</code>. The specified value is saved in the variable <code>SLURM_CPUS_PER_TASK</code>. In this case, the total number of cores equals <code>SLURM_NTASKS * SLURM_CPUS_PER_TASK</code>, that is 16. </p>
-<p>The environment variable <code>OMP_NUMB_THREADS</code> is used to set the number of threads for an OpenMP program. Here it is equal to <code>SLURM_CPUS_PER_TASK</code>, and the number of MPI tasks is set to be <code>SLURM_NTASK</code> in the <code>mpirun</code> line, therefore, the nubmer of MPI tasks times the number of threads equals the total number of CPU cores. </p>
-<p>Users only need to specify the numbers following Slurm flags <code>-n</code> and <code>-c</code>, for example, <code>-n 4 -c 4</code> or <code>-n 8 -c 2</code>, keeping the their product unchanged, then the MPI tasks and threads are all set automatically.  </p>
-<p>Similarly, here is an exmple script to request two nodes, 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>#!/bin/bash
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>#SBATCH -p sched_mit_hill
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>#SBATCH -t 30
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>#SBATCH -N 2
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>#SBATCH --ntasks-per-node=2
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>#SBATCH -N 1
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>#SBATCH -n 2
 </span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>#SBATCH -c 8
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>#SBATCH --mem=0
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>#SBATCH --mem=10GB
 </span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
 </span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>module load gcc/6.2.0 openmpi/3.0.4
 </span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>export OMP_NUMB_THREADS=$SLURM_CPUS_PER_TASK
 </span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>mpirun -n $SLURM_NTASKS my_program
 </span></code></pre></div>
-In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_NTASKS_PER_NODE * SLURM_CPUS_PER_TASK</code>, that is <code>2 * 2 * 8 = 32</code>. The job will run 4 MPI tasks (i.e. 2 tasks per node) and 8 threads per task. Equation (1) is satisfied as <code>4 * 8 = 32</code>. </p>
-<p>Simlar to the previous section, it is recommended to run testing cases to determine the values for the flags <code>-N</code>, <code>-n</code> and <code>-c</code> to obtain a better performance.</p>
-<p>There is another way to submit jobs for hybrid programs, that is not to use the <code>-c</code> flag at all. For example, it also works like this,
+The <code>-c</code> flag is the same as <code>--cpus-per-task</code>. The specified value is saved in the variable <code>SLURM_CPUS_PER_TASK</code>. In this case, the total number of cores equals <code>SLURM_NTASKS * SLURM_CPUS_PER_TASK</code>, that is 16. </p>
+<p>The environment variable <code>OMP_NUMB_THREADS</code> is used to set the number of threads for an OpenMP program. Here it is equal to <code>SLURM_CPUS_PER_TASK</code>, and the number of MPI tasks is set to be <code>SLURM_NTASK</code> in the <code>mpirun</code> line, therefore, the nubmer of MPI tasks times the number of threads equals the total number of CPU cores. </p>
+<p>Users only need to specify the numbers following Slurm flags <code>-n</code> and <code>-c</code>, for example, <code>-n 4 -c 4</code> or <code>-n 8 -c 2</code>, keeping the their product unchanged, then the MPI tasks and threads are all set automatically.  </p>
+<p>Similarly, here is an exmple script to request two nodes, 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>#!/bin/bash
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>#SBATCH -p sched_mit_hill
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>#SBATCH -t 30
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>#SBATCH -N 1
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>#SBATCH -n 16
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>#SBATCH --mem=10GB
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>module load gcc/6.2.0 openmpi/3.0.4
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>export OMP_NUMB_THREADS=8
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>MPI_NTASKS=$((SLURM_NTASK / $OMP_NUMB_THREADS))
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>mpirun -n $MPI_NTASKS my_program
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>#SBATCH -N 2
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>#SBATCH --ntasks-per-node=2
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>#SBATCH -c 8
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>#SBATCH --mem=0
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>export OMP_NUMB_THREADS=$SLURM_CPUS_PER_TASK
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>mpirun -n $SLURM_NTASKS my_program
+</span></code></pre></div>
+In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_NTASKS_PER_NODE * SLURM_CPUS_PER_TASK</code>, that is <code>2 * 2 * 8 = 32</code>. The job will run 4 MPI tasks (i.e. 2 tasks per node) and 8 threads per task. Equation (1) is satisfied as <code>4 * 8 = 32</code>. </p>
+<p>Simlar to the previous section, it is recommended to run testing cases to determine the values for the flags <code>-N</code>, <code>-n</code> and <code>-c</code> to obtain a better performance.</p>
+<p>There is another way to submit jobs for hybrid programs, that is not to use the <code>-c</code> flag at all. For example, it also works like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>#!/bin/bash
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>#SBATCH -p sched_mit_hill
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>#SBATCH -t 30
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>#SBATCH -N 1
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>#SBATCH -n 16
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>#SBATCH --mem=10GB
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>export OMP_NUMB_THREADS=8
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>MPI_NTASKS=$((SLURM_NTASK / $OMP_NUMB_THREADS))
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>mpirun -n $MPI_NTASKS my_program
 </span></code></pre></div>
 This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per task, so equation (1) is satisfied as <code>2 * 8 = 16</code>. In this case, users need to set the values for Slurm flag <code>-n</code> and the variable <code>OMP_NUMB_THREADS</code>.</p>
 
