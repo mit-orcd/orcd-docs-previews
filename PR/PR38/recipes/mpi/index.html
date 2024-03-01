@@ -776,14 +776,10 @@ This will create an executable file named <code>my_program</code>. Prepare a GNU
 </span></code></pre></div></p>
 <p>This job requests 8 cores with <code>-n</code> and 10 GB of memory with <code>--mem</code> on 1 node (specified with <code>-N</code>). The <code>-n</code> flag is the same as <code>--ntasks</code>. The specified value is saved to the variable <code>SLURM_NTASKS</code>. In this case, the number of cores is equal to <code>SLURM_NTASKS</code>. The command <code>mpirun -n $SLURM_NTASKS</code> ensures that each MPI task runs on one core. </p>
 <p>The command <code>srun hostname</code> is to check if the correct number of cores and nodes are assigned to the job. It is not needed in production runs. </p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>Note: partitions and moudles
-    The modules used in this example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). </p>
-</blockquote>
-</blockquote>
-</blockquote>
+<details>
+<summary>Side note: partitions and moudles</summary>
+<p>The modules used in this example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). </p>
+</details>
 <p>Submit the job with the <code>sbatch</code> command,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch job.sh
 </span></code></pre></div></p>
