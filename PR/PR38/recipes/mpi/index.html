@@ -677,15 +677,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#mpi-gpu-jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      MPI + GPU jobs
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -744,7 +735,7 @@ For Rocky 8 nodes, load these modules,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load gcc/12.2.0 openmpi/4.1.4
 </span></code></pre></div>
 All these modules have been tested and work well. </p>
-<p>!!! Note: hierarchy of modules
+<p>!!!"Note: hierarchy of modules"
     Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in the output of <code>module avail</code> and can be loaded. </p>
 <h2 id="build-mpi-programs">Build MPI programs</h2>
 <p>This session will be focused on building MPI programs in C or Fortran. Python users can refer to <a href="https://orcd-docs.mit.edu/recipes/mpi4py/">this page</a> for using the <code>mpi4py</code> package.</p>
@@ -818,7 +809,7 @@ Here it only shows the public partitions that are avaiable to most users. Among 
 <p>!!! "Note： CPU efficiency"
     After a job started to run, execute the command <code>squeue -u $USER</code> to check which node the job is running on, and then log in the node with <code>ssh &lt;hostname&gt;</code> and execute the <code>top</code> command to check how many CPU cores are actually being used by your program and what the CPU efficiency is. The efficiency may vary with the number of CPU cores. Try to keep your jobs in a high efficiency. </p>
 <h2 id="hybrid-mpi-and-multithreading-jobs">Hybrid MPI and multithreading jobs</h2>
-<p>MPI programs are based on a distributed-memory scheme, that says, each MPI task owns a faction of the data, such as arrays, matrices, or tensors. Apart from MPI, there is a shared-memory parallel computing technique called multithreading, in which the data is shared by multiple threads. A common implementation of multithreading is OpenMP. For Python users, the <code>numpy</code> package is usually based on C libraries, such as Openblas, built with OpenMP. </p>
+<p>MPI programs are based on a distributed-memory parallelism, that says, each MPI task owns a faction of data, such as arrays, matrices, or tensors. In contrast to MPI, multithreading technique is based on a shared-memory parallelism, in which data is shared by multiple threads. A common implementation of multithreading is OpenMP. For Python users, the <code>numpy</code> package is based on C libraries, such as Openblas, usually built with OpenMP. </p>
 <details>
 <summary>Side note: OpenMP</summary>
 <p>OpenMP is an abbreviation of Open Multi-Processing. It is not related to OpenMPI.</p>
@@ -875,7 +866,6 @@ In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_N
 </span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>mpirun -n $MPI_NTASKS my_program
 </span></code></pre></div>
 This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per task, so equation (1) is satisfied as <code>2 * 8 = 16</code>. In this case, users need to set the values for Slurm flag <code>-n</code> and the variable <code>OMP_NUMB_THREADS</code>.</p>
-<h2 id="mpi-gpu-jobs">MPI + GPU jobs</h2>
 
 
 
