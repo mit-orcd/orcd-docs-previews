@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
     
     
       
@@ -744,10 +744,8 @@ For Rocky 8 nodes, load these modules,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load gcc/12.2.0 openmpi/4.1.4
 </span></code></pre></div>
 All these modules have been tested and work well. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in <code>module avail</code> and thus can be loaded. </p>
-</div>
+<p>!!! Note: hierarchy of modules
+    Load a <code>gcc</code> module first, then the openmpi mouldes built with this <code>gcc</code> will be shown in the output of <code>module avail</code> and can be loaded. </p>
 <h2 id="build-mpi-programs">Build MPI programs</h2>
 <p>This session will be focused on building MPI programs in C or Fortran. Python users can refer to <a href="https://orcd-docs.mit.edu/recipes/mpi4py/">this page</a> for using the <code>mpi4py</code> package.</p>
 <p>Most MPI software should be built from source codes. First, downloaded the package from the internet. A typycal building process is like this,
@@ -785,10 +783,8 @@ This will create an executable file named <code>my_program</code>. Prepare a GNU
 </span></code></pre></div></p>
 <p>This job requests 8 cores with <code>-n</code> and 10 GB of memory with <code>--mem</code> on 1 node (specified with <code>-N</code>). The <code>-n</code> flag is the same as <code>--ntasks</code>. The specified value is saved to the variable <code>SLURM_NTASKS</code>. In this case, the number of cores is equal to <code>SLURM_NTASKS</code>. The command <code>mpirun -n $SLURM_NTASKS</code> ensures that each MPI task runs on one core. </p>
 <p>The command <code>srun hostname</code> is to check if the correct number of cores and nodes are assigned to the job. It is not needed in production runs. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The modules used in this example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). </p>
-</div>
+<p>!!! "Note: partitions and moudles"
+    The modules used in this example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). </p>
 <p>Submit the job with the <code>sbatch</code> command,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch job.sh
 </span></code></pre></div></p>
@@ -818,11 +814,9 @@ Here it only shows the public partitions that are avaiable to most users. Among 
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>#SBATCH --ntasks-per-node=16
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>#SBATCH --mem=0
 </span></code></pre></div></p>
-<p>Second, what is the speedup of your MPI porgram? According to <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">the Amdahl's law</a>, MPI programs are usually speeded up almost linearly as the number of cores is increased, until it is saturated at some point. In practice, try to run testing cases investigating the speedup of your program, and then decide how many cores are needed to speed it up efficiently. <strong>*Do not increase the number of cores when the speedup becomes poor.</strong> </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After a job started to run, execute the command <code>squeue -u $USER</code> to check which node the job is running on, and then log in the node with <code>ssh &lt;hostname&gt;</code> and execute the <code>top</code> command to check how many CPU cores are actually being used by your program and what the CPU efficiency is. The efficiency may vary with the number of CPU cores. Try to keep your jobs in a high efficiency. </p>
-</div>
+<p>Second, what is the speedup of your MPI porgram? According to <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">the Amdahl's law</a>, MPI programs are usually speeded up almost linearly as the number of cores is increased, until it is saturated at some point. In practice, try to run testing cases investigating the speedup of your program, and then decide how many cores are needed to speed it up efficiently. <strong><em>Do not increase the number of cores when the speedup is poor.</em></strong> </p>
+<p>!!! "Note： CPU efficiency"
+    After a job started to run, execute the command <code>squeue -u $USER</code> to check which node the job is running on, and then log in the node with <code>ssh &lt;hostname&gt;</code> and execute the <code>top</code> command to check how many CPU cores are actually being used by your program and what the CPU efficiency is. The efficiency may vary with the number of CPU cores. Try to keep your jobs in a high efficiency. </p>
 <h2 id="hybrid-mpi-and-multithreading-jobs">Hybrid MPI and multithreading jobs</h2>
 <p>MPI programs are based on a distributed-memory scheme, that says, each MPI task owns a faction of the data, such as arrays, matrices, or tensors. Apart from MPI, there is a shared-memory parallel computing technique called multithreading, in which the data is shared by multiple threads. A common implementation of multithreading is OpenMP. For Python users, the <code>numpy</code> package is usually based on C libraries, such as Openblas, built with OpenMP. </p>
 <details>
@@ -902,7 +896,7 @@ This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 28, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 1, 2024</span>
   </span>
 
     
@@ -958,7 +952,7 @@ This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
