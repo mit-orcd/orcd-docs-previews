@@ -18,7 +18,7 @@
     
     
       
-        <title>Using SSH ControlMaster to work with two factor SSH efficiently - ORCD Docs</title>
+        <title>Using SSH ControlMaster to streamline two factor SSH - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-ssh-controlmaster-to-work-with-two-factor-ssh-efficiently" class="md-skip">
+        <a href="#using-ssh-controlmaster-to-streamline-two-factor-ssh" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Using SSH ControlMaster to work with two factor SSH efficiently
+              Using SSH ControlMaster to streamline two factor SSH
             
           </span>
         </div>
@@ -667,12 +667,12 @@
 
 
 
-<h1 id="using-ssh-controlmaster-to-work-with-two-factor-ssh-efficiently">Using SSH ControlMaster to work with two factor SSH efficiently</h1>
+<h1 id="using-ssh-controlmaster-to-streamline-two-factor-ssh">Using SSH ControlMaster to streamline two factor SSH</h1>
 <p>Two factor logins for SSH login sessions add security but they can be cumbersome to work with when 
 you need to create multiple login sessions. The <em>ControlMaster</em> feature of <a href="https://www.openssh.com/">OpenSSH</a> can 
 be used to create multiple SSH sessions tied to a single two factor sign on. Using this feature 
-means you can log in with two factor once, but then have subsequent ssh sessions use the first 
-ssh connection. </p>
+means you can log in with two factor once. Then subsequent ssh login sessions will use the first 
+ssh connection and two-factor will not be needed.</p>
 <p>This page describes how to use the <em>ControlMaster</em> feature.</p>
 <h2 id="maclinux-use-of-ssh-controlmaster">Mac/Linux use of SSH ControlMaster</h2>
 <p>On a Mac or Linux system the simplest way to use th <em>ControlMaster</em> option is to create a section in the file <code>~/ssh/config</code> 
@@ -708,8 +708,15 @@ that activates the <em>ControlMaster</em> feature on the nodes you use to connec
 </div>
 </div>
 </div>
-<p>Replace <code>USERNAME</code> with your username on the system you are connecting to.</p>
+<p>Replace <code>USERNAME</code> with the username you use on the system you are connecting to. In the 
+configuration file examples the <code>ControlPersist</code> option is not required, but is shown to 
+illustrate its use to keep the primary master connection open for a time after that login 
+session is exited.</p>
+<p>Port forwarding and X session forwarding is bound to the initial <em>ControlMaster</em> ssh session.</p>
 <h2 id="windowsputty-use-of-ssh-controlmaster">Windows/PuTTY use of SSH ControlMaster</h2>
+<p>On a Windows system the PuTTY program (free from the <a href="https://apps.microsoft.com/apps">Microsoft Apps store</a>) supports 
+the ControlMaster feature. Selcting the "Share SSH connections if possible" option under the "Options for controlling
+SSH connections" menu item in PuTTY will enable this feature.</p>
 
 
 
@@ -730,7 +737,7 @@ that activates the <em>ControlMaster</em> feature on the nodes you use to connec
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 26, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 4, 2024</span>
   </span>
 
     
