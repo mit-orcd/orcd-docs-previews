@@ -775,7 +775,7 @@ This will create an executable file named <code>my_program</code>. Prepare a GNU
 <p>The command <code>srun hostname</code> is to check if the correct number of cores and nodes are assigned to the job. It is not needed in production runs. </p>
 <details>
 <summary>Side note: partitions and modules</summary>
-<p>The modules used in the above example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). These are the public partitions that are avaiable to most users. Many labs have partitions for their purchased nodes. </p>
+<p>The modules used in the above example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). These are public partitions that are avaiable to most users. Many labs have partitions for their purchased nodes. </p>
 </details>
 <p>Submit the job with the <code>sbatch</code> command,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sbatch job.sh
@@ -822,7 +822,7 @@ On typical nodes of the cluster, the number of cores per node varies from 16 to 
 </span></code></pre></div></p>
 <details>
 <summary>Side note: hyperthreads</summary>
-<p>There are two or multiple hyperthreads on each CPU core in modern CPU architecture. The hyperthread technique is not implemented on this cluster. In the case that there are two hyerthreads per physical core, the right side of the equation should be <code>2 * (Total Number of Cores)</code> instead.</p>
+<p>There are two or multiple hyperthreads on each CPU core in modern CPU architecture. The hyperthread technique is turned off for most nodes of this cluster, but it may be turned on for some nodes as requested by the owner labs. In the case that there are two hyerthreads per physical core, the right side of the equation should be <code>2 * (Total Number of Cores)</code> instead.</p>
 </details>
 <p>One way to run hybrid progmrams in Slurm jobs is to use the <code>-n</code> flag for the number of MPI tasks and the <code>-c</code> flag for the number of threads. The follwing is a job script that runs a program with 2 MPI tasks and 8 threads per task on a node with 16 cores.<br />
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>#!/bin/bash
@@ -834,7 +834,7 @@ On typical nodes of the cluster, the number of cores per node varies from 16 to 
 </span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>#SBATCH --mem=10GB
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
 </span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>module load gcc/6.2.0 openmpi/3.0.4
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>export OMP_NUMB_THREADS=$SLURM_CPUS_PER_TASK
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 </span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>mpirun -n $SLURM_NTASKS my_program
 </span></code></pre></div>
 The <code>-c</code> flag is the same as <code>--cpus-per-task</code>. The specified value is saved in the variable <code>SLURM_CPUS_PER_TASK</code>. In this case, the total number of cores equals <code>SLURM_NTASKS * SLURM_CPUS_PER_TASK</code>, that is 16. </p>
