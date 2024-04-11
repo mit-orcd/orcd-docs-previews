@@ -806,6 +806,7 @@ On typical nodes of the cluster, the number of cores per node varies from 16 to 
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#SBATCH --ntasks-per-node=16
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>#SBATCH --mem=0
 </span></code></pre></div></p>
+<p>As MPI is a distributed-memory parallelism, sometimes it is a good to use the <code>--mem-per-core</code> flag assigning a certain amount of memory to each core. The total memory is increased with the number of cores in this case. Doulbe check that the total memory fits in the maximum memory of a node to avoid failed submittions.</p>
 <p>Second, what is the speedup of your MPI program? According to <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl's law</a>, well-performing MPI programs are usually speeded up almost linearly as the number of cores is increased until it is saturated at some point. In practice, try to run testing cases investigating the speedup of your program, and then decide how many cores are needed to speed it up efficiently. <strong><em>Do not increase the number of cores when speedup is poor.</em></strong> </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -889,7 +890,7 @@ This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 9, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2024</span>
   </span>
 
     
