@@ -795,30 +795,28 @@
 <p>MPI for Python (<code>mpi4py</code>) provides Python bindings for the Message Passing Interface (MPI) standard, allowing Python applications to exploit multiple processors on workstations, clusters and supercomputers.</p>
 <p>You can learn about <code>mpi4py</code> here: <a href="https://mpi4py.readthedocs.io/en/stable/">https://mpi4py.readthedocs.io/en/stable/</a>.</p>
 <h2 id="installation">Installation</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenMind</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenMind</label><label for="__tabbed_1_2">Engaging</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <p>The support team has installed <code>mpi4py</code> in an Anaconda module. You can load the module and do not need to install anything,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load openmind/anaconda/3-2022.05
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load openmind/anaconda/3-2022.05
 </span></code></pre></div></p>
 <p>If you want to use Anaconda in your directory, refer to section 3 on <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-make-Python-ready-for-use%3F">this page</a> to set it up, then install <code>mpi4py</code>, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conda install -c conda-forge mpi4py
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conda install -c conda-forge mpi4py
 </span></code></pre></div></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <p>First, load an Anaconda module on a CentOS 7 head node (such as eofe7 or eofe8),
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load anaconda3/2023.07
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load anaconda3/2023.07
 </span></code></pre></div>
-then install <code>mpi4py</code>, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda create -n mpi
+ then install <code>mpi4py</code>, 
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda create -n mpi
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>source activate mpi
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>conda install mpi4py
 </span></code></pre></div></p>
+</div>
+</div>
+</div>
 <h2 id="example-codes">Example codes</h2>
 <p>Prepare your Python codes. Example 1: The following is a code for sending and receiving a dictionary. Save it in a file named <code>p2p-send-recv.py</code>.
 <div class="language-python highlight"><span class="filename">p2p-send-recv.py</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
@@ -862,7 +860,7 @@ then install <code>mpi4py</code>,
 </span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </span></code></pre></div></p>
 <h2 id="submitting-jobs">Submitting jobs</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">OpenMind</label><label for="__tabbed_3_2">Engaging</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">OpenMind</label><label for="__tabbed_2_2">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Prepare a job script. The following is a job script for running <code>mpi4py</code> codes on 8 CPU cores of one node. Save it in a file named <code>p2p-job.sh</code>.
@@ -876,7 +874,7 @@ then install <code>mpi4py</code>,
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span>p2p-array.py
 </span></code></pre></div>
  !!! note
-     If you use Anaconda in your directory, do not load the Anaconda module. </p>
+      If you use Anaconda in your directory, do not load the Anaconda module. </p>
 <p>Finally submit the job,
  <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch p2p-job.sh
 </span></code></pre></div></p>
