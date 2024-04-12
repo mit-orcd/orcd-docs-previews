@@ -872,15 +872,14 @@ then install <code>mpi4py</code>,
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">#SBATCH -N 1</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">#SBATCH -n 8</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi/gcc/64/1.8.1
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>module<span class="w"> </span>load<span class="w"> </span>openmind/anaconda/3-2022.05
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span>p2p-send-recv.py
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span>p2p-array.py
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>module<span class="w"> </span>load<span class="w"> </span>openmind/anaconda/3-2022.05
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span>p2p-send-recv.py
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span>p2p-array.py
 </span></code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An OpenMPI module is needed. If you use Anaconda in your directory, do not load the Anaconda module. </p>
+<p>If you use Anaconda in your directory, do not load the Anaconda module. </p>
 </div>
 <p>Finally submit the job,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch p2p-job.sh
