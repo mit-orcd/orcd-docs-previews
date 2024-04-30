@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/recipes/h100_getting_started/">
+        <link rel="canonical" href="https://orcd.mit.edu/recipes/relion/">
       
       
+        <link rel="prev" href="../mpi/">
+      
+      
+        <link rel="next" href="../vscode/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Getting started on 8-way H100 nodes on Satori - ORCD Docs</title>
+        <title>RELION - ORCD Docs</title>
       
     
     
@@ -68,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-on-8-way-h100-nodes-on-satori" class="md-skip">
+        <a href="#installing-and-using-relion" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting started on 8-way H100 nodes on Satori
+              RELION
             
           </span>
         </div>
@@ -441,17 +445,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -465,7 +471,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
@@ -581,10 +587,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../relion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    RELION
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -593,6 +619,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#relion-on-satori" class="md-nav__link">
+    <span class="md-ellipsis">
+      RELION on Satori
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RELION on Satori">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-relion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install RELION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-relion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use RELION
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -753,37 +832,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#access-to-the-nodes" class="md-nav__link">
+  <a href="#relion-on-satori" class="md-nav__link">
     <span class="md-ellipsis">
-      Access to the nodes
+      RELION on Satori
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-access-through-slurm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Interactive access through Slurm
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-a-nightly-build-pytorch-example-with-a-fresh-miniconda-and-pytorch" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running a nightly build pytorch example with a fresh miniconda and pytorch
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Running a nightly build pytorch example with a fresh miniconda and pytorch">
+    <nav class="md-nav" aria-label="RELION on Satori">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#running-a-simple-batch-script-using-an-installed-miniconda-environment" class="md-nav__link">
+  <a href="#install-relion" class="md-nav__link">
     <span class="md-ellipsis">
-      Running a simple batch script using an installed miniconda environment
+      Install RELION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-relion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use RELION
     </span>
   </a>
   
@@ -791,15 +861,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting help
-    </span>
-  </a>
   
 </li>
       
@@ -828,123 +889,144 @@
     
     
     
-      <a href="../../tags/#howto-recipes" class="md-tag">Howto Recipes</a>
+      <a href="../../tags/#mpi" class="md-tag">MPI</a>
     
   
     
     
     
-      <a href="../../tags/#h100" class="md-tag">H100</a>
+      <a href="../../tags/#relion" class="md-tag">RELION</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#howto-recipes" class="md-tag">Howto Recipes</a>
     
   
 </nav>
 
 
 
-<h1 id="getting-started-on-8-way-h100-nodes-on-satori">Getting started on 8-way H100 nodes on Satori</h1>
-<p>This page provides information on how to run a first job on the IBM Watson AI Lab H100 GPU nodes on Satori.
-The page describes how to request an access to the Slurm partition associated 
-with the H100 nodes and
-how to run a first example pytorch script on the systems. </p>
-<p>A first set of H100 GPU systems has been added to Satori.
-These are for priority use by IBM Watson AI Lab research collaborators.
-They are also available for general opportunistic use when they are idle.</p>
-<!--
-What slurm flags are needed to use these nodes for "general opportunistic use"?
--->
-
-<p>Currently ( 2023-06-19 ) there are 4 H100 systems installed. 
-Each system has 8 H100 GPU cards, two Intel 8468 CPUs each with
-48 physical cores and 1TiB of main memory.</p>
-<p>Below are some instructions for getting started with these systems. </p>
-<h2 id="access-to-the-nodes">Access to the nodes</h2>
-<p>To access the nodes in the priority group you need your satori login id to be listed in the WebMoira 
-group <a href="https://groups.mit.edu/webmoira/list/sched_oliva">https://groups.mit.edu/webmoira/list/sched_oliva</a>. 
-Either Alex Andonian and Vincent Sitzmann are able to add accounts to the <code>sched_oliva</code> Moira list.</p>
-<h2 id="interactive-access-through-slurm">Interactive access through Slurm</h2>
-<p>To access an entire node through Slurm, the command below can be used from the satori login node</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:8<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span><span class="m">0</span><span class="w"> </span>-c<span class="w"> </span><span class="m">192</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
+<h1 id="installing-and-using-relion">Installing and Using RELION</h1>
+<p>RELION (for REgularised LIkelihood OptimisatioN, pronounce rely-on) is a software package that employs an empirical Bayesian approach for electron cryo-microscopy (cryo-EM) structure determination. </p>
+<h2 id="relion-on-satori">RELION on Satori</h2>
+<p>This recipe is for building and using RELION on x86 nodes on Satori. It is different from working on IBM power9 nodes on Satori.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The x86 nodes are available to some labs only. </p>
+</div>
+<h3 id="install-relion">Install RELION</h3>
+<p>Go to your directory and download RELION,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cd /nobackup/users/$USER
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git clone https://github.com/3dem/relion.git
+</span></code></pre></div></p>
+<p>Get an interactive session on x86 nodes of Satori,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>srun -p sched_mit_mbathe -c 2 -t 60 --pty bash
+</span></code></pre></div></p>
+<p>Load modules for the GCC compiler and Openmpi implementation,<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module use /software/spack/share/spack/lmod/linux-rocky8-x86_64/Core
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>module load gcc/12.2.0-x86_64  
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>module load openmpi/4.1.4-pmi-cuda-ucx-x86_64 
+</span></code></pre></div></p>
+<blockquote>
+<p>Note: These modules are installed for the x86 nodes only. </p>
+</blockquote>
+<p>Build RELION with CUDA and FFTW features,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cd ~
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>mkdir relion
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cd relion
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>git checkout master 
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>cd ..
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>mkdir 4.0.1
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>cd 4.0.1
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>mkdir install
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>mkdir build
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>cd build
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>cmake -DCMAKE_INSTALL_PREFIX=/home/$USER/relion/4.0.1/install -DFORCE_OWN_FFTW=ON -DAMDFFTW=ON -DCUDA_ARCH=80 ../../relion
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>make
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>make install
+</span></code></pre></div></p>
+<p>It is all set for the installation.</p>
+<h3 id="use-relion">Use RELION</h3>
+<p>There is a nice Graphical User Interface (GUI) for RELION. To use the GUI, first log in Satori with x-forwardig support,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh -Y &lt;user&gt;@satori-login-002.mit.edu
+</span></code></pre></div></p>
+<p>Get an interactive session with GPU and x-forwarding support on x86 nodes of Satori,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>srun --x11 -p sched_mit_mbathe --gres=gpu:1 -c 6 -t 60 --pty bash
+</span></code></pre></div></p>
+<p>Set up environment for compilers, mpi implementation, FFTw, and RELION,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module use /software/spack/share/spack/lmod/linux-rocky8-x86_64/Core
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>module load gcc/12.2.0-x86_64  
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>module load openmpi/4.1.4-pmi-cuda-ucx-x86_64 
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>module load fftw/3.3.10-x86_64
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>export LD_LIBRARY_PATH=/nfs/software001/home/software-r8-x86_64/spack-20230328/opt/spack/linux-rocky8-x86_64/gcc-12.2.0/fftw-3.3.10-qiaruimvw6zu2h4f5eolqom7tixem6vk/lib:$LD_LIBRARY_PATH
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>export RELION_HOME=/home/$USER/relion/4.0.1/install
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>export PATH=${RELION_HOME}/bin:$PATH
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>export LD_LIBRARY_PATH=${RELION_HOME}/lib:$LD_LIBRARY_PATH
+</span></code></pre></div></p>
+<p>then open the RELION GUI, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>relion &amp;
+</span></code></pre></div></p>
+<p>Users can use GUI to edit files or submit jobs. Refer to details on <a href="https://hpc.nih.gov/apps/RELION/index.html">this page</a>. </p>
+<p>Alternatively, users can prepare a batch job script to submit jobs. </p>
+<p>Download RELION benchmarks for testing, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cd ~/relion
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>wget ftp://ftp.mrc-lmb.cam.ac.uk/pub/scheres/relion_benchmark.tar.gz
 </span></code></pre></div>
-<p>this command will launch an interactive shell on one of the nodes (when a full node becomes available). 
-From this shell the NVidia status command 
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nvidia-smi
-</span></code></pre></div>
-should list 8 H100 GPUs as available. </p>
-<p>Single node, multi-gpu training examples (for example
-<a href="https://github.com/artidoro/qlora">https://github.com/artidoro/qlora</a> ) should run 
-on all 8 GPUs. </p>
-<p>To use a single GPU interactively the following command can be used
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--mem<span class="o">=</span><span class="m">128</span><span class="w"> </span>-c<span class="w"> </span><span class="m">24</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
-</span></code></pre></div></p>
-<p>this will request a single GPU. This request will allow other Slurm sessions to run on other GPUs 
-simultaneously with this session.</p>
-<h2 id="running-a-nightly-build-pytorch-example-with-a-fresh-miniconda-and-pytorch">Running a nightly build pytorch example with a fresh miniconda and pytorch</h2>
-<p>A miniconda environment can be used to run the latest nightly build pytorch code on these 
-systems. To do this, first create a software install directory and install the needed pytorch software</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nobackup/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/pytorch_h100_testing/conda_setup
-</span></code></pre></div>
-<p>and then switch your shell to that directory.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/nobackup/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/pytorch_h100_testing/conda_setup
-</span></code></pre></div></p>
-<p>now install miniconda and create an environment with the needed software
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>./Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-b<span class="w"> </span>-p<span class="w"> </span>minic
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>.<span class="w"> </span>./minic/bin/activate<span class="w"> </span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>pytorch_test<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>conda<span class="w"> </span>activate<span class="w"> </span>pytorch_test<span class="w">                          </span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>cupy
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>pip3<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/nightly/cu121
-</span></code></pre></div></p>
-<p>Once the software is installed, the following script can be used to test the installation.
-<div class="language-python highlight"><span class="filename">test.py</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">torch</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">device_id</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">current_device</span><span class="p">()</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">gpu_properties</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found </span><span class="si">%d</span><span class="s2"> GPUs available. Using GPU </span><span class="si">%d</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">) of compute capability </span><span class="si">%d</span><span class="s2">.</span><span class="si">%d</span><span class="s2"> with &quot;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>          <span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2">Gb total memory.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> 
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>          <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>          <span class="n">device_id</span><span class="p">,</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">major</span><span class="p">,</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">minor</span><span class="p">,</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">))</span>
-</span></code></pre></div>
-Run this script with
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python test.py
-</span></code></pre></div></p>
-<p>To exit the Slurm srun session enter the command
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">exit</span>
-</span></code></pre></div></p>
-<h3 id="running-a-simple-batch-script-using-an-installed-miniconda-environment">Running a simple batch script using an installed miniconda environment</h3>
-<p>To run a batch script on one of the H100 nodes in partition <code>sched_oliva</code> first paste the content in the 
-box below into a slurm script file called, for example, <code>test_script.slurm</code> ( change the <code>RUNDIR</code> setting to assign the 
-path to a directory where you have already installed a conda environment in a sub-directory called <code>minic</code> ).</p>
-<p>First create the <code>mytest.py</code> script with the contents above.</p>
+then all benchmark files will be saved in a directory named <code>relion_benchmark</code>.</p>
+<p>Here is an exmaple job script,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#!/bin/bash
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>#SBATCH --gres=gpu:8
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>#SBATCH --partition=sched_oliva
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>#SBATCH --time=1:00:00
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>#SBATCH --mem=0
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>#
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>nvidia-smi
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#SBATCH --partition=sched_mit_mbathe
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>#SBATCH --time=12:00:00
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>#SBATCH --nodes=1
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>#SBATCH -n 20
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>#SBATCH --cpus-per-task=2
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>#SBATCH --mem=10000
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>#SBATCH --gres=gpu:4
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>#SBATCH --chdir=&#39;.&#39;
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>RUNDIR=/nobackup/users/${USER}/h100-testing/minic
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>cd ${RUNDIR}
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>. ./minic/bin/activate
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>conda activate pytorch_test
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
-</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>python mytest.py
-</span></code></pre></div>
-<p>This script can then be submitted to Slurm to run in a background batch node using the command.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sbatch<span class="w"> </span>&lt;<span class="w"> </span>test_script.slurm
-</span></code></pre></div>
-<h2 id="getting-help">Getting help</h2>
-<p>As always, please feel welcome to email <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>
-with questions, comments or suggestions. We would be happy to hear from you!</p>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>module use /software/spack/share/spack/lmod/linux-rocky8-x86_64/Core
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>module load gcc/12.2.0-x86_64
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>module load openmpi/4.1.4-pmi-cuda-ucx-x86_64
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>export LD_LIBRARY_PATH=/nfs/software001/home/software-r8-x86_64/spack-20230328/opt/spack/linux-rocky8-x86_64/gcc-12.2.0/fftw-3.3.10-qiaruimvw6zu2h4f5eolqom7tixem6vk/lib:$LD_LIBRARY_PATH
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>export RELION_HOME=&quot;/home/$USER/relion/4.0.1/install&quot;
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>export PATH=${RELION_HOME}/bin:$PATH
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>export LD_LIBRARY_PATH=${RELION_HOME}/lib:$LD_LIBRARY_PATH
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>cd ~/relion/relion_benchmark
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>mkdir output
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>mpirun -np 20 relion_refine_mpi \
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>  --i Particles/shiny_2sets.star \
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>  --o output \
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>  --ref emd_2660.map:mrc \
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>  --ini_high 60 \
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>  --pool 100 \
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>  --pad 2  \
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>  --ctf \
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>  --iter 25 \
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>  --tau2_fudge 4 \
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>  --particle_diameter 360 \
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>  --K 4 \
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>  --flatten_solvent \
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>  --zero_mask \
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>  --oversampling 1 \
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>  --healpix_order 2 \
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>  --offset_range 5 \
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>  --offset_step 2 \
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>  --sym C1 \
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>  --norm \
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>  --scale \
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>  --j 1   \
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>  --gpu &quot;&quot; \
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a> --dont_combine_weights_via_disc \
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>  --scratch_dir /tmp
+</span></code></pre></div></p>
+<p>Add the above lines in a file named <code>job.sh</code>, then submit the job,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sbatch job.sh
+</span></code></pre></div></p>
 
 
 
@@ -965,7 +1047,7 @@ with questions, comments or suggestions. We would be happy to hear from you!</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 28, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 9, 2024</span>
   </span>
 
     
