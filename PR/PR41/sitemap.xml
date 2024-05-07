@@ -46,6 +46,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://orcd.mit.edu/filesystems-file-transfer/transferring-files/</loc>
+         <lastmod>2024-05-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://orcd.mit.edu/images/</loc>
          <lastmod>2024-05-07</lastmod>
          <changefreq>daily</changefreq>
