@@ -780,6 +780,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Run programs with Apptainer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Preparations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-download-an-existing-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Download an existing container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -860,7 +884,7 @@
 <p>Container provides an isolated environment that supports user applications. In many cases, it is helpful to use container to obtain the needed environment for your applications on HPC clusters, so as to avoid installing too many dependencies. Container has great portability and mobility, that says, it is convenient to migrate your applications bewtween different platforms, such as laptops/desktops, cloud platforms and HPC clusters. </p>
 <p>The most famous container is Docker, which is designed for laptops/desktops and cloud platforms. Here we will mostly focus on another kind of conatainer Apptainer and Singularity, which are particularly designed for HPC culsters. Apptainer is an extension of Singularity. Both are compatible with Docker.  </p>
 <p>!!! note 
-       In the following, the terminology Apptainer will be used. The statements hold if the word Apptainer is replaced by Singularity in most cases. </p>
+      In the following, the terminology Apptainer will be used. The statements hold if the word Apptainer is replaced by Singularity in most cases. </p>
 <p>Users can use Apptainer to support many applications, such as Python, R, Julia, compiling C/Fortran packages, and many GUI software. In particular, container is polular in supporting Python pakcages for the artificial intelligence and data science communities, such as Pytorch, Tensorflow, and many others. </p>
 <p>This document is a tutorial for using Apptianer on ORCD clusters.</p>
 <h2 id="run-programs-with-apptainer">Run programs with Apptainer</h2>
@@ -869,7 +893,17 @@
 <div class="tabbed-block"></div>
 </div>
 </div>
-<p>a </p>
+<h3 id="1-preparations">1. Preparations</h3>
+<p>Get an interactive session on a compute node with the Rocky 8 system.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun -t 500 --constraint=rocky8 -c 4 --mem=10G --pty bash
+</span></code></pre></div>
+Check available Apptainer versions on Openmind,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av openmind8/apptainer
+</span></code></pre></div>
+Load an Apptainer module,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load openmind8/apptainer/1.1.7
+</span></code></pre></div></p>
+<h3 id="2-download-an-existing-container">2. Download an existing container</h3>
 <h2 id="build-apptainer-images">Build Apptainer images</h2>
 <h2 id="build-a-docker-image-and-run-with-apptainer">Build a Docker image and run with Apptainer</h2>
 
