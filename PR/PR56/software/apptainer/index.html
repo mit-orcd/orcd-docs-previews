@@ -801,6 +801,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3-run-your-application-in-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Run your application in the container
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -883,8 +892,10 @@
 <h1 id="apptainer-and-singularity">Apptainer and Singularity</h1>
 <p>Container provides an isolated environment that supports user applications. In many cases, it is helpful to use container to obtain the needed environment for your applications on HPC clusters, so as to avoid installing too many dependencies. Container has great portability and mobility, that says, it is convenient to migrate your applications bewtween different platforms, such as laptops/desktops, cloud platforms and HPC clusters. </p>
 <p>The most famous container is Docker, which is designed for laptops/desktops and cloud platforms. Here we will mostly focus on another kind of conatainer Apptainer and Singularity, which are particularly designed for HPC culsters. Apptainer is an extension of Singularity. Both are compatible with Docker.  </p>
-<p>!!! note 
-      In the following, the terminology Apptainer will be used. The statements hold if the word Apptainer is replaced by Singularity in most cases. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>In the following, the terminology Apptainer will be used. The statements hold if the word Apptainer is replaced by Singularity in most cases. </p>
 <p>Users can use Apptainer to support many applications, such as Python, R, Julia, compiling C/Fortran packages, and many GUI software. In particular, container is polular in supporting Python pakcages for the artificial intelligence and data science communities, such as Pytorch, Tensorflow, and many others. </p>
 <p>This document is a tutorial for using Apptianer on ORCD clusters.</p>
 <h2 id="run-programs-with-apptainer">Run programs with Apptainer</h2>
@@ -904,6 +915,35 @@ Load an Apptainer module,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load openmind8/apptainer/1.1.7
 </span></code></pre></div></p>
 <h3 id="2-download-an-existing-container">2. Download an existing container</h3>
+<p>Search for a container that provides your desired operating system and software stack (e.g. in <a href="https://hub.docker.com/">Docker Hub</a>, <a href="https://singularity-hub.org/search">Singularity Hub</a>, or <a href="https://github.com/ReproNim/neurodocker">Neurodocker</a>). </p>
+<p>Here is an example of downloading a container from Docker Hub to support Pytorch. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ apptainer build --sandbox my-container  docker://bitnami/pytorch:latest
+</span></code></pre></div></p>
+<p>The command <code>build</code> here does nothing but download and convert. The flag <code>--sandbox</code> is to convert the container to the Sandbox format, which is convenient for adding more packages in step 4. If no more package is needed, remove the <code>--sandbox</code> flag. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>All the <code>apptainer</code> commands on this page can be replaced by the <code>singularity</code> command. They work the same. </p>
+<h3 id="3-run-your-application-in-the-container">3. Run your application in the container</h3>
+<p>If the container already provides all the needed software, you can run your application in the container. </p>
+<p>For example, shell into the container and run your application (Pytorch here).<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ apptainer shell my-container
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Apptainer&gt; python
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>[GCC 10.2.1 20210110] on linux
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>&gt;&gt;&gt; import torch
+</span></code></pre></div></p>
+<p>Or, execute a command via the container,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>singularity exec my-container python
+</span></code></pre></div></p>
+<p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. The <code>/om</code> or <code>/om2</code> directories are often used to store data, bind them using <code>-B</code> when needed,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>apptainer shell -B /om,/om2 my-container
+</span></code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>Use the flag <code>--nv</code> to provide GPU support in the container when needed. </p>
 <h2 id="build-apptainer-images">Build Apptainer images</h2>
 <h2 id="build-a-docker-image-and-run-with-apptainer">Build a Docker image and run with Apptainer</h2>
 
