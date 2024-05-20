@@ -810,6 +810,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-submit-a-batch-job-to-use-apptainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Submit a batch job to use Apptainer
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -894,8 +903,8 @@
 <p>The most famous container is Docker, which is designed for laptops/desktops and cloud platforms. Here we will mostly focus on another kind of conatainer Apptainer and Singularity, which are particularly designed for HPC culsters. Apptainer is an extension of Singularity. Both are compatible with Docker.  </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>In the following, the terminology Apptainer will be used. The statements hold if the word Apptainer is replaced by Singularity in most cases. </p>
+</div>
 <p>Users can use Apptainer to support many applications, such as Python, R, Julia, compiling C/Fortran packages, and many GUI software. In particular, container is polular in supporting Python pakcages for the artificial intelligence and data science communities, such as Pytorch, Tensorflow, and many others. </p>
 <p>This document is a tutorial for using Apptianer on ORCD clusters.</p>
 <h2 id="run-programs-with-apptainer">Run programs with Apptainer</h2>
@@ -922,12 +931,12 @@ Load an Apptainer module,
 <p>The command <code>build</code> here does nothing but download and convert. The flag <code>--sandbox</code> is to convert the container to the Sandbox format, which is convenient for adding more packages in step 4. If no more package is needed, remove the <code>--sandbox</code> flag. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>All the <code>apptainer</code> commands on this page can be replaced by the <code>singularity</code> command. They work the same. </p>
+</div>
 <h3 id="3-run-your-application-in-the-container">3. Run your application in the container</h3>
 <p>If the container already provides all the needed software, you can run your application in the container. </p>
 <p>For example, shell into the container and run your application (Pytorch here).<br />
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ apptainer shell my-container
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>apptainer shell my-container
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Apptainer&gt; python
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>[GCC 10.2.1 20210110] on linux
@@ -942,9 +951,45 @@ Load an Apptainer module,
 </span></code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-</div>
 <p>Use the flag <code>--nv</code> to provide GPU support in the container when needed. </p>
+</div>
+<h3 id="4-submit-a-batch-job-to-use-apptainer">4. Submit a batch job to use Apptainer</h3>
+<p>When the test is successful, it is recommended to submit a batch job to run your program, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch job.sh
+</span></code></pre></div></p>
+<p>Here is a typical batch job script (e.g. named <code>job.sh</code>):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#!/bin/bash                      
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>#SBATCH -N 1                         #  one node
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>#SBATCH -n 2                         #  two CPU (hyperthreaded) cores
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#SBATCH --gres=gpu:1                 #  one GPU
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#SBATCH --constraint=high-capacity   #  high-capacity GPU
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>module load openmind8/apptainer/1.1.7                    # load a singularity module
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>apptainer exec --nv -B /om,/om2  my-container python my-code.py    # Run the job steps 
+</span></code></pre></div>
+Fill in the container name including the full path. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here shows an example of Python. Other applications are used in similar ways.  </p>
+</div>
 <h2 id="build-apptainer-images">Build Apptainer images</h2>
+<p>It often happens that some needed packages do not exist in the originally downloaded base container. In this case, build these packages in the base container. </p>
+<p>Contiue from step 3. </p>
+<p>For example, if you want to use Pandas together with Pytorch, build it like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ apptainer shell --writable my-container
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Apptainer&gt; apt-get update
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Apptainer&gt; pip install pandas
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Apptainer&gt; python 
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>[GCC 10.2.1 20210110] on linux
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>&gt;&gt;&gt; import pandas as pd
+</span></code></pre></div></p>
+<p>The flag <code>--writable</code> is to enable permission to modify the container. </p>
+<details class="note">
+<summary>Note</summary>
+<p>The <code>sudo</code> command is not needed here. </p>
+</details>
 <h2 id="build-a-docker-image-and-run-with-apptainer">Build a Docker image and run with Apptainer</h2>
 
 
