@@ -834,9 +834,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-a-docker-image-and-run-with-apptainer" class="md-nav__link">
+  <a href="#build-a-docker-image-and-run-it-with-apptainer" class="md-nav__link">
     <span class="md-ellipsis">
-      Build a Docker image and run with Apptainer
+      Build a Docker image and run it with Apptainer
     </span>
   </a>
   
@@ -926,7 +926,7 @@ Load an Apptainer module,
 <h3 id="2-download-an-existing-container">2. Download an existing container</h3>
 <p>Search for a container that provides your desired operating system and software stack (e.g. in <a href="https://hub.docker.com/">Docker Hub</a>, <a href="https://singularity-hub.org/search">Singularity Hub</a>, or <a href="https://github.com/ReproNim/neurodocker">Neurodocker</a>). </p>
 <p>Here is an example of downloading a container from Docker Hub to support Pytorch. 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ apptainer build --sandbox my-container  docker://bitnami/pytorch:latest
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>apptainer build --sandbox my-container  docker://bitnami/pytorch:latest
 </span></code></pre></div></p>
 <p>The command <code>build</code> here does nothing but download and convert. The flag <code>--sandbox</code> is to convert the container to the Sandbox format, which is convenient for adding more packages in step 4. If no more package is needed, remove the <code>--sandbox</code> flag. </p>
 <div class="admonition note">
@@ -990,7 +990,7 @@ Fill in the container name including the full path. </p>
 <summary>Note</summary>
 <p>The <code>sudo</code> command is not needed here. </p>
 </details>
-<h2 id="build-a-docker-image-and-run-with-apptainer">Build a Docker image and run with Apptainer</h2>
+<h2 id="build-a-docker-image-and-run-it-with-apptainer">Build a Docker image and run it with Apptainer</h2>
 
 
 
