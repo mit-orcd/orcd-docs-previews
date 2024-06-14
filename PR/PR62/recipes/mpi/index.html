@@ -1,0 +1,1193 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://orcd.mit.edu/recipes/mpi/">
+      
+      
+        <link rel="prev" href="../mpi4py/">
+      
+      
+        <link rel="next" href="../relion/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+    
+    
+      
+        <title>MPI jobs - ORCD Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#message-passing-interface-mpi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ORCD Docs" class="md-header__button md-logo" aria-label="ORCD Docs" data-md-component="logo">
+      
+  <img src="../../images/ORCD_logo_icononly.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ORCD Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MPI jobs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ORCD Docs" class="md-nav__button md-logo" aria-label="ORCD Docs" data-md-component="logo">
+      
+  <img src="../../images/ORCD_logo_icononly.png" alt="logo">
+
+    </a>
+    ORCD Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../orcd-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORCD Systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Filesystems and File Transfer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Filesystems and File Transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/filesystems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General Use Filesystems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/project-filesystems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Specific Filesystems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/transferring-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferring Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ORCD Recipes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            ORCD Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mujoco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuJoCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NVHPC with CUDA aware MPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpi4py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI for Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MPI jobs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MPI jobs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPI modules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-mpi-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build MPI programs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPI jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computing-resources-for-mpi-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computing resources for MPI jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-mpi-and-multithreading-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid MPI and multithreading jobs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RELION
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acknowledging Us
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Security and Privacy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-of-conduct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acceptable Use and Code of Conduct
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Help
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPI modules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-mpi-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build MPI programs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPI jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computing-resources-for-mpi-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computing resources for MPI jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hybrid-mpi-and-multithreading-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid MPI and multithreading jobs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../tags/#engaging" class="md-tag">Engaging</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#mpi" class="md-tag">MPI</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#howto-recipes" class="md-tag">Howto Recipes</a>
+    
+  
+</nav>
+
+
+
+<h1 id="message-passing-interface-mpi">Message Passing Interface (MPI)</h1>
+<p>Message Passing Interface (MPI) is a standard designed for data communication in parallel computing. The MPI standard defines useful library functions/routines in C, C++, and Fortran. Python interface is available for MPI.   </p>
+<p>There are several MPI implementationos, such as <code>OpenMPI</code>, <code>MPICH</code>, <code>MVAPICH</code>, and <code>Intel MPI</code>, which work with Infiniband network for high-bandwidth data communication.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<h2 id="mpi-modules">MPI modules</h2>
+<p>There are OpenMPI modules available on the cluster. Before building or runrning your MPI programs, load the modules of a <code>gcc</code> compiler and an <code>openmpi</code> libraries to set up environment varialbes.</p>
+<p>There are two different operations systems (OS) on the cluster: CentOS 7 and Rocky 8. For CentOS 7 nodes, load these modules,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span></code></pre></div>
+or
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module load gcc/9.3.0 openmpi/4.0.5
+</span></code></pre></div>
+For Rocky 8 nodes, load these modules,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module use /orcd/software/community/001/modulefiles/rocky8
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>module load gcc/12.2.0 openmpi/4.1.4-pmi-ucx-x86_64
+</span></code></pre></div>
+If you need to run MPI programs with GPUs, load these modules instead,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module load gcc/12.2.0 openmpi/4.1.4-pmi-cuda-ucx-x86_64
+</span></code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Load a <code>gcc</code> module first, then the openmpi modules built with this <code>gcc</code> will be shown in the output of <code>module avail</code> and can be loaded. </p>
+</div>
+<h2 id="build-mpi-programs">Build MPI programs</h2>
+<p>This section will be focused on building MPI programs in C or Fortran. Python users can refer to <a href="https://orcd-docs.mit.edu/recipes/mpi4py/">this page</a> for using the <code>mpi4py</code> package.</p>
+<p>Most MPI software should be built from source codes. First, download the package from the internet. Load one of the OpenMPI modules mentioned above. A typical building process is like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./configure CC=mpicc CXX=mpicxx --prefix=&lt;/path/to/your/installation&gt;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>make
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>make install
+</span></code></pre></div>
+Create an install directory and assign its full path to the flag <code>--prefix</code>. This is where the binaries will be saved.</p>
+<p>Widely-used MPI software includes <code>Gromacs</code>, <code>Lammps</code>, <code>NWchem</code>, <code>OpenFOAM</code> and many others. The building process of every software is different. Refer to its official installation guide for details.</p>
+<details>
+<summary>Side note: MPI binaries</summary>
+<p>Some MPI software are provided with prebuilt binaries only. In this case, download the binaries compatible with the <code>linux</code> OS and the <code>x86_64</code> CPU architecture. If possible, try to choose an OpenMPI version, that the binary was built with, as close as possible to that of a module on the cluster. This type of MPI software includes <code>ORCA</code>. </p>
+</details>
+<p>Spack is a popular tool to build many software packages systematically on clusters. It makes building processes convenient in many cases. If you want to use Spack to build your software package on the cluster, refer to the recipe page for Spack.</p>
+<p>If you develop your MPI codes, the codes can be compiled and linked like this
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mpicc -O3 name.c -o my_program
+</span></code></pre></div>
+or
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>mpif90 -O3 name.f90 -o my_program
+</span></code></pre></div>
+This will create an executable file named <code>my_program</code>. Prepare a GNU Makefile to build programs with multiple source files. </p>
+<h2 id="mpi-jobs">MPI jobs</h2>
+<p>MPI programs are suitable to run on multiple CPU cores of a single node or on multiple nodes. </p>
+<p>Here is an example script (e.g. named <code>job.sh</code>) to run an MPI job using multiple cores on a single node. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>#!/bin/bash
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>#SBATCH -p sched_mit_hill
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>#SBATCH -t 30
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>#SBATCH -N 1
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>#SBATCH -n 8
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>#SBATCH --mem=10GB   
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>srun hostname
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>mpirun -n $SLURM_NTASKS my_program
+</span></code></pre></div></p>
+<p>This job requests 8 cores (with <code>-n</code>) and 10 GB of memory (with <code>--mem</code>) on 1 node (with <code>-N</code>) for 30 minutes (with <code>-t 30</code>). The <code>-n</code> flag is the same as <code>--ntasks</code>. The specified value is saved to the variable <code>SLURM_NTASKS</code>. In this case, the requested number of cores is equal to <code>SLURM_NTASKS</code>. The command <code>mpirun -n $SLURM_NTASKS</code> ensures that each MPI task runs on one core. </p>
+<p>The command <code>srun hostname</code> is to check if the correct number of cores and nodes are assigned to the job. It is not needed in production runs. </p>
+<details>
+<summary>Side note: partitions and modules</summary>
+<p>The modules used in the above example is for the CentOS 7 OS, which works for these partitions: <code>sched_mit_hill</code>, <code>newnodes</code>, and <code>sched_any</code>. If using a partition with the Rocky 8 OS, such as <code>sched_mit_orcd</code>, change the modules accrodingly (see the first session). These are public partitions that are avaiable to most users. Many labs have partitions for their purchased nodes. </p>
+</details>
+<p>Submit the job with the <code>sbatch</code> command,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sbatch job.sh
+</span></code></pre></div></p>
+<p>To run an MPI job on multiple nodes, refer to the following exmaple script.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#!/bin/bash
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#SBATCH -p sched_mit_hill
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>#SBATCH -t 30
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>#SBATCH -N 2
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>#SBATCH --ntasks-per-node=8
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>#SBATCH --mem=10GB
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>srun hostname
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>mpirun -n $SLURM_NTASKS my_program
+</span></code></pre></div></p>
+<p>This job requests 2 nodes with 8 cores and 10 GB of memory per node. In this case, the total number of cores (saved to <code>SLURM_NTASKS</code>) is equal to the number of nodes (saved to <code>SLURM_NNODES</code>) times the number of cores per node (saved to <code>SLURM_NTASKS_PER_NODE</code>). The command <code>mpirun -n $SLURM_NTASKS</code> ensures that MPI tasks are distributed to both nodes and each MPI task runs on one core. </p>
+<p>Alternatively, users can specify the number of cores per node using an OpenMPI option like this <code>mpirun -npernode $SLURM_NTASKS_PER_NODE my_program</code>.</p>
+<p>If replacing <code>--ntasks-per-node=8</code> with <code>-n 16</code> in the above script, the job will request 16 cores on 2 nodes, but it is not always the case that there are 8 cores per node. For example, there may be 7 cores on one node and 9 cores on another, or 1 core on one node and 15 cores on another, etc, depending on the current available resources on the cluster. </p>
+<h2 id="computing-resources-for-mpi-jobs">Computing resources for MPI jobs</h2>
+<p>To get a better idea on how many nodes, cores and memory should be requested, users need to consider the following two questions. </p>
+<p>First, what resources are available on the cluster? Use this command to check node and job info on the cluster, including the constraint associated with OS (<code>%f</code>), the nubmer of CPU cores (<code>%c</code>), the memory size (<code>%m</code>), the wall time limit (<code>%l</code>), and the current usage status (<code>%t</code>). 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> sinfo -N -p sched_mit_hill,newnodes,sched_any,sched_mit_orcd -o %f,%c,%m,%l,%t |grep -v drain
+</span></code></pre></div>
+On typical nodes of the cluster, the number of cores per node varies from 16 to 128, and the memory per node varies from 63 GB to 515 GB.</p>
+<p><strong><em>To obtain a good performance of MPI programs, it is recommended to request all physical CPU cores and memory on each node.</em></strong> For example, request two nodes with 16 physical cores per node and all of the memory like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#SBATCH -N 2
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#SBATCH --ntasks-per-node=16
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>#SBATCH --mem=0
+</span></code></pre></div></p>
+<p>As MPI is a distributed-memory parallelism, sometimes it is good to use the <code>--mem-per-core</code> flag assigning a certain amount of memory to each core. The total memory is increased with the number of cores in this case. Double check that the total memory fits in the maximum memory of a node to avoid failed jobs.</p>
+<p>Second, what is the speedup of your MPI program? According to <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl's law</a>, well-performing MPI programs are usually speeded up almost linearly as the number of cores is increased until it is saturated at some point. In practice, try to run testing cases investigating the speedup of your program, and then decide how many cores are needed to speed it up efficiently. <strong><em>Do not increase the number of cores when speedup is poor.</em></strong> </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After a job starts to run, execute the command <code>squeue -u $USER</code> to check which node the job is running on, and then log in to the node with <code>ssh &lt;hostname&gt;</code> and execute the <code>top</code> command to check how many CPU cores are being used by the program and what the CPU efficiency is. The efficiency may vary with the number of CPU cores. Try to keep your jobs at a high efficiency. </p>
+</div>
+<h2 id="hybrid-mpi-and-multithreading-jobs">Hybrid MPI and multithreading jobs</h2>
+<p>MPI programs are based on distributed-memory parallelism, that says, each MPI task owns a faction of data, such as arrays, matrices, or tensors. In contrast to MPI, the multithreading technique is based on a shared-memory parallelism, in which data is shared by multiple threads. A common implementation of the multithreading technique is OpenMP. For Python users, the <code>numpy</code> package is based on C libraries, such as Openblas, which are usually built with OpenMP. </p>
+<details>
+<summary>Side note: OpenMP</summary>
+<p>OpenMP is an abbreviation of Open Multi-Processing. It is not related to OpenMPI.</p>
+</details>
+<p>Some programs are designed in a hybrid scheme such that MPI and OpenMP are combined to enable two-level parallelization. Set MPI tasks and OpenMP threads in hybrid programs based on the following equation,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>(Number of MPI Tasks) * (Nubmer of Threads) = Total Number of Cores          (1)
+</span></code></pre></div></p>
+<details>
+<summary>Side note: hyperthreads</summary>
+<p>There are two or multiple hyperthreads on each CPU core in modern CPU architecture. The hyperthread technique is turned off for most nodes of this cluster, but it may be turned on for some nodes as requested by the owner labs. In the case that there are two hyerthreads per physical core, the right side of the equation should be <code>2 * (Total Number of Cores)</code> instead.</p>
+</details>
+<p>One way to run hybrid progmrams in Slurm jobs is to use the <code>-n</code> flag for the number of MPI tasks and the <code>-c</code> flag for the number of threads. The follwing is a job script that runs a program with 2 MPI tasks and 8 threads per task on a node with 16 cores.<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>#!/bin/bash
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>#SBATCH -p sched_mit_hill
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>#SBATCH -t 30
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>#SBATCH -N 1
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>#SBATCH -n 2
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>#SBATCH -c 8
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>#SBATCH --mem=10GB
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>mpirun -n $SLURM_NTASKS my_program
+</span></code></pre></div>
+The <code>-c</code> flag is the same as <code>--cpus-per-task</code>. The specified value is saved in the variable <code>SLURM_CPUS_PER_TASK</code>. In this case, the total number of cores equals <code>SLURM_NTASKS * SLURM_CPUS_PER_TASK</code>, that is 16. </p>
+<p>The built-in environment variable <code>OMP_NUM_THREADS</code> is used to set the number of threads for an OpenMP program. Here it is equal to <code>SLURM_CPUS_PER_TASK</code>. The number of MPI tasks is set to be <code>SLURM_NTASK</code> in the <code>mpirun</code> command line, therefore, the nubmer of MPI tasks times the number of threads equals the total number of CPU cores. </p>
+<p>Users only need to specify the numbers following Slurm flags <code>-n</code> and <code>-c</code>, for example, <code>-n 4 -c 4</code> or <code>-n 8 -c 2</code>, keeping the product unchanged, then the MPI tasks and threads are all set automatically.  </p>
+<p>Similarly, here is an exmple script to request two nodes, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>#!/bin/bash
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>#SBATCH -p sched_mit_hill
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>#SBATCH -t 30
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>#SBATCH -N 2
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>#SBATCH --ntasks-per-node=2
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>#SBATCH -c 8
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>#SBATCH --mem=0
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>mpirun -n $SLURM_NTASKS my_program
+</span></code></pre></div>
+In this case, the total number of cores is equal to <code>SLURM_NNODES * SLURM_NTASKS_PER_NODE * SLURM_CPUS_PER_TASK</code>, that is <code>2 * 2 * 8 = 32</code>. The job will run 4 MPI tasks (i.e. 2 tasks per node) and 8 threads per task. Equation (1) is satisfied as <code>4 * 8 = 32</code>. </p>
+<p>As mentioned in the previous section, it is recommended to run testing cases to determine the values for the flags <code>-N</code>, <code>-n</code> and <code>-c</code> to obtain a better performance.</p>
+<p>There is another way to submit jobs for hybrid programs, in which the <code>-c</code> flag is not used at all. For example, it also works like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>#!/bin/bash
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>#SBATCH -p sched_mit_hill
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>#SBATCH -t 30
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>#SBATCH -N 1
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>#SBATCH -n 16
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>#SBATCH --mem=10GB
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>module load gcc/6.2.0 openmpi/3.0.4
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>export OMP_NUM_THREADS=8
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>MPI_NTASKS=$((SLURM_NTASK / $OMP_NUM_THREADS))
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>mpirun -n $MPI_NTASKS my_program
+</span></code></pre></div>
+This job requests 16 CPU cores on 1 node and runs 2 MPI tasks with 8 threads per task, so equation (1) is satisfied as <code>2 * 8 = 16</code>. In this case, users need to set the values for the Slurm flag <code>-n</code> and the variable <code>OMP_NUM_THREADS</code>.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 12, 2024</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://accessibility.mit.edu/">Accessibility</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
