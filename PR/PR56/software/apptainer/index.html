@@ -947,8 +947,8 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <p>In Apptainer, the file named <code>singularity</code> is a soft link to an executable named <code>apptainer</code>, so all <code>singularity</code> commands on this page can be replaced by the <code>apptainer</code> command. They work the same. </p>
 </div>
 <h3 id="run-a-program-interactively">Run a program interactively</h3>
-<p>When the image is ready, launch a container based on the image and then run your application in the container. If you want to work interactively to test and debug codes, it is convineient to shell into the container, for exmaple, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ singularity my-image.sif 
+<p>When the image is ready, launch a container based on the image and then run your application in the container. If you want to work interactively to test and debug codes, it is convineient to log in the containe shell, for exmaple, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ singularity shell my-image.sif 
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Apptainer&gt; python
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Python 3.11.9 (main, May 13 2024, 16:49:42) [GCC 12.2.0] on linux
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
@@ -968,7 +968,7 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>#SBATCH -n 2                         #  two CPU cores
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>module load openmind8/apptainer/1.1.7      # load an apptainer module
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>singularity exec my-image.sif python my-code.py   # Run the job steps 
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>singularity exec my-image.sif python my-code.py   # Run the program 
 </span></code></pre></div></p>
 <p>The last line is a command to run a Python program uisng Singularity.  </p>
 <p>Submit the job script using <code>sbatch</code>,
@@ -988,7 +988,7 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <p>In summary, a common used syntax to run a program with Singularity is the following,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>singularity exec [--nv] [-B &lt;path-to-data&gt;] &lt;image-name&gt; &lt;executable-name&gt; [source-code-name]
 </span></code></pre></div>
-The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</code> is optional, dependeing on the program. </p>
+The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</code> is optional, dependeing on use cases. </p>
 <p>Here is an example job script to run a python program with a GPU and data files,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>#!/bin/bash                      
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>#SBATCH -t 01:30:00         # walltime = 1 hours and 30 minutes
@@ -997,19 +997,18 @@ The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</c
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>#SBATCH --gres=gpu:1        #  one GPU
 </span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
 </span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>module load openmind8/apptainer/1.1.7        # load an apptainer module
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>singularity exec --nv -B /om,om2 my-image.sif python my-code.py  # Run the job steps 
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>singularity exec --nv -B /om,om2 my-image.sif python my-code.py  # Run the program
 </span></code></pre></div></p>
 <h2 id="build-singualrity-images">Build Singualrity images</h2>
-<p>It is assumed in the previous section that all needed packages have been installed in the image, but when some needed packages do not exist in the image, users need to build an image. </p>
-<p>Frist, search on <a href="https://hub.docker.com/">Docker Hub</a> for an image with operating system and software stack that supports your target application the best. Use it as a base image and then build your target application on top of it. </p>
-<p>In the following, an example to build pandas on top of pytorch. </p>
-<p>for exmaple. Here is an example for downloading an image to support Pytorch. 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>apptainer build --sandbox my-container  docker://bitnami/pytorch:latest
+<p>In the previous section, it is assumed that all needed packages have been installed in the image. If some needed packages do not exist in the image, users need to build a new image. </p>
+<p>To save work for the building process, search for an image providing the right OS and necessary dependnecies to support your target application, then use it as a base image and build your target application on top of it. </p>
+<p>The following is an example for building Python packages such as Pytorch and Pandas in a container image. </p>
+<p>First, download a Docker image that provdies the Ubuntu OS and have Python and Pytorch installed already,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>apptainer build --sandbox my-image  docker://bitnami/pytorch:latest
 </span></code></pre></div></p>
-<p>The command <code>build</code> here does nothing but download and convert. The flag <code>--sandbox</code> is to convert the container to the Sandbox format, which is convenient for adding more packages in step 4. If no more package is needed, remove the <code>--sandbox</code> flag. </p>
-<p>Contiue from step 3. </p>
-<p>For example, if you want to use Pandas together with Pytorch, build it like this,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ apptainer shell --writable my-container
+<p>The command <code>build</code> here does not build anything yet, but just downloads the image. The flag <code>--sandbox</code> is to convert the image file to the Sandbox format, which is convenient for installing packages interactively. </p>
+<p>Log in the container shell, then you can install system packages using <code>apt-get</code> as is on an Ubuntu machine and build Python packages using <code>pip install</code>, taking Pandas for example, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ apptainer shell --writable my-image
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Apptainer&gt; apt-get update
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Apptainer&gt; pip install pandas
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Apptainer&gt; python 
@@ -1018,16 +1017,13 @@ The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</c
 </span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 </span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>&gt;&gt;&gt; import pandas as pd
 </span></code></pre></div></p>
-<p>The flag <code>--writable</code> is to enable permission to modify the container. </p>
+<p>The flag <code>--writable</code> is to enable the write permission to modify files in the container. </p>
 <details class="note">
 <summary>Note</summary>
-<p>The <code>sudo</code> command is not needed here. </p>
+<p>We will install the <code>fakeroot</code> pakcage on the cluster, so that users can build images without the <code>sudo</code> command. </p>
 </details>
-<p>Fakeroot for apt-get.</p>
-<p>Other ways. 
-Build an image on other machines and run it with Singularity on the clusters. 
-Build a Docker image on your MAC or PC. 
-Build a Singularity image on your Linux machine.</p>
+<p>Once the needed package are built in the image, you can use it as was shown in the preivious sections. </p>
+<p>Alternatively, you can build a container image on other machines on which you have <code>root</code> or <code>sudo</code> access. One way is to build a Docker image on a laptop/desktop such as MAC or PC. Another way is to build a Singularity image on a Linux machine that has Apptainer/Singularity installed. Once the image is built completely, transfer it to the cluster, and run it with Singularity.</p>
 
 
 
