@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
@@ -140,7 +140,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -774,13 +774,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#run-programs-with-apptainer" class="md-nav__link">
+  <a href="#run-applications-with-singularity" class="md-nav__link">
     <span class="md-ellipsis">
-      Run programs with Apptainer
+      Run applications with Singularity
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Run programs with Apptainer">
+    <nav class="md-nav" aria-label="Run applications with Singularity">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -793,9 +793,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-download-an-existing-container" class="md-nav__link">
+  <a href="#2-download-an-image" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Download an existing container
+      2. Download an image
     </span>
   </a>
   
@@ -825,18 +825,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-apptainer-images" class="md-nav__link">
+  <a href="#more-on-using-singularity" class="md-nav__link">
     <span class="md-ellipsis">
-      Build Apptainer images
+      More on using Singularity
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-a-docker-image-and-run-it-with-apptainer" class="md-nav__link">
+  <a href="#build-singualrity-images" class="md-nav__link">
     <span class="md-ellipsis">
-      Build a Docker image and run it with Apptainer
+      Build Singualrity images
     </span>
   </a>
   
@@ -899,100 +899,115 @@
 
 
 <h1 id="apptainer-and-singularity">Apptainer and Singularity</h1>
-<p>Container provides an isolated environment that supports user applications. In many cases, it is helpful to use container to obtain the needed environment for your applications on HPC clusters, so as to avoid installing too many dependencies. </p>
+<p>Container provides an isolated environment that supports user applications. In many cases, it is helpful to use a container to obtain the environment for your applications on HPC clusters, so as to avoid installing too many dependencies.</p>
 <p>Container has great portability and mobility, that says, it is convenient to migrate your applications bewtween different platforms, such as laptops/desktops, cloud platforms and HPC clusters. </p>
-<p>The most widely used container is Docker, which is designed for laptops/desktops and cloud platforms. On ORCD clusters, we use another kind of conatainer: Apptainer and Singularity, which are particularly designed for high-perfromance computing. Apptainer is extended from Singularity. Both are compatible with Docker. </p>
+<p>The most well known container is Docker, which is designed for laptops/desktops and cloud platforms. On ORCD clusters, we use Apptainer and Singularity, which are particularly designed for high-perfromance computing. Apptainer is extended from Singularity. Both are compatible with Docker. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the following, the terminology Singularity will be used. The statements hold if it is replaced by  Apptainer in most cases. </p>
+<p>In the following, the terminology Singularity will be used in most cases. The statements hold if the words Singularity and Apptainer are switched. </p>
 </div>
-<p>Users can use Singularity to support many applications, such as Python, R, Julia, compiling C/Fortran packages, and many GUI software. In particular, container is polular in supporting Python pakcages for the artificial intelligence and data science communities, such as Pytorch, Tensorflow, and many others. </p>
-<p>In this docuemnt, the first several sections are focused on how to use Singularity on ORCD clusters. The last section will be focused on how to build Docker image on your laptop and migrate it to ORCD clusters. </p>
-<h2 id="run-programs-with-apptainer">Run programs with Apptainer</h2>
+<p>Users can use Singularity to support many applications, such as Python, R, Julia, C/Fortran packages, and many GUI software. In particular, container is polular in supporting Python pakcages for the artificial intelligence and data science communities, such as Pytorch, Tensorflow, and many others. </p>
+<p>In this docuemnt, we will focuse on how to use Singularity on ORCD clusters. A typical workflow to use Singularity on ORCD cluster is the following. First, many applications are well-supported in existing Docker images. Search for an image on the internet, in which your target applicaiton has already been installed by some developers, then download the image and use it directly. If there is no suitable image for your target application, you can build an image to support it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Image is a file to support container. Users can launch a containter from an image. </p>
+</div>
+<h2 id="run-applications-with-singularity">Run applications with Singularity</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
 </div>
-<p>A typical workflow to use a Singularity container on ORCD cluster is the following. First, many applications are well-supported in existing Apptainer or Docker images. Search for an image on Docker Hub, in which the needed applicaiton has already been installed by some developers, then download and use it directly. If there is no suitable image for the needed application, you can build an image. Here is the step-by-step how-to document. </p>
+<p>Let us start with running an application with Singularity on the cluster frist. </p>
 <h3 id="1-preparations">1. Preparations</h3>
-<p>Get an interactive session on a compute node with the Rocky 8 system.
+<p>As Singularity needs computing resources, alwways start with getting an interactive session on a compute node with the Rocky 8 OS,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun -t 500 --constraint=rocky8 -c 4 --mem=10G --pty bash
 </span></code></pre></div>
-Check available Apptainer versions on Openmind,
+Check available Apptainer versions in modules,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av openmind8/apptainer
 </span></code></pre></div>
-Load an Apptainer module,
+Load an Apptainer module, for example, 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load openmind8/apptainer/1.1.7
 </span></code></pre></div></p>
-<h3 id="2-download-an-existing-container">2. Download an existing container</h3>
-<p>Search for a container that provides your desired operating system and software stack (e.g. in <a href="https://hub.docker.com/">Docker Hub</a>, <a href="https://singularity-hub.org/search">Singularity Hub</a>, or <a href="https://github.com/ReproNim/neurodocker">Neurodocker</a>). </p>
-<p>Here is an example of downloading a container from Docker Hub to support Pytorch. 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>apptainer build --sandbox my-container  docker://bitnami/pytorch:latest
-</span></code></pre></div></p>
-<p>The command <code>build</code> here does nothing but download and convert. The flag <code>--sandbox</code> is to convert the container to the Sandbox format, which is convenient for adding more packages in step 4. If no more package is needed, remove the <code>--sandbox</code> flag. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>All the <code>apptainer</code> commands on this page can be replaced by the <code>singularity</code> command. They work the same. </p>
+<p>Apptainer supports both apptainer and singularity commands.</p>
+</div>
+<h3 id="2-download-an-image">2. Download an image</h3>
+<p>Search for an image that provides your target application, for exmaple on <a href="https://hub.docker.com/">Docker Hub</a>. Here is an example for downloading an Docker image to support Pytorch. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>singularity pull pytorch.sif docker://bitnami/pytorch:latest
+</span></code></pre></div>
+The <code>pytorch.sif</code> is the name of the image. You can name it as you like. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using an Apptainer module, the <code>singularity</code> file is a soft link to an executable named <code>apptainer</code>, so all <code>singularity</code> commands on this page can be replaced by the <code>apptainer</code> command. They work the same. </p>
 </div>
 <h3 id="3-run-your-application-in-the-container">3. Run your application in the container</h3>
-<p>If the container already provides all the needed software, you can run your application in the container. </p>
-<p>For example, shell into the container and run your application (Pytorch here).<br />
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>apptainer shell my-container
+<p>When the image is ready, launch a container from the image and then run your application. For example, shell into the container and run your codes interactively,<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ singularity shell pytorch.sif 
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Apptainer&gt; python
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>[GCC 10.2.1 20210110] on linux
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>&gt;&gt;&gt; import torch
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Python 3.11.9 (main, May 13 2024, 16:49:42) [GCC 12.2.0] on linux
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>&gt;&gt;&gt; import torch
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>&gt;&gt;&gt; # Run your codes here.
 </span></code></pre></div></p>
-<p>Or, execute a command via the container,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>singularity exec my-container python
+<p>Alternatively, execute a command to run your codes in the container, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>singularity exec pytorch.sif python my-code.py
 </span></code></pre></div></p>
+<h3 id="4-submit-a-batch-job-to-use-apptainer">4. Submit a batch job to use Apptainer</h3>
+<p>When the test run process is completed, it is recommended to submit a batch job to run your program, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sbatch job.sh
+</span></code></pre></div></p>
+<p>Here is a typical batch job script (e.g. named <code>job.sh</code>):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>#!/bin/bash                      
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>#SBATCH -N 1                         #  one node
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>#SBATCH -n 2                         #  two CPU (hyperthreaded) cores
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>#SBATCH --gres=gpu:1                 #  one GPU
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>#SBATCH --constraint=high-capacity   #  high-capacity GPU
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>module load openmind8/apptainer/1.1.7                     # load a singularity module
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>apptainer exec --nv -B /om,/om2  pytorch.sif python my-code.py    # Run the job steps 
+</span></code></pre></div>
+Use the full path if the image file is not in the current directory. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here shows an example of Python. Other applications are similar.  </p>
+</div>
+<h2 id="more-on-using-singularity">More on using Singularity</h2>
 <p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. The <code>/om</code> or <code>/om2</code> directories are often used to store data, bind them using <code>-B</code> when needed,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>apptainer shell -B /om,/om2 my-container
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>apptainer shell -B /om,/om2 my-container
 </span></code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Use the flag <code>--nv</code> to provide GPU support in the container when needed. </p>
 </div>
-<h3 id="4-submit-a-batch-job-to-use-apptainer">4. Submit a batch job to use Apptainer</h3>
-<p>When the test is successful, it is recommended to submit a batch job to run your program, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch job.sh
-</span></code></pre></div></p>
-<p>Here is a typical batch job script (e.g. named <code>job.sh</code>):
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#!/bin/bash                      
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>#SBATCH -N 1                         #  one node
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>#SBATCH -n 2                         #  two CPU (hyperthreaded) cores
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#SBATCH --gres=gpu:1                 #  one GPU
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#SBATCH --constraint=high-capacity   #  high-capacity GPU
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>module load openmind8/apptainer/1.1.7                    # load a singularity module
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>apptainer exec --nv -B /om,/om2  my-container python my-code.py    # Run the job steps 
-</span></code></pre></div>
-Fill in the container name including the full path. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here shows an example of Python. Other applications are used in similar ways.  </p>
-</div>
-<h2 id="build-apptainer-images">Build Apptainer images</h2>
+<h2 id="build-singualrity-images">Build Singualrity images</h2>
 <p>It often happens that some needed packages do not exist in the originally downloaded base container. In this case, build these packages in the base container. </p>
+<p>Search for an image with the operating system and software stack that supports your target application the best. </p>
+<p>Search for an image that provides your target application, for exmaple on <a href="https://hub.docker.com/">Docker Hub</a>. Here is an example for downloading an image to support Pytorch. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>apptainer build --sandbox my-container  docker://bitnami/pytorch:latest
+</span></code></pre></div></p>
+<p>The command <code>build</code> here does nothing but download and convert. The flag <code>--sandbox</code> is to convert the container to the Sandbox format, which is convenient for adding more packages in step 4. If no more package is needed, remove the <code>--sandbox</code> flag. </p>
 <p>Contiue from step 3. </p>
 <p>For example, if you want to use Pandas together with Pytorch, build it like this,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$ apptainer shell --writable my-container
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Apptainer&gt; apt-get update
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Apptainer&gt; pip install pandas
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Apptainer&gt; python 
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>[GCC 10.2.1 20210110] on linux
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>&gt;&gt;&gt; import pandas as pd
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ apptainer shell --writable my-container
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Apptainer&gt; apt-get update
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Apptainer&gt; pip install pandas
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Apptainer&gt; python 
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>[GCC 10.2.1 20210110] on linux
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>&gt;&gt;&gt; import pandas as pd
 </span></code></pre></div></p>
 <p>The flag <code>--writable</code> is to enable permission to modify the container. </p>
 <details class="note">
 <summary>Note</summary>
 <p>The <code>sudo</code> command is not needed here. </p>
 </details>
-<h2 id="build-a-docker-image-and-run-it-with-apptainer">Build a Docker image and run it with Apptainer</h2>
+<p>Fakeroot for apt-get.</p>
+<p>Build an image on other machines and run it with Singularity on the clusters. </p>
+<p>Build a Docker image on your MAC or PC. 
+Build a Singularity image on your Linux machine.</p>
 
 
 
@@ -1013,7 +1028,7 @@ Fill in the container name including the full path. </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 4, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 28, 2024</span>
   </span>
 
     
@@ -1069,7 +1084,7 @@ Fill in the container name including the full path. </p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ad660dcc.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
