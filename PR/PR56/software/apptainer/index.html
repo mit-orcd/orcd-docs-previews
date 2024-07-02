@@ -1048,11 +1048,11 @@ The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</c
 <p>To save work for the building process, search for an image providing the right OS and necessary dependnecies to support your target application, then use it as a base image and build your target application on top of it. </p>
 <p>The following is an example for building Python packages such as Pytorch and Pandas in a container image. </p>
 <p>First, download a Docker image that provdies the Ubuntu OS and have Python and Pytorch installed already,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>apptainer build --sandbox my-image  docker://bitnami/pytorch:latest
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>singularity build --sandbox my-image  docker://bitnami/pytorch:latest
 </span></code></pre></div></p>
 <p>The command <code>build</code> here does not build anything yet, but just downloads the image and convert it to a new format. The flag <code>--sandbox</code> tells <code>build</code> to convert the image to the Sandbox format, which is convenient for installing packages interactively. </p>
 <p>Log in the container shell, then you can install system packages using <code>apt-get</code> as is on an Ubuntu machine and build Python packages using <code>pip install</code>, taking Pandas for example, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ apptainer shell --writable my-image
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ singularity shell --writable my-image
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Apptainer&gt; apt-get update
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>Apptainer&gt; pip install pandas
 </span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Apptainer&gt; python 
