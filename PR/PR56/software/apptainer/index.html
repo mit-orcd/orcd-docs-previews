@@ -909,41 +909,36 @@
 <h2 id="run-applications-with-singularity">Run applications with Singularity</h2>
 <p>Let us start with running an application with Singularity on the cluster first. </p>
 <h3 id="preparations">Preparations</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">OpenMind</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <p>Log in a Rocky 8 head node,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@eofe10.mit.edu
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@eofe10.mit.edu
 </span></code></pre></div>
-   Check available Apptainer versions in modules,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av apptainer
+ Check available Apptainer versions in modules,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av apptainer
 </span></code></pre></div>
-   Load an Apptainer module and its depencency, for example, 
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load apptainer/1.1.7-x86_64  squashfuse/0.1.104-x86_64
+ Load an Apptainer module and its depencency, for example, 
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load apptainer/1.1.7-x86_64  squashfuse/0.1.104-x86_64
 </span></code></pre></div></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">OpenMind</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <p>As a certain amount of computing resources are required to run Singularity, alwways start with getting an  interactive session on a compute node,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>srun -t 60 --constraint=rocky8 -c 4 --mem=10G --pty bash
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>srun -t 60 --constraint=rocky8 -c 4 --mem=10G --pty bash
 </span></code></pre></div>
-   Check available Apptainer versions in modules,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module av openmind8/apptainer
+ The <code>constraint=rocky8</code> is to request a node with the Rocky 8 OS. </p>
+<p>Check available Apptainer versions in modules,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module av openmind8/apptainer
 </span></code></pre></div>
-   Load an Apptainer module, for example, 
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module load openmind8/apptainer/1.1.7
+ Load an Apptainer module, for example, 
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module load openmind8/apptainer/1.1.7
 </span></code></pre></div></p>
+</div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<ol>
-<li>Do not run Singularity on the head nodes, as there is CPU usage limit on the head nodes.</li>
-<li>The <code>constraint=rocky8</code> is to request a node with the Rocky 8 OS. </li>
-<li>Apptainer modules support both apptainer and singularity commands.</li>
-</ol>
+<p>Apptainer modules support both apptainer and singularity commands.</p>
 </div>
 <h3 id="download-an-image">Download an image</h3>
 <p>Search for an image that provides your target application, for exmaple on <a href="https://hub.docker.com/">Docker Hub</a>. Here is an example for downloading a Docker image to support Pytorch,
