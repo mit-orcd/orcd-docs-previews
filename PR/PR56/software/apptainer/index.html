@@ -1043,7 +1043,7 @@ The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</c
 <p>The flag <code>--writable</code> is to enable the write permission to modify files in the container. </p>
 <details class="note">
 <summary>Note</summary>
-<p>We will install the <code>fakeroot</code> pakcage on the cluster, so that users can build images without the <code>sudo</code> command. </p>
+<p>The <code>fakeroot</code> pakcage will be installed on the cluster, so that users can build images without the <code>sudo</code> command. </p>
 </details>
 <p>Once the needed package are built in the image, you can use it as was shown in the preivious sections. </p>
 <p>Alternatively, you can build a container image on other machines on which you have <code>root</code> or <code>sudo</code> access. One way is to build a Docker image on a laptop/desktop such as MAC or PC. Another way is to build a Singularity image on a Linux machine that has Apptainer/Singularity installed. Once the image is built completely, transfer it to the cluster, and run it with Singularity.</p>
