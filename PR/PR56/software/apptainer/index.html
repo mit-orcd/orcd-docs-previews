@@ -901,7 +901,7 @@
 <p>In the following, the terminology Singularity will be used in most cases. The statements hold if the terminologies Singularity and Apptainer are switched. </p>
 </div>
 <p>Users can use Singularity to support many applications, such as Python, R, C/Fortran packages, and many GUI software. In particular, container is polular in supporting Python pakcages for the artificial intelligence (AI) and data science communities, such as Pytorch, Tensorflow, and many others. The Ubuntu operating system (OS) is widely used in the AI community and it is convinent to install many AI appications in Ubuntu enviroenment. Users can use Singularity to obtain Ubuntu OS other than Rocky 8 OS on the host cluster.</p>
-<p>In this docuemnt, we will focuse on how to use Singularity on ORCD clusters. A typical workflow to use Singularity on ORCD cluster is the following. First, many applications are well-supported in existing Docker images. Search for an image on the internet, in which your target applicaiton has already been installed by some developers, then download the image and use it directly. If there is no suitable image for your target application, you can build an image to support it.</p>
+<p>In this docuemnt, we will focuse on how to use Singularity on ORCD clusters. First, many applications are well-supported in existing Docker images. Search for an image on the internet, in which your target applicaiton has already been installed by some developers, then download the image and use it directly. If there is no suitable image for your target application, you can build an image to support it.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>An image is a file to support container. Users can launch a containter based on an image.</p>
@@ -914,14 +914,14 @@
 <div class="tabbed-block"></div>
 </div>
 </div>
-<p>As a certain amount of computing resources are required to run Singularity, alwways start with getting an  interactive session on a compute node,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun -t 500 --constraint=rocky8 -c 4 --mem=10G --pty bash
+<p>Log in a Rocky 8 head node,
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@eofe10.mit.edu
 </span></code></pre></div>
    Check available Apptainer versions in modules,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av openmind8/apptainer
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av apptainer
 </span></code></pre></div>
-   Load an Apptainer module, for example, 
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load openmind8/apptainer/1.1.7
+   Load an Apptainer module and its depencency, for example, 
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load apptainer/1.1.7-x86_64  squashfuse/0.1.104-x86_64
 </span></code></pre></div></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">OpenMind</label></div>
 <div class="tabbed-content">
@@ -929,7 +929,7 @@
 </div>
 </div>
 <p>As a certain amount of computing resources are required to run Singularity, alwways start with getting an  interactive session on a compute node,
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>srun -t 500 --constraint=rocky8 -c 4 --mem=10G --pty bash
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>srun -t 60 --constraint=rocky8 -c 4 --mem=10G --pty bash
 </span></code></pre></div>
    Check available Apptainer versions in modules,
    <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module av openmind8/apptainer
