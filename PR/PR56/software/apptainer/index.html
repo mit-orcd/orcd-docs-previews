@@ -973,9 +973,9 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <div class="tabbed-block">
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>#!/bin/bash                      
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>#SBATCH -N 1                         #  one node
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>#SBATCH -n 2                         #  two CPU cores
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>#SBATCH -p sched_mit_psfc_gpu_r8     # a partition with Rocky 8  nodes
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>#SBATCH -N 1                         # one node
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>#SBATCH -n 2                         # two CPU cores
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>#SBATCH -p sched_mit_psfc_gpu_r8     # a partition with Rocky 8 nodes
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>module load apptainer/1.1.7-x86_64 squashfuse/0.1.104-x86_64      # load an apptainer module
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>singularity exec my-image.sif python my-code.py   # Run the program 
@@ -984,11 +984,12 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <div class="tabbed-block">
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#!/bin/bash                      
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>#SBATCH -N 1                         #  one node
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>#SBATCH -n 2                         #  two CPU cores
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>module load openmind8/apptainer/1.1.7      # load an apptainer module
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>singularity exec my-image.sif python my-code.py   # Run the program 
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>#SBATCH -N 1                         # one node
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>#SBATCH -n 2                         # two CPU cores
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>#SBATCH --constraint=rocky8          # nodes with Rocky 8 OS
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>module load openmind8/apptainer/1.1.7      # load an apptainer module
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>singularity exec my-image.sif python my-code.py   # Run the program 
 </span></code></pre></div>
 </div>
 </div>
@@ -1005,40 +1006,60 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <p>Here is an exmaple to run Python programs on GPUs.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>singularity exec --nv my-image.sif python my-code.py  
 </span></code></pre></div></p>
-<p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. The <code>/om</code> or <code>/om2</code> directories are often used to store data files. If your programs read/write data files in these directories, bind them to the container using the flag <code>-B</code>,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>singularity exec -B /om,om2 my-image.sif python my-code.py  
+<p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. If your programs read/write data files in other directories (e.g. <code>/path/to/data</code>), bind them to the container using the flag <code>-B</code>,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>singularity exec -B /path/to/data my-image.sif python my-code.py  
 </span></code></pre></div></p>
 <p>In summary, a common used syntax to run a program with Singularity is the following,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>singularity exec [--nv] [-B &lt;path-to-data&gt;] &lt;image-name&gt; &lt;executable-name&gt; [source-code-name]
 </span></code></pre></div>
 The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</code> is optional, dependeing on use cases. </p>
-<p>Here is an example job script to run a python program with a GPU and data files,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#!/bin/bash                      
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label><label for="__tabbed_3_2">OpenMind</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Here is an example job script to run a python program with a GPU and data files saved in <code>/nobakcup1</code> or <code>/pool001</code> directories,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#!/bin/bash                      
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>#SBATCH -t 01:30:00         # walltime = 1 hours and 30 minutes
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>#SBATCH -N 1                #  one node
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>#SBATCH -n 2                #  two CPU cores
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>#SBATCH --gres=gpu:1        #  one GPU
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>module load openmind8/apptainer/1.1.7        # load an apptainer module
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>singularity exec --nv -B /om,om2 my-image.sif python my-code.py  # Run the program
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>#SBATCH -N 1                # one node
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>#SBATCH -n 2                # two CPU cores
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>#SBATCH --gres=gpu:1        # one GPU
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>#SBATCH -p sched_mit_psfc_gpu_r8     # a partition with Rocky 8 nodes
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>module load apptainer/1.1.7-x86_64 squashfuse/0.1.104-x86_64 
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>singularity exec --nv -B /nobakcup1,/pool001 my-image.sif python my-code.py   # Run the program
 </span></code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Here is an example job script to run a python program with a GPU and data files saved in <code>/om</code> or <code>/om2</code> directories,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>#!/bin/bash                      
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>#SBATCH -t 01:30:00             # walltime = 1 hours and 30 minutes
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>#SBATCH -N 1                    # one node
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>#SBATCH -n 2                    # two CPU cores
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>#SBATCH --gres=gpu:1            # one GPU
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>#SBATCH --constraint=rocky8     # nodes with Rocky 8 OS
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>module load openmind8/apptainer/1.1.7        # load an apptainer module
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>singularity exec --nv -B /om,om2 my-image.sif python my-code.py  # Run the program
+</span></code></pre></div></p>
+</div>
+</div>
+</div>
 <h2 id="build-singualrity-images">Build Singualrity images</h2>
 <p>In the previous section, it is assumed that all needed packages have been installed in the image. If some needed packages do not exist in the image, users need to build a new image. </p>
 <p>To save work for the building process, search for an image providing the right OS and necessary dependnecies to support your target application, then use it as a base image and build your target application on top of it. </p>
 <p>The following is an example for building Python packages such as Pytorch and Pandas in a container image. </p>
 <p>First, download a Docker image that provdies the Ubuntu OS and have Python and Pytorch installed already,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>apptainer build --sandbox my-image  docker://bitnami/pytorch:latest
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>apptainer build --sandbox my-image  docker://bitnami/pytorch:latest
 </span></code></pre></div></p>
 <p>The command <code>build</code> here does not build anything yet, but just downloads the image and convert it to a new format. The flag <code>--sandbox</code> tells <code>build</code> to convert the image to the Sandbox format, which is convenient for installing packages interactively. </p>
 <p>Log in the container shell, then you can install system packages using <code>apt-get</code> as is on an Ubuntu machine and build Python packages using <code>pip install</code>, taking Pandas for example, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$ apptainer shell --writable my-image
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Apptainer&gt; apt-get update
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>Apptainer&gt; pip install pandas
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Apptainer&gt; python 
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>[GCC 10.2.1 20210110] on linux
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>&gt;&gt;&gt; import pandas as pd
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ apptainer shell --writable my-image
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Apptainer&gt; apt-get update
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>Apptainer&gt; pip install pandas
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Apptainer&gt; python 
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>[GCC 10.2.1 20210110] on linux
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>&gt;&gt;&gt; import pandas as pd
 </span></code></pre></div></p>
 <p>The flag <code>--writable</code> is to enable the write permission to modify files in the container. </p>
 <details class="note">
