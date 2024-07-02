@@ -1009,7 +1009,7 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. If your programs read/write data files in other directories (e.g. <code>/path/to/data</code>), bind them to the container using the flag <code>-B</code>,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>singularity exec -B /path/to/data my-image.sif python my-code.py  
 </span></code></pre></div></p>
-<p>In summary, a common used syntax to run a program with Singularity is the following,
+<p>In summary, a commonly used syntax to run a program with Singularity is the following,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>singularity exec [--nv] [-B &lt;path-to-data&gt;] &lt;image-name&gt; &lt;executable-name&gt; [source-code-name]
 </span></code></pre></div>
 The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</code> is optional, dependeing on use cases. </p>
