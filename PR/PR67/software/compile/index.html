@@ -18,7 +18,7 @@
     
     
       
-        <title>Compile codes - ORCD Docs</title>
+        <title>Building Software from Source Code in Linux - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#compile-codes" class="md-skip">
+        <a href="#building-software-from-source-code-in-linux" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Compile codes
+              Building Software from Source Code in Linux
             
           </span>
         </div>
@@ -767,6 +767,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-single-file-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a single-file program
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -796,12 +813,6 @@
     
     
     
-      <a href="../../tags/#fortran" class="md-tag">Fortran</a>
-    
-  
-    
-    
-    
       <a href="../../tags/#engaging" class="md-tag">Engaging</a>
     
   
@@ -815,7 +826,26 @@
 
 
 
-<h1 id="compile-codes">Compile codes</h1>
+<h1 id="building-software-from-source-code-in-linux">Building Software from Source Code in Linux</h1>
+<p>This page covers the basics of building small projects from C source code using the GCC compiler, and automating this process using GNU Make. It is intended for scientists venturing into scientific programming, to help ease the frustrations that typically come up when starting to work in compiled programming languages.</p>
+<h2 id="building-a-single-file-program">Building a single-file program</h2>
+<p>Let's start with a simple example: building a "hello world" C program with the GCC compiler.</p>
+<p>Our program (hello.c) looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#include &lt;stdio.h&gt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>main()
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>{
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    (void) printf(&quot;Hello World\n&quot;);
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    return (0);
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>}
+</span></code></pre></div>
+<p>To build a working executable from this file in the simplest way possible, run:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcc hello.c
+</span></code></pre></div>
+<p>This command creates an executable with a default name of a.out. Running this command prints the familiar message:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ a.out
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Hello World
+</span></code></pre></div>
+<p>More happened here behind the scene. In fact, this command wraps up 4 steps of the build process: Preprocess, Compile, Assemble, and Link.</p>
 
 
 
