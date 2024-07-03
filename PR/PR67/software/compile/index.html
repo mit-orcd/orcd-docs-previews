@@ -810,8 +810,44 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#step-3-assemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Assemble
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Link
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challege" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challege:
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-multi-file-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a multi-file program
+    </span>
+  </a>
   
 </li>
       
@@ -908,37 +944,41 @@
 <h3 id="step-2-compile">Step 2: Compile</h3>
 <p>In this step, the (modified) source code is translated from the C programming language into assembly code.</p>
 <p>Assembly code is a low-level programming language with commands that correspond to machine instructions for a particular type of hardware. It is still just plain text --- you can read assembly and write it too if you so desire.</p>
-<p>To perform just the compilation step of the build process, we would run:</p>
-<p>gcc -S -c hello.i -o hello.i
-Examining the output file (vim hello.s) shows that processor-specific instructions needed to run our program on this specific system. Interestingly, for such a simple program as ours, the assembly code is actually shorter than the preprocesses source code (though not the original source code).</p>
-<p>Step 3: Assemble
-Assembly code is then translated into object code (more). This is a binary representation of the actions your computer needs to take to run your program. It is no longer human-readable, but it can be understood by your processor.</p>
-<p>To perform just this step of the build process, we would run:</p>
-<p>gcc -c hello.s -o hello.o
-You can try to view this object file like we did the other intermediate steps, but the result will not be terribly useful (vim hello.o). Your text editor is trying to interpret binary machine language commands as ASCII characters, and (mostly) failing. Perhaps the most interesting result of doing so is that there are intelligable bits --- these are the few variables, etc, that actually are ASCII characters.</p>
+<p>To perform just the compilation step of the build process, we would run:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gcc -S -c hello.i -o hello.i
+</span></code></pre></div></p>
+<p>Examining the output file (<code>vim hello.s</code>) shows that processor-specific instructions needed to run our program on this specific system. Interestingly, for such a simple program as ours, the assembly code is actually shorter than the preprocesses source code (though not the original source code).</p>
+<h3 id="step-3-assemble">Step 3: Assemble</h3>
+<p>Assembly code is then translated into object code (more). This is a binary representation of the actions your computer needs to take to run your program. It is no longer human-readable, but it can be understood by your processor.</p>
+<p>To perform just this step of the build process, we would run:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gcc -c hello.s -o hello.o
+</span></code></pre></div></p>
+<p>You can try to view this object file like we did the other intermediate steps, but the result will not be terribly useful (vim <code>hello.o</code>). Your text editor is trying to interpret binary machine language commands as ASCII characters, and (mostly) failing. Perhaps the most interesting result of doing so is that there are intelligable bits --- these are the few variables, etc, that actually are ASCII characters.</p>
 <p>Also note that object files are not executables, you can't run them until after the next step.</p>
-<p>Step 4: Link
-In the final step, gcc calls the linker program ld to combine the object file with any external functions it needs (e.g. library functions or functions from other source files). In our case, this would include printf from the C standard library.</p>
-<p>To perform just this step of the build process, we would run:</p>
-<p>gcc hello.o -o hello
-Challege:
-Compile and run the following program (squares.c):</p>
-<h1 id="include">include <stdio.h></h1>
-<p>main()
-{ 
-    int i;</p>
-<div class="language-text highlight"><pre><span></span><code>printf(&quot;\t Number \t\t Square of Number\n\n&quot;);
-
-for (i=0; i&lt;=25; ++i)
-printf(&quot;\t %d \t\t\t %d \n&quot;, i, i*i);
-</code></pre></div>
-<p>}
-If you have some extra time, try walking through the process step-by-step and inspecting the results.</p>
+<h3 id="step-4-link">Step 4: Link</h3>
+<p>In the final step, gcc calls the linker program ld to combine the object file with any external functions it needs (e.g. library functions or functions from other source files). In our case, this would include printf from the C standard library.</p>
+<p>To perform just this step of the build process, we would run:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gcc hello.o -o hello
+</span></code></pre></div></p>
+<h3 id="challege">Challege:</h3>
+<p>Compile and run the following program (squares.c):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#include &lt;stdio.h&gt;
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>main()
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>{ 
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    int i;
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    printf(&quot;\t Number \t\t Square of Number\n\n&quot;);
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    for (i=0; i&lt;=25; ++i)
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    printf(&quot;\t %d \t\t\t %d \n&quot;, i, i*i);
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>}
+</span></code></pre></div></p>
 <p>Solution:
-gcc squares.c -o squares
-./squares
-Building a multi-file program
-For all but the smallest programming projects, it is convenient to break up the source code into multiple files. Typically, these include a main function in one file, and one or more other files containing functions / subroutines called by main(). In addition, a header file is usually used to share custom data types, function prototypes, preprocessor macros, etc.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gcc squares.c -o squares
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>./squares
+</span></code></pre></div></p>
+<h2 id="building-a-multi-file-program">Building a multi-file program</h2>
+<p>For all but the smallest programming projects, it is convenient to break up the source code into multiple files. Typically, these include a main function in one file, and one or more other files containing functions / subroutines called by main(). In addition, a header file is usually used to share custom data types, function prototypes, preprocessor macros, etc.</p>
 <p>We will use a simple example program in the multi_string folder, which consists of:</p>
 <p>main.c: The main driver function, which calls a subroutine and exits
 WriteMyString.c: a module containing the subroutine called by main
@@ -996,8 +1036,8 @@ If your libraries are updated, programs using shared libraries automatically tak
 Because of the advantage of dynamic linking, GCC will prefer a shared library to a static library if both are available (by default).</p>
 <p>Building with shared libraries in default (known) locations
 Let's start with an example that uses the sqrt() function from the math library:</p>
-<h1 id="include_1">include <stdio.h></h1>
-<h1 id="include_2">include <math.h></h1>
+<h1 id="include">include <stdio.h></h1>
+<h1 id="include_1">include <math.h></h1>
 <p>void main()
 { 
     int i;</p>
@@ -1075,7 +1115,7 @@ note: the following command lines build the libctest.so shared library used in t
 gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
 end note</p>
 <p>Let's switch to a new bit of example code, called use_ctest.c that makes use of a (very simple) custom library in the ctest directory:</p>
-<h1 id="include_3">include <stdio.h></h1>
+<h1 id="include_2">include <stdio.h></h1>
 <h1 id="include-ctesth">include "ctest.h"</h1>
 <p>int main(){
     int x;
