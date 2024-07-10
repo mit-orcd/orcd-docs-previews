@@ -258,16 +258,59 @@
   
   
   
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accessing ORCD Systems
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing ORCD Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../ssh-setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SSH Setup
+    SSH Key Setup
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -458,6 +501,15 @@
   <a href="#transferring-files-with-a-web-portal" class="md-nav__link">
     <span class="md-ellipsis">
       Transferring Files with a Web Portal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#globus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Globus
     </span>
   </a>
   
@@ -959,6 +1011,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#globus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Globus
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1178,6 +1239,33 @@
 </ul>
 <p>For documentation on how to download and transfer files on the SuperCloud Web Portal, see the link above.</p>
 <p>If you are using Engaging or Satori, you can use the file browser by selecting Files -&gt; Home Directory in the menu bar at the top of the page. You can drag and drop files into and out of this page or use the "Upload" and "Download" buttons. Select multiple files by holding the Control (or Command) key and clicking on the files you'd like to select. Those files can then be downloaded with the "Download" button.</p>
+<h2 id="globus">Globus</h2>
+<p>Globus is a tool that helps transfer data between designated endpoints. These transfers can be initiated through the Globus webpage, don't require staying logged in through the entire transfer, and will restart automatically if something fails during the transfer. There are endpoints on a few ORCD systems with basic Globus features. Please note that these basic Globus endpoints will transfer data unencrypted. An MIT Globus subscription with more features is coming soon!</p>
+<p>To transfer data log into <a href="https://www.globus.org/">Globus</a> with your MIT credentials. On the "File Manager" tab in one of the two "Collection" boxes search for the endpoint for the system you want to transfer data to or from. The column on the left should list where you want to transfer from, the column on the right should list where you want to transfer to. Endpoints on ORCD systems are listed below.</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Globus Endpoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Engaging</td>
+<td>mithpc#engaging</td>
+</tr>
+<tr>
+<td>Satori</td>
+<td>mithpc#satori</td>
+</tr>
+<tr>
+<td>OpenMind</td>
+<td>mithpc#openmind</td>
+</tr>
+</tbody>
+</table>
+<p>To transfer data to or from your own computer you will need to set up a personal endpoint. Follow the instructions on the page for your system listed <a href="https://docs.globus.org/globus-connect-personal/">here</a>.</p>
+<p>More documentation on transferring files through Globus can be found on the <a href="https://docs.globus.org/guides/tutorials/manage-files/transfer-files/">Globus Documentation Pages</a>. Globus also has an <a href="https://docs.globus.org/faq/globus-connect-endpoints/">FAQ</a> that is helpful for answering any questions you might have.</p>
 
 
 
@@ -1198,7 +1286,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 2, 2024</span>
   </span>
 
     
