@@ -1007,7 +1007,7 @@
 This produces the executable <code>hello</code> finally. </p>
 <h2 id="building-a-multi-file-program">Building a multi-file program</h2>
 <p>For most projects in the real world, it is convenient to break up the source code into multiple files. Typically, these include a main function in one file, and one or more other files containing functions / subroutines called by <code>main()</code>. In addition, a header file is usually used to share custom data types, function prototypes, preprocessor macros, etc.</p>
-<p>As an example, we create a program with several source code files in a directory named <em>multi_string</em>, which consists of:</p>
+<p>As an example, we create several source code files in a directory named <em>multi_string</em>, which consists of:</p>
 <ul>
 <li><em>main.c</em>: the main driver function, which calls a subroutine and exits</li>
 <li><em>WriteMyString.c</em>: a module containing the subroutine called by main</li>
@@ -1078,9 +1078,11 @@ This produces the executable <code>hello</code> finally. </p>
 <p>This is most often needed in the case where you wish to use external libraries installed in non-standard locations. We will explore this case in the next section. </p>
 <h2 id="linking-external-libraries">Linking external libraries</h2>
 <p>A library is a collection of pre-compiled object files that can be linked into your programs via the linker. In simpler terms, they are machine code files that contain functions / subroutines that you can use in your programs.</p>
-<p>A few example functions that come from libraries are:</p>
-<p><code>printf()</code> from the <em>libc.so</em> shared library
-<code>sqrt()</code> from the <em>libm.so</em> shared library</p>
+<p>Two example functions that come from libraries are:</p>
+<ul>
+<li><code>printf()</code> from the <em>libc.so</em> shared library</li>
+<li><code>sqrt()</code> from the <em>libm.so</em> shared library</li>
+</ul>
 <p>We will return to these in a moment.</p>
 <h3 id="shared-libraries-vs-static-libraries">Shared libraries vs static libraries</h3>
 <p>A static library has file extension of <em>.a</em> (meaning archive file). When your program links a static library, the machine code of external functions used in your program is copied into the executable. At runtime, everything your program needs is wrapped up inside the executable.</p>
@@ -1119,12 +1121,12 @@ This produces the executable <code>hello</code> finally. </p>
 </span></code></pre></div></p>
 <p>The first command preprocesses <em>roots.c</em>, appending the header files, and then translates it to object code. This step does need to find the header file, but it does not yet require the library.</p>
 <p>The second command links all of the object code into the executable. It does not need to find the header file, which has already been compiled into <em>roots.o</em>, but it does need to find the library file.</p>
-<p>Library files are linked using the <code>-l</code> flag. Their names are given excluding the lib prefix and exluding the <code>.so</code> suffix, which is <code>m</code> in this case.</p>
+<p>Library files are linked using the <code>-l</code> flag. Their names are given excluding the <em>lib</em> prefix and exluding the <em>.so</em> suffix, which translates <em>libm.so</em> into <code>m</code> in this case. So we use <code>-lm</code> in the command. </p>
 <p>Just as we did above, we can combine the two steps into a single command:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>gcc roots.c -lm -o roots
 </span></code></pre></div></p>
-<p>!!! "Note: check if the linker is able to find the linked libraries at runtime"</p>
-<div class="language-text highlight"><pre><span></span><code>Because we are using shared libraries, the linker must be able to find the linked libraries at runtime, otherwise the program will fail. You can check the libraries required by a program, and whether they are being found correctly or not using the ldd command. For out *roots* program, we get the following
+<p>!!!"Note: check if the linker is able to find the linked libraries at runtime"</p>
+<div class="language-text highlight"><pre><span></span><code>Because we are using shared libraries, the linker must be able to find the linked libraries at runtime, otherwise the program will fail. You can check the libraries required by a program, and whether they are being found correctly or not using the `ldd` command. For out *roots* program, we get the following
 ```
 $ ldd roots
 linux-vdso.so.1 (0x00007ffd2c962000)
@@ -1132,15 +1134,15 @@ libm.so.6 =&gt; /lib64/libm.so.6 (0x00007fceadbef000)
 libc.so.6 =&gt; /lib64/libc.so.6 (0x00007fcead82a000)
 /lib64/ld-linux-x86-64.so.2 (0x00007fceadf71000)
 ```
-This shows that our executable requires a few basic system libraries as well as the math library we explicitly included, and that all of these dependencies are found by the linker.
+This shows that our executable requires a few basic system libraries *libc.so* as well as the math library `libm.so` we explicitly included, and that all of these dependencies are found by the linker.
 </code></pre></div>
 <details>
 <summary>Sidebar: where does the preprocessor look to find header files?</summary>
-</details>
 <p>The preprocessor will search some default paths for included header files. Before we go down the rabbit hole, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.</p>
 <p>o look for the header, we can run the following commands to show the preprocessor search path and look for files in therein:</p>
-<p>cpp -Wp,-v
-Which has the following output:</p>
+<p>cpp -Wp,-v</p>
+<p>Which has the following output:</p>
+</details>
 <p>ignoring nonexistent directory "/usr/local/include"
 ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include-fixed"
 ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../x86_64-redhat-linux/include"</p>
