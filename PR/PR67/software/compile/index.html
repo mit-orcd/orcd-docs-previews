@@ -1212,37 +1212,51 @@ This code calls two functoins <code>ctest1</code> and <code>ctest2</code>, which
 </span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>mkdir src
 </span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>cd src
 </span></code></pre></div>
-and create the following two source code files in there. Each code does nothing but defines an interger.</p>
-<p><em>ctest1.c</em>:
+and save the following two source code files in there. 
+<em>ctest1.c</em>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>void ctest1(int *i){
 </span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>  *i=100;
 </span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>}
-</span></code></pre></div></p>
-<p><em>ctest2.c</em>:
+</span></code></pre></div>
+<em>ctest2.c</em>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>$ cat ctest2.c 
 </span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>void ctest2(int *i){
 </span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  *i=5;
 </span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>}
-</span></code></pre></div></p>
-<p>Second, use the following commands to build the shared library named <code>libctest.so</code>:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gcc -Wall -fPIC -c ctest1.c ctest2.c
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
+</span></code></pre></div>
+Each code does nothing but defines an interger.</p>
+<p>Second, create another subdirectory named <code>include</code>,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>mkdir include
+</span></code></pre></div>
+and save the following header file in there,
+<em>ctest.h</em>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>#ifndef CTEST_H
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>#define CTEST_H
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>void ctest1(int *);
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>void ctest2(int *);
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>#endif
+</span></code></pre></div>
+This is for the declaration of the funtcions.</p>
+<p>Third, use the following commands to build the shared library named <code>libctest.so</code>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>gcc -Wall -fPIC -c ctest1.c ctest2.c
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
 </span></code></pre></div></p>
 <p>Finally, we move the library to a directory named <em>lib</em>, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>cd ..
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>mkidr lib
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>mv src/libctest.so lib
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>cd ..
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>mkidr lib
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>mv src/libctest.so lib
 </span></code></pre></div></p>
 </details>
 <p>Assuming that the library <em>ctest</em> has been built (as instructed in the above side note), we will build the program <em>use_ctest</em> and fix possbile errors in the process.</p>
-<p>First, we start with the simplest command.
-<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>gcc -c use_ctest.c
+<p>First, we start with the simplest command:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>gcc -c use_ctest.c
 </span></code></pre></div>
 It fails with an error:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>use_ctest.c:2:19: error: ctest.h: No such file or directory
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>use_ctest.c:2:10: fatal error: ctest.h: No such file or directory
 </span></code></pre></div></p>
-<p>As the error message indicates, the problem here is that an included header file is not found by the preprocessor. We can use the -I flag to fix this problem:</p>
-<p>gcc -I ctest_dir/include -c use_ctest.c
+<p>As the error message indicates, the problem here is that an included header file is not found by the preprocessor. We know that we can use the <code>-I</code> flag to fix this problem:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>gcc -I ctest_dir/include -c use_ctest.c
+</span></code></pre></div>
 When we try to link the program to create an executable, we know we need to explicitly add the library with the -l flag, but in this case we still get an error:</p>
 <p>gcc use_ctest.o -lctest -use_ctest</p>
 <p>/usr/bin/ld: cannot find -lctest
