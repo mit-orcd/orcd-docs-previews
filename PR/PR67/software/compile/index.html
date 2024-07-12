@@ -916,16 +916,16 @@
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    return (0);
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>}
 </span></code></pre></div></p>
-<p>To build a working executable from this file in the simplest way, run:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcc hello.c
+<p>To build a working executable from this file, run:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcc hello.c -o hello
 </span></code></pre></div></p>
-<p>This command creates an executable with a default name of <em>a.out</em>. Running this command prints the familiar message:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ a.out
+<p>This command creates an executable with a name of <em>hello</em>. Running this command prints the familiar message:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ hello
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Hello World
 </span></code></pre></div></p>
 <p>More happened here behind the scene. In fact, this command wraps up 4 steps of the build process: Preprocess, Compile, Assemble, and Link.</p>
 <h3 id="step-1-preprocess">Step 1: Preprocess</h3>
-<p>In this step, <em>gcc</em> calls preprocessing program <em>cpp</em> to interpret preprocessor directives and modify the source code accordingly.</p>
+<p>In this step, <code>gcc</code> calls preprocessing program <code>cpp</code> to interpret preprocessor directives and modify the source code accordingly.</p>
 <p>Some common directives are:</p>
 <ul>
 <li>
@@ -952,21 +952,22 @@
 <p>To perform just the compilation step of the build process, we would run:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gcc -S -c hello.i -o hello.s
 </span></code></pre></div></p>
-<p>Examining the output file (<code>vim hello.s</code>) shows that processor-specific instructions needed to run our program on this specific system. Interestingly, for such a simple program as ours, the assembly code is actually shorter than the preprocesses source code (though not the original source code).</p>
+<p>Examining the output file (<code>vim hello.s</code>) shows processor-specific instructions needed to run our program on this specific system. Interestingly, for such a simple program as ours, the assembly code is actually shorter than the preprocesses source code (though not the original source code).</p>
 <h3 id="step-3-assemble">Step 3: Assemble</h3>
-<p>Assembly code is then translated into object code (more). This is a binary representation of the actions your computer needs to take to run your program. It is no longer human-readable, but it can be understood by your processor.</p>
+<p>Assembly code is then translated into object code. This is a binary representation of the actions your computer needs to take to run your program. It is no longer human-readable, but it can be understood by computers.</p>
 <p>To perform just this step of the build process, we would run:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gcc -c hello.s -o hello.o
 </span></code></pre></div></p>
-<p>You can try to view this object file like we did the other intermediate steps, but the result will not be terribly useful (vim <code>hello.o</code>). Your text editor is trying to interpret binary machine language commands as ASCII characters, and (mostly) failing. Perhaps the most interesting result of doing so is that there are intelligable bits --- these are the few variables, etc, that actually are ASCII characters.</p>
+<p>You can try to view this object file like we did the other intermediate steps (<code>vim hello.o</code>), but the result will not be useful . Your text editor is trying to interpret binary machine language commands as ASCII characters, and (mostly) failing. Perhaps the most interesting result of doing so is that there are intelligable bits --- these are the few variables, etc, that actually are ASCII characters.</p>
 <p>Also note that object files are not executables, you can't run them until after the next step.</p>
 <h3 id="step-4-link">Step 4: Link</h3>
-<p>In the final step, gcc calls the linker program ld to combine the object file with any external functions it needs (e.g. library functions or functions from other source files). In our case, this would include printf from the C standard library.</p>
+<p>In the final step, <code>gcc</code> calls the linker program <code>ld</code> to combine the object file with any external functions it needs (e.g. library functions or functions from other source files). In our case, this would include <code>printf</code> from the C standard library.</p>
 <p>To perform just this step of the build process, we would run:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gcc hello.o -o hello
-</span></code></pre></div></p>
+</span></code></pre></div>
+This produces the executable <code>hello</code> finally. </p>
 <h3 id="challege">Challege:</h3>
-<p>Compile and run the following program (squares.c):
+<p>Compile and run the following program (<em>squares.c</em>):
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#include &lt;stdio.h&gt;
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>main()
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>{ 
