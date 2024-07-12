@@ -1212,19 +1212,19 @@ This code calls two functoins <code>ctest1</code> and <code>ctest2</code>, which
 </span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>mkdir src
 </span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>cd src
 </span></code></pre></div>
-and save the following two source code files in there. 
-<em>ctest1.c</em>:
+and save the following two source code files in there. </p>
+<p><em>ctest1.c</em>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>void ctest1(int *i){
 </span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>  *i=100;
 </span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>}
-</span></code></pre></div>
-<em>ctest2.c</em>:
+</span></code></pre></div></p>
+<p><em>ctest2.c</em>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>$ cat ctest2.c 
 </span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>void ctest2(int *i){
 </span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  *i=5;
 </span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>}
-</span></code></pre></div>
-Each code does nothing but defines an interger.</p>
+</span></code></pre></div></p>
+<p>Each code does nothing but defines an interger.</p>
 <p>Second, create another subdirectory named <code>include</code>,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>mkdir include
 </span></code></pre></div>
@@ -1288,18 +1288,28 @@ An executable <em>use_ctest</em> is created successfully! </p>
 <li>
 <p>Specify the location of libraries using the <code>LD_LIBRARY_PATH</code> environment variable. <code>LD_LIBRARY_PATH</code> contains a colon (:) separated list of directories where the dynamic linker should look for shared libraries. The linker will search these directories before the default system paths. You can define the value of <code>LD_LIBRARY_PATH</code> like so:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>export LD_LIBRARY_PATH=./ctest_dir/lib:$LD_LIBRARY_PATH
-</span></code></pre></div></p>
+</span></code></pre></div>
+and then run the program:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>$ ./use_ctest 
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>100 / 5 = 20
+</span></code></pre></div>
+It works! </p>
 </li>
 <li>
-<p>Hard-code the location of non-standard libraries into the executable. Setting (and forgeting to set) LD_LIBRARY_PATH all the time can be tiresome. An alternative approach is to burn the location of the shared libraries into the executable as an RPATH or RUNPATH. This is done by adding some additional flags for the linker, like so:</p>
+<p>Hard-code the location of libraries into the executable. Setting (and forgeting to set) <code>LD_LIBRARY_PATH</code> all the time can be tiresome. An alternative approach is to burn the location of the shared libraries into the executable as an <code>RPATH</code> or <code>RUNPATH</code>. This is done by adding some additional flags for the linker, like so:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>gcc -L ctest_dir/lib use_ctest.o -lctest -Wl,--rpath=ctest_dir/lib -o use_ctest_1
+</span></code></pre></div>
+We can confirm that this worked by running the program:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>$ ./use_ctest_1
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>100 / 5 = 20
+</span></code></pre></div>
+or examining the executable to show that it contains the needed library:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>$ readelf -d use_ctest_1 |grep ctest
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a> 0x0000000000000001 (NEEDED)             Shared library: [libctest.so]
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a> 0x000000000000000f (RPATH)              Library rpath: [ctest_dir/lib]
+</span></code></pre></div></p>
 </li>
 </ul>
-<p>gcc -Lctest_dir/lib  use_ctest.o -lctest -Wl,rpath,ctest_dir/lib,--enable-new-dtags- use_ctest
-We can confirm that this worked by running the program (resetting LD_LIBRARY_PATH first if needed), and more explicitly, by examining the executable directly:</p>
-<p>./use_ctest
-readelf -d use_ctest</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>./use_ctest
-</span></code></pre></div>
 <h2 id="automating-the-build-process-with-gnu-make">Automating the build process with GNU Make</h2>
 <p>The manual build process we used above can become quite tedious for all but the smallest projects. There are many ways that we might automate this process. The simplest would be to write a shell script that runs the build commands each time we invoke it. Let's take the simple hello.c program as a test case:</p>
 <h1 id="binbash">!/bin/bash</h1>
