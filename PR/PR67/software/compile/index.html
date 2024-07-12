@@ -849,30 +849,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Building a multi-file program">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#including-header-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Including header files
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#challenge" class="md-nav__link">
-    <span class="md-ellipsis">
-      Challenge
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1015,29 +991,28 @@ This produces the executable <code>hello</code> finally. </p>
 <li><em>WriteMyString.c</em>: a module containing the subroutine called by main</li>
 <li><em>header.h</em>: one function prototype and one macro definition</li>
 </ul>
-<p>??? Source codes for the <em>multi_string</em> program.</p>
-<div class="language-text highlight"><pre><span></span><code>*main.c*: 
-```
-#include &quot;header.h&quot;
-#include &lt;stdio.h&gt;
-char    *AnotherString = &quot;Hello Everyone&quot;;
-main()
+<details>
+<summary>Source codes for the <em>multi_string</em> program</summary>
+<p><em>main.c</em>: 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#include &quot;header.h&quot;
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#include &lt;stdio.h&gt;
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>char    *AnotherString = &quot;Hello Everyone&quot;;
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>main()
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>{
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>printf(&quot;Running...\n&quot;);
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>WriteMyString(MY_STRING);
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>printf(&quot;Finished.\n&quot;);
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>}
+</span></code></pre></div></p>
+<p><em>WriteMyString.c</em>:</p>
+<h1 id="include">include <stdio.h></h1>
+<p>extern char <em>AnotherString;
+void WriteMyString(char </em>ThisString)
 {
-printf(&quot;Running...\n&quot;);
-WriteMyString(MY_STRING);
-printf(&quot;Finished.\n&quot;);
-}
-```
-
-*WriteMyString.c*:
-#include &lt;stdio.h&gt;
-extern char *AnotherString;
-void WriteMyString(char *ThisString)
-{
-printf(&quot;%s\n&quot;, ThisString);
-printf(&quot;Global Variable = %s\n&quot;, AnotherString);
-}
-</code></pre></div>
+printf("%s\n", ThisString);
+printf("Global Variable = %s\n", AnotherString);
+}</p>
+</details>
 <p>The easiest way to compile such a program is to include all the required source files at the <code>gcc</code> command line:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gcc main.c WriteMyString.c -o my_string
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>./my_string
@@ -1102,8 +1077,8 @@ If your libraries are updated, programs using shared libraries automatically tak
 Because of the advantage of dynamic linking, GCC will prefer a shared library to a static library if both are available (by default).</p>
 <p>Building with shared libraries in default (known) locations
 Let's start with an example that uses the sqrt() function from the math library:</p>
-<h1 id="include">include <stdio.h></h1>
-<h1 id="include_1">include <math.h></h1>
+<h1 id="include_1">include <stdio.h></h1>
+<h1 id="include_2">include <math.h></h1>
 <p>void main()
 { 
     int i;</p>
@@ -1181,7 +1156,7 @@ note: the following command lines build the libctest.so shared library used in t
 gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
 end note</p>
 <p>Let's switch to a new bit of example code, called use_ctest.c that makes use of a (very simple) custom library in the ctest directory:</p>
-<h1 id="include_2">include <stdio.h></h1>
+<h1 id="include_3">include <stdio.h></h1>
 <h1 id="include-ctesth">include "ctest.h"</h1>
 <p>int main(){
     int x;
