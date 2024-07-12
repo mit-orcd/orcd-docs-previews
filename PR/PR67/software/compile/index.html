@@ -1164,35 +1164,29 @@ This produces the executable <code>hello</code> finally. </p>
 </span></code></pre></div>
 The output show the paths where GCC will search for header files by default. </p>
 </details>
-<p>??? Side note: where does the linker look to find libraries?</p>
-<div class="language-text highlight"><pre><span></span><code>The linker will search some default paths for library files. Again, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.
-
-To look for the library, we can run the following command to get a list of all library files the linker is aware of, 
-```
-ldconfig -p 
-```
+<details>
+<summary>Side note: where does the linker look to find libraries?</summary>
+<p>The linker will search some default paths for library files. Again, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.</p>
+<p>To look for the library, we can run the following command to get a list of all library files the linker is aware of, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ldconfig -p 
+</span></code></pre></div>
 or search that list for the math library we need:
-```
-ldconfig -p | grep libm.so
-```
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ldconfig -p | grep libm.so
+</span></code></pre></div>
 The latter command gives the output:
-```
-libm.so.6 (libc6,x86-64, OS ABI: Linux 3.2.0) =&gt; /lib64/libm.so.6
-```
-which shows that the math library is available.
-
-We might also want to peek inside a library file (or any object code for that matter) to see what functions and variables are defined within. We can list all the names, then search for the one we care about, like so:
-```
-nm /lib64/libm.so.6 | grep &quot; sqrt&quot;
-```
-The output of this command contains the following line, which shows that it does indeed include something called `sqrt`.
-```
-000000000000f7d0 W sqrt
-```
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>libm.so.6 (libc6,x86-64, OS ABI: Linux 3.2.0) =&gt; /lib64/libm.so.6
+</span></code></pre></div>
+which shows that the math library is available. </p>
+<p>We might also want to peek inside a library file (or any object code for that matter) to see what functions and variables are defined within. We can list all the names, then search for the one we care about, like so:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>nm /lib64/libm.so.6 | grep &quot; sqrt&quot;
+</span></code></pre></div>
+The output of this command contains the following line, which shows that it does indeed include something called <code>sqrt</code>.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>000000000000f7d0 W sqrt
+</span></code></pre></div></p>
+</details>
 <h3 id="building-with-libraries-in-non-default-unknown-locations">Building with libraries in non-default (unknown) locations</h3>
 <p>In many cases, you may need to use external libraries that are not included in the operating system. These libraries can be built by you or other develepers and they are saved in non-default locations. In this section, we will introduce how to build a program with libraries in non-default locations. </p>
-<p>Let's switch to a new example code. We create a file named <em>use_ctest.c</em> that reads the following:
+<p>Let's switch to a new example code. We create a source code named <em>use_ctest.c</em> that reads the following:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>#include &lt;stdio.h&gt;
 </span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>#include &quot;ctest.h&quot;
 </span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
@@ -1208,8 +1202,8 @@ The output of this command contains the following line, which shows that it does
 </span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>}
 </span></code></pre></div>
 This code calls two functoins <code>ctest1</code> and <code>ctest2</code>, which are included in a custom library named <em>ctest</em>.</p>
-<details class="building a library">
-<summary>Building</summary>
+<details>
+<summary>Side note: building a library</summary>
 <p>In the same level of the main code <em>use_ctest.c</em>, we create a directory named <em>ctest_dir</em> to save all files related to the library <em>ctest</em>. 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>mkdir ctest_dir
 </span></code></pre></div></p>
@@ -1230,18 +1224,18 @@ and create the following two source code files in there. Each code does nothing 
 </span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  *i=5;
 </span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>}
 </span></code></pre></div></p>
-<p>Second, use the following command lines build the shared library named <code>libctest.so</code>:
+<p>Second, use the following commands to build the shared library named <code>libctest.so</code>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gcc -Wall -fPIC -c ctest1.c ctest2.c
 </span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
 </span></code></pre></div></p>
-<p>Finally move the library to a location, 
+<p>Finally, we move the library to a directory named <em>lib</em>, 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>cd ..
 </span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>mkidr lib
 </span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>mv src/libctest.so lib
 </span></code></pre></div></p>
 </details>
-<p>and is saved in the <em>ctest_dir/lib</em> directory, where</p>
-<p>Assuming that the library <em>ctest</em> has been built (as instructed in the above side note), we will build the program <em>use_ctest</em> in the folloiwng. First, we start with the simplest command.
+<p>Assuming that the library <em>ctest</em> has been built (as instructed in the above side note), we will build the program <em>use_ctest</em> and fix possbile errors in the process.</p>
+<p>First, we start with the simplest command.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>gcc -c use_ctest.c
 </span></code></pre></div>
 It fails with an error:
