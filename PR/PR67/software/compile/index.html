@@ -849,6 +849,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Building a multi-file program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#including-header-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Including header files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1021,34 +1045,37 @@ printf(&quot;Global Variable = %s\n&quot;, AnotherString);
 <p>It is also quite common to separate out the process into two steps:</p>
 <ol>
 <li>
-<p>source code -&gt; object code</p>
-</li>
-<li>
-<p>object code -&gt; executable (or library)</p>
-</li>
-</ol>
+<p>source code -&gt; object code
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gcc -c WriteMyString.c
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>gcc -c main.c
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>gcc WriteMyString.o main.o -o write
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>./write
-</span></code></pre></div>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>object code -&gt; executable (or library)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gcc WriteMyString.o main.o -o my_string
+</span></code></pre></div></p>
+</li>
+</ol>
 <p>The reason is that this allows you to reduce compiling time by only recompiling objects that need to be updated. This seems silly for a program with only a few source files, but becomes important when many source files are involved. We will use this approach later when we discuss automating the build process.</p>
-<p>Including header files
-Note that it is not necessary to include the header file on the gcc command line. This makes sense since we know that the (bundeled) preprocessing step will append any required headers to the source code before it is compiled.</p>
-<p>There is one caveat: the preprocessor must be able to find the header files in order to include them. Our example works because header.h is in the working directory when we run gcc. We can break it by moving the header to a new subdirectory, like so:</p>
-<p>mkdir hdr
-mv header.c hdr
-gcc main.c WriteMyString.c -o my_string
-The above commands give the output error:</p>
-<p>main.c:4:20: fatal error: header.h: No such file or directory
- #include "header.h"
-                    ^
-compilation terminated.
-We can fix this by specifically telling gcc where it can find the requisite headers, using the -I flag:</p>
-<p>gcc -I ./hdr main.c WriteMyString.c -o my_string
-This is most often need in the case where you wish to use external libraries installed in non-standard locations. We will explore this case below.</p>
-<p>Challenge
-In the folder multi_fav_num you will find another simple multi-file program. Build this source code to a program named fav_num using separate compile and link steps. Once you have done this successfully, change the number defined in other.c and rebuild. You should not have to recompile main.c to do this.</p>
+<h3 id="including-header-files">Including header files</h3>
+<p>In the above process, it is not necessary to include the header file explicitly on the <code>gcc</code> command line. This makes sense since we know that the (bundeled) preprocessing step will append any required headers to the source code before it is compiled.</p>
+<p>There is one caveat: the preprocessor must be able to find the header files in order to include them. Our example works because the <em>header.h</em> file is in the current directory when we run <code>gcc</code>. We can break it by moving the header to a new subdirectory, like so:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>mkdir include
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>mv header.h include
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>gcc main.c WriteMyString.c -o my_string
+</span></code></pre></div></p>
+<p>The above commands give the output error:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>main.c:4:10: fatal error: header.h: No such file or directory
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    4 | #include &quot;header.h&quot;
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>      |          ^~~~~~~~~~
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>compilation terminated.
+</span></code></pre></div></p>
+<p>We can fix this by specifically telling gcc where it can find the requisite headers, using the <code>-I</code> flag:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>gcc -I ./include main.c WriteMyString.c -o my_string
+</span></code></pre></div></p>
+<p>This is most often need in the case where you wish to use external libraries installed in non-standard locations. We will explore this case later. </p>
+<h3 id="challenge">Challenge</h3>
+<p>In the folder multi_fav_num you will find another simple multi-file program. Build this source code to a program named fav_num using separate compile and link steps. Once you have done this successfully, change the number defined in other.c and rebuild. You should not have to recompile main.c to do this.</p>
 <p>Solution:
 gcc -c main.c
 gcc -c other.c
