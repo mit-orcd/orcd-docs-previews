@@ -1142,25 +1142,9 @@ This produces the executable <code>hello</code> finally. </p>
 <p>To look for the header, we can run the following command to show the preprocessor search path and look for files in therein:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cpp -Wp,-v
 </span></code></pre></div>
-which has the following output:</p>
+The output show the paths where GCC will search for header files by default. </p>
 </details>
-<p>ignoring nonexistent directory "/usr/local/include"
-ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include-fixed"
-ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../x86_64-redhat-linux/include"</p>
-<h1 id="include-search-starts-here">include "..." search starts here:</h1>
-<h1 id="include-search-starts-here_1">include &lt;...&gt; search starts here:</h1>
-<p>/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include
-  /usr/include
-  End of search list.
-  ^C
-The last few lines show the paths where GCC will search for header files by default. We can then search these include paths for the file we want, math.h like so:</p>
-<p>find /usr/include /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include -name math.h
-Which has the following output:</p>
-<p>/usr/include/FL/math.h
-/usr/include/c++/4.4.4/tr1/math.h
-/usr/include/math.h
-If we are really curious, we could open the header and see what it contains, but this is rarely necessary.</p>
-<p>Sidebar: where does the linker look to find libraries?
+<p>??? Sidebar: where does the linker look to find libraries?
 The linker will search some default paths for included library files. Again, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.</p>
 <p>To look for the library, we can run the following command to get a list of all library files the linker is aware of, then search that list for the math library we need:</p>
 <p>ldconfig -p 
