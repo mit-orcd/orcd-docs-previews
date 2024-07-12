@@ -1125,23 +1125,24 @@ This produces the executable <code>hello</code> finally. </p>
 <p>Just as we did above, we can combine the two steps into a single command:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>gcc roots.c -lm -o roots
 </span></code></pre></div></p>
-<p>!!!"Note: check if the linker is able to find the linked libraries at runtime"</p>
-<div class="language-text highlight"><pre><span></span><code>Because we are using shared libraries, the linker must be able to find the linked libraries at runtime, otherwise the program will fail. You can check the libraries required by a program, and whether they are being found correctly or not using the `ldd` command. For out *roots* program, we get the following
-```
-$ ldd roots
-linux-vdso.so.1 (0x00007ffd2c962000)
-libm.so.6 =&gt; /lib64/libm.so.6 (0x00007fceadbef000)
-libc.so.6 =&gt; /lib64/libc.so.6 (0x00007fcead82a000)
-/lib64/ld-linux-x86-64.so.2 (0x00007fceadf71000)
-```
-This shows that our executable requires a few basic system libraries *libc.so* as well as the math library `libm.so` we explicitly included, and that all of these dependencies are found by the linker.
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because we are using shared libraries, the linker must be able to find the linked libraries at runtime, otherwise the program will fail. You can check the libraries required by a program, and whether they are being found correctly or not using the <code>ldd</code> command. For out <em>roots</em> program, we get the following
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$ ldd roots
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>linux-vdso.so.1 (0x00007ffd2c962000)
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>libm.so.6 =&gt; /lib64/libm.so.6 (0x00007fceadbef000)
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>libc.so.6 =&gt; /lib64/libc.so.6 (0x00007fcead82a000)
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>/lib64/ld-linux-x86-64.so.2 (0x00007fceadf71000)
+</span></code></pre></div></p>
+<p>This shows that our executable requires a few basic system libraries such as <em>libc.so</em> as well as the math library <code>libm.so</code> we explicitly included, and that all of these dependencies are found by the linker.</p>
+</div>
 <details>
 <summary>Sidebar: where does the preprocessor look to find header files?</summary>
 <p>The preprocessor will search some default paths for included header files. Before we go down the rabbit hole, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.</p>
-<p>o look for the header, we can run the following commands to show the preprocessor search path and look for files in therein:</p>
-<p>cpp -Wp,-v</p>
-<p>Which has the following output:</p>
+<p>To look for the header, we can run the following command to show the preprocessor search path and look for files in therein:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cpp -Wp,-v
+</span></code></pre></div>
+which has the following output:</p>
 </details>
 <p>ignoring nonexistent directory "/usr/local/include"
 ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include-fixed"
