@@ -877,9 +877,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#building-with-shared-libraries-in-default-known-locations" class="md-nav__link">
+  <a href="#building-with-libraries-in-default-known-locations" class="md-nav__link">
     <span class="md-ellipsis">
-      Building with shared libraries in default (known) locations
+      Building with libraries in default (known) locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-with-libraries-in-non-default-unknown-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building with libraries in non-default (unknown) locations
     </span>
   </a>
   
@@ -887,6 +896,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automating-the-build-process-with-gnu-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automating the build process with GNU Make
+    </span>
+  </a>
   
 </li>
       
@@ -1078,12 +1096,6 @@ This produces the executable <code>hello</code> finally. </p>
 <p>This is most often needed in the case where you wish to use external libraries installed in non-standard locations. We will explore this case in the next section. </p>
 <h2 id="linking-external-libraries">Linking external libraries</h2>
 <p>A library is a collection of pre-compiled object files that can be linked into your programs via the linker. In simpler terms, they are machine code files that contain functions / subroutines that you can use in your programs.</p>
-<p>Two example functions that come from libraries are:</p>
-<ul>
-<li><code>printf()</code> from the <em>libc.so</em> shared library</li>
-<li><code>sqrt()</code> from the <em>libm.so</em> shared library</li>
-</ul>
-<p>We will return to these in a moment.</p>
 <h3 id="shared-libraries-vs-static-libraries">Shared libraries vs static libraries</h3>
 <p>A static library has file extension of <em>.a</em> (meaning archive file). When your program links a static library, the machine code of external functions used in your program is copied into the executable. At runtime, everything your program needs is wrapped up inside the executable.</p>
 <p>A shared library has file extension of <em>.so</em> (meaning shared objects). When your program is linked against a shared library, only a small table is created in the executable. At runtime, the exectutable must be able to locate the functions listed in this table. This is done by the operating system - a process known as dynamic linking.</p>
@@ -1093,9 +1105,14 @@ This produces the executable <code>hello</code> finally. </p>
 <li>Most operating systems allow one copy of a shared library in memory to be used by all running programs, saving memory.</li>
 <li>If your libraries are updated, programs using shared libraries automatically take advantage of these updates, programs using static libraries would need to be recompiled.</li>
 </ul>
-<p>Because of the advantage of dynamic linking, GCC will prefer a shared library to a static library if both are available (by default).</p>
-<h3 id="building-with-shared-libraries-in-default-known-locations">Building with shared libraries in default (known) locations</h3>
-<p>Let's start with an example (<em>roots.c</em>) that uses the <code>sqrt()</code> function from the math library:
+<p>Because of the advantage of dynamic linking, GCC will prefer a shared library to a static library if both are available (by default). We will only use shared libraries in the following. </p>
+<h3 id="building-with-libraries-in-default-known-locations">Building with libraries in default (known) locations</h3>
+<p>Many useful fuctions are provided by libraries in the operating system. These are two widely-used examples:</p>
+<ul>
+<li><code>printf()</code> from the <em>libc.so</em> shared library</li>
+<li><code>sqrt()</code> from the <em>libm.so</em> shared library</li>
+</ul>
+<p>In this section, we will introduce how to build a pgoram with shared libraries in the system default locations. Let's start with an example (<em>roots.c</em>) that uses the <code>sqrt()</code> function from the math library:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>#include &lt;stdio.h&gt;
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>#include &lt;math.h&gt;
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>void main()
@@ -1112,8 +1129,8 @@ This produces the executable <code>hello</code> finally. </p>
 <p>Notice the function <code>sqrt</code>, which we use, but do not define. The (machine) code for this function is stored in <em>libm.so</em>, and the function definition is stored in the header file <em>math.h</em>.</p>
 <p>To build successfully, we must:</p>
 <ol>
-<li>Include the header file for the external library and make sure that the preprocessor can find this header file.</li>
-<li>Instruct the linker to link to the external library</li>
+<li>Include the header file for the external library;</li>
+<li>Instruct the linker to link to the external library.</li>
 </ol>
 <p>We build the program using the two-step scheme:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>gcc -c roots.c
@@ -1140,14 +1157,14 @@ This produces the executable <code>hello</code> finally. </p>
 <p>This shows that our executable requires a few basic system libraries such as <em>libc.so</em> as well as the math library <code>libm.so</code> we explicitly included, and that all of these dependencies are found by the linker.</p>
 </div>
 <details>
-<summary>Sidebar: where does the preprocessor look to find header files?</summary>
+<summary>Side note: where does the preprocessor look to find header files?</summary>
 <p>The preprocessor will search some default paths for included header files. Before we go down the rabbit hole, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.</p>
 <p>To look for the header, we can run the following command to show the preprocessor search path:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cpp -Wp,-v
 </span></code></pre></div>
 The output show the paths where GCC will search for header files by default. </p>
 </details>
-<p>??? Sidebar: where does the linker look to find libraries?</p>
+<p>??? Side note: where does the linker look to find libraries?</p>
 <div class="language-text highlight"><pre><span></span><code>The linker will search some default paths for library files. Again, it is important to note that you do not have to do this for a typical build, but the commands may prove useful when you are trying to work out why something fails to build.
 
 To look for the library, we can run the following command to get a list of all library files the linker is aware of, 
@@ -1163,34 +1180,74 @@ The latter command gives the output:
 libm.so.6 (libc6,x86-64, OS ABI: Linux 3.2.0) =&gt; /lib64/libm.so.6
 ```
 which shows that the math library is available.
+
+We might also want to peek inside a library file (or any object code for that matter) to see what functions and variables are defined within. We can list all the names, then search for the one we care about, like so:
+```
+nm /lib64/libm.so.6 | grep &quot; sqrt&quot;
+```
+The output of this command contains the following line, which shows that it does indeed include something called `sqrt`.
+```
+000000000000f7d0 W sqrt
+```
 </code></pre></div>
-<p>We might also want to peek inside a library file (or any object code for that matter) to see what functions and variables are defined within. We can list all the names, then search for the one we care about, like so:</p>
-<p>nm /lib/libm.so.6
-nm /lib/libm.so.6 | sqrt
-The output of this command contains the following line, which shows us that it does indeed include something called sqrt.</p>
-<p>0000000000025990 W sqrt
-Building with shared libraries in non-default (unknown) locations
-note: the following command lines build the libctest.so shared library used in the example below:</p>
-<p>gcc -Wall -fPIC -c ctest1.c ctest2.c
-gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
-end note</p>
-<p>Let's switch to a new bit of example code, called use_ctest.c that makes use of a (very simple) custom library in the ctest directory:</p>
-<h1 id="include">include <stdio.h></h1>
-<h1 id="include-ctesth">include "ctest.h"</h1>
-<p>int main(){
-    int x;
-    int y;
-    int z;
-    ctest1(&amp;x);
-    ctest2(&amp;y);
-    z = (x / y);
-    printf("%d / %d = %d\n", x, y, z);
-    return 0;
-}
-Trying to compile this fails with an error:</p>
-<p>gcc -c use_ctest.c</p>
-<p>use_ctest.c:2:19: error: ctest.h: No such file or directory
-As the error message indicates, the problem here is that an included header file is not found by the preprocessor. We can use the -I flag to fix this problem:</p>
+<h3 id="building-with-libraries-in-non-default-unknown-locations">Building with libraries in non-default (unknown) locations</h3>
+<p>In many cases, you may need to use external libraries that are not included in the operating system. These libraries can be built by you or other develepers and they are saved in non-default locations. In this section, we will introduce how to build a program with libraries in non-default locations. </p>
+<p>Let's switch to a new example code. We create a file named <em>use_ctest.c</em> that reads the following:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>#include &lt;stdio.h&gt;
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>#include &quot;ctest.h&quot;
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>int main(){
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>    int x;
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    int y;
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>    int z;
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    ctest1(&amp;x);
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>    ctest2(&amp;y);
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>    z = (x / y);
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>    printf(&quot;%d / %d = %d\n&quot;, x, y, z);
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>    return 0;
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>}
+</span></code></pre></div>
+This code calls two functoins <code>ctest1</code> and <code>ctest2</code>, which are included in a custom library named <em>ctest</em>.</p>
+<details class="building a library">
+<summary>Building</summary>
+<p>In the same level of the main code <em>use_ctest.c</em>, we create a directory named <em>ctest_dir</em> to save all files related to the library <em>ctest</em>. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>mkdir ctest_dir
+</span></code></pre></div></p>
+<p>First, create a subdirectory named <code>src</code>, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>cd ctest_dir
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>mkdir src
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>cd src
+</span></code></pre></div>
+and create the following two source code files in there. Each code does nothing but defines an interger.</p>
+<p><em>ctest1.c</em>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>void ctest1(int *i){
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>  *i=100;
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>}
+</span></code></pre></div></p>
+<p><em>ctest2.c</em>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>$ cat ctest2.c 
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>void ctest2(int *i){
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  *i=5;
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>}
+</span></code></pre></div></p>
+<p>Second, use the following command lines build the shared library named <code>libctest.so</code>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gcc -Wall -fPIC -c ctest1.c ctest2.c
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>gcc -shared -Wl,-soname,libctest.so -o libctest.so ctest1.o ctest2.o
+</span></code></pre></div></p>
+<p>Finally move the library to a location, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>cd ..
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>mkidr lib
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>mv src/libctest.so lib
+</span></code></pre></div></p>
+</details>
+<p>and is saved in the <em>ctest_dir/lib</em> directory, where</p>
+<p>Assuming that the library <em>ctest</em> has been built (as instructed in the above side note), we will build the program <em>use_ctest</em> in the folloiwng. First, we start with the simplest command.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>gcc -c use_ctest.c
+</span></code></pre></div>
+It fails with an error:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>use_ctest.c:2:19: error: ctest.h: No such file or directory
+</span></code></pre></div></p>
+<p>As the error message indicates, the problem here is that an included header file is not found by the preprocessor. We can use the -I flag to fix this problem:</p>
 <p>gcc -I ctest_dir/include -c use_ctest.c
 When we try to link the program to create an executable, we know we need to explicitly add the library with the -l flag, but in this case we still get an error:</p>
 <p>gcc use_ctest.o -lctest -use_ctest</p>
@@ -1218,11 +1275,9 @@ Hard-code the location of non-standard libraries into the executable. Setting (a
 <p>gcc -Lctest_dir/lib  use_ctest.o -lctest -Wl,rpath,ctest_dir/lib,--enable-new-dtags- use_ctest
 We can confirm that this worked by running the program (resetting LD_LIBRARY_PATH first if needed), and more explicitly, by examining the executable directly:</p>
 <p>./use_ctest
-readelf -d use_ctest
-Challenge
-Without using your history, try to re-compile and run the use_ctest program. For an additional challenge, try to do so using RUNPATH to hardcode the location of the shared library.</p>
-<p>Automating the build process with GNU Make
-The manual build process we used above can become quite tedious for all but the smallest projects. There are many ways that we might automate this process. The simplest would be to write a shell script that runs the build commands each time we invoke it. Let's take the simple hello.c program as a test case:</p>
+readelf -d use_ctest</p>
+<h2 id="automating-the-build-process-with-gnu-make">Automating the build process with GNU Make</h2>
+<p>The manual build process we used above can become quite tedious for all but the smallest projects. There are many ways that we might automate this process. The simplest would be to write a shell script that runs the build commands each time we invoke it. Let's take the simple hello.c program as a test case:</p>
 <h1 id="binbash">!/bin/bash</h1>
 <p>gcc -c hello.c
 gcc hello.o -o hello
