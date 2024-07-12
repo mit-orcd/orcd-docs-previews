@@ -18,7 +18,7 @@
     
     
       
-        <title>Building Software from Source Code in Linux - ORCD Docs</title>
+        <title>Compiling Source Code in Linux - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#building-software-from-source-code-in-linux" class="md-skip">
+        <a href="#compiling-source-code-in-linux" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Building Software from Source Code in Linux
+              Compiling Source Code in Linux
             
           </span>
         </div>
@@ -895,22 +895,27 @@
 
 
 
-<h1 id="building-software-from-source-code-in-linux">Building Software from Source Code in Linux</h1>
-<p>This page covers the basics of building small projects from C source code, and automating this process using GNU Make. It is intended for scientists venturing into scientific programming, to help ease the frustrations that typically come up when starting to work in compiled programming languages.</p>
+<h1 id="compiling-source-code-in-linux">Compiling Source Code in Linux</h1>
+<p>This page covers the basics of building programs from C source code, and automating this process using GNU Make. It is intended for scientists venturing into scientific programming, to help ease the frustrations that typically come up when starting to work in compiled programming languages.</p>
 <h2 id="preparation">Preparation</h2>
-<p>A GCC compiler is needed to compile codes. Load a GCC module, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load gcc/12.2.0-x86_64
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A GCC compiler is needed to compile codes. Load a GCC module first, 
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load gcc/12.2.0-x86_64
 </span></code></pre></div></p>
+</div>
+</div>
+</div>
 <h2 id="building-a-single-file-program">Building a single-file program</h2>
-<p>Let's start with a simple example: building a "hello world" C program with the GCC compiler.</p>
-<p>Our program (hello.c) looks like this:</p>
+<p>Let's start with a simple example: building a "hello world" C program with the GCC compiler. The program (<em>hello.c</em>) looks like this:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#include &lt;stdio.h&gt;
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>main()
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>{
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    (void) printf(&quot;Hello World\n&quot;);
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    return (0);
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>}
-</span></code></pre></div>
+</span></code></pre></div></p>
 <p>To build a working executable from this file in the simplest way possible, run:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcc hello.c
 </span></code></pre></div>
@@ -1216,7 +1221,7 @@ Notice that if no changes are made to the source files, make does not recompile 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 12, 2024</span>
   </span>
 
     
