@@ -902,7 +902,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>A GCC compiler is needed to compile codes. Load a GCC module first, 
- <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load gcc/12.2.0-x86_64
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load gcc/12.2.0
 </span></code></pre></div></p>
 </div>
 </div>
@@ -910,34 +910,34 @@
 <h2 id="building-a-single-file-program">Building a single-file program</h2>
 <p>Let's start with a simple example: building a "hello world" C program with the GCC compiler. The program (<em>hello.c</em>) looks like this:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#include &lt;stdio.h&gt;
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>main()
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>int main()
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>{
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    (void) printf(&quot;Hello World\n&quot;);
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    printf(&quot;Hello World\n&quot;);
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    return (0);
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>}
 </span></code></pre></div></p>
-<p>To build a working executable from this file in the simplest way possible, run:</p>
+<p>To build a working executable from this file in the simplest way, run:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcc hello.c
-</span></code></pre></div>
-<p>This command creates an executable with a default name of a.out. Running this command prints the familiar message:</p>
+</span></code></pre></div></p>
+<p>This command creates an executable with a default name of <em>a.out</em>. Running this command prints the familiar message:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ a.out
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Hello World
-</span></code></pre></div>
+</span></code></pre></div></p>
 <p>More happened here behind the scene. In fact, this command wraps up 4 steps of the build process: Preprocess, Compile, Assemble, and Link.</p>
 <h3 id="step-1-preprocess">Step 1: Preprocess</h3>
-<p>In this step, gcc calls preprocessing program cpp to interpret preprocessor directives and modify the source code accordingly.</p>
+<p>In this step, <em>gcc</em> calls preprocessing program <em>cpp</em> to interpret preprocessor directives and modify the source code accordingly.</p>
 <p>Some common directives are:</p>
 <ul>
 <li>
-<p><code>#include</code>: includes contents of the named file, typically a header file, e.g. <code>#include &lt;stdio.h&gt;</code></p>
+<p><code>#include</code>: includes contents of the named file, typically a header file, e.g. <code>#include &lt;stdio.h&gt;</code>.</p>
 </li>
 <li>
-<p><code>#define</code>: macro substitution, e.g. <code>#define PI 3.14159</code></p>
+<p><code>#define</code>: macro substitution, e.g. <code>#define PI 3.14159</code>.</p>
 </li>
 <li>
 <p><code>#ifdef ... #end</code>: conditional compilation, the code block is included only if a certain macro is defined, e.g:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>#ifdef TEST_CASE
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>a=1; b=0; c=0;
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  a=1; b=0; c=0;
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>#endif
 </span></code></pre></div></p>
 </li>
@@ -945,12 +945,12 @@
 <p>We could perform just this step of the build process like so:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cpp hello.c hello.i
 </span></code></pre></div></p>
-<p>Examining the output file (<code>vim hello.i</code>) shows that the long and messy <code>stdio.h</code> header has been appended to our simple code. </p>
+<p>Examining the output file (<code>vim hello.i</code>) shows that the long and messy <em>stdio.h</em> header has been appended to our simple code. </p>
 <h3 id="step-2-compile">Step 2: Compile</h3>
 <p>In this step, the (modified) source code is translated from the C programming language into assembly code.</p>
-<p>Assembly code is a low-level programming language with commands that correspond to machine instructions for a particular type of hardware. It is still just plain text --- you can read assembly and write it too if you so desire.</p>
+<p>Assembly code is a low-level programming language with commands that correspond to machine instructions for a particular type of hardware. It is still just plain text, that says you can read assembly and write it too if you so desire.</p>
 <p>To perform just the compilation step of the build process, we would run:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gcc -S -c hello.i -o hello.i
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gcc -S -c hello.i -o hello.s
 </span></code></pre></div></p>
 <p>Examining the output file (<code>vim hello.s</code>) shows that processor-specific instructions needed to run our program on this specific system. Interestingly, for such a simple program as ours, the assembly code is actually shorter than the preprocesses source code (though not the original source code).</p>
 <h3 id="step-3-assemble">Step 3: Assemble</h3>
