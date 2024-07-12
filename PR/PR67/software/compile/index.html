@@ -984,27 +984,36 @@ This produces the executable <code>hello</code> finally. </p>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>./squares
 </span></code></pre></div></p>
 <h2 id="building-a-multi-file-program">Building a multi-file program</h2>
-<p>For most projects in the real world, it is convenient to break up the source code into multiple files. Typically, these include a main function in one file, and one or more other files containing functions / subroutines called by main(). In addition, a header file is usually used to share custom data types, function prototypes, preprocessor macros, etc.</p>
+<p>For most projects in the real world, it is convenient to break up the source code into multiple files. Typically, these include a main function in one file, and one or more other files containing functions / subroutines called by <code>main()</code>. In addition, a header file is usually used to share custom data types, function prototypes, preprocessor macros, etc.</p>
 <p>As an example, we create a program with several source code files in a directory named <em>multi_string</em>, which consists of:</p>
 <ul>
 <li><em>main.c</em>: the main driver function, which calls a subroutine and exits</li>
 <li><em>WriteMyString.c</em>: a module containing the subroutine called by main</li>
 <li><em>header.h</em>: one function prototype and one macro definition</li>
 </ul>
-<p>??? Source codes for the <em>multi_string</em> program.
-     <em>main.c</em>: 
-     <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#include &quot;header.h&quot;
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#include &lt;stdio.h&gt;
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>char    *AnotherString = &quot;Hello Everyone&quot;;
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>main()
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>{
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>   printf(&quot;Running...\n&quot;);
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>   WriteMyString(MY_STRING);
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>   printf(&quot;Finished.\n&quot;);
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>}
-</span></code></pre></div></p>
+<p>??? Source codes for the <em>multi_string</em> program.</p>
+<div class="language-text highlight"><pre><span></span><code>*main.c*: 
+```
+#include &quot;header.h&quot;
+#include &lt;stdio.h&gt;
+char    *AnotherString = &quot;Hello Everyone&quot;;
+main()
+{
+printf(&quot;Running...\n&quot;);
+WriteMyString(MY_STRING);
+printf(&quot;Finished.\n&quot;);
+}
+```
+
+*WriteMyString.c*:
+#include &lt;stdio.h&gt;
+extern char *AnotherString;
+void WriteMyString(char *ThisString)
+{
+printf(&quot;%s\n&quot;, ThisString);
+printf(&quot;Global Variable = %s\n&quot;, AnotherString);
+}
+</code></pre></div>
 <p>The easiest way to compile such a program is to include all the required source files at the <code>gcc</code> command line:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gcc main.c WriteMyString.c -o my_string
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>./my_string
