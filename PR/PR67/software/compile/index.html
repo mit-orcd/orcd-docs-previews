@@ -1441,16 +1441,24 @@ The command under this target will remove the executable and all of the <code>.o
 </span><span id="__span-59-14"><a id="__codelineno-59-14" name="__codelineno-59-14" href="#__codelineno-59-14"></a>clean:
 </span><span id="__span-59-15"><a id="__codelineno-59-15" name="__codelineno-59-15" href="#__codelineno-59-15"></a>        rm $(EXE) *.o
 </span></code></pre></div></p>
-<p>Here we have defined the varialbes <code>CC</code> for the compiler, <code>OBJ</code> for object files, and <code>EXE</code> for the executable file. If we want to change the compiler or the file names, we only modify the corresponding variables at one place. </p>
+<p>Here we have defined the varialbes <code>CC</code> for the compiler, <code>OBJ</code> for object files, and <code>EXE</code> for the executable file. If we want to change the compiler or the file names, we only modify the corresponding variable at one place. </p>
+<p>If there are many varialbes to be defined, it is better to write the definition of all variables in another file, and then include the file in Makefile:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>include ./variables 
+</span></code></pre></div>
+The file <em>variables</em> reads the following:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>CC=gcc
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>OBJ=main.o WriteMyString.o
+</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>EXE=write
+</span></code></pre></div></p>
 <p>Furthermore, we can upgrade the <em>Makefile</em> to a higher automatic level using the so-called automatic variables:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>$(EXE): $(OBJ)
-</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>        $(CC) $^ -o $@
-</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>
-</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>main.o: main.c header.h
-</span><span id="__span-60-5"><a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a>        $(CC) -c $&lt;
-</span><span id="__span-60-6"><a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a>
-</span><span id="__span-60-7"><a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a>WriteMyString.o: WriteMyString.c
-</span><span id="__span-60-8"><a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a>        $(CC) -c $&lt; 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>$(EXE): $(OBJ)
+</span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>        $(CC) $^ -o $@
+</span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>main.o: main.c header.h
+</span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>        $(CC) -c $&lt;
+</span><span id="__span-62-6"><a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>
+</span><span id="__span-62-7"><a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a>WriteMyString.o: WriteMyString.c
+</span><span id="__span-62-8"><a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>        $(CC) -c $&lt; 
 </span></code></pre></div></p>
 <p>Here we have used these automatic variables:</p>
 <ul>
@@ -1459,21 +1467,13 @@ The command under this target will remove the executable and all of the <code>.o
 <li><code>$&lt;</code>  -- the name of the first prerequisite</li>
 </ul>
 <p>These variables automatically take the names of current target or prerequisites, no matter what values are assigned to them.</p>
-<p>We then notice that the <em>main.o</em> and <em>WriteMyString.o</em> targets are built by the same command. Is there a way to combine the two duplicated commands into one so as to compile all source code files by one command line? The answer is yes. It can be done with an implicit pattern rule:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>%.o: %.c
-</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>        $(CC) -c $&lt;
-</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>
-</span><span id="__span-61-4"><a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>main.o: header.h 
+<p>We then notice that the <em>main.o</em> and <em>WriteMyString.o</em> targets are built by the same command. Is there a way to combine these two duplicated commands into one so as to compile all source code files by only one command line? The answer is yes. It can be done with an implicit pattern rule:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>%.o: %.c
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>        $(CC) -c $&lt;
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>
+</span><span id="__span-63-4"><a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>main.o: header.h 
 </span></code></pre></div></p>
-<p>Here the <code>%</code> stands for the same thing in the prerequisites as it does in the target. Usually, any object file with subfix <code>.o</code> has a corresponding a source file with subfix <code>.c</code> as an implied prerequisite, so we can use the <code>%</code> to represent the name for both files. If a target (e.g. <em>main.o</em>) needs additional prerequisites (e.g. <em>header.h</em>), write an actionless rule with those prerequisites. We can imagine that applying this impilict rule should significantly simpify a Makefile when there are a large number of (say hundreds of) source files.</p>
-<p>If there are many varialbes to be defined, it is better to write the definition of all variables in another file, and then include the file in Makefile:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>include ./variables 
-</span></code></pre></div>
-The file <em>variables</em> reads the following:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>CC=gcc
-</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>OBJ=main.o WriteMyString.o
-</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>EXE=write
-</span></code></pre></div></p>
+<p>Here the <code>%</code> stands for the same thing in the prerequisites as it does in the target. Usually, any object file with a subfix <code>.o</code> has a corresponding source file with a subfix <code>.c</code> as an implied prerequisite, so we can use the <code>%</code> to represent the name for both files. If a target (e.g. <em>main.o</em>) needs additional prerequisites (e.g. <em>header.h</em>), write an actionless rule with those prerequisites. We can imagine that applying this impilict rule should significantly simpify a Makefile when there are a large number of source files.</p>
 <p>Mostly the target name is a file name. But there are exceptions, such as the <em>clean</em> target in this example. The <code>rm</code> command will not create any file named <code>clean</code>. What if there exists a file named clean in this directory? Let's do an experiment.
 <div class="language-text highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>touch clean
 </span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>make clean
