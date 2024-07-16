@@ -1365,8 +1365,6 @@ Run it like so:
 </span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>
 </span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>clean:
 </span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>        rm hello hello.o
-</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a>
-</span><span id="__span-53-10"><a id="__codelineno-53-10" name="__codelineno-53-10" href="#__codelineno-53-10"></a>.PHONY: clean
 </span></code></pre></div></p>
 <p>We can see that each section starts with a line specifyting dependency like so: <code>target: prerequisites</code>. The command block that follows will be executed to generate the target if any of the prerequisites have been modified. </p>
 <div class="admonition note">
@@ -1425,60 +1423,81 @@ The command under this target will remove the executable and all of the <code>.o
 </span></code></pre></div></p>
 </details>
 <h3 id="writing-a-good-makefile">Writing a good Makefile</h3>
-<p>A <em>Makefile</em> could be very compilcated in a practical program with many source files. It is important to write a Makefile in good logic. The text in the Makefile should be as simple and clear as possbile. To this end, useful features of Makrefile are introduced in this section.</p>
-<p>You may have noticed that there are many duplications of the same file name or command name in our previous Makefiles. It is more convinient to use varialbes. Again, take our first multi-file program for example. The Makefile can be rewitten as following,</p>
-<p>CC=gcc
-OBJ=main.o WriteMyString.o
-EXE=write</p>
-<p>$(EXE): $(OBJ)
-        $(CC) $(OBJ) -o $(EXE)</p>
-<p>main.o: main.c header.h
-        $(CC) -c main.c</p>
-<p>WriteMyString.o: WriteMyString.c
-        $(CC) -c WriteMyString.c</p>
-<p>clean:
-        rm $(EXE) *.o
-Here we have defined the varialbes CC for the compiler, OBJ for object files and EXE for the executable file. If we want to change the compiler or the file names, we only modify the corresponding variables at one place, but do not need to modify all related places in the Makefile.</p>
-<p>Furthermore, we can upgrade the Makefile to a higher automatic level using the so-called "automatic variables":
-$(EXE): $(OBJ)
-        $(CC) $^ -o $@</p>
-<p>main.o: main.c header.h
-        $(CC) -c $&lt;</p>
-<p>WriteMyString.o: WriteMyString.c
-        $(CC) -c $&lt; 
-Here we have used the following automatic variables:</p>
-<p>$@  --- the name of the current target
-$^  --- the names of all the prerequisites
-$&lt;  --- the name of the first prerequisite
-These automatic variables automatically take the names of current target or prerequisites, no matter what values are assigned to them.</p>
-<p>We can notice that the main.o and WriteMyString.o targets are built by the same command. Is there a way to combine the two duplicated commands into one so as to compile all source code files by one command line? Yes, it can be done with an implicit pattern rule:</p>
-<p>%.o: %.c
-        $(CC) -c $&lt;</p>
-<p>main.o: header.h 
-Here % stands for the same thing in the prerequisites as it does in the target. In this example, any .o target has a corresponding .c file as an implied prerequisite. If a target (e.g. main.o) needs additional prerequisites (e.g. header.h), write an actionless rule with those prerequisites. We can imagine that applying this impilict rule should significantly simpify the Makefile when there are a large number of (say hundreds of) source files.</p>
-<p>If there are many varialbes to be defined, it is convinient to write the definition of all variables in another file, and then include the file in Makefile:</p>
-<p>include ./variables 
-The content of the file variables is as following:</p>
-<p>CC=gcc
-OBJ=main.o WriteMyString.o
-EXE=write
-In most cases, the target name is a file name. But there are exceptions, such as the clean target in this example. The rm command will not create any file named clean. What if there exists a file named clean in this directory? Let's do an experiment.</p>
-<p>touch clean
-make clean
-make: `clean' is up to date.
-The clean target does not work properly. Since it has no prerequisite, clean will always be considered up-to-date, and thus nothing will be done. To solve this issue, we can declare the target to be phony by making it a prerequisite of the special target .PHONY as follows:
-.PHONY: clean
-A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed.
-Finally, we end up with an efficient Makefile:</p>
-<p>include ./variables
-.PHONY: clean</p>
-<p>$(EXE): $(OBJ)
-        $(CC) $^ -o $@</p>
-<p>%.o: %.c
-        $(CC) -c $&lt;</p>
-<p>main.o: header.h</p>
-<p>clean:
-        rm $(EXE) *.o</p>
+<p>A <em>Makefile</em> could be very compilcated in a practical program with many source files. It is important that the text in a <em>Makefile</em> should be as simple and clear as possbile. To this end, several useful features of <em>Makrefile</em> are introduced in this section.</p>
+<p>You may have noticed that there are many duplications of the same file name or command name in our previous examples. It is convinient to use varialbes in this case. Again, take our multi-file program for example. The <em>Makefile</em> can be rewitten as follows,</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>CC=gcc
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>OBJ=main.o WriteMyString.o
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>EXE=write
+</span><span id="__span-59-4"><a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a>
+</span><span id="__span-59-5"><a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a>$(EXE): $(OBJ)
+</span><span id="__span-59-6"><a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>        $(CC) $(OBJ) -o $(EXE)
+</span><span id="__span-59-7"><a id="__codelineno-59-7" name="__codelineno-59-7" href="#__codelineno-59-7"></a>
+</span><span id="__span-59-8"><a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a>main.o: main.c header.h
+</span><span id="__span-59-9"><a id="__codelineno-59-9" name="__codelineno-59-9" href="#__codelineno-59-9"></a>        $(CC) -c main.c
+</span><span id="__span-59-10"><a id="__codelineno-59-10" name="__codelineno-59-10" href="#__codelineno-59-10"></a>
+</span><span id="__span-59-11"><a id="__codelineno-59-11" name="__codelineno-59-11" href="#__codelineno-59-11"></a>WriteMyString.o: WriteMyString.c
+</span><span id="__span-59-12"><a id="__codelineno-59-12" name="__codelineno-59-12" href="#__codelineno-59-12"></a>        $(CC) -c WriteMyString.c
+</span><span id="__span-59-13"><a id="__codelineno-59-13" name="__codelineno-59-13" href="#__codelineno-59-13"></a>
+</span><span id="__span-59-14"><a id="__codelineno-59-14" name="__codelineno-59-14" href="#__codelineno-59-14"></a>clean:
+</span><span id="__span-59-15"><a id="__codelineno-59-15" name="__codelineno-59-15" href="#__codelineno-59-15"></a>        rm $(EXE) *.o
+</span></code></pre></div>
+<p>Here we have defined the varialbes <code>CC</code> for the compiler, <code>OBJ</code> for object files, and <code>EXE</code> for the executable file. If we want to change the compiler or the file names, we only modify the corresponding variables at one place. </p>
+<p>Furthermore, we can upgrade the <em>Makefile</em> to a higher automatic level using the so-called automatic variables:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>$(EXE): $(OBJ)
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>        $(CC) $^ -o $@
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>
+</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>main.o: main.c header.h
+</span><span id="__span-60-5"><a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a>        $(CC) -c $&lt;
+</span><span id="__span-60-6"><a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a>
+</span><span id="__span-60-7"><a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a>WriteMyString.o: WriteMyString.c
+</span><span id="__span-60-8"><a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a>        $(CC) -c $&lt; 
+</span></code></pre></div></p>
+<p>Here we have used these automatic variables:</p>
+<ul>
+<li><code>$@</code>  -- the name of the current target</li>
+<li><code>$^</code>  -- the names of all the prerequisites</li>
+<li><code>$&lt;</code>  -- the name of the first prerequisite</li>
+</ul>
+<p>These variables automatically take the names of current target or prerequisites, no matter what values are assigned to them.</p>
+<p>We then notice that the <em>main.o</em> and <em>WriteMyString.o</em> targets are built by the same command. Is there a way to combine the two duplicated commands into one so as to compile all source code files by one command line? The answer is yes. It can be done with an implicit pattern rule:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>%.o: %.c
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>        $(CC) -c $&lt;
+</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>
+</span><span id="__span-61-4"><a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>main.o: header.h 
+</span></code></pre></div></p>
+<p>Here the <code>%</code> stands for the same thing in the prerequisites as it does in the target. Usually, any object file with subfix <code>.o</code> has a corresponding a source file with subfix <code>.c</code> as an implied prerequisite, so we can use the <code>%</code> to represent the name for both files. If a target (e.g. <em>main.o</em>) needs additional prerequisites (e.g. <em>header.h</em>), write an actionless rule with those prerequisites. We can imagine that applying this impilict rule should significantly simpify a Makefile when there are a large number of (say hundreds of) source files.</p>
+<p>If there are many varialbes to be defined, it is better to write the definition of all variables in another file, and then include the file in Makefile:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>include ./variables 
+</span></code></pre></div>
+The file <em>variables</em> reads the following:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>CC=gcc
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>OBJ=main.o WriteMyString.o
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>EXE=write
+</span></code></pre></div></p>
+<p>Mostly the target name is a file name. But there are exceptions, such as the <em>clean</em> target in this example. The <code>rm</code> command will not create any file named <code>clean</code>. What if there exists a file named clean in this directory? Let's do an experiment.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>touch clean
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>make clean
+</span><span id="__span-64-3"><a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>make: `clean&#39; is up to date.
+</span></code></pre></div></p>
+<p>We can see that the clean target does not work properly. Since it has no prerequisite, the target <em>clean</em> will be considered up-to-date, and thus nothing will be done. To solve this issue, we can declare the target to be phony by making it a prerequisite of the special target <code>.PHONY</code> as follows:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>.PHONY: clean
+</span></code></pre></div></p>
+<p>A phony target is one that is not really the name of a file; rather it is just a name for a recipe to be executed.</p>
+<p>In summary, we write a real-world Makefile like so:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a>include ./variables
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>.PHONY: clean
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>
+</span><span id="__span-66-4"><a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>$(EXE): $(OBJ)
+</span><span id="__span-66-5"><a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>        $(CC) $^ -o $@
+</span><span id="__span-66-6"><a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>
+</span><span id="__span-66-7"><a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a>%.o: %.c
+</span><span id="__span-66-8"><a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a>        $(CC) -c $&lt;
+</span><span id="__span-66-9"><a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a>
+</span><span id="__span-66-10"><a id="__codelineno-66-10" name="__codelineno-66-10" href="#__codelineno-66-10"></a>main.o: header.h
+</span><span id="__span-66-11"><a id="__codelineno-66-11" name="__codelineno-66-11" href="#__codelineno-66-11"></a>
+</span><span id="__span-66-12"><a id="__codelineno-66-12" name="__codelineno-66-12" href="#__codelineno-66-12"></a>clean:
+</span><span id="__span-66-13"><a id="__codelineno-66-13" name="__codelineno-66-13" href="#__codelineno-66-13"></a>        rm $(EXE) *.o
+</span></code></pre></div></p>
 
 
 
