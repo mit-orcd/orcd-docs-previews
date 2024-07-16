@@ -1065,7 +1065,7 @@ This produces the executable <code>hello</code> finally. </p>
 <li><em>header.h</em>: one function prototype and one macro definition</li>
 </ul>
 <details>
-<summary>Source codes for the <em>multi_string</em> program</summary>
+<summary>Side note: source codes for the <em>multi_string</em> program</summary>
 <p><em>main.c</em>: 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#include &quot;header.h&quot;
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#include &lt;stdio.h&gt;
@@ -1423,8 +1423,8 @@ The command under this target will remove the executable and all of the <code>.o
 </span></code></pre></div></p>
 </details>
 <h3 id="writing-a-good-makefile">Writing a good Makefile</h3>
-<p>A <em>Makefile</em> could be very compilcated in a practical program with many source files. It is important that the text in a <em>Makefile</em> should be as simple and clear as possbile. To this end, several useful features of <em>Makrefile</em> are introduced in this section.</p>
-<p>You may have noticed that there are many duplications of the same file name or command name in our previous examples. It is convinient to use varialbes in this case. Again, take our multi-file program for example. The <em>Makefile</em> can be rewitten as follows,</p>
+<p>A <em>Makefile</em> could be very compilcated in a practical program with many source files. It is important that the text in a <em>Makefile</em> should be as simple and clear as possbile. In this section, we will learn more useful features of GNU Make and write a real-world <em>Makrefile</em> at the end.</p>
+<p>In our previous examples, you may have noticed that there are many duplications of the same file name or command name. It is convinient to use varialbes in this case. Again, take our multi-file program for example. The <em>Makefile</em> can be rewitten as follows,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>CC=gcc
 </span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>OBJ=main.o WriteMyString.o
 </span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>EXE=write
@@ -1440,7 +1440,7 @@ The command under this target will remove the executable and all of the <code>.o
 </span><span id="__span-59-13"><a id="__codelineno-59-13" name="__codelineno-59-13" href="#__codelineno-59-13"></a>
 </span><span id="__span-59-14"><a id="__codelineno-59-14" name="__codelineno-59-14" href="#__codelineno-59-14"></a>clean:
 </span><span id="__span-59-15"><a id="__codelineno-59-15" name="__codelineno-59-15" href="#__codelineno-59-15"></a>        rm $(EXE) *.o
-</span></code></pre></div>
+</span></code></pre></div></p>
 <p>Here we have defined the varialbes <code>CC</code> for the compiler, <code>OBJ</code> for object files, and <code>EXE</code> for the executable file. If we want to change the compiler or the file names, we only modify the corresponding variables at one place. </p>
 <p>Furthermore, we can upgrade the <em>Makefile</em> to a higher automatic level using the so-called automatic variables:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>$(EXE): $(OBJ)
