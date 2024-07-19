@@ -369,6 +369,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Terminal by Operating System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-10-and-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows 10 and Up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#older-windows-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Older Windows Versions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-notes-about-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Notes about Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -970,6 +1003,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Terminal by Operating System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-10-and-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows 10 and Up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#older-windows-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Older Windows Versions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-notes-about-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Notes about Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1019,24 +1085,26 @@
 <p>Open Terminal by searching for it in Spotlight or by navigating to Applications &gt; Utilities &gt; Terminal.</p>
 </div>
 <div class="tabbed-block">
-<p>Open Terminal from your applications menu.</p>
+<p>Open Terminal from your Applications menu.</p>
 </div>
 <div class="tabbed-block">
 <p>Windows systems offer multiple terminal options: Windows Terminal, Command Prompt, and PowerShell. The best way to get a terminal depends on your version of Windows. Starting at Windows 10, the Windows Subsystem for Linux (WSL) is available, allowing you to run Linux as an application in Windows. You can also use the Windows Command Prompt if you have SSH enabled. For older versions of Windows, install a terminal program that supports bash.</p>
-<p>Windows 10 and Up
-You have two options:
-- Windows Command Prompt (CMD): Comes with all Windows computers and supports SSH with little to no setup. However, it lacks some tools for transferring files and uses different commands than Linux.
-- Windows Subsystem for Linux (WSL) with Ubuntu: A full Linux terminal that requires some setup but supports all commands used to interact with SuperCloud.</p>
-<p>To check if CMD has SSH enabled, run the command ssh. If SSH is not enabled, follow the instructions on this <a href="https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh">page</a>.</p>
-<p>If you want to use WSL, follow the instructions on this Page (external link) to enable WSL and install a Linux distribution of your choice. If you don't have a preference, Ubuntu is a good place to start. If you have any questions about WSL, there is a good chance they are answered in their FAQ (external link).</p>
-<p>Older Windows Versions
-For older Windows versions, install a terminal that supports bash and SSH, such as MobaXterm. Follow the instructions on this page to install MobaXterm and create a local shell.</p>
-<p>Other Notes about Windows
-Some programs may seem like valid terminals for accessing SuperCloud but are not ideal. Here are a few examples and why they are not recommended:</p>
+<h4 id="windows-10-and-up"><strong>Windows 10 and Up</strong></h4>
+<p>You have two options:  </p>
+<ol>
+<li><strong>Windows Command Prompt (CMD):</strong> Comes with all Windows computers and supports SSH with little to no setup. However, it lacks some tools for transferring files and uses different commands than Linux.  </li>
+<li><strong>Windows Subsystem for Linux (WSL) with Ubuntu</strong>: A full Linux terminal that requires some setup but supports all commands used to interact with SuperCloud.</li>
+</ol>
+<p>To check if CMD has SSH enabled, run the command <code>ssh</code>. If SSH is not enabled, follow the instructions on this <a href="https://learn.microsoft.com/en-us/windows/terminal/tutorials/ssh">Page</a> to set it up.</p>
+<p>If you want to use WSL, follow the instructions on this <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Page</a> to enable WSL and install a Linux distribution of your choice. If you don't have a preference, Ubuntu is a good place to start. If you have any questions about WSL, there is a good chance they are answered in their <a href="https://learn.microsoft.com/en-us/windows/wsl/faq">FAQ</a>.</p>
+<h4 id="older-windows-versions"><strong>Older Windows Versions</strong></h4>
+<p>For older Windows versions, install a terminal that supports bash and SSH, such as MobaXterm. Follow the instructions on this <a href="https://mobaxterm.mobatek.net/">Page</a> to install MobaXterm and create a local shell.</p>
+<h4 id="other-notes-about-windows">Other Notes about Windows</h4>
+<p>Some programs may seem like valid terminals for accessing SuperCloud but are not ideal. Here are a few examples and why they are not recommended:</p>
 <ul>
-<li>Windows Command Prompt (pre-Windows 10): Does not natively support bash or SSH commands.</li>
-<li>Windows PowerShell (pre-Windows 10): Similar to Command Prompt, it does not natively support bash or SSH commands.</li>
-<li>PuTTY: A GUI-based program that is tricky to set up with SSH keys and requires a separate program for file transfers.</li>
+<li><u>Windows Command Prompt (pre-Windows 10):</u> Does not natively support bash or SSH commands.</li>
+<li><u>Windows PowerShell (pre-Windows 10):</u> Similar to Command Prompt, it does not natively support bash or SSH commands.</li>
+<li><u>PuTTY:</u> A GUI-based program that is tricky to set up with SSH keys and requires a separate program for file transfers.</li>
 </ul>
 </div>
 </div>
@@ -1046,38 +1114,58 @@ Some programs may seem like valid terminals for accessing SuperCloud but are not
 <div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">Satori</label><label for="__tabbed_2_3">SuperCloud</label><label for="__tabbed_2_4">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>The Engaging Cluster has 4 login nodes:<br />
-- eofe7.mit.edu (CentOS 7)<br />
-- eofe8.mit.edu (CentOS 7)<br />
-- eofe9.mit.edu (CentOS 7)<br />
-- eofe10.mit.edu (Rocky 8)  </p>
+<p>The Engaging Cluster has 3 login nodes: </p>
+<ul>
+<li>eofe4.mit.edu (Rocky 8)  </li>
+<li>eofe9.mit.edu (CentOS 7)  </li>
+<li>eofe10.mit.edu (Rocky 8)  </li>
+</ul>
 <p>To login via the command line, run the SSH command:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@<span class="o">[</span>host<span class="o">]</span>
 </span></code></pre></div>
-Replace “[username]” with your MIT Kerberos username and “[host]” with the desired login node name (e.g., ssh your_name@eofe9.mit.edu).</p>
+Replace <code>[username]</code> with your MIT Kerberos username and <code>[host]</code> with the desired login node name (e.g., ssh your_name@eofe9.mit.edu).</p>
 <p>Connecting to eofe9 or eofe10 requires Two-Factor Authentication.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You will be prompted to enter your MIT Kerberos password if you have not set up SSH keys. To set them up, please refer to *** Add url to SSH Key Setup ***</p>
+<p>You will be prompted to enter your MIT Kerberos password if you have not set up SSH keys. To set them up, please refer to our <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-setup/">SSH Key Setup Page</a>.</p>
 </div>
 </div>
 <div class="tabbed-block">
-<p>Satori has two login nodes:
-- Use satori-login-001.mit.edu for submitting training jobs and related activities.
-- Use satori-login-002.mit.edu for transferring large files/datasets and compiling software.</p>
+<p>Satori has 2 login nodes:  </p>
+<ul>
+<li>Use <code>satori-login-001.mit.edu</code> for submitting training jobs and related activities.</li>
+<li>Use <code>satori-login-002.mit.edu</code> for transferring large files/datasets and compiling software.</li>
+</ul>
 <p>To login via the command line, run the SSH command:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@<span class="o">[</span>host<span class="o">]</span>
 </span></code></pre></div>
-Replace “[username]” with your MIT Kerberos username and “[host]” with the desired login node name (e.g., ssh your_name@satori-login-001.mit.edu).</p>
+Replace <code>[username]</code> with your MIT Kerberos username and <code>[host]</code> with the desired login node name (e.g., ssh your_name@satori-login-001.mit.edu).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will be prompted to enter your MIT Kerberos password if you have not set up SSH keys. To set them up, please refer to our <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-setup/">SSH Key Setup Page</a>.</p>
+</div>
 </div>
 <div class="tabbed-block">
-<p>The primary way to access the SuperCloud system is through ssh and requires that your public ssh-key has been added to the authorized_keys file in your SuperCloud account. Please note, if you have generated your key following the instructions at supercloud.mit.edu and sent it to supercloud@mit.edu, then it should be in place for you. If you have any issues connecting to the system, please send email to supercloud@mit.edu. Be aware that the only desktop/laptop machine you can connect from is the machine where you generated and saved your ssh keys.</p>
-<p>To connect to SuperCloud,</p>
-<p>Open a command line terminal window.
-Enter the following command, where USERNAME is your username on the SuperCloud system:
-ssh USERNAME@txe1-login.mit.edu</p>
+<p>Accessing the SuperCloud system through SSH requires that your public ssh-key has been added to the authorized_keys file in your SuperCloud account. Please note, if you have generated your key following the instructions at <a href="https://supercloud.mit.edu/requesting-account/#ssh-keys">supercloud.mit.edu</a> or <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-setup/">orcd-docs</a> and sent it to supercloud@mit.edu, then it should be in place for you. For further information on adding SSH keys to your account, refer to this <a href="https://supercloud.mit.edu/requesting-account/#adding-keys">Page</a>.</p>
+<p>If you have any issues connecting to the system, please send an email to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#101;&#114;&#99;&#108;&#111;&#117;&#100;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#115;&#117;&#112;&#101;&#114;&#99;&#108;&#111;&#117;&#100;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
+<p>To connect to SuperCloud once your SSH keys are setup, follow these steps:  </p>
+<ol>
+<li>Open a command line terminal window.</li>
+<li>Enter the following command, replacing <code>[username]</code> with your SuperCloud username:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@txe1-login.mit.edu
+</span></code></pre></div></li>
+</ol>
 </div>
-<div class="tabbed-block"></div>
+<div class="tabbed-block">
+<p>To login to OpenMind via the command line, run the SSH command:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@openmind.mit.edu
+</span></code></pre></div>
+Replace <code>[username]</code> with your MIT Kerberos username. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will be prompted to enter your MIT Kerberos password if you have not set up SSH keys. To set them up, please refer to our <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-setup/">SSH Key Setup Page</a>.</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -1100,7 +1188,7 @@ ssh USERNAME@txe1-login.mit.edu</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 19, 2024</span>
   </span>
 
     
