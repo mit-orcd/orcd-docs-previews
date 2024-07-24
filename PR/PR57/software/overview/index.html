@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/recipes/h100_getting_started/">
+        <link rel="canonical" href="https://orcd.mit.edu/software/overview/">
       
       
+        <link rel="prev" href="../../filesystems-file-transfer/transferring-files/">
+      
+      
+        <link rel="next" href="../modules/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Getting started on 8-way H100 nodes on Satori - ORCD Docs</title>
+        <title>Overview - ORCD Docs</title>
       
     
     
@@ -68,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-on-8-way-h100-nodes-on-satori" class="md-skip">
+        <a href="#software-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting started on 8-way H100 nodes on Satori
+              Overview
             
           </span>
         </div>
@@ -357,17 +361,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -381,7 +387,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Software
@@ -392,10 +398,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../software/overview/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -404,6 +430,77 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#software-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Landscape
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steps-for-getting-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Steps for Getting Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps for Getting Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-if-the-software-or-package-is-already-installed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check if the Software or Package is Already Installed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-the-software-or-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install the Software or Package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-for-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ask for Help
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -416,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/modules/" class="md-nav__link">
+      <a href="../modules/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -437,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/python/" class="md-nav__link">
+      <a href="../python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -500,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mujoco/" class="md-nav__link">
+      <a href="../../recipes/mujoco/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -521,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
+      <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -542,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gromacs/" class="md-nav__link">
+      <a href="../../recipes/gromacs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -563,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mpi4py/" class="md-nav__link">
+      <a href="../../recipes/mpi4py/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -584,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mpi/" class="md-nav__link">
+      <a href="../../recipes/mpi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -605,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../relion/" class="md-nav__link">
+      <a href="../../recipes/relion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -626,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vscode/" class="md-nav__link">
+      <a href="../../recipes/vscode/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -774,37 +871,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#access-to-the-nodes" class="md-nav__link">
+  <a href="#software-landscape" class="md-nav__link">
     <span class="md-ellipsis">
-      Access to the nodes
+      Software Landscape
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#interactive-access-through-slurm" class="md-nav__link">
+  <a href="#steps-for-getting-software" class="md-nav__link">
     <span class="md-ellipsis">
-      Interactive access through Slurm
+      Steps for Getting Software
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-a-nightly-build-pytorch-example-with-a-fresh-miniconda-and-pytorch" class="md-nav__link">
-    <span class="md-ellipsis">
-      Running a nightly build pytorch example with a fresh miniconda and pytorch
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Running a nightly build pytorch example with a fresh miniconda and pytorch">
+    <nav class="md-nav" aria-label="Steps for Getting Software">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#running-a-simple-batch-script-using-an-installed-miniconda-environment" class="md-nav__link">
+  <a href="#check-if-the-software-or-package-is-already-installed" class="md-nav__link">
     <span class="md-ellipsis">
-      Running a simple batch script using an installed miniconda environment
+      Check if the Software or Package is Already Installed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-the-software-or-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install the Software or Package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-for-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ask for Help
     </span>
   </a>
   
@@ -812,15 +918,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting help
-    </span>
-  </a>
   
 </li>
       
@@ -843,129 +940,74 @@
     
     
     
-      <a href="../../tags/#satori" class="md-tag">Satori</a>
-    
-  
-    
-    
-    
-      <a href="../../tags/#howto-recipes" class="md-tag">Howto Recipes</a>
-    
-  
-    
-    
-    
-      <a href="../../tags/#h100" class="md-tag">H100</a>
+      <a href="../../tags/#software" class="md-tag">Software</a>
     
   
 </nav>
 
 
 
-<h1 id="getting-started-on-8-way-h100-nodes-on-satori">Getting started on 8-way H100 nodes on Satori</h1>
-<p>This page provides information on how to run a first job on the IBM Watson AI Lab H100 GPU nodes on Satori.
-The page describes how to request an access to the Slurm partition associated 
-with the H100 nodes and
-how to run a first example pytorch script on the systems. </p>
-<p>A first set of H100 GPU systems has been added to Satori.
-These are for priority use by IBM Watson AI Lab research collaborators.
-They are also available for general opportunistic use when they are idle.</p>
-<!--
-What slurm flags are needed to use these nodes for "general opportunistic use"?
--->
-
-<p>Currently ( 2023-06-19 ) there are 4 H100 systems installed. 
-Each system has 8 H100 GPU cards, two Intel 8468 CPUs each with
-48 physical cores and 1TiB of main memory.</p>
-<p>Below are some instructions for getting started with these systems. </p>
-<h2 id="access-to-the-nodes">Access to the nodes</h2>
-<p>To access the nodes in the priority group you need your satori login id to be listed in the WebMoira 
-group <a href="https://groups.mit.edu/webmoira/list/sched_oliva">https://groups.mit.edu/webmoira/list/sched_oliva</a>. 
-Either Alex Andonian and Vincent Sitzmann are able to add accounts to the <code>sched_oliva</code> Moira list.</p>
-<h2 id="interactive-access-through-slurm">Interactive access through Slurm</h2>
-<p>To access an entire node through Slurm, the command below can be used from the satori login node</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:8<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--mem<span class="o">=</span><span class="m">0</span><span class="w"> </span>-c<span class="w"> </span><span class="m">192</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
-</span></code></pre></div>
-<p>this command will launch an interactive shell on one of the nodes (when a full node becomes available). 
-From this shell the NVidia status command 
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nvidia-smi
-</span></code></pre></div>
-should list 8 H100 GPUs as available. </p>
-<p>Single node, multi-gpu training examples (for example
-<a href="https://github.com/artidoro/qlora">https://github.com/artidoro/qlora</a> ) should run 
-on all 8 GPUs. </p>
-<p>To use a single GPU interactively the following command can be used
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>srun<span class="w"> </span>-p<span class="w"> </span>sched_oliva<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--mem<span class="o">=</span><span class="m">128</span><span class="w"> </span>-c<span class="w"> </span><span class="m">24</span><span class="w"> </span>--time<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
-</span></code></pre></div></p>
-<p>this will request a single GPU. This request will allow other Slurm sessions to run on other GPUs 
-simultaneously with this session.</p>
-<h2 id="running-a-nightly-build-pytorch-example-with-a-fresh-miniconda-and-pytorch">Running a nightly build pytorch example with a fresh miniconda and pytorch</h2>
-<p>A miniconda environment can be used to run the latest nightly build pytorch code on these 
-systems. To do this, first create a software install directory and install the needed pytorch software</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nobackup/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/pytorch_h100_testing/conda_setup
-</span></code></pre></div>
-<p>and then switch your shell to that directory.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/nobackup/users/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/pytorch_h100_testing/conda_setup
-</span></code></pre></div></p>
-<p>now install miniconda and create an environment with the needed software
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>./Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-b<span class="w"> </span>-p<span class="w"> </span>minic
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>.<span class="w"> </span>./minic/bin/activate<span class="w"> </span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>conda<span class="w"> </span>create<span class="w"> </span>-y<span class="w"> </span>-n<span class="w"> </span>pytorch_test<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>conda<span class="w"> </span>activate<span class="w"> </span>pytorch_test<span class="w">                          </span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>conda<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>cupy
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>pip3<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>torchaudio<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/nightly/cu121
-</span></code></pre></div></p>
-<p>Once the software is installed, the following script can be used to test the installation.
-<div class="language-python highlight"><span class="filename">test.py</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">torch</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">device_id</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">current_device</span><span class="p">()</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">gpu_properties</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="n">device_id</span><span class="p">)</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found </span><span class="si">%d</span><span class="s2"> GPUs available. Using GPU </span><span class="si">%d</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">) of compute capability </span><span class="si">%d</span><span class="s2">.</span><span class="si">%d</span><span class="s2"> with &quot;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>          <span class="s2">&quot;</span><span class="si">%.1f</span><span class="s2">Gb total memory.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> 
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>          <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>          <span class="n">device_id</span><span class="p">,</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">major</span><span class="p">,</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">minor</span><span class="p">,</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>          <span class="n">gpu_properties</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">))</span>
-</span></code></pre></div>
-Run this script with
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python test.py
-</span></code></pre></div></p>
-<p>To exit the Slurm srun session enter the command
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">exit</span>
-</span></code></pre></div></p>
-<h3 id="running-a-simple-batch-script-using-an-installed-miniconda-environment">Running a simple batch script using an installed miniconda environment</h3>
-<p>To run a batch script on one of the H100 nodes in partition <code>sched_oliva</code> first paste the content in the 
-box below into a slurm script file called, for example, <code>test_script.slurm</code> ( change the <code>RUNDIR</code> setting to assign the 
-path to a directory where you have already installed a conda environment in a sub-directory called <code>minic</code> ).</p>
-<p>First create the <code>mytest.py</code> script with the contents above.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>#!/bin/bash
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>#
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>#SBATCH --gres=gpu:8
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>#SBATCH --partition=sched_oliva
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>#SBATCH --time=1:00:00
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>#SBATCH --mem=0
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>#
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>nvidia-smi
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>RUNDIR=/nobackup/users/${USER}/h100-testing/minic
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>cd ${RUNDIR}
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>. ./minic/bin/activate
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>conda activate pytorch_test
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
-</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>python mytest.py
-</span></code></pre></div>
-<p>This script can then be submitted to Slurm to run in a background batch node using the command.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sbatch<span class="w"> </span>&lt;<span class="w"> </span>test_script.slurm
-</span></code></pre></div>
-<h2 id="getting-help">Getting help</h2>
-<p>As always, please feel welcome to email <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>
-with questions, comments or suggestions. We would be happy to hear from you!</p>
+<h1 id="software-overview">Software Overview</h1>
+<p>Each ORCD system has its own software stack. Many basic and commonly used software and libraries are already installed, so it is good to check before spending the time to install it yourself. This page discusses the general overview of what kinds of software are supported and points you to how to use them and what to do if what you need isn't there.</p>
+<h2 id="software-landscape">Software Landscape</h2>
+<p>While the software stack will be different on each system, there are three general classes of software:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Core</em></td>
+<td>Commonly used or fundamental software and libraries that are fully supported. Core software is expected to work until it is officially deprecated, and often newer versions are provided to replace them.</td>
+</tr>
+<tr>
+<td><em>Community</em></td>
+<td>Software that has been built and installed by request, but is not commonly used. Support is on a best-effort basis. Should work when built but not guaranteed to work indefinitely or when replaced with newer versions when deprecated, except by request.</td>
+</tr>
+<tr>
+<td><em>Deprecated</em></td>
+<td>Software that is no longer supported or expected to work. May be kept for legacy reasons, or will soon be removed. If software you are using is listed as deprecated or soon to be deprecated migrate to the newer version (if available) or request a newer version (if not available). If migrating to a newer version is not an option you may be able to run your application with Singularity.</td>
+</tr>
+</tbody>
+</table>
+<p>Each individual ORCD system may not label or organize their software in this way. However, this is the support model that will be used going forward. Engaging, in particular, will organize its software in this way.</p>
+<p>Here are some general notes by system on this for Engaging and SuperCloud. Click on the tab for the system you are interested in:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">SuperCloud</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Engaging nodes are one of two operating systems: Centos 7 and Rocky 8. Each operating system has its own software stack.</p>
+<p>Centos 7 has been around for longer, so it has more software installed. These nodes have a very large list of <a href="../modules/">modules</a>, older ones that no longer work have not necessarily been removed but can be considered deprecated. Centos 7 nodes will either be retired or migrated to Rocky 8 in the near future, so when given the choice use Rocky 8 nodes.</p>
+<p>Rocky 8 nodes have a significantly shorter list of modules and are organized into core, community, and deprecated. Core software will be displayed by default, community and deprecated software will require a "module use" command to display. See the page on <a href="../modules/">modules</a> for more information.</p>
+</div>
+<div class="tabbed-block">
+<p>The SuperCloud software stack is managed by the Lincoln Laboratory Supercomputing Center. The modules listed are considered "core" software. Deprecated software that was part of the core stack is removed from the system. "Community" software is provided in the llgrid_beta directory in the groups location. Anyone can use them but they are not officially supported.</p>
+</div>
+</div>
+</div>
+<h2 id="steps-for-getting-software">Steps for Getting Software</h2>
+<p>One of the first steps for getting a workflow running on a new system is to set up any software or packages needed to run it. Here are a few steps to do that on an ORCD system.</p>
+<h3 id="check-if-the-software-or-package-is-already-installed">Check if the Software or Package is Already Installed</h3>
+<p>As mentioned above, there is a lot of software already installed. Using the software we've installed saves you time. This software may also perform better or be better configured to use the system. For example, it may be installed in a faster part of the filesystem or configured to use special hardware available on the cluster.</p>
+<p>For software check the <code>module avail</code> command (see the page on <a href="../modules/">modules</a> for more information). Some software is available without a module, you can check if a particular command is available using the <code>which</code> command at the command line. For example, run <code>which git</code> to see if the <code>git</code> command is available. If it is, the path to the <code>git</code> command will print to the screen.</p>
+<p>Common languages like <a href="">Python</a>, <a href="">Julia</a>, and <a href="">R</a> are provided through modules as well. Packages for these are sometimes provided along with the installation. A quick way to check if a package is available is to try to import it.</p>
+<h3 id="install-the-software-or-package">Install the Software or Package</h3>
+<p>If we don't have the software you need, you can often install it yourself. You will need to install them in your home directory or another directory you have access to. You will not be able to install software in any of the system-wide directories, as changes to these affect everyone using the system (for example you will not be able to install in any location that requires <code>sudo</code>).</p>
+<details>
+<summary>Why can't I use sudo?</summary>
+<p>The <code>sudo</code> command is used to make system-wide administrator-level changes. On a system where you are the only user this is usually fine, the only person you can affect is yourself. On large shared systems with many users any command that uses <code>sudo</code> has the potential to affect the workflow of other researchers and potentially cause harm, even when it is not intentional. For this reason only trained system administrators have the ability to use <code>sudo</code>.</p>
+<p>You should not need <code>sudo</code> to install packages in your own space. For software installs, the <code>sudo</code> is only used to put the installation files in the system-wide directory, so it is not needed to install in your own directories. The <a href="">Installing Software</a> page covers how to specify installation directories for some of the more common build systems. </p>
+</details>
+<p>Sometimes you can find pre-built binaries for the software you want. These are the easiest to install. Often you will need to build the software you need. See the page on <a href="">Installing Software</a> for more information. You may also check the Recipes section of these pages to see if there is an existing recipe for installing the software you are interested in.</p>
+<p>For <a href="">Python</a>, <a href="">Julia</a>, and <a href="">R</a> packages, each of these have their own package managers for installing packages. See the respective documentation pages linked above for each of these.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Satori is unique in that its nodes have a different architecture than those in other ORCD systems. They are IBM machines with the ppc64le architecture. There is some software that does not support this architecture. When selecting pre-built software, be sure to select the one for ppc64le.</p>
+</div>
+<h3 id="ask-for-help">Ask for Help</h3>
+<p>If you are having trouble installing software you can reach out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a> or one of the other lists on <a href="../../getting-help/#email">Getting Help</a> for help. You can also stop by <a href="../../getting-help/#office-hours">office hours</a> if you prefer. Depending on the software and the system you are using, we may help walk you through installing it for yourself or install it in a community location.</p>
 
 
 
@@ -986,7 +1028,7 @@ with questions, comments or suggestions. We would be happy to hear from you!</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 28, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 8, 2024</span>
   </span>
 
     
