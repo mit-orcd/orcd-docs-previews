@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#julia" class="md-skip">
+        <a href="#installing-alternate-julia-versions" class="md-skip">
           Skip to content
         </a>
       
@@ -662,17 +662,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Julia
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -682,34 +671,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-alternate-julia-versions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installing alternate Julia versions
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -843,23 +804,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-alternate-julia-versions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installing alternate Julia versions
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -890,10 +834,9 @@
 
 
 
-<h1 id="julia">Julia</h1>
-<h2 id="installing-alternate-julia-versions">Installing alternate Julia versions</h2>
-<p>Sometimes, you may need to use a specific version of Julia in order for your program to work properly. To see if the cluster you're using contains the module you're need, enter <code>module avail</code> in the command line. To load this module, enter <code>module load julia/X.X.X</code>.</p>
-<p>If the version of Julia you need is not available, you can download it. A complete list of previous Julia versions can be found <a href="https://julialang.org/downloads/oldreleases/">here</a>. From here, you should copy the link to the tar.gz file that corresponds to the version you need. Be sure to select the version for a Linux operating system and x86_64 architecture (??).</p>
+<h1 id="installing-alternate-julia-versions">Installing Alternate Julia Versions</h1>
+<p>There are a number of versions of Julia that are currently available on our clusters (see <a href="https://orcd-docs.mit.edu/software/modules/">here</a> for information on using different modules). However, sometimes, you may need a specific version of Julia that is not provided. If this happens, you can download it. </p>
+<p>A complete list of previous Julia versions can be found <a href="https://julialang.org/downloads/oldreleases/">here</a>. From this site, copy the link to the tar.gz file that corresponds to the version you need. Be sure to select the version for a Linux operating system and x86_64 architecture.</p>
 <p>Download the .tar file:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget [link to file]
 </span></code></pre></div></p>
@@ -903,7 +846,7 @@
 <p>Add the downloaded version to your path:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>export PATH=&quot;~/path/to/your/julia/directory/bin:$PATH&quot;
 </span></code></pre></div></p>
-<p>For example, the following lines are for Julia 1.9.0:
+<p>The following example is for Julia 1.9.0:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>tar -xvzf julia-1.9.0-linux-x86_64.tar.gz
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>export PATH=&quot;~/julia-1.9.0/bin:$PATH&quot;
