@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/software/R/">
       
       
+        <link rel="prev" href="../python/">
+      
+      
+        <link rel="next" href="../../recipes/mujoco/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -483,17 +487,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -507,7 +513,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Software
@@ -572,6 +578,145 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    R
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    R
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-installed-r-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Installed R Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Installed R Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Packages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r-with-conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      R with Conda
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rstudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      RStudio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jupyter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-other-r-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Other R Versions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -981,6 +1126,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#further-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#faqs" class="md-nav__link">
     <span class="md-ellipsis">
       FAQs
@@ -1021,11 +1175,9 @@
 
 
 
-<p>NOTES: 
-- All of this is for Engaging; check compatibility with other clusters</p>
 <h1 id="r">R</h1>
 <h2 id="pre-installed-r-modules">Pre-Installed R Modules</h2>
-<p>There are currently a few different versions of R installed on our systems. You can find these versions by running <code>module avail</code>. To use an R interactive environment, first load an R module, then enter <code>R</code>. For example, on Engaging Rocky8:</p>
+<p>There are currently a few different versions of R installed on our systems. You can find these versions by running <code>module avail</code>. To use an R interactive environment, first load an R module, then enter <code>R</code>. For example, on Engaging Rocky8 (eofe4 and eofe10):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>load<span class="w"> </span>r/4.2.2-x86_64
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>R
 </span></code></pre></div>
@@ -1034,29 +1186,48 @@
 <p>R will first try to install this package system-wide but will be blocked to avoid editing the module for the entire cluster. You will be asked if you want to use a personal library instead. Type "yes" and press enter. This creates a folder in your home directory that contains the packages for each version of R you use. You can check this directory by running <code>.libPaths()</code> from the R CLI.</p>
 <h2 id="r-with-conda">R with Conda</h2>
 <p>Conda is a package manager commonly used for Python, but is compatible with R and can be very useful for installing packages. This can be helpful when the packages you need have specific dependency requirements.</p>
-<p>When you create a Conda environment, you can specify exactly the packages you need. First, you'll need to load a pre-installed Conda module. There are multiple available, but we recommend the Miniforge modules:</p>
+<p>When you create a Conda environment, you can specify exactly the packages you need. First, you'll need to load a pre-installed Conda module. There are multiple available, but we recommend Miniforge:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">Satori</label><label for="__tabbed_1_3">SuperCloud</label><label for="__tabbed_1_4">OpenMind</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/24.3.0-0
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>anaconda3/2020.02-2ks5tch
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>anaconda/2023b
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module<span class="w"> </span>load<span class="w"> </span>openmind/anaconda/3-5.3.1
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <p>Now, you should be able to run <code>conda</code> commands. To search for specific R packages (beginning with "r-"), you can use <code>conda search</code>. For example, the following looks for all versions of Tidyverse available through Conda:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>conda<span class="w"> </span>search<span class="w"> </span>r-tidyverse
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>conda<span class="w"> </span>search<span class="w"> </span>r-tidyverse
 </span></code></pre></div>
 <p>There are two ways to add packages to your conda environment. The first is to create a blank conda environment and install packages individually, for example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda<span class="w"> </span>create<span class="w"> </span>my_R_env
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>my_R_env
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>conda<span class="w"> </span>install<span class="w"> </span>r-tidyverse
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>conda<span class="w"> </span>create<span class="w"> </span>my_R_env
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>my_R_env
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>conda<span class="w"> </span>install<span class="w"> </span>r-tidyverse
 </span></code></pre></div>
 <p>However, we recommend naming the packages you will need when you create the environment in the first place, as this will better handle dependencies. You can do this as such:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>conda<span class="w"> </span>create<span class="w"> </span>my_R_env<span class="w"> </span>r-tidyverse
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>conda<span class="w"> </span>create<span class="w"> </span>my_R_env<span class="w"> </span>r-tidyverse
 </span></code></pre></div>
 <p>You can also specify specific versions of packages that you'd like to install:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>conda<span class="w"> </span>install<span class="w"> </span>r-tidyverse<span class="o">=</span><span class="m">2</span>.0.0
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>conda<span class="w"> </span>install<span class="w"> </span>r-tidyverse<span class="o">=</span><span class="m">2</span>.0.0
 </span></code></pre></div>
+<p>See <a href="../python/#conda-environments">the section on Conda environments in the Python software document</a> for more information.</p>
 <h2 id="rstudio">RStudio</h2>
 <p>Currently, the only cluster that RStudio is available on is Engaging. This is accessible through <a href="https://engaging-ood.mit.edu">Engaging OnDemand</a> &gt; Interactive Apps &gt; RStudio Server. From there, select the specifications you need, including runtime, memory, and R version. Currently, OnDemand does not support local installations of R or versions of R installed through Conda.</p>
 <p>You can install packages using the <code>install.packages()</code> command. As with running R from the command line via SSH, the new packages should automatically be installed to your home directory.</p>
 <h2 id="jupyter">Jupyter</h2>
 <p>Similar to RStudio, Jupyter notebooks offer a handy cell-based interface to run R code. You can run Jupyter notebooks through the web portals of <em>Engaging and SuperCloud</em>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">SuperCloud</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Jupyter notebooks are available through <a href="https://engaging-ood.mit.edu">Engaging OnDemand</a> &gt; Interactive Apps &gt; Jupyter Notebook. To run R, you must create a Conda environment with both R and jupyterlab installed (see <a href="#r-with-conda">R with Conda</a>). When starting up the notebook, enter the name of your custom Conda environment. Once you launch the session and open your notebook, you may need to change your kernel to R. Your current kernel is shown in the top right, and likely defaults to "Python 3 (ipykernel)". Click this to change it to R.</p>
@@ -1069,16 +1240,25 @@
 </div>
 <h2 id="installing-other-r-versions">Installing Other R Versions</h2>
 <p>If you need a specific version of R, the easiest way to do this is through Conda. You can specify your desired R version while creating a Conda environment by setting the <code>r-base</code> argument to version that you need. For example, for installing R version 4.1.2:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>R_env<span class="w"> </span>r-base<span class="o">=</span><span class="m">4</span>.1.2
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>R_env
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>R_env<span class="w"> </span>r-base<span class="o">=</span><span class="m">4</span>.1.2
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>R_env
 </span></code></pre></div>
 <p>Once your environment is created and activated, entering <code>which R</code> should direct you to the version of R within your Conda environment.</p>
+<h2 id="further-resources">Further Resources</h2>
+<p><a href="https://engaging-web.mit.edu/eofe-wiki/software/r_packages/">Engaging: R Packages</a></p>
+<p><a href="https://mit-satori.github.io/satori-R.html">Satori: R on Satori</a></p>
+<p><a href="https://mit-supercloud.github.io/supercloud-docs/software-packages/#r-libraries">SuperCloud: Software and Package Management - R Libraries</a></p>
 <h2 id="faqs">FAQs</h2>
-<p><em>Change layout of below info</em>
-You can also set this path manually by setting the <code>R_LIBS_USER</code> environment variable from your Bash terminal:</p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">R_LIBS_USER</span><span class="o">=</span>/path/to/R/library/directory/
+<p><strong>I am trying to use a specific R installation, but it is not being recognized. What should I do?</strong></p>
+<p>Sometimes, the way your environment is set up may cause the system to default to certain R installations that you don't want. The culprit can often be found in your <code>.bashrc</code>, <code>.bash_profile</code>, and/or <code>.zshrc</code> files. Usually, running <code>module purge</code> from the command line before loading the version of R you want solves the problem.</p>
+<p><strong>How do I change the path where my libraries are installed?</strong></p>
+<p>Before starting R, you can set the <code>R_LIBS_USER</code> environment variable from your Bash terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">R_LIBS_USER</span><span class="o">=</span>/path/to/R/library/directory
 </span></code></pre></div>
-<em>Change layout of above info</em></p>
+<p>You can also set the path from within R:</p>
+<div class="language-R highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nf">.libPaths</span><span class="p">(</span><span class="s">&quot;/path/to/R/library/directory&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Both of these commands essentially prepend your custom path to the library path that already existed.</p>
 
 
 
@@ -1099,7 +1279,7 @@ You can also set this path manually by setting the <code>R_LIBS_USER</code> envi
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 1, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2024</span>
   </span>
 
     
