@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/software/compile/">
       
       
+        <link rel="prev" href="../python/">
+      
+      
+        <link rel="next" href="../../recipes/mujoco/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Compiling Source Code and GNU Make - ORCD Docs</title>
+        <title>Compiling Codes - ORCD Docs</title>
       
     
     
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Compiling Source Code and GNU Make
+              Compiling Codes
             
           </span>
         </div>
@@ -483,17 +487,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -507,7 +513,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Software
@@ -572,6 +578,235 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Compiling Codes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Compiling Codes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-single-file-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a single-file program
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building a single-file program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-preprocess" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Preprocess
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-compile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Compile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-assemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Assemble
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Link
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-multi-file-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a multi-file program
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building a multi-file program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#including-header-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Including header files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linking-external-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linking external libraries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linking external libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shared-libraries-vs-static-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shared libraries vs static libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-with-libraries-in-default-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building with libraries in default locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-with-libraries-in-non-default-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building with libraries in non-default locations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automating-the-build-process-with-gnu-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automating the build process with GNU Make
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Automating the build process with GNU Make">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-gnu-make-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How GNU Make works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#makefile-for-a-multi-file-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      Makefile for a multi-file program
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-a-good-makefile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing a good Makefile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
