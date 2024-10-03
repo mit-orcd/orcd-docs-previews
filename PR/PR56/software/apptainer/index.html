@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/software/apptainer/">
       
       
+        <link rel="prev" href="../python/">
+      
+      
+        <link rel="next" href="../compile/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Singularity and Apptainer - ORCD Docs</title>
+        <title>Container - ORCD Docs</title>
       
     
     
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Singularity and Apptainer
+              Container
             
           </span>
         </div>
@@ -483,17 +487,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -507,7 +513,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Software
@@ -572,6 +578,136 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Container
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Container
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#run-applications-with-singularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run applications with Singularity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run applications with Singularity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-an-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download an image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-a-program-interactively" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run a program interactively
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submit-a-batch-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submit a batch job
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#more-on-using-singularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      More on using Singularity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-singularity-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Singularity images
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1143,7 +1279,7 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>#SBATCH -N 1                         # one node
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>#SBATCH -n 2                         # two CPU cores
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>#SBATCH -p sched_mit_psfc_gpu_r8     # a partition with Rocky 8 nodes
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>#SBATCH -p mit_normal     # a partition with Rocky 8 nodes
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>module load apptainer/1.1.7-x86_64 squashfuse/0.1.104-x86_64   # load modules
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>singularity exec my-image.sif python my-code.py   # Run the program 
@@ -1232,7 +1368,7 @@ The terms in <code>&lt;&gt;</code> are must-needed while the term in <code>[]</c
 <p>The flag <code>--writable</code> is to enable the write permission to modify files in the container. </p>
 <details class="note">
 <summary>Note</summary>
-<p>The <code>fakeroot</code> pakcage will be installed on the cluster, so that users can build images without the <code>sudo</code> command. </p>
+<p>The <code>apt-get</code> command is to install software in the Ubuntu OS. This is supported by the by the <code>fakeroot</code> package, which is installed on node115 on OpenMind. Users need to install <code>fakeroot</code> in their home directories.  </p>
 </details>
 <p>Once the needed package are built in the image, you can use it as was shown in the preivious sections. </p>
 <p>Alternatively, you can build a container image on other machines on which you have <code>root</code> or <code>sudo</code> access. One way is to build a Docker image on a laptop/desktop such as MAC or PC. Another way is to build a Singularity image on a Linux machine that has Apptainer/Singularity installed. Once the image is built completely, transfer it to the cluster, and run it with Singularity.</p>
