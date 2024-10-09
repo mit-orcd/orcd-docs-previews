@@ -663,6 +663,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Juliaup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-different-julia-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Different Julia Versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -675,9 +690,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-alternate-julia-versions" class="md-nav__link">
+  <a href="#using-different-julia-versions" class="md-nav__link">
     <span class="md-ellipsis">
-      Installing Alternate Julia Versions
+      Using Different Julia Versions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Different Julia Versions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jupyter Notebooks
     </span>
   </a>
   
@@ -1021,6 +1060,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Juliaup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-different-julia-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Different Julia Versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1033,9 +1087,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-alternate-julia-versions" class="md-nav__link">
+  <a href="#using-different-julia-versions" class="md-nav__link">
     <span class="md-ellipsis">
-      Installing Alternate Julia Versions
+      Using Different Julia Versions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Different Julia Versions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Installation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jupyter Notebooks
     </span>
   </a>
   
@@ -1075,24 +1153,37 @@
 
 <h1 id="julia">Julia</h1>
 <h2 id="juliaup">Juliaup</h2>
+<p>Juliaup provides a convenient way to manage different versions of Julia and different package installations. It can be installed by running the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://install.julialang.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</span></code></pre></div>
+<p>This creates a .juliaup folder within your home directory that will contain all installations of Julia and their associated packages that are managed by Juliaup. This also edits your <code>.bashrc</code> and <code>.bash_profile</code> files, which run whenever you login to the cluster. This automatically adds Juliaup to your <code>$PATH</code> environment variable, meaning that this version of Julia becomes the default. To undo this, you can comment out the juliaup section of your <code>.bashrc</code> file and restart your session or edit the <code>$PATH</code> environment variable manually.</p>
+<p>Click <a href="https://github.com/JuliaLang/juliaup">here</a> for more information on using Juliaup.</p>
+<h3 id="installing-different-julia-versions">Installing Different Julia Versions</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install Julia 1.9.0:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>juliaup<span class="w"> </span>add<span class="w"> </span><span class="m">1</span>.9.0
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Use Julia 1.9.0:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>julia<span class="w"> </span>+1.9.0
+</span></code></pre></div>
 <h2 id="conda">Conda</h2>
-<h2 id="installing-alternate-julia-versions">Installing Alternate Julia Versions</h2>
+<h2 id="using-different-julia-versions">Using Different Julia Versions</h2>
+<h3 id="manual-installation">Manual Installation</h3>
 <p>There are a number of versions of Julia that are currently available on our clusters (see <a href="../modules/">here</a> for information on using different modules). However, sometimes, you may need a specific version of Julia that is not provided. If this happens, you can download it. </p>
 <p>A complete list of previous Julia versions can be found <a href="https://julialang.org/downloads/oldreleases/">here</a>. From this site, copy the link to the tar.gz file that corresponds to the version you need. Be sure to select the version for a Linux operating system and x86_64 architecture.</p>
 <p>Download the .tar file:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span><span class="o">[</span>link<span class="w"> </span>to<span class="w"> </span>file<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget<span class="w"> </span><span class="o">[</span>link<span class="w"> </span>to<span class="w"> </span>file<span class="o">]</span>
 </span></code></pre></div></p>
 <p>Extract the .tar file:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span><span class="o">[</span>file<span class="w"> </span>name<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span><span class="o">[</span>file<span class="w"> </span>name<span class="o">]</span>
 </span></code></pre></div></p>
 <p>Add the downloaded version to your path:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/path/to/your/julia/directory/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/path/to/your/julia/directory/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </span></code></pre></div></p>
 <p>The following example is for Julia 1.9.0:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>wget<span class="w"> </span>https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span>julia-1.9.0-linux-x86_64.tar.gz
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/julia-1.9.0/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>wget<span class="w"> </span>https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span>julia-1.9.0-linux-x86_64.tar.gz
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/julia-1.9.0/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </span></code></pre></div></p>
+<h2 id="jupyter-notebooks">Jupyter Notebooks</h2>
 
 
 
