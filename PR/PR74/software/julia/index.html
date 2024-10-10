@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
@@ -1156,14 +1156,33 @@
 <p>Juliaup provides a convenient way to manage different versions of Julia and different package installations. It can be installed by running the following command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://install.julialang.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </span></code></pre></div>
-<p>This creates a .juliaup folder within your home directory that will contain all installations of Julia and their associated packages that are managed by Juliaup. This also edits your <code>.bashrc</code> and <code>.bash_profile</code> files, which run whenever you login to the cluster. This automatically adds Juliaup to your <code>$PATH</code> environment variable, meaning that this version of Julia becomes the default. To undo this, you can comment out the juliaup section of your <code>.bashrc</code> file and restart your session or edit the <code>$PATH</code> environment variable manually.</p>
-<p>Click <a href="https://github.com/JuliaLang/juliaup">here</a> for more information on using Juliaup.</p>
+<p>You will be asked if you want to proceed with default settings or to customize your installation. We recommend customizing your installation. The default settings are as follows:</p>
+<ol>
+<li>
+<p>Save the .juliaup folder to your home directory. This folder contains all installations of Julia and their associated packages that are managed by Juliaup.</p>
+<ul>
+<li>On Satori, home directories are limited to 20 GB, so you may want to change this location to <code>/nobackup/users/&lt;user&gt;</code>.</li>
+</ul>
+</li>
+<li>
+<p>Edit your <code>.bashrc</code> and <code>.bash_profile</code> files to automatically add the Juliaup-managed version of Julia to your <code>$PATH</code> environment variable.</p>
+<ul>
+<li>
+<p>We generally discourage editing your <code>.bashrc</code> file because it can cause issues when trying to use other software. For example, if you want to use a pre-installed Julia module, you would have to manually remove Juliaup from your <code>$PATH</code> any time you connect to the cluster.</p>
+</li>
+<li>
+<p>To add Juliaup to your <code>$PATH</code> manually, run <code>export PATH=/path/to/.juliaup/bin${PATH:+:${PATH}}</code></p>
+</li>
+</ul>
+</li>
+</ol>
 <h3 id="installing-different-julia-versions">Installing Different Julia Versions</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install Julia 1.9.0:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>juliaup<span class="w"> </span>add<span class="w"> </span><span class="m">1</span>.9.0
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Use Julia 1.9.0:</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>julia<span class="w"> </span>+1.9.0
 </span></code></pre></div>
+<p>Click <a href="https://github.com/JuliaLang/juliaup">here</a> for more information on installing and using Juliaup.</p>
 <h2 id="conda">Conda</h2>
 <h2 id="using-different-julia-versions">Using Different Julia Versions</h2>
 <h3 id="manual-installation">Manual Installation</h3>
@@ -1204,7 +1223,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 9, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 10, 2024</span>
   </span>
 
     
