@@ -14,11 +14,11 @@
         <link rel="prev" href="../../software/compile/">
       
       
-        <link rel="next" href="../../recipes/mujoco/">
+        <link rel="next" href="../requesting-resources/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -809,6 +809,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requesting-resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requesting Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1334,7 +1355,7 @@
 <p>If you are part of a group that has purchased nodes you may see additional partitions. They will be named based on your PI's Kerberos or your group's name, depending on who purchased the nodes.</p>
 <h3 id="preemptable-jobs">Preemptable Jobs</h3>
 <p>We provide the <code>mit_preemptable</code> partition so that nodes owned by a group or PI can be used by researchers outside that group when those nodes are idle. When someone from the group that owns the node runs a job on their partition, the scheduler will stop, or preempt, any job that is running on the lower-priority <code>mit_preemptable</code> partition. Jobs running on <code>mit_preemptable</code> should be checkpointed so that they don't lose their progress when the job is stopped.</p>
-<!-- section on seeing  node stats in partition, partition rules -->
+<!-- section on seeing node stats in partition, partition rules -->
 
 <h2 id="checking-available-resources">Checking Available Resources</h2>
 <p>To see what resources are available run <code>sinfo</code>. The <code>sinfo</code> command will show how many nodes are in each state. Nodes in "idle" state have all cores available, nodes in "mix" state have some cores available, and nodes in "alloc" state have no cores or other resources available.</p>
@@ -1398,9 +1419,69 @@
 <li>Run your code or application as you would from the command line.</li>
 </ol>
 <h2 id="checking-job-status">Checking Job Status</h2>
-<p>To see all your currently running and pending jobs run the <code>squeue --me</code> command:</p>
+<p>To see all your currently running and pending jobs run the <code>squeue --me</code> command: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>squeue<span class="w"> </span>--me
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">             </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">          </span><span class="m">60735877</span><span class="w"> </span>mit_norma<span class="w"> </span>interact<span class="w"> </span>milechin<span class="w">  </span>R<span class="w">      </span><span class="m">29</span>:32<span class="w">      </span><span class="m">1</span><span class="w"> </span>node1707
+</span></code></pre></div>
+<p>each line in the output is a different job. The default fields are:</p>
+<ul>
+<li><code>JOBID</code>: The Job ID, each job has a unique ID that can be used to identify it.</li>
+<li><code>PARTITION</code>: The <a href="#partitions">partition</a> the job is running in</li>
+<li><code>NAME</code>: The name of the job. By default this is the name of your job script, or "interactive" for interactive jobs.</li>
+<li><code>USER</code>: Your username</li>
+<li><code>ST</code>: The job status. Common statuses are <code>R</code> for "Running", <code>PD</code> for "Pending", and <code>CG</code> for completing. Jobs in pending state have the reason the job is pending listed in the final <code>NODELIST(REASON)</code> column.</li>
+<li><code>TIME</code>: The amount of time the job has been running for.</li>
+<li><code>NODES</code>: The number of nodes your job is using.</li>
+<li><code>NODELIST(REASON)</code>: If your job is running this is the name of the node or nodes that your job is running on. If your job is pending this lists the reason the job is pending. Common pending reasons are "Resources", meaning the resources you've requested aren't yet available, "Priority", meaning there is someone else ahead of you in line to use the resources you've requested. Other reasons are listed in the <a href="https://slurm.schedmd.com/squeue.html#SECTION_JOB-REASON-CODES">Slurm documentation</a>.</li>
+</ul>
 <h2 id="stopping-jobs">Stopping Jobs</h2>
+<p>You can stop running or pending jobs with the <code>scancel</code> command. You can stop an individual job by providing a job id:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scancel<span class="w"> </span><span class="m">123456</span>
+</span></code></pre></div>
+<p>or a list of jobs by separating job IDs with a comma:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>scancel<span class="w"> </span><span class="m">123456</span>,123457
+</span></code></pre></div>
+<p>You can also stop all of your jobs by providing your username:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>scancel<span class="w"> </span>-u<span class="w"> </span>USERNAME
+</span></code></pre></div>
+<p>where <code>USERNAME</code> is your username.</p>
 <h2 id="retrieving-job-stats">Retrieving Job Stats</h2>
+<p>You can get information above currently and previously run jobs with the <code>sacct</code> command. This command can be very helpful for troubleshooting job issues, and is particularly helpful to check that you are getting the resources you expect allocated to your job.</p>
+<p>Running <code>sacct</code> with no flags will show some basic information about the jobs that you've run in the past day:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>USERNAME@orcd-login001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>sacct
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>JobID<span class="w">           </span>JobName<span class="w">  </span>Partition<span class="w">    </span>Account<span class="w">  </span>AllocCPUS<span class="w">      </span>State<span class="w"> </span>ExitCode<span class="w"> </span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">60764362</span><span class="w">     </span>interacti+<span class="w"> </span>sched_any+<span class="w"> </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w"> </span>CANCELLED+<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="m">60764363</span><span class="w">     </span>interacti+<span class="w"> </span>mit_normal<span class="w"> </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">  </span>COMPLETED<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="m">60764363</span>.in+<span class="w"> </span>interacti+<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">  </span>COMPLETED<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="m">60764363</span>.ex+<span class="w">     </span>extern<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">  </span>COMPLETED<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="m">60764366</span><span class="w">     </span>interacti+<span class="w"> </span>mit_normal<span class="w"> </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">    </span>RUNNING<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="m">60764366</span>.in+<span class="w"> </span>interacti+<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">    </span>RUNNING<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="m">60764366</span>.ex+<span class="w">     </span>extern<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">    </span>RUNNING<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span></code></pre></div>
+<p>You can select which fields are shown with the <code>-o</code> (output) flag, for example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>USERNAME@orcd-login001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>sacct<span class="w"> </span>-o<span class="w"> </span>JobID,JobName,AllocCPUs,NodeList,Elapsed,State
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>JobID<span class="w">           </span>JobName<span class="w">  </span>AllocCPUS<span class="w">        </span>NodeList<span class="w">    </span>Elapsed<span class="w">      </span>State<span class="w"> </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>---------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="m">60764362</span><span class="w">     </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">   </span>None<span class="w"> </span>assigned<span class="w">   </span><span class="m">00</span>:00:00<span class="w"> </span>CANCELLED+<span class="w"> </span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="m">60764363</span><span class="w">     </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:00:19<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="m">60764363</span>.in+<span class="w"> </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:00:19<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="m">60764363</span>.ex+<span class="w">     </span>extern<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:00:19<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="m">60764366</span><span class="w">     </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:01:40<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="m">60764366</span>.in+<span class="w"> </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:01:39<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="m">60764366</span>.ex+<span class="w">     </span>extern<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:01:40<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span></code></pre></div>
+<p>There are many fields that give a lot of information about your jobs. Running the <code>sacct -e</code> command will show all of them. A few that can be helpful are:</p>
+<ul>
+<li><code>AllocCPUs</code>, <code>AllocNodes</code>- Number of CPUs, number of nodes, or GPUs allocated to your job.</li>
+<li><code>ReqTRES</code>- Requested "trackable resources" (TRES). This is a fairly long string that will include any GPUs requested for the job. If the string is too long to display add <code>%60</code> to show 60 characters (<code>ReqTRES%60</code>), you can adjust the number of characters as needed.</li>
+<li><code>NodeList</code>- The list of nodes that your job ran on. This is helpful to see whether your jobs are consistently failing on the same node. If so, reach out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a> and let us know which node seems to be having an issue.</li>
+<li><code>Start</code>, <code>End</code>, <code>Elapsed</code>- The start time, end time, and total amount of time your job ran for.</li>
+<li><code>State</code>, <code>ExitCode</code>- The Job State and Exit Code. If the job failed there may be an exit code that can help determine why the job failed.</li>
+<li><code>MaxRSS</code>- The peak memory utilization of your job. This number can be used to fine-tune how much memory to request for your job. See the section on <a href="../requesting-resources/#memory">requesting memory</a> for more information.</li>
+</ul>
+<p>You can also specify a particular job with the <code>-j</code> flag (<code>sacct -j 60764366</code> for example).</p>
 
 
 
@@ -1421,7 +1502,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 14, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 17, 2024</span>
   </span>
 
     
@@ -1477,7 +1558,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
