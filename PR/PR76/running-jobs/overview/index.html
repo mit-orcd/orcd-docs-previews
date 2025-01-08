@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://orcd.mit.edu/running-jobs/overview/">
       
       
-        <link rel="prev" href="../../software/compile/">
+        <link rel="prev" href="../../software/R/">
       
       
         <link rel="next" href="../requesting-resources/">
@@ -593,6 +593,27 @@
   
   <span class="md-ellipsis">
     Compiling Codes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/R/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
   </span>
   
 
@@ -1481,7 +1502,8 @@
 <li><code>State</code>, <code>ExitCode</code>- The Job State and Exit Code. If the job failed there may be an exit code that can help determine why the job failed.</li>
 <li><code>MaxRSS</code>- The peak memory utilization of your job. This number can be used to fine-tune how much memory to request for your job. See the section on <a href="../requesting-resources/#memory">requesting memory</a> for more information.</li>
 </ul>
-<p>You can also specify a particular job with the <code>-j</code> flag (<code>sacct -j 60764366</code> for example).</p>
+<p>You can specify a particular job with the <code>-j</code> flag (<code>sacct -j 60764366</code> for example). You can also specify a start and end time if you are interested in seeing jobs that ran more than a day ago. Use the <code>--starttime</code> and <code>--endtime</code> flags to specify a date range, using the format <code>MMDDYY</code>, for example <code>sacct --starttime=010125 --endtime=010225</code>retrieves all your jobs that ran on the first two days of 2025.</p>
+<p>See the Slurm <a href="https://slurm.schedmd.com/sacct.html">sacct documentation</a> for more information on flags and fields.</p>
 
 
 
@@ -1502,7 +1524,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 17, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 8, 2025</span>
   </span>
 
     

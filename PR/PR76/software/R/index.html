@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/running-jobs/requesting-resources/">
+        <link rel="canonical" href="https://orcd.mit.edu/software/R/">
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../compile/">
       
       
-        <link rel="next" href="../../recipes/mujoco/">
+        <link rel="next" href="../../running-jobs/overview/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Requesting Resources - ORCD Docs</title>
+        <title>R - ORCD Docs</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running-jobs" class="md-skip">
+        <a href="#r" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Requesting Resources
+              R
             
           </span>
         </div>
@@ -487,17 +487,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -511,7 +513,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Software
@@ -525,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/modules/" class="md-nav__link">
+      <a href="../modules/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/python/" class="md-nav__link">
+      <a href="../python/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,97 +590,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/compile/" class="md-nav__link">
+      <a href="../compile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Compiling Codes
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../software/R/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    R
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Running Jobs
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            Running Jobs
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Scheduler Overview
   </span>
   
 
@@ -708,7 +624,7 @@
           
   
   <span class="md-ellipsis">
-    Requesting Resources
+    R
   </span>
   
 
@@ -719,7 +635,7 @@
         
   
   <span class="md-ellipsis">
-    Requesting Resources
+    R
   </span>
   
 
@@ -741,36 +657,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cores-for-multicore-and-shared-memory-jobs" class="md-nav__link">
+  <a href="#r-with-conda" class="md-nav__link">
     <span class="md-ellipsis">
-      Cores for Multicore and Shared Memory Jobs
+      R with Conda
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mpi-and-distributed-jobs" class="md-nav__link">
+  <a href="#pre-installed-r-modules" class="md-nav__link">
     <span class="md-ellipsis">
-      MPI and Distributed Jobs
+      Pre-Installed R Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Installed R Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Packages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rstudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      RStudio
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#memory" class="md-nav__link">
+  <a href="#jupyter" class="md-nav__link">
     <span class="md-ellipsis">
-      Memory
+      Jupyter
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpus" class="md-nav__link">
+  <a href="#faqs" class="md-nav__link">
     <span class="md-ellipsis">
-      GPUs
+      FAQs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Resources
     </span>
   </a>
   
@@ -780,6 +729,90 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Running Jobs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Running Jobs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scheduler Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/requesting-resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requesting Resources
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1129,36 +1162,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cores-for-multicore-and-shared-memory-jobs" class="md-nav__link">
+  <a href="#r-with-conda" class="md-nav__link">
     <span class="md-ellipsis">
-      Cores for Multicore and Shared Memory Jobs
+      R with Conda
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mpi-and-distributed-jobs" class="md-nav__link">
+  <a href="#pre-installed-r-modules" class="md-nav__link">
     <span class="md-ellipsis">
-      MPI and Distributed Jobs
+      Pre-Installed R Modules
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Installed R Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Packages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rstudio" class="md-nav__link">
+    <span class="md-ellipsis">
+      RStudio
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#memory" class="md-nav__link">
+  <a href="#jupyter" class="md-nav__link">
     <span class="md-ellipsis">
-      Memory
+      Jupyter
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpus" class="md-nav__link">
+  <a href="#faqs" class="md-nav__link">
     <span class="md-ellipsis">
-      GPUs
+      FAQs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further Resources
     </span>
   </a>
   
@@ -1177,104 +1243,128 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../tags/#software" class="md-tag">Software</a>
+    
+  
+    
+    
+    
+      <a href="../../tags/#r" class="md-tag">R</a>
+    
+  
+</nav>
 
 
-<h1 id="running-jobs">Running Jobs</h1>
-<p>On the <a href="../overview/">Job Scheduler Overview</a> page we described how to run both <a href="../overview/#batch-jobs">batch</a> and <a href="../overview/#interactive-jobs">interactive</a> jobs. This page describes how to request resources for your job.</p>
-<h2 id="cores-for-multicore-and-shared-memory-jobs">Cores for Multicore and Shared Memory Jobs</h2>
-<p>For any kind of multithreading, multiprocessing, shared memory, OpenMP, or similar jobs you can use the <code>-c</code> or <code>--cpus-per-task</code> flag to request additional cores.</p>
-<p>An example batch script that requests 4 cores on the mit_normal partition would be:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Job Flags</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#SBATCH -c 4</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Set up environment</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Run your application</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>python<span class="w"> </span>myscript.py
+
+<h1 id="r">R</h1>
+<p>R is a powerful programming language widely used for statistical computing and graphics. It provides a variety of statistical techniques and graphical tools, making it a useful tool for data analysis and visualization.</p>
+<h2 id="r-with-conda">R with Conda</h2>
+<p>Conda is a package manager commonly used for Python, but is compatible with R and can be very useful for installing packages. This can be helpful when the packages you need have specific dependency requirements. Because of these benefits, <strong>Conda is our recommended process for using R on the cluster.</strong> You can find more information on Conda in the <a href="../python/#conda-environments">Python software section</a>.</p>
+<p>When you create a Conda environment, you can specify exactly the packages you need. First, you'll need to load a pre-installed Conda module. There are multiple available, but we recommend Miniforge:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">Satori</label><label for="__tabbed_1_3">SuperCloud</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/24.3.0-0
 </span></code></pre></div>
-<h2 id="mpi-and-distributed-jobs">MPI and Distributed Jobs</h2>
-<p>There are a few flags to be aware of for running distributed and MPI jobs. These types of jobs can run across multiple nodes, so there are a few flags that can control how these tasks are spread out.</p>
-<ul>
-<li><code>-n</code> or <code>--ntasks</code>: This flag is used to specify the total number of distributed or MPI processes or ranks that your application uses. "Task" is roughly the term that Slurm uses for a process. By default you get <code>ntasks</code> number of cores for your job, one per task.</li>
-<li><code>-N</code> or <code>--nodes</code>: This is the number of nodes your tasks are spread across. If you don't specify <code>ntasks</code> or <code>ntasks-per-node</code> you will get one per node. If you specify <code>ntasks</code> they may be split roughly evenly across <code>nodes</code>, but not necessarily. It is generally more efficient for processes on the same node to communicate, so in practice you often want to avoid spreading your tasks across more nodes than necessary. </li>
-<li><code>--ntasks-per-node</code>: Use with <code>--nodes</code>, this specifies how many tasks should be assigned to each node.</li>
-</ul>
-<p>At minimum you'll need to use the <code>-n</code> or <code>--ntasks</code> flag. This job here runs an MPI job with 4 processes:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Job Flags</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">#SBATCH -n 4</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Set up environment</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Run your application</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>mpirun<span class="w"> </span>my_program
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module<span class="w"> </span>load<span class="w"> </span>anaconda3/2020.02-2ks5tch
 </span></code></pre></div>
-<p>Note that <code>mpirun</code> does not necessarily need to be told how many how many processes to start, it can get this information from the scheduler.</p>
-<p>When your MPI job gets too big to fit on a single node, or you want to have more control over how your processes are spread out, use the <code>--nodes</code> and <code>--ntasks-per-node</code>. This script runs an MPI job that requests 2 nodes and 64 tasks per node, for a total of 128 MPI processes.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Job Flags</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#SBATCH --nodes=2</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#SBATCH --ntasks-per-node=64</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Set up environment</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Run your application</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>mpirun<span class="w"> </span>my_program
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>anaconda/2023b
 </span></code></pre></div>
-<p>The following will still allocate 128 MPI processes across 2 nodes, but they may not necessarily be evenly split between the two nodes.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Job Flags</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#SBATCH --nodes=2</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#SBATCH --ntasks=128</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Set up environment</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># Run your application</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>mpirun<span class="w"> </span>my_program
+<p>More information on running R on SuperCloud can be found <a href="https://mit-supercloud.github.io/supercloud-docs/software-packages/#r-libraries">here</a>.</p>
+</div>
+</div>
+</div>
+<p>Now, you should be able to run <code>conda</code> commands, such as creating and activating an environment:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my_R_environment
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>my_R_environment
 </span></code></pre></div>
-<h2 id="memory">Memory</h2>
-<p>Each job is allocated some default amount of memory, the amount depending on the node. If you find that you are running out of memory you can request more with the <code>--mem</code> or <code>--mem-per-core</code> flags.</p>
-<p>Here is an example of a job multicore job that requests 4 cores and 16GB of RAM:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Job Flags</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">#SBATCH -c 4</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#SBATCH --mem=16G</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Set up environment</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Run your application</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>python<span class="w"> </span>myscript.py
+<p>To search for specific R packages (beginning with "r-"), you can use <code>conda search</code>. For example, the following looks for all versions of Tidyverse available through Conda:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>conda<span class="w"> </span>search<span class="w"> </span>r-tidyverse
 </span></code></pre></div>
-<p>How do you know how much memory your job needs? You can find out how much memory a job used after the job is completed. First, run your job with your best estimate for how much memory you need (you can overestimate), and run the job long enough to get an idea of the memory requirement. If the job fails run the job again requesting more memory. Then you can use the <code>sacct</code> slurm command to get the memory used:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sacct<span class="w"> </span>-j<span class="w"> </span>JOBID<span class="w"> </span>-o<span class="w"> </span>JobID,JobName,State,ReqMem,MaxRSS<span class="w"> </span>--units<span class="o">=</span>G
+<p>The base R installation through Conda is called <code>r-base</code>. This will automatically be downloaded and installed when you install any R package to your environment. To install packages, use <code>conda install</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>conda<span class="w"> </span>install<span class="w"> </span>r-tidyverse
 </span></code></pre></div>
-<p>where <code>JOBID</code> is your job ID. <code>State</code> shows the job status, keep in mind
-that the amount of memory reported by <code>sacct</code> is only accurate for jobs that are no longer running, and <code>ReqMem</code> is the number of memory that was allocated to the job. <code>MaxRSS</code> is the maximum resident memory (maximum memory footprint) used by each job.</p>
-<p>If the <code>MaxRSS</code> value is larger than what you have requested, or you run out of memory, you will have to request additional memory for your job.</p>
-<h2 id="gpus">GPUs</h2>
-<p>The <code>--gres</code> flag is used to request GPUs in the following way:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--gres<span class="o">=</span>gpu:<span class="o">[</span>GPU_TYPE<span class="o">]</span>:<span class="o">[</span><span class="c1">#GPUS]</span>
+<p>By default, the latest compatible versions of <code>r-base</code> and other R packages are automatically installed. If you prefer different versions of R (<code>r-base</code>) or you need a specific version of a package, you can specify in your <code>install</code> command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>conda<span class="w"> </span>install<span class="w"> </span>r-base<span class="o">=</span><span class="m">4</span>.1.2
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>conda<span class="w"> </span>install<span class="w"> </span>r-tidyverse<span class="o">=</span><span class="m">2</span>.0.0
 </span></code></pre></div>
-<p>For example, to request 1 L40S GPU, use the flag <code>--gres=gpu:l40s:1</code>, or to request 2 H100 GPUs use the flag <code>--gres=gpu:h100:2</code>.</p>
-<p>You can see how many GPUs of which type are on each node in a partition using the <code>sinfo</code> command. For example, to check <code>mit_normal_gpu</code> run the command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sinfo<span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>-O<span class="w"> </span>Partition,Nodes,CPUs,Memory,Gres
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It's much more efficient to specify all the packages you need when you first create your environment rather than installing them one by one. This way, the environment only needs to be solved once, and Conda ensures that packages are compatible with each other. You can do this by naming the packages in the <code>create</code> command: <code>conda create -n my_R_env r-tidyverse r-pillar</code></p>
+</div>
+<p>Once your environment is created and activated, entering <code>which R</code> should direct you to the version of R within your Conda environment.</p>
+<h2 id="pre-installed-r-modules">Pre-Installed R Modules</h2>
+<p>There are currently a few different versions of R installed on our systems. You can find these versions by running <code>module avail</code>. To use an R interactive environment, first load an R module, then enter <code>R</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">Satori</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>On Rocky8 nodes (eofe4 and eofe10):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>module<span class="w"> </span>load<span class="w"> </span>r/4.2.2-x86_64
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>R
 </span></code></pre></div>
+<p>On Centos7 nodes (eofe7, eofe8, and eofe9):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>module<span class="w"> </span>load<span class="w"> </span>R/4.2.2
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>R
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>module<span class="w"> </span>load<span class="w"> </span>r/4.0.3-ue52ngj
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>R
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="installing-packages">Installing Packages</h3>
+<p>The pre-installed R modules come with a limited number of packages, but it is possible to install more. This can be acheived using the standard R command <code>install.packages("packageName")</code>.</p>
+<p>R will first try to install this package system-wide but will be blocked to avoid editing the module for the entire cluster. You will be asked if you want to use a personal library instead. Type "yes" and press enter. This creates a folder in your home directory that contains the packages for each version of R you use. You can check this directory by running <code>.libPaths()</code> from the R CLI.</p>
+<h2 id="rstudio">RStudio</h2>
+<p>Currently, the only cluster that RStudio is available on is Engaging. This is accessible through <a href="https://engaging-ood.mit.edu">Engaging OnDemand</a> &gt; Interactive Apps &gt; RStudio Server. From there, select the specifications you need, including runtime, memory, and R version. Currently, OnDemand does not support local installations of R or versions of R installed through Conda.</p>
+<p>You can install packages using the <code>install.packages()</code> command. As with running R from the command line via SSH, the new packages should automatically be installed to your home directory.</p>
+<h2 id="jupyter">Jupyter</h2>
+<p>Similar to RStudio, Jupyter notebooks offer a handy cell-based interface to run R code. You can run R on Jupyter notebooks through the Engaging web portal.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Jupyter notebooks are available through <a href="https://engaging-ood.mit.edu">Engaging OnDemand</a> &gt; Interactive Apps &gt; Jupyter Notebook. To run R, you must create a Conda environment with both r-irkernel and jupyterlab installed (see <a href="#r-with-conda">R with Conda</a>). When starting up the notebook, enter the name of your custom Conda environment. Once you launch the session and open your notebook, you may need to change your kernel to R. Your current kernel is shown in the top right, and likely defaults to "Python 3 (ipykernel)". Click this to change it to R.</p>
+</div>
+</div>
+</div>
+<!-- === "SuperCloud"
+
+    Click [here](https://txe1-portal.mit.edu/jupyter/jupyter_notebook.php) to open a Jupyter notebook on the SuperCloud web portal.
+
+    On SuperCloud, the version of R that is available is from the pre-installed R environment on Anaconda. As a result, you cannot install additional packages. Unfortunately, it is not possible to connect your own Conda environment to Jupyter on this cluster.
+
+    You can find more information about running Jupyter notebooks on SuperCloud [here](https://mit-supercloud.github.io/supercloud-docs/jupyter-notebooks/). 
+
+    NOTE: It may be possible to run your own custom environment on a Jupyter notebook on supercloud. However, right now you cannot open a jupyter notebook with Anaconda 2023a or 2023b, even when using the standard ipykernel. Anaconda 2024b works on Jupyter, but it does not recognize any custom environments. There is no Anaconda 2024b available as a module.
+    -->
+
+<h2 id="faqs">FAQs</h2>
+<p><strong>I am trying to use a specific R installation, but it is not being recognized. What should I do?</strong></p>
+<p>Sometimes, the way your environment is set up may cause the system to default to certain R installations that you don't want. The culprit can often be found in your <code>.bashrc</code> and/or <code>.bash_profile</code> file. Usually, running <code>module purge</code> from the command line before loading the version of R you want solves the problem.</p>
+<p><strong>How do I change the path where my libraries are installed?</strong></p>
+<p>Before starting R, you can set the <code>R_LIBS_USER</code> environment variable from your Bash terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">R_LIBS_USER</span><span class="o">=</span>/path/to/R/library/directory
+</span></code></pre></div>
+<p>You can also set the path from within R:</p>
+<div class="language-R highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nf">.libPaths</span><span class="p">(</span><span class="s">&quot;/path/to/R/library/directory&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Both of these commands essentially prepend your custom path to the library path that already existed.</p>
+<h2 id="further-resources">Further Resources</h2>
+<p><a href="https://engaging-web.mit.edu/eofe-wiki/software/r_packages/">Engaging: R Packages</a></p>
+<p><a href="https://mit-satori.github.io/satori-R.html">Satori: R on Satori</a></p>
+<p><a href="https://mit-supercloud.github.io/supercloud-docs/software-packages/#r-libraries">SuperCloud: Software and Package Management - R Libraries</a></p>
 
 
 
@@ -1295,7 +1385,7 @@ that the amount of memory reported by <code>sacct</code> is only accurate for jo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 8, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 7, 2025</span>
   </span>
 
     
