@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/accessing-orcd/ssh-setup/">
+        <link rel="canonical" href="https://orcd.mit.edu/running-jobs/requesting-resources/">
       
       
-        <link rel="prev" href="../ssh-login/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../../recipes/vscode/">
+        <link rel="next" href="../../recipes/mujoco/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>SSH Key Setup - ORCD Docs</title>
+        <title>Requesting Resources - ORCD Docs</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ssh-key-setup" class="md-skip">
+        <a href="#running-jobs" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SSH Key Setup
+              Requesting Resources
             
           </span>
         </div>
@@ -256,19 +256,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -282,7 +280,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Accessing ORCD Systems
@@ -296,7 +294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ondemand-login/" class="md-nav__link">
+      <a href="../../accessing-orcd/ondemand-login/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -317,7 +315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ssh-login/" class="md-nav__link">
+      <a href="../../accessing-orcd/ssh-login/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -335,30 +333,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    SSH Key Setup
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -367,71 +345,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#checking-for-existing-ssh-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      Checking for Existing SSH Keys
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generating-ssh-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generating SSH Keys
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#uploading-ssh-key-on-our-systems" class="md-nav__link">
-    <span class="md-ellipsis">
-      Uploading SSH Key on Our Systems
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#testing-your-ssh-key-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Testing your SSH Key Setup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting-ssh-key-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting SSH Key Issues
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -721,17 +634,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -745,7 +660,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Running Jobs
@@ -759,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running-jobs/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -777,10 +692,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../running-jobs/requesting-resources/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Requesting Resources
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -789,6 +724,62 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cores-for-multicore-and-shared-memory-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cores for Multicore and Shared Memory Jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mpi-and-distributed-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPI and Distributed Jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPUs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1138,45 +1129,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#checking-for-existing-ssh-keys" class="md-nav__link">
+  <a href="#cores-for-multicore-and-shared-memory-jobs" class="md-nav__link">
     <span class="md-ellipsis">
-      Checking for Existing SSH Keys
+      Cores for Multicore and Shared Memory Jobs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#generating-ssh-keys" class="md-nav__link">
+  <a href="#mpi-and-distributed-jobs" class="md-nav__link">
     <span class="md-ellipsis">
-      Generating SSH Keys
+      MPI and Distributed Jobs
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#uploading-ssh-key-on-our-systems" class="md-nav__link">
+  <a href="#memory" class="md-nav__link">
     <span class="md-ellipsis">
-      Uploading SSH Key on Our Systems
+      Memory
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#testing-your-ssh-key-setup" class="md-nav__link">
+  <a href="#gpus" class="md-nav__link">
     <span class="md-ellipsis">
-      Testing your SSH Key Setup
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting-ssh-key-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting SSH Key Issues
+      GPUs
     </span>
   </a>
   
@@ -1195,124 +1177,104 @@
               <article class="md-content__inner md-typeset">
                 
                   
-  
-<nav class="md-tags" >
-  
-    
-    
-    
-      <a href="../../tags/#ssh-key-setup" class="md-tag">SSH Key Setup</a>
-    
-  
-</nav>
 
 
-
-<h1 id="ssh-key-setup">SSH Key Setup</h1>
-<p>An SSH key is a secure access credential used in the SSH protocol and establishes a secure and encrypted connection to our HPC systems. This page is for those who wish to implement SSH key authentication on top of general MIT Kerberos authentication.</p>
-<p>SSH keys consist of a pair: a public key and a private key. </p>
+<h1 id="running-jobs">Running Jobs</h1>
+<p>On the <a href="../overview/">Job Scheduler Overview</a> page we described how to run both <a href="../overview/#batch-jobs">batch</a> and <a href="../overview/#interactive-jobs">interactive</a> jobs. This page describes how to request resources for your job.</p>
+<h2 id="cores-for-multicore-and-shared-memory-jobs">Cores for Multicore and Shared Memory Jobs</h2>
+<p>For any kind of multithreading, multiprocessing, shared memory, OpenMP, or similar jobs you can use the <code>-c</code> or <code>--cpus-per-task</code> flag to request additional cores.</p>
+<p>An example batch script that requests 4 cores on the mit_normal partition would be:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#SBATCH -c 4</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Run your application</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>python<span class="w"> </span>myscript.py
+</span></code></pre></div>
+<h2 id="mpi-and-distributed-jobs">MPI and Distributed Jobs</h2>
+<p>There are a few flags to be aware of for running distributed and MPI jobs. These types of jobs can run across multiple nodes, so there are a few flags that can control how these tasks are spread out.</p>
 <ul>
-<li><strong>Public Key</strong>: This key can be shared freely and is used to encrypt data that only the corresponding private key can decrypt.</li>
-<li><strong>Private Key</strong>: This key must be kept secure and private. It is used to decrypt data encrypted with the corresponding public key and to prove the identity of the user during the SSH authentication process.</li>
+<li><code>-n</code> or <code>--ntasks</code>: This flag is used to specify the total number of distributed or MPI processes or ranks that your application uses. "Task" is roughly the term that Slurm uses for a process. By default you get <code>ntasks</code> number of cores for your job, one per task.</li>
+<li><code>-N</code> or <code>--nodes</code>: This is the number of nodes your tasks are spread across. If you don't specify <code>ntasks</code> or <code>ntasks-per-node</code> you will get one per node. If you specify <code>ntasks</code> they may be split roughly evenly across <code>nodes</code>, but not necessarily. It is generally more efficient for processes on the same node to communicate, so in practice you often want to avoid spreading your tasks across more nodes than necessary. </li>
+<li><code>--ntasks-per-node</code>: Use with <code>--nodes</code>, this specifies how many tasks should be assigned to each node.</li>
 </ul>
-<p>When you attempt to connect to an HPC system using SSH key authentication, the system uses your public key to initiate a challenge that can only be answered correctly using your private key. If the correct response is received, the system verifies your identity and grants access. </p>
-<p>Using the key and lock analogy, the private key is like your key, and the public key is like a lock you might place on a gym locker, which would be like your account on an ORCD system. You can leave the lock locked on the locker at the gym, because no one can open the lock without the key, but you wouldn't want to share your key with anyone else, because then they could get into your locker.</p>
-<div class="admonition danger">
-<p class="admonition-title">Do Not Share Your Private Key</p>
-<p>Your private key should never be shared with anyone. If someone else obtains your private key, they could potentially gain unauthorized access to any system your key is associated with.</p>
-</div>
-<h2 id="checking-for-existing-ssh-keys">Checking for Existing SSH Keys</h2>
-<p>Before you generate an SSH key, you should check for existing SSH keys.  </p>
-<ol>
-<li>Open your local terminal.  </li>
-<li>Run the following command to view all existing SSH keys:<br />
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ls<span class="w"> </span>-al<span class="w"> </span>~/.ssh
-</span></code></pre></div></li>
-<li>If you see a list of files, you have existing SSH keys.
-If you receive an error that ~/.ssh doesn't exist, you do not have an existing SSH key pair in the default location. You can create a new SSH key pair in the next step.</li>
-</ol>
-<h2 id="generating-ssh-keys">Generating SSH Keys</h2>
-<p>If you do not have an existing SSH key, follow these steps. </p>
-<ol>
-<li>Open your local Terminal.  </li>
-<li>Run the following command to generate an RSA key:<br />
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa
-</span></code></pre></div></li>
-<li>
-<p><strong>Save the key pair:</strong> You will be prompted to enter a file path to save the key. Press <code>Enter</code> to accept the default location:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Enter a file in which to save the key (/home/your_username/.ssh/id_rsa):
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>Passphrase:</strong> 
-You will be asked to enter a passphrase for additional security. You can either enter a passphrase or leave it empty and press <code>Enter</code>:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Enter passphrase (empty for no passphrase):
-</span></code></pre></div></p>
-</li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>On ORCD systems, we recommend setting a passphrase as it provides extra security for your account by helping to prevent someone else from using your SSH keys. When you create a passphrase, your private key can only authenticate into your account when the correct passphrase is provided during login. <strong>Since you set your passphrase on your system, ORCD staff cannot help you remember or reset the passphrase for your SSH keys. You must create new SSH keys if you cannot remember your passphrase.</strong></p>
-</div>
-<h2 id="uploading-ssh-key-on-our-systems">Uploading SSH Key on Our Systems</h2>
-<p>To upload your SSH key on our systems, you must update the <code>authorized_keys</code> file in the respective system via terminal. Alternatively, for the Engaging System, you have the option to use OnDemand, and for SuperCloud, you can fill out an SSH key addition form.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Terminal</label><label for="__tabbed_1_2">Engaging OnDemand</label><label for="__tabbed_1_3">SuperCloud</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>To add your SSH key via Terminal, please follow the steps outlined below:</p>
-<ol>
-<li>Login to an HPC system login-node using MIT Kerberos Login.</li>
-<li>On your local machine, copy the contents of your public key (<code>~/.ssh/id_rsa.pub</code>):
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub
-</span></code></pre></div><blockquote>
-<p>Make sure to copy the entire line starting with ssh-rsa and ending with your email address or comment. </p>
-</blockquote>
-</li>
-<li>On the head-node, append the copied contents to the authorized_keys file located at <code>/home/[username]/.ssh/authorized_keys</code>. You can use any text editor of your choice, such as nano and vim. For example, if you're using <code>nano</code>, the command would be:
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nano<span class="w"> </span>/home/<span class="o">[</span>username<span class="o">]</span>/.ssh/authorized_keys
-</span></code></pre></div></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Do not remove anything already present in the authorized_keys file. Be careful to append your key to the end of the file rather than replacing its contents.</strong></p>
-</div>
-</div>
-<div class="tabbed-block">
-<p>To add your SSH key to Engaging via OnDemand, please follow the steps outlined below:</p>
-<ol>
-<li>Login to Engaging OnDemand through the <a href="https://engaging-ood.mit.edu/">portal</a>.</li>
-<li>Once logged in, navigate to <code>Files</code> and <code>Home Directory</code>.</li>
-<li>On the top right corner, check <code>Show Dotfiles</code>.
-<img alt="Dotfiles Option" src="../../images/ssh-setup/dotfiles.png" /></li>
-<li>Click on the <code>.ssh</code> folder.
-<img alt=".ssh File Location" src="../../images/ssh-setup/ssh_location.png" /></li>
-<li>Locate and edit the <code>authorized_keys</code> file to add your new key.
-<img alt="authorized_keys Image" src="../../images/ssh-setup/authorized_keys.png" /></li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><strong>Do not remove anything already present in the authorized_keys file. Be careful to append your key to the end of the file rather than replacing its contents.</strong></p>
-</div>
-</div>
-<div class="tabbed-block">
-<p>To add your SSH key to SuperCloud, please follow the steps outlined below:</p>
-<ol>
-<li>Navigate to the <a href="https://supercloud.mit.edu/requesting-account#adding-keys">SuperCloud SSH Key Addition Form</a> and follow the instructions to add your SSH key. </li>
-<li>If you encounter any problems during the SSH key submission process, refer to the <a href="https://mit-supercloud.github.io/supercloud-docs/ssh-troubleshooting-checklist/">SSH Troubleshooting Checklist</a> for guidance. </li>
-</ol>
-</div>
-</div>
-</div>
-<h2 id="testing-your-ssh-key-setup">Testing your SSH Key Setup</h2>
-<p>To ensure that your SSH key is correctly configured, follow these steps:</p>
-<ol>
-<li>Attempt to login on your terminal: <code>ssh your_username@cluster_address</code>. For more details, you can reference the <a href="../../getting-started/">Getting Started Tutorial</a> page.</li>
-<li>If prompted for a password, the SSH key setup did not work. Recheck the steps and correct any issues.</li>
-</ol>
-<h2 id="troubleshooting-ssh-key-issues">Troubleshooting SSH Key Issues</h2>
-<p>If you encounter SSH key issues, you can reference the <a href="https://mit-supercloud.github.io/supercloud-docs/ssh-troubleshooting-checklist/">SSH Troubleshooting Checklist</a>. While this guide is for SuperCloud, it should be helpful for other systems as well. If you are still having problems, please email us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a> and visit the <a href="../../getting-help/">Getting Help</a> page. In your help email, please include the output of the following command:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh<span class="w"> </span>-vvv<span class="w"> </span>USERNAME@cluster_address
-</span></code></pre></div></p>
+<p>At minimum you'll need to use the <code>-n</code> or <code>--ntasks</code> flag. This job here runs an MPI job with 4 processes:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">#SBATCH -n 4</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Run your application</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>mpirun<span class="w"> </span>my_program
+</span></code></pre></div>
+<p>Note that <code>mpirun</code> does not necessarily need to be told how many how many processes to start, it can get this information from the scheduler.</p>
+<p>When your MPI job gets too big to fit on a single node, or you want to have more control over how your processes are spread out, use the <code>--nodes</code> and <code>--ntasks-per-node</code>. This script runs an MPI job that requests 2 nodes and 64 tasks per node, for a total of 128 MPI processes.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#SBATCH --nodes=2</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#SBATCH --ntasks-per-node=64</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Run your application</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>mpirun<span class="w"> </span>my_program
+</span></code></pre></div>
+<p>The following will still allocate 128 MPI processes across 2 nodes, but they may not necessarily be evenly split between the two nodes.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#SBATCH --nodes=2</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#SBATCH --ntasks=128</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># Run your application</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>mpirun<span class="w"> </span>my_program
+</span></code></pre></div>
+<h2 id="memory">Memory</h2>
+<p>Each job is allocated some default amount of memory, the amount depending on the node. If you find that you are running out of memory you can request more with the <code>--mem</code> or <code>--mem-per-core</code> flags.</p>
+<p>Here is an example of a job multicore job that requests 4 cores and 16GB of RAM:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">#SBATCH -c 4</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#SBATCH --mem=16G</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Run your application</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>python<span class="w"> </span>myscript.py
+</span></code></pre></div>
+<p>How do you know how much memory your job needs? You can find out how much memory a job used after the job is completed. First, run your job with your best estimate for how much memory you need (you can overestimate), and run the job long enough to get an idea of the memory requirement. If the job fails run the job again requesting more memory. Then you can use the <code>sacct</code> slurm command to get the memory used:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sacct<span class="w"> </span>-j<span class="w"> </span>JOBID<span class="w"> </span>-o<span class="w"> </span>JobID,JobName,State,ReqMem,MaxRSS<span class="w"> </span>--units<span class="o">=</span>G
+</span></code></pre></div>
+<p>where <code>JOBID</code> is your job ID. <code>State</code> shows the job status, keep in mind
+that the amount of memory reported by <code>sacct</code> is only accurate for jobs that are no longer running, and <code>ReqMem</code> is the number of memory that was allocated to the job. <code>MaxRSS</code> is the maximum resident memory (maximum memory footprint) used by each job.</p>
+<p>If the <code>MaxRSS</code> value is larger than what you have requested, or you run out of memory, you will have to request additional memory for your job.</p>
+<h2 id="gpus">GPUs</h2>
+<p>The <code>--gres</code> flag is used to request GPUs in the following way:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--gres<span class="o">=</span>gpu:<span class="o">[</span>GPU_TYPE<span class="o">]</span>:<span class="o">[</span><span class="c1">#GPUS]</span>
+</span></code></pre></div>
+<p>For example, to request 1 L40S GPU, use the flag <code>--gres=gpu:l40s:1</code>, or to request 2 H100 GPUs use the flag <code>--gres=gpu:h100:2</code>.</p>
+<p>You can see how many GPUs of which type are on each node in a partition using the <code>sinfo</code> command. For example, to check <code>mit_normal_gpu</code> run the command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sinfo<span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>-O<span class="w"> </span>Partition,Nodes,CPUs,Memory,Gres
+</span></code></pre></div>
 
 
 
@@ -1333,7 +1295,7 @@ You will be asked to enter a passphrase for additional security. You can either 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 19, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 8, 2025</span>
   </span>
 
     
