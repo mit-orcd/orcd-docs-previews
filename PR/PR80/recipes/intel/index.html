@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/recipes/intel/">
       
       
+        <link rel="prev" href="../pycharm/">
+      
+      
+        <link rel="next" href="../../acknowledgements/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -779,17 +783,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -804,7 +810,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
@@ -987,6 +993,96 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Intel compiler
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Intel compiler
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-intel-compiler-on-rocky-8-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Intel compiler on Rocky 8 nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-intel-compiler-on-centos-7-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Intel compiler on CentOS 7 nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1143,6 +1239,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1196,7 +1301,7 @@
 <h1 id="intel-compiler">Intel compiler</h1>
 <p>Intel compiler is optimized for intel CPUs. It provides an MPI implemetation and the Math Kernel Library (MKL). The performance of C and Fortran codes can be improved on Intel CPUs if compiled with Intel compiler.</p>
 <h2 id="use-intel-compiler-on-rocky-8-nodes">Use Intel compiler on Rocky 8 nodes</h2>
-<p>Log in to the Rocky 8 head node first,
+<p>Log in to a Rocky 8 head node first,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@orcd-login003.mit.edu
 </span></code></pre></div></p>
 <blockquote>
@@ -1232,9 +1337,9 @@ or MPI codes,
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>MPIFC=mpiifort
 </span></code></pre></div>
 Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
-<p>See the reference at the end of this page for how to compile C/Fortran codes and use GNU make. </p>
+<p>To run your program, submit jobs to a partition with Rocky 8 and specify the OS with <code>--constraint=rocky8</code>. </p>
 <h2 id="use-intel-compiler-on-centos-7-nodes">Use Intel compiler on CentOS 7 nodes</h2>
-<p>Log in to the Rocky 8 head node first,
+<p>Log in to a CentOS 7 head node first,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh &lt;user&gt;@orcd-vlogin003.mit.edu
 </span></code></pre></div></p>
 <blockquote>
@@ -1264,11 +1369,13 @@ Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>MPIFC=mpiifort
 </span></code></pre></div>
 Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
-<p>See the reference at the end of this page for how to compile C/Fortran codes and use GNU make. </p>
-<details>
-<summary>Reference: compile C/Fortran codes and GNU make</summary>
-<p>Refer to <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-login/">this page</a>. </p>
-</details>
+<p>To run your program, submit jobs to a partition with CentOS 7 and specify the OS with <code>--constraint=centos7</code>. </p>
+<h2 id="references">References</h2>
+<p>Refer to the following references for compiling C/Fortran codes, using GNU make, and using partitions in Slurm job scheduler. </p>
+<p>!!! "Reference: Compile C/Fortran Codes and Use GNU Make"
+    Refer to <a href="https://orcd-docs.mit.edu/running-jobs/overview/">this page</a>. </p>
+<p>!!! "Reference: Job Scheduler Overview"
+    Refer to <a href="https://orcd-docs.mit.edu/software/compile/">this page</a>. </p>
 
 
 
