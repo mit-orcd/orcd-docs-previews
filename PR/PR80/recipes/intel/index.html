@@ -1048,18 +1048,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-intel-compiler-on-rocky-8-nodes" class="md-nav__link">
+  <a href="#set-up-environment-on-rocky-8-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Intel compiler on Rocky 8 nodes
+      Set up environment on Rocky 8 nodes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-intel-compiler-on-centos-7-nodes" class="md-nav__link">
+  <a href="#set-up-environment-on-centos-7-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Intel compiler on CentOS 7 nodes
+      Set up environment on CentOS 7 nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compile-and-run-programs-with-intel-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compile and run programs with Intel compiler
     </span>
   </a>
   
@@ -1222,18 +1231,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-intel-compiler-on-rocky-8-nodes" class="md-nav__link">
+  <a href="#set-up-environment-on-rocky-8-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Intel compiler on Rocky 8 nodes
+      Set up environment on Rocky 8 nodes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-intel-compiler-on-centos-7-nodes" class="md-nav__link">
+  <a href="#set-up-environment-on-centos-7-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Use Intel compiler on CentOS 7 nodes
+      Set up environment on CentOS 7 nodes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compile-and-run-programs-with-intel-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compile and run programs with Intel compiler
     </span>
   </a>
   
@@ -1300,13 +1318,10 @@
 
 <h1 id="intel-compiler">Intel compiler</h1>
 <p>Intel compiler is optimized for intel CPUs. It provides an MPI implemetation and the Math Kernel Library (MKL). The performance of C and Fortran codes can be improved on Intel CPUs if compiled with Intel compiler.</p>
-<h2 id="use-intel-compiler-on-rocky-8-nodes">Use Intel compiler on Rocky 8 nodes</h2>
-<p>Log in to a Rocky 8 head node first,
+<h2 id="set-up-environment-on-rocky-8-nodes">Set up environment on Rocky 8 nodes</h2>
+<p>If you use Rocky 8 nodes, log in to an appropriate head node first,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@orcd-login003.mit.edu
 </span></code></pre></div></p>
-<blockquote>
-<p>Refer to <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-login/">this page</a> for login. </p>
-</blockquote>
 <p>Load an intel module,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>intel/2024.2.1
 </span></code></pre></div></p>
@@ -1322,60 +1337,52 @@
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>$ echo $MKLROOT
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>/orcd/software/community/001/rocky8/intel/2024.2.1/mkl/2024.2
 </span></code></pre></div></p>
-<p>Compile your C or Fortran codes,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>icx -O3 name.c -o name
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ifort -O3 name.c -o name
-</span></code></pre></div>
-or MPI codes,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mpicc -O3 name.c -o name
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>mpiifort -O3 name.c -o name
+<h2 id="set-up-environment-on-centos-7-nodes">Set up environment on CentOS 7 nodes</h2>
+<p>If you use CentOS 7 nodes, log in to an appropriate head node first,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh &lt;user&gt;@orcd-vlogin003.mit.edu
 </span></code></pre></div></p>
-<p>If you use GNU Make to build your program, set up the varialbes in the Makefile, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>CC=icx
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>FC=ifort
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>MPICC=mpicc
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>MPIFC=mpiifort
-</span></code></pre></div>
-Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
-<p>To run your program, submit jobs to a partition with Rocky 8 and specify the OS with <code>--constraint=rocky8</code>. </p>
-<h2 id="use-intel-compiler-on-centos-7-nodes">Use Intel compiler on CentOS 7 nodes</h2>
-<p>Log in to a CentOS 7 head node first,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh &lt;user&gt;@orcd-vlogin003.mit.edu
-</span></code></pre></div></p>
-<blockquote>
-<p>Refer to <a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-login/">this page</a> for login. </p>
-</blockquote>
 <p>Load the modules for intel compiler, intel MPI and MKL,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>module load intel/2018-01
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>module load impi/2018-01
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>module load mkl/2018-01 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module load intel/2018-01
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>module load impi/2018-01
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>module load mkl/2018-01 
 </span></code></pre></div></p>
 <p>Check commands for intel compiler and MPI and environment variables for MKL are ready for use,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ which icc
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>/home/software/intel/2018-01/bin/icc
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>$ which ifort
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>/home/software/intel/2018-01/bin/ifort
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>$ which mpicc
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpicc
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>$ which mpiifort
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpiifort
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>$ echo $MKLROOT
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mkl/
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ which icc
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/home/software/intel/2018-01/bin/icc
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>$ which ifort
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>/home/software/intel/2018-01/bin/ifort
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>$ which mpicc
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpicc
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>$ which mpiifort
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mpi/intel64/bin/mpiifort
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>$ echo $MKLROOT
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>/home/software/intel/2018-01/compilers_and_libraries_2018.1.163/linux/mkl/
+</span></code></pre></div></p>
+<h2 id="compile-and-run-programs-with-intel-compiler">Compile and run programs with Intel compiler</h2>
+<p>Once the environment is set up in either of the preivous two sections, you can compile your C or Fortran codes like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>icx -O3 name.c -o name
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ifort -O3 name.c -o name
+</span></code></pre></div>
+or MPI codes,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mpicc -O3 name.c -o name
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mpiifort -O3 name.c -o name
 </span></code></pre></div></p>
 <p>If you use GNU Make to build your program, set up the varialbes in the Makefile, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>CC=icc
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>FC=ifort
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>MPICC=mpicc
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>MPIFC=mpiifort
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>CC=icc
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>FC=ifort
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>MPICC=mpicc
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>MPIFC=mpiifort
 </span></code></pre></div>
 Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
-<p>To run your program, submit jobs to a partition with CentOS 7 and specify the OS with <code>--constraint=centos7</code>. </p>
+<p>To run your program compiled on Rocky 8 nodes, submit jobs to a partition with Rocky 8 and specify the OS with <code>--constraint=rocky8</code>. </p>
+<p>To run your program compiled on CentOS 7 nodes, submit jobs to a partition with CentOS 7 and specify the OS with <code>--constraint=centos7</code>. </p>
 <h2 id="references">References</h2>
-<p>Refer to the following references for compiling C/Fortran codes, using GNU make, and using partitions in Slurm job scheduler. </p>
-<p>!!! "Reference: Compile C/Fortran Codes and Use GNU Make"
-    Refer to <a href="https://orcd-docs.mit.edu/running-jobs/overview/">this page</a>. </p>
-<p>!!! "Reference: Job Scheduler Overview"
-    Refer to <a href="https://orcd-docs.mit.edu/software/compile/">this page</a>. </p>
+<p>Refer to the following references for more details on logging in, compiling C/Fortran codes, using GNU make, and using partitions in Slurm job scheduler. </p>
+<blockquote>
+<p><a href="https://orcd-docs.mit.edu/accessing-orcd/ssh-login/">Log in the system</a> . </p>
+<p><a href="https://orcd-docs.mit.edu/software/compile/">Compile C/Fortran Codes and Use GNU Make</a>. </p>
+<p><a href="https://orcd-docs.mit.edu/running-jobs/overview/">Use Slurm to submit jobs</a>. </p>
+</blockquote>
 
 
 
