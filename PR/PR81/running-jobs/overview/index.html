@@ -1,0 +1,1670 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://orcd.mit.edu/running-jobs/overview/">
+      
+      
+        <link rel="prev" href="../../software/R/">
+      
+      
+        <link rel="next" href="../requesting-resources/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+    
+    
+      
+        <title>Scheduler Overview - ORCD Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#job-scheduler-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ORCD Docs" class="md-header__button md-logo" aria-label="ORCD Docs" data-md-component="logo">
+      
+  <img src="../../images/ORCD_logo_icononly.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ORCD Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Scheduler Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ORCD Docs" class="md-nav__button md-logo" aria-label="ORCD Docs" data-md-component="logo">
+      
+  <img src="../../images/ORCD_logo_icononly.png" alt="logo">
+
+    </a>
+    ORCD Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../orcd-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORCD Systems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accessing ORCD Systems
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing ORCD Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ondemand-login/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging in with OnDemand
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-login/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging in with SSH via Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH Key Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode Remote SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Filesystems and File Transfer
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Filesystems and File Transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/filesystems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    General Use Filesystems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/project-filesystems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Specific Filesystems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/transferring-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferring Files
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/apptainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling Codes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/julia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Julia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/R/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Running Jobs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Running Jobs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Scheduler Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Scheduler Overview
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preemptable-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preemptable Jobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-available-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Available Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Jobs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job Flags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Jobs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Jobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-job-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Job Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stopping-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stopping Jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-job-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving Job Stats
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requesting-resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requesting Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ORCD Recipes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            ORCD Recipes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/mujoco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuJoCo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NVHPC with CUDA aware MPI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/mpi4py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI for Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/mpi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/relion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RELION
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode Remote SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/pycharm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PyCharm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acknowledging Us
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Security and Privacy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-of-conduct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acceptable Use and Code of Conduct
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Help
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preemptable-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preemptable Jobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-available-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Available Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Jobs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#job-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job Flags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interactive Jobs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Jobs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-job-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Job Status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stopping-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stopping Jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-job-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrieving Job Stats
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="job-scheduler-overview">Job Scheduler Overview</h1>
+<p>To run something on an HPC cluster, like Engaging, you will request resources for your application using a piece of software called the <em>scheduler</em>. The scheduler that Engaging uses is Slurm (you'll see and hear "scheduler" and "Slurm" used interchangeably). It is the scheduler's responsibility to allocate the resources that satisfy your request and those of everyone else using the system. This temporary allocation of resources is called a <em>job</em>. As with all software, the scheduler uses a specific syntax for requesting resources. This section describes how to work with the scheduler and how to run jobs efficiently.</p>
+<h2 id="partitions">Partitions</h2>
+<p>Engaging is a large heterogenous cluster, meaning there are many different types of nodes with different configurations. Some nodes are freely available for anyone at MIT to use, and some have been purchased by labs or departments for priority use by their group. Some nodes are meant for specific types of workloads. Nodes are grouped together in <em>partitions</em>, which designate who can access them and what they should be used for. Different partitions may have different sets of rules about how many resources you can use and how long your jobs can run on them.</p>
+<p>To see which partitions you have access to, run the <code>sinfo</code> command: </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sinfo
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>PARTITION    AVAIL  TIMELIMIT  NODES  STATE NODELIST
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mit_normal      up   12:00:00      2   resv node[2704-2705]
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>mit_normal      up   12:00:00     30   idle node[1600-1625,1706-1707,1806-1807]
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>mit_normal_gpu  up   12:00:00      1    mix node2906
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>mit_normal_gpu  up   12:00:00      5   idle node[1706-1707,1806-1807,2804]
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>mit_quicktest   up      15:00     26   idle node[1600-1625]
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>mit_preemptable up 2-00:00:00      1    mix node2906
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>mit_preemptable up 2-00:00:00     27   idle node[1600-1625,2804]
+</span></code></pre></div>
+<p>The <code>sinfo</code> command will tell you the names of the partitions you have access, what their time limits are, how many nodes are in each state (see <a href="#checking-available-resources">Checking Available Resources</a> below), and the names of the nodes in the partitions.</p>
+<p>The standard partitions that the full MIT community has access to are:</p>
+<table>
+<thead>
+<tr>
+<th>Partition Name</th>
+<th>Purpose</th>
+<th>Hardware Type(s)</th>
+<th>Time Limit</th>
+<th>Resource Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mit_normal</code></td>
+<td>Longer running batch and interactive jobs that do not need a GPU</td>
+<td>CPU only</td>
+<td>12 hours</td>
+<td>96 cores</td>
+</tr>
+<tr>
+<td><code>mit_normal_gpu</code> (Coming Soon)</td>
+<td>Batch and interactive jobs that need a GPU</td>
+<td>GPUs (L4, L40S, H100)</td>
+<td>12 hours</td>
+<td>TBA</td>
+</tr>
+<tr>
+<td><code>mit_quicktest</code></td>
+<td>Short batch and interactive jobs, meant for testing</td>
+<td>CPU only</td>
+<td>15 minutes</td>
+<td>48 cores</td>
+</tr>
+<tr>
+<td><code>mit_preemptable</code> (Coming Soon)</td>
+<td>Low-priority preemtable jobs- jobs that may be stopped by another job with higher priority</td>
+<td>Mixed</td>
+<td>48 hours</td>
+<td>TBA</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Older Partitions</p>
+<p>There are a few additional partitions that contain older nodes. These nodes run on a different operating system (Centos 7) than the ones above and therefore have a different software stack. Software built or installed on Rocky 8 or newer nodes will most likely not work on these older nodes. These partitions include <code>sched_mit_hill</code>, <code>newnodes</code>, <code>sched_any</code>, <code>sched_engaging_default</code>, and <code>sched_quicktest</code>.</p>
+</div>
+<p>If you are part of a group that has purchased nodes you may see additional partitions. They will be named based on your PI's Kerberos or your group's name, depending on who purchased the nodes.</p>
+<h3 id="preemptable-jobs">Preemptable Jobs</h3>
+<p>We provide the <code>mit_preemptable</code> partition so that nodes owned by a group or PI can be used by researchers outside that group when those nodes are idle. When someone from the group that owns the node runs a job on their partition, the scheduler will stop, or preempt, any job that is running on the lower-priority <code>mit_preemptable</code> partition. Jobs running on <code>mit_preemptable</code> should be checkpointed so that they don't lose their progress when the job is stopped.</p>
+<!-- section on seeing node stats in partition, partition rules -->
+
+<h2 id="checking-available-resources">Checking Available Resources</h2>
+<p>To see what resources are available run <code>sinfo</code>. The <code>sinfo</code> command will show how many nodes are in each state. Nodes in "idle" state have all cores available, nodes in "mix" state have some cores available, and nodes in "alloc" state have no cores or other resources available.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sinfo -p mit_normal
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>PARTITION  AVAIL  TIMELIMIT  NODES  STATE  NODELIST
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>mit_normal    up   12:00:00      2   resv  node[2704-2705]
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>mit_normal    up   12:00:00      1   mix   node1707
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>mit_normal    up   12:00:00      1   alloc node1708
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>mit_normal    up   12:00:00     29   idle  node[1600-1625,1706,1806-1807]
+</span></code></pre></div>
+<p>Common node states are:</p>
+<ul>
+<li>idle: nodes that are fully available</li>
+<li>mix: nodes that have some, but not all, resources allocated</li>
+<li>alloc: nodes that are fully allocated</li>
+<li>resv: nodes that are reserved and only available to people in their reservation</li>
+<li>down: nodes that are not currently in service</li>
+<li>drain: nodes that will be put in a <code>down</code> state once all jobs running on them are completed</li>
+</ul>
+<h2 id="running-jobs">Running Jobs</h2>
+<p>How you run your job depends on the type of job you would like to run. There are two "modes" for running jobs: interactive and batch jobs. Interactive jobs allow you to run interactively on a compute node in a shell. Batch jobs, on the other hand, are for running a pre-written script or executable. Interactive jobs are mainly used for testing, debugging, and interactive data analysis. Batch jobs are the traditional jobs you see on an HPC system and should be used when you want to run a script that doesn't require that you interact with it.</p>
+<h3 id="job-flags">Job Flags</h3>
+<p>When you start any type of job you specify what resources you need for your job, including cores, memory, GPUs, and other features. You also specify which <a href="#partitions">partition</a> you would like your job to run on. If you don't specify any of these you will get the default resources: 1 core, a small amount of memory, no GPUs, and it will run on the current default partition. See the page on <a href="running-jobs/requesting-resources.md">Requesting Resources</a> for the flags to use to request different types of resources.</p>
+<h3 id="interactive-jobs">Interactive Jobs</h3>
+<p>The basic command for requesting an interactive job on the <code>mit_normal</code> partition is:</p>
+<div class="language-batch highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>salloc -p mit_normal
+</span></code></pre></div>
+<p>The <code>-p mit_normal</code> is a flag that is passed to the scheduler, <code>-p</code> specifies the partition. This command will allocate 1 core on a node in the <code>mit_normal</code> partition. For example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>user01@orcd-login001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>salloc<span class="w"> </span>-p<span class="w"> </span>mit_normal
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>salloc:<span class="w"> </span>Pending<span class="w"> </span>job<span class="w"> </span>allocation<span class="w"> </span><span class="m">60159437</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>salloc:<span class="w"> </span>job<span class="w"> </span><span class="m">60159437</span><span class="w"> </span>queued<span class="w"> </span>and<span class="w"> </span>waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>resources
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>salloc:<span class="w"> </span>job<span class="w"> </span><span class="m">60159437</span><span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>allocated<span class="w"> </span>resources
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>salloc:<span class="w"> </span>Granted<span class="w"> </span>job<span class="w"> </span>allocation<span class="w"> </span><span class="m">60159437</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>salloc:<span class="w"> </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>resource<span class="w"> </span>configuration
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>salloc:<span class="w"> </span>Nodes<span class="w"> </span>node1806<span class="w"> </span>are<span class="w"> </span>ready<span class="w"> </span><span class="k">for</span><span class="w"> </span>job
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="o">[</span>user01@node1806<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div>
+<p>Notice how the command prompt changes from <code>[user01@orcd-login001 ~]$</code> to <code>[user01@node1806 ~]$</code>. This indicates that <code>user01</code> has started an interactive job on <code>node1806</code> and any commands issued will run on this node.</p>
+<h3 id="batch-jobs">Batch Jobs</h3>
+<p>Batch jobs are used to run pre-written scripts or run commands that do not need input from you throughout the run. The first step to running a batch job is to write a job script. Job scripts can be "launched" with the <code>sbatch</code> command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sbatch<span class="w"> </span>myscript.sh
+</span></code></pre></div>
+<p>When you run this command the scheduler will look for the resources requested in the script, allocate those resources to your job, run your script on those resources, and then release those resources once your script completes or the time limit is reached.</p>
+<p>Here is an example job script:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># Run your application</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>python<span class="w"> </span>myscript.py
+</span></code></pre></div>
+<p>This script requests the same resources as the <a href="#interactive-jobs">interactive job above</a>: 1 cpu core on the <code>mit_normal</code> partition. The <code>#SBATCH -p mit_normal</code> may look like a comment but it is not, it is a directive to the scheduler to run with the specified flags. Note that this is the same flag used in the <a href="#interactive-jobs">interactive job example above</a>. It then sets up the job environment to use python with the <code>miniforge</code> module, and then runs a python script. In general, the same steps and commands you would use to run your job in an interactive job you can put in your job script.</p>
+<p>You can think of job scripts as having three sections:</p>
+<ol>
+<li>Scheduler/Job flags: This is where you request your resources using Slurm flags.</li>
+<li>Set up your environment: Load any modules you need, set environment variables, etc. It is better to set this in your job scripts to ensure consistent environments across jobs. We don't recommend putting these commands in your <code>.bashrc</code> or running them at the command line before you launch your job.</li>
+<li>Run your code or application as you would from the command line.</li>
+</ol>
+<h2 id="checking-job-status">Checking Job Status</h2>
+<p>To see all your currently running and pending jobs run the <code>squeue --me</code> command: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>squeue<span class="w"> </span>--me
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">             </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">          </span><span class="m">60735877</span><span class="w"> </span>mit_norma<span class="w"> </span>interact<span class="w"> </span>username<span class="w">  </span>R<span class="w">      </span><span class="m">29</span>:32<span class="w">      </span><span class="m">1</span><span class="w"> </span>node1707
+</span></code></pre></div>
+<p>each line in the output is a different job. The default fields are:</p>
+<ul>
+<li><code>JOBID</code>: The Job ID, each job has a unique ID that can be used to identify it.</li>
+<li><code>PARTITION</code>: The <a href="#partitions">partition</a> the job is running in</li>
+<li><code>NAME</code>: The name of the job. By default this is the name of your job script, or "interactive" for interactive jobs.</li>
+<li><code>USER</code>: Your username</li>
+<li><code>ST</code>: The job status. Common statuses are <code>R</code> for "Running", <code>PD</code> for "Pending", and <code>CG</code> for completing. Jobs in pending state have the reason the job is pending listed in the final <code>NODELIST(REASON)</code> column.</li>
+<li><code>TIME</code>: The amount of time the job has been running for.</li>
+<li><code>NODES</code>: The number of nodes your job is using.</li>
+<li><code>NODELIST(REASON)</code>: If your job is running this is the name of the node or nodes that your job is running on. If your job is pending this lists the reason the job is pending. Common pending reasons are "Resources", meaning the resources you've requested aren't yet available, "Priority", meaning there is someone else ahead of you in line to use the resources you've requested. Other reasons are listed in the <a href="https://slurm.schedmd.com/squeue.html#SECTION_JOB-REASON-CODES">Slurm documentation</a>.</li>
+</ul>
+<h2 id="stopping-jobs">Stopping Jobs</h2>
+<p>You can stop running or pending jobs with the <code>scancel</code> command. You can stop an individual job by providing a job id:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scancel<span class="w"> </span><span class="m">123456</span>
+</span></code></pre></div>
+<p>or a list of jobs by separating job IDs with a comma:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>scancel<span class="w"> </span><span class="m">123456</span>,123457
+</span></code></pre></div>
+<p>You can also stop all of your jobs by providing your username:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>scancel<span class="w"> </span>-u<span class="w"> </span>USERNAME
+</span></code></pre></div>
+<p>where <code>USERNAME</code> is your username.</p>
+<h2 id="retrieving-job-stats">Retrieving Job Stats</h2>
+<p>You can get information above currently and previously run jobs with the <code>sacct</code> command. This command can be very helpful for troubleshooting job issues, and is particularly helpful to check that you are getting the resources you expect allocated to your job.</p>
+<p>Running <code>sacct</code> with no flags will show some basic information about the jobs that you've run in the past day:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>USERNAME@orcd-login001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>sacct
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>JobID<span class="w">           </span>JobName<span class="w">  </span>Partition<span class="w">    </span>Account<span class="w">  </span>AllocCPUS<span class="w">      </span>State<span class="w"> </span>ExitCode<span class="w"> </span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>--------<span class="w"> </span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">60764362</span><span class="w">     </span>interacti+<span class="w"> </span>sched_any+<span class="w"> </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w"> </span>CANCELLED+<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="m">60764363</span><span class="w">     </span>interacti+<span class="w"> </span>mit_normal<span class="w"> </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">  </span>COMPLETED<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="m">60764363</span>.in+<span class="w"> </span>interacti+<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">  </span>COMPLETED<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="m">60764363</span>.ex+<span class="w">     </span>extern<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">  </span>COMPLETED<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="m">60764366</span><span class="w">     </span>interacti+<span class="w"> </span>mit_normal<span class="w"> </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">    </span>RUNNING<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="m">60764366</span>.in+<span class="w"> </span>interacti+<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">    </span>RUNNING<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="m">60764366</span>.ex+<span class="w">     </span>extern<span class="w">            </span>mit_gener+<span class="w">          </span><span class="m">1</span><span class="w">    </span>RUNNING<span class="w">      </span><span class="m">0</span>:0<span class="w"> </span>
+</span></code></pre></div>
+<p>You can select which fields are shown with the <code>-o</code> (output) flag, for example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>USERNAME@orcd-login001<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>sacct<span class="w"> </span>-o<span class="w"> </span>JobID,JobName,AllocCPUs,NodeList,Elapsed,State
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>JobID<span class="w">           </span>JobName<span class="w">  </span>AllocCPUS<span class="w">        </span>NodeList<span class="w">    </span>Elapsed<span class="w">      </span>State<span class="w"> </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>---------------<span class="w"> </span>----------<span class="w"> </span>----------<span class="w"> </span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="m">60764362</span><span class="w">     </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">   </span>None<span class="w"> </span>assigned<span class="w">   </span><span class="m">00</span>:00:00<span class="w"> </span>CANCELLED+<span class="w"> </span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="m">60764363</span><span class="w">     </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:00:19<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="m">60764363</span>.in+<span class="w"> </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:00:19<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="m">60764363</span>.ex+<span class="w">     </span>extern<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:00:19<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="m">60764366</span><span class="w">     </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:01:40<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="m">60764366</span>.in+<span class="w"> </span>interacti+<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:01:39<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="m">60764366</span>.ex+<span class="w">     </span>extern<span class="w">          </span><span class="m">1</span><span class="w">        </span>node1806<span class="w">   </span><span class="m">00</span>:01:40<span class="w">  </span>COMPLETED<span class="w"> </span>
+</span></code></pre></div>
+<p>There are many fields that give a lot of information about your jobs. Running the <code>sacct -e</code> command will show all of them. A few that can be helpful are:</p>
+<ul>
+<li><code>AllocCPUs</code>, <code>AllocNodes</code>- Number of CPUs, number of nodes, or GPUs allocated to your job.</li>
+<li><code>ReqTRES</code>- Requested "trackable resources" (TRES). This is a fairly long string that will include any GPUs requested for the job. If the string is too long to display add <code>%60</code> to show 60 characters (<code>ReqTRES%60</code>), you can adjust the number of characters as needed.</li>
+<li><code>NodeList</code>- The list of nodes that your job ran on. This is helpful to see whether your jobs are consistently failing on the same node. If so, reach out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a> and let us know which node seems to be having an issue.</li>
+<li><code>Start</code>, <code>End</code>, <code>Elapsed</code>- The start time, end time, and total amount of time your job ran for.</li>
+<li><code>State</code>, <code>ExitCode</code>- The Job State and Exit Code. If the job failed there may be an exit code that can help determine why the job failed.</li>
+<li><code>MaxRSS</code>- The peak memory utilization of your job. This number can be used to fine-tune how much memory to request for your job. See the section on <a href="../requesting-resources/#memory">requesting memory</a> for more information.</li>
+</ul>
+<p>You can specify a particular job with the <code>-j</code> flag (<code>sacct -j 60764366</code> for example). You can also specify a start and end time if you are interested in seeing jobs that ran more than a day ago. Use the <code>--starttime</code> and <code>--endtime</code> flags to specify a date range, using the format <code>MMDDYY</code>, for example <code>sacct --starttime=010125 --endtime=010225</code>retrieves all your jobs that ran on the first two days of 2025.</p>
+<p>See the Slurm <a href="https://slurm.schedmd.com/sacct.html">sacct documentation</a> for more information on flags and fields.</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 3, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://accessibility.mit.edu/">Accessibility</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f13b1293.min.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
