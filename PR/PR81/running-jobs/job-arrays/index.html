@@ -1395,9 +1395,10 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">Julia</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Assign indices to this process/task</span>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Assign indices to this process/task</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">my_arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">my_task_id</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span><span class="n">num_tasks</span><span class="p">]</span>
 </span></code></pre></div>
+Here we are taking the array of inputs <code>arr</code>, extracting the elements assigned to <code>my_task_id</code> and putting them in <code>my_arr</code>. This splits up the array <code>arr</code> using a cyclic distribution based on <code>my_task_id</code> and <code>num_tasks</code>. For example, if there are 32 tasks, Task 1 will have <code>my_arr</code> 0, 32, 64, 96, ..., Task 2 will have <code>my_array</code> 1, 33, 65, 97, ..., and Task 32 will have <code>my_array</code> 31, 63, 95, and so on. </p>
 </div>
 <div class="tabbed-block">
 <div class="language-julia highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">my_arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">task_id</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">num_tasks</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">fnames</span><span class="p">)]</span>
@@ -1406,10 +1407,11 @@
 <p class="admonition-title">Julia Array Indexing</p>
 <p>Julia arrays are one-based. If we start our job array indexing at 0 we need to add 1 to <code>task_id</code> as shown above.</p>
 </div>
+<p>Here we are taking the array of inputs <code>arr</code>, extracting the elements assigned to <code>my_task_id</code> and putting them in <code>my_arr</code>. This splits up the array <code>arr</code> using a cyclic distribution based on <code>my_task_id</code> and <code>num_tasks</code>. For example, if there are 32 tasks, Task 1 will have <code>my_arr</code> 1, 33, 65, 97, ..., Task 2 will have <code>my_array</code> 2, 24, 66 ..., and Task 32 will have <code>my_array</code> 32, 64, 96, and so on. </p>
 </div>
 </div>
 </div>
-<p>Here we are taking the array of inputs <code>arr</code>, extracting the elements assigned to <code>my_task_id</code> and putting them in <code>my_arr</code>. I'll then iterate over <code>my_arr</code> in the for loop instead of <code>arr</code>:</p>
+<p>I'll then iterate over <code>my_arr</code> in the for loop instead of <code>arr</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python</label><label for="__tabbed_3_2">Julia</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
