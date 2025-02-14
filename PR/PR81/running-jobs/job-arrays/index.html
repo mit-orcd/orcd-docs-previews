@@ -1427,39 +1427,86 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </div>
 </div>
 </div>
-<p>To run this with a Job Array with 4 tasks I would use the following job script:</p>
+<p>The full script will look something like this:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python</label><label for="__tabbed_4_2">Julia</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><span class="filename">my_job_array.sh</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">#SBATCH -o myjob.log-%A-%a</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">#SBATCH -a 0-3</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Replace with your array of inputs</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># This example uses numbers 0-256</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">arr</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Load Anaconda Module</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Grab the arguments that are passed in</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># This is the task id and number of tasks that can be used</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># to determine which indices this process/task is assigned</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">my_task_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">num_tasks</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>python<span class="w"> </span>iterate_over_arr.py<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># Assign indices to this process/task</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">my_arr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">my_task_id</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span><span class="n">num_tasks</span><span class="p">]</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">my_arr</span><span class="p">:</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="c1"># Do something with num</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="c1"># Your code goes here</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><span class="filename">my_job_array.sh</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">#SBATCH -o myjob.log-%A-%a</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1">#SBATCH -a 0-3</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Load Anaconda Module</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>module<span class="w"> </span>load<span class="w"> </span>julia
+<div class="language-julia highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c"># Replace with your array of inputs</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c"># This example uses numbers 1-256</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">256</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c"># Grab the argument that is passed in</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c"># This is the index into fnames for this process</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">task_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parse</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="nb">ARGS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">num_tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parse</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="nb">ARGS</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c"># Check to see if the index is valid (so the program exits cleanly if the wrong indices are passed)</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">task_id</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">num_tasks</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
 </span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>julia<span class="w"> </span>iterate_over_arr.jl<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="c"># Do something with num</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="c"># Your code goes here</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="k">end</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>To run this with a Job Array with 4 tasks I would use the following job script:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">Julia</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><span class="filename">my_job_array.sh</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">#SBATCH -o myjob.log-%A-%a</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">#SBATCH -a 0-3</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Load Anaconda Module</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>python<span class="w"> </span>iterate_over_arr.py<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><span class="filename">my_job_array.sh</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">#SBATCH -o myjob.log-%A-%a</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1">#SBATCH -a 0-3</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Load Anaconda Module</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>module<span class="w"> </span>load<span class="w"> </span>julia
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>julia<span class="w"> </span>iterate_over_arr.jl<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -1467,92 +1514,92 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 <p>The first job flag (<code>-o myjob.log-%A-%a</code>) specifies the output file name, which will be appended with the Array Job ID (<code>%A</code>) and Task ID (<code>%a</code>). The second flag <code>-a 0-3</code> requests a job array with array task indices 0, 1, 2, 3. Here we specify zero-based indices because Python arrays are zero-based. For a one-based language like Matlab/Octave or Julia, we would use indices <code>1-4</code> instead.</p>
 <p>As mentioned earlier, <code>$SLURM_ARRAY_TASK_ID</code> is a unique ID assigned to each task and <code>$SLURM_ARRAY_TASK_COUNT</code> is the total number of tasks. In the last line of the script we run the python script <code>iterate_over_arr.py</code> and pass both environment variables into the script.</p>
 <p>The last step is to run the job with <code>sbatch</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sbatch<span class="w"> </span>my_array_job.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sbatch<span class="w"> </span>my_array_job.sh
 </span></code></pre></div>
 <p>When you run <code>squeue --me</code> you will see which job array tasks are running and which are still pending. Each running job array task will be on its own line, as shown below. Pending tasks will be listed on a single line together. Note the Job IDs have two numbers. The first number is the Job Array ID, a Job ID given to the entire array, the second is the Task ID.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">        </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>62445052_0<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>62445052_1<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>62445052_2<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>62445052_3<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">        </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>62445052_0<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>62445052_1<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>62445052_2<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>62445052_3<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
 </span></code></pre></div>
 <h2 id="bash">Bash</h2>
 <p>If you can't re-write your code as described in the <a href="#python-or-julia">Python or Julia</a> example above, you can accomplish the same thing in your job script using <code>bash</code>. I will start with the basic framework and then give some examples of some common variations.</p>
 <p>For simplicity, let's say we have an application <code>my_cmd</code> that takes a number as an input. To run this on a single number we'd start with a job script that looks like this:</p>
-<div class="language-bash highlight"><span class="filename">run_my_cmd_serial.sh</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">#SBATCH -o my_cmd_serial.log-%j</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># Set the number to run my_cmd on</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MY_NUM</span><span class="o">=</span><span class="m">1</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>my_cmd<span class="w"> </span><span class="nv">$MY_NUM</span>
+<div class="language-bash highlight"><span class="filename">run_my_cmd_serial.sh</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">#SBATCH -o my_cmd_serial.log-%j</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1"># Set the number to run my_cmd on</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MY_NUM</span><span class="o">=</span><span class="m">1</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>my_cmd<span class="w"> </span><span class="nv">$MY_NUM</span>
 </span></code></pre></div>
 <h3 id="few-inputs">Few Inputs</h3>
 <p>If you plan to run this on relatively few numbers, say less than around 100, and <code>my_cmd</code> runs for longer than a few seconds you can use something like this script below. Let's say we want to run <code>my_cmd</code> on numbers 1-32. We can create a job array with 32 tasks each assigned an index 1-32 by adding the flag <code>-a 1-32</code>. Here is the example script</p>
-<div class="language-bash highlight"><span class="filename">few_inputs.sh</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">#SBATCH -o my_cmd_array32.log-%A-%a</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1">#SBATCH -a 1-32</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Set the number to run my_cmd on</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MY_NUM</span><span class="o">=</span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>my_cmd<span class="w"> </span><span class="nv">$MY_NUM</span>
+<div class="language-bash highlight"><span class="filename">few_inputs.sh</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">#SBATCH -o my_cmd_array32.log-%A-%a</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1">#SBATCH -a 1-32</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Set the number to run my_cmd on</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MY_NUM</span><span class="o">=</span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>my_cmd<span class="w"> </span><span class="nv">$MY_NUM</span>
 </span></code></pre></div>
 <p>Notice we are setting <code>$MY_NUM</code> to <code>$SLURM_ARRAY_TASK_ID</code> and passing it into <code>my_cmd</code>. I've also changed the output job flag (<code>-o my_cmd_array32.log-%A-%a</code>) so it will be appended with the Array Job ID (<code>%A</code>) and Task ID (<code>%a</code>) to the name of the log file.</p>
 <p>The last step is to run the job with <code>sbatch</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sbatch<span class="w"> </span>few_inputs.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sbatch<span class="w"> </span>few_inputs.sh
 </span></code></pre></div>
 <p>When you run <code>squeue --me</code> you will see which job array tasks are running and which are still pending. Each running job array task will be on its own line, as shown below. Pending tasks will be listed on a single line together. Note the Job IDs have two numbers. The first number is the Job Array ID, a Job ID given to the entire array, the second is the Task ID.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">        </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>62445052_0<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>62445052_1<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>62445052_2<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>62445052_3<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>...
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>62445052_32<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="w">        </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>62445052_0<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>62445052_1<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>62445052_2<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>62445052_3<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>...
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>62445052_32<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
 </span></code></pre></div>
 <h3 id="many-inputs">Many Inputs</h3>
 <p>The script <a href="#few-inputs">above</a> works well for smaller numbers of tasks, but doesn't scale well to larger numbers. Because there are limited resources, you end up spending more time waiting for available resources than you do running your application. The scheduler will also slow down when it has to manage very large numbers of jobs, so we limit the number of jobs each user can run on each partition. Here is an approach that allows you to run many inputs with fewer job array tasks.</p>
 <p>Let's say we want to run <code>my_cmd</code> on the numbers 1-256. To run this as a job array with 32 tasks, for example, we can use the following job script:</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">many_inputs.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-14-10">10</a></span>
-<span class="normal"><a href="#__codelineno-14-11">11</a></span>
-<span class="normal"><a href="#__codelineno-14-12">12</a></span>
-<span class="normal"><a href="#__codelineno-14-13">13</a></span>
-<span class="normal"><a href="#__codelineno-14-14">14</a></span>
-<span class="normal"><a href="#__codelineno-14-15">15</a></span>
-<span class="normal"><a href="#__codelineno-14-16">16</a></span>
-<span class="normal"><a href="#__codelineno-14-17">17</a></span>
-<span class="normal"><a href="#__codelineno-14-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="c1"># Scheduler Options</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="c1">#SBATCH -a 0-31</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MAX_NUM</span><span class="o">=</span><span class="m">256</span>
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="nv">my_array</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$MAX_NUM</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a>
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="c1"># Iterate over my_array</span>
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$IDX</span>
-</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="k">done</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">many_inputs.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="c1"># Scheduler Options</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="c1">#SBATCH -a 0-31</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MAX_NUM</span><span class="o">=</span><span class="m">256</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="nv">my_array</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$MAX_NUM</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14"></a>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="c1"># Iterate over my_array</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$IDX</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="k">done</span>
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition info">
 <p class="admonition-title">Bash Array Indexing</p>
@@ -1560,29 +1607,29 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </div>
 <p>As mentioned earlier, <code>$SLURM_ARRAY_TASK_ID</code> is a unique ID assigned to each task and <code>$SLURM_ARRAY_TASK_COUNT</code> is the total number of tasks.</p>
 <p>In line 13:</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="nv">my_array</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$MAX_NUM</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="nv">my_array</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$MAX_NUM</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
 </span></code></pre></div></td></tr></table></div>
 <p>We are creating an array of the numbers we want the current task to pass into <code>my_cmd</code>. This splits up the numbers 1-256 using a cyclic distribution. Since there are 32 tasks, Task 1 will have <code>my_array</code> 1, 33, 65, 97, ..., Task 2 will have <code>my_array</code> 2, 24, 66 ..., and Task 32 will have <code>my_array</code> 32, 64, 96, and so on. </p>
 <p>In the final few lines we iterate over <code>my_array</code> with a for loop and run <code>my_cmd</code> on each number in <code>my_array</code> in turn:</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-15">15</a></span>
-<span class="normal"><a href="#__codelineno-16-16">16</a></span>
-<span class="normal"><a href="#__codelineno-16-17">17</a></span>
-<span class="normal"><a href="#__codelineno-16-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="c1"># Iterate over my_array</span>
-</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$IDX</span>
-</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="k">done</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-15">15</a></span>
+<span class="normal"><a href="#__codelineno-18-16">16</a></span>
+<span class="normal"><a href="#__codelineno-18-17">17</a></span>
+<span class="normal"><a href="#__codelineno-18-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15"></a><span class="c1"># Iterate over my_array</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$IDX</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18"></a><span class="k">done</span>
 </span></code></pre></div></td></tr></table></div>
 <p>The last step is to run the job with <code>sbatch</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sbatch<span class="w"> </span>many_inputs.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sbatch<span class="w"> </span>many_inputs.sh
 </span></code></pre></div>
 <p>When you run <code>squeue --me</code> you will see which job array tasks are running and which are still pending. Each running job array task will be on its own line, as shown below. Pending tasks will be listed on a single line together. Note the Job IDs have two numbers. The first number is the Job Array ID, a Job ID given to the entire array, the second is the Task ID.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="w">        </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>62445052_0<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>62445052_1<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>62445052_2<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>62445052_3<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>...
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>62445052_32<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">        </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>62445052_0<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>62445052_1<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>62445052_2<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>62445052_3<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>...
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>62445052_32<span class="w"> </span>mit_norma<span class="w"> </span>my_job_a<span class="w"> </span>username<span class="w">  </span>R<span class="w">       </span><span class="m">0</span>:05<span class="w">      </span><span class="m">1</span><span class="w"> </span>node2704
 </span></code></pre></div>
 <p>Even though we have 256 numbers we are iterating through, we have 32 job array tasks running. Each job array task will be assigned 8 numbers in <code>my_array</code> (256/32 = 8).</p>
 <p>This is a very minimal example. In many cases you'll need a bit more than this to run your job array. In <a href="#job-array-models">Job Array Models</a> we show what adjustments to make for some common situations: using inputs from a file and using files as inputs. We recommend using these example scripts below as models for your own job array jobs. Copy the script and make updates as needed.</p>
@@ -1590,57 +1637,57 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 <h3 id="inputs-from-a-file">Inputs from a File</h3>
 <p>In this case you will need a plain text file where each line contains one input. This will also work if your code takes multiple command line arguments, list them separated by a space the same way you would at the command line.</p>
 <p>Here is the example script: </p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">inputs_from_file.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-19-10">10</a></span>
-<span class="normal"><a href="#__codelineno-19-11">11</a></span>
-<span class="normal"><a href="#__codelineno-19-12">12</a></span>
-<span class="normal"><a href="#__codelineno-19-13">13</a></span>
-<span class="normal"><a href="#__codelineno-19-14">14</a></span>
-<span class="normal"><a href="#__codelineno-19-15">15</a></span>
-<span class="normal"><a href="#__codelineno-19-16">16</a></span>
-<span class="normal"><a href="#__codelineno-19-17">17</a></span>
-<span class="normal"><a href="#__codelineno-19-18">18</a></span>
-<span class="normal"><a href="#__codelineno-19-19">19</a></span>
-<span class="normal"><a href="#__codelineno-19-20">20</a></span>
-<span class="normal"><a href="#__codelineno-19-21">21</a></span>
-<span class="normal"><a href="#__codelineno-19-22">22</a></span>
-<span class="normal"><a href="#__codelineno-19-23">23</a></span>
-<span class="normal"><a href="#__codelineno-19-24">24</a></span>
-<span class="normal"><a href="#__codelineno-19-25">25</a></span>
-<span class="normal"><a href="#__codelineno-19-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="c1"># Scheduler Options</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="c1">#SBATCH -a 1-4</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a>
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="c1"># Specify Input File</span>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="nv">INPUT_FILE</span><span class="o">=</span>file.txt
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14"></a>
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15"></a><span class="c1"># Distribute line numbers</span>
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16"></a><span class="nv">MY_LINE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$NUM_LINES</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17"></a>
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18"></a><span class="c1"># Iterate over $MY_LINE_NUMS</span>
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19"></a><span class="k">for</span><span class="w"> </span>LINE_IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_LINE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20"></a>
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21"></a><span class="w">    </span><span class="c1"># Get the $LINE_IDX-th line from $INPUT_FILE</span>
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22"></a><span class="w">    </span><span class="nv">INPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d&quot;</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23"></a>
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24"></a><span class="w">    </span><span class="c1"># Run my_cmd on $INPUT</span>
-</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$INPUT</span>
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26"></a><span class="k">done</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">inputs_from_file.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-21-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-21-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-21-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-21-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-21-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-21-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-21-10">10</a></span>
+<span class="normal"><a href="#__codelineno-21-11">11</a></span>
+<span class="normal"><a href="#__codelineno-21-12">12</a></span>
+<span class="normal"><a href="#__codelineno-21-13">13</a></span>
+<span class="normal"><a href="#__codelineno-21-14">14</a></span>
+<span class="normal"><a href="#__codelineno-21-15">15</a></span>
+<span class="normal"><a href="#__codelineno-21-16">16</a></span>
+<span class="normal"><a href="#__codelineno-21-17">17</a></span>
+<span class="normal"><a href="#__codelineno-21-18">18</a></span>
+<span class="normal"><a href="#__codelineno-21-19">19</a></span>
+<span class="normal"><a href="#__codelineno-21-20">20</a></span>
+<span class="normal"><a href="#__codelineno-21-21">21</a></span>
+<span class="normal"><a href="#__codelineno-21-22">22</a></span>
+<span class="normal"><a href="#__codelineno-21-23">23</a></span>
+<span class="normal"><a href="#__codelineno-21-24">24</a></span>
+<span class="normal"><a href="#__codelineno-21-25">25</a></span>
+<span class="normal"><a href="#__codelineno-21-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="c1"># Scheduler Options</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="c1">#SBATCH -a 1-4</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7"></a>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10"></a>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="c1"># Specify Input File</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="nv">INPUT_FILE</span><span class="o">=</span>file.txt
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14"></a>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15"></a><span class="c1"># Distribute line numbers</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16"></a><span class="nv">MY_LINE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$NUM_LINES</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17"></a>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18"></a><span class="c1"># Iterate over $MY_LINE_NUMS</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19"></a><span class="k">for</span><span class="w"> </span>LINE_IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_LINE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20"></a>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21"></a><span class="w">    </span><span class="c1"># Get the $LINE_IDX-th line from $INPUT_FILE</span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="w">    </span><span class="nv">INPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d&quot;</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23"></a>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24"></a><span class="w">    </span><span class="c1"># Run my_cmd on $INPUT</span>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$INPUT</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26"></a><span class="k">done</span>
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition info">
 <p class="admonition-title">sed Command Indexing</p>
@@ -1651,94 +1698,94 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 <p>To use this script specify the name of your input file in line 12 and adjust line 25 to run your application.</p>
 </div>
 <p>This example works very similarly to the one <a href="#many-inputs">above</a>, with a few additions. Lines 12 specifies the name of the file containing the input strings, and line 13 finds the number of lines in the file using the <code>wc</code> or "word count" command.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-11">11</a></span>
-<span class="normal"><a href="#__codelineno-20-12">12</a></span>
-<span class="normal"><a href="#__codelineno-20-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="c1"># Specify Input File</span>
-</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="nv">INPUT_FILE</span><span class="o">=</span>file.txt
-</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span>
+<span class="normal"><a href="#__codelineno-22-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="c1"># Specify Input File</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="nv">INPUT_FILE</span><span class="o">=</span>file.txt
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Line 22 within loop above uses the <code>sed</code> command to extract the current iteration's line from the file. The <code>sed</code> (Stream Editor) command can be used for many things, including extracting parts of a file as well as replacing or deleting text from a file. The <code>sed</code> command uses one-based indexing (it starts counting at 1 instead of 0), so it is easiest to start job array indices at 1 (see line 6 above).</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-21">21</a></span>
-<span class="normal"><a href="#__codelineno-21-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21"></a><span class="c1"># Get the $LINE_IDX-th line from $INPUT_FILE</span>
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="nv">INPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d&quot;</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-21">21</a></span>
+<span class="normal"><a href="#__codelineno-23-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21"></a><span class="c1"># Get the $LINE_IDX-th line from $INPUT_FILE</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22"></a><span class="nv">INPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d&quot;</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="files-as-inputs">Files as Inputs</h3>
 <p>This example shows how to pass in a directory of files as inputs.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">inputs_from_file.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-22-10">10</a></span>
-<span class="normal"><a href="#__codelineno-22-11">11</a></span>
-<span class="normal"><a href="#__codelineno-22-12">12</a></span>
-<span class="normal"><a href="#__codelineno-22-13">13</a></span>
-<span class="normal"><a href="#__codelineno-22-14">14</a></span>
-<span class="normal"><a href="#__codelineno-22-15">15</a></span>
-<span class="normal"><a href="#__codelineno-22-16">16</a></span>
-<span class="normal"><a href="#__codelineno-22-17">17</a></span>
-<span class="normal"><a href="#__codelineno-22-18">18</a></span>
-<span class="normal"><a href="#__codelineno-22-19">19</a></span>
-<span class="normal"><a href="#__codelineno-22-20">20</a></span>
-<span class="normal"><a href="#__codelineno-22-21">21</a></span>
-<span class="normal"><a href="#__codelineno-22-22">22</a></span>
-<span class="normal"><a href="#__codelineno-22-23">23</a></span>
-<span class="normal"><a href="#__codelineno-22-24">24</a></span>
-<span class="normal"><a href="#__codelineno-22-25">25</a></span>
-<span class="normal"><a href="#__codelineno-22-26">26</a></span>
-<span class="normal"><a href="#__codelineno-22-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="c1"># Scheduler Options</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="c1">#SBATCH -a 0-3</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7"></a>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10"></a>
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="c1"># Specify Input Directory</span>
-</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="nv">INPUT_DIR</span><span class="o">=</span>inputs/*
-</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="nv">FILES</span><span class="o">=(</span><span class="si">${</span><span class="nv">INPUT_DIR</span><span class="si">}</span><span class="o">)</span>
-</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="nv">NUM_FILES</span><span class="o">=</span><span class="si">${#</span><span class="nv">FILES</span><span class="p">[@]</span><span class="si">}</span>
-</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15"></a>
-</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16"></a><span class="c1"># Distribute files</span>
-</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17"></a><span class="nv">MY_FILE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">$NUM_FILES</span><span class="o">-</span><span class="m">1</span><span class="k">))</span><span class="s2">&quot;</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
-</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18"></a>
-</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19"></a><span class="c1"># Iterate over $MY_FILE_NUMS</span>
-</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_FILE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21"></a>
-</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22"></a><span class="w">    </span><span class="c1"># Get the $IDX-th file from $FILES</span>
-</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23"></a><span class="w">    </span><span class="nv">INPUT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">FILES</span><span class="p">[</span><span class="nv">$IDX</span><span class="p">]</span><span class="si">}</span>
-</span><span id="__span-22-24"><a id="__codelineno-22-24" name="__codelineno-22-24"></a>
-</span><span id="__span-22-25"><a id="__codelineno-22-25" name="__codelineno-22-25"></a><span class="w">    </span><span class="c1"># Run my_cmd on $INPUT_FILE</span>
-</span><span id="__span-22-26"><a id="__codelineno-22-26" name="__codelineno-22-26"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$INPUT_FILE</span>
-</span><span id="__span-22-27"><a id="__codelineno-22-27" name="__codelineno-22-27"></a><span class="k">done</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">inputs_from_file.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span>
+<span class="normal"><a href="#__codelineno-24-16">16</a></span>
+<span class="normal"><a href="#__codelineno-24-17">17</a></span>
+<span class="normal"><a href="#__codelineno-24-18">18</a></span>
+<span class="normal"><a href="#__codelineno-24-19">19</a></span>
+<span class="normal"><a href="#__codelineno-24-20">20</a></span>
+<span class="normal"><a href="#__codelineno-24-21">21</a></span>
+<span class="normal"><a href="#__codelineno-24-22">22</a></span>
+<span class="normal"><a href="#__codelineno-24-23">23</a></span>
+<span class="normal"><a href="#__codelineno-24-24">24</a></span>
+<span class="normal"><a href="#__codelineno-24-25">25</a></span>
+<span class="normal"><a href="#__codelineno-24-26">26</a></span>
+<span class="normal"><a href="#__codelineno-24-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="c1"># Scheduler Options</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="c1">#SBATCH -a 0-3</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10"></a>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="c1"># Specify Input Directory</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="nv">INPUT_DIR</span><span class="o">=</span>inputs/*
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="nv">FILES</span><span class="o">=(</span><span class="si">${</span><span class="nv">INPUT_DIR</span><span class="si">}</span><span class="o">)</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="nv">NUM_FILES</span><span class="o">=</span><span class="si">${#</span><span class="nv">FILES</span><span class="p">[@]</span><span class="si">}</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15"></a>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="c1"># Distribute files</span>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="nv">MY_FILE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">$NUM_FILES</span><span class="o">-</span><span class="m">1</span><span class="k">))</span><span class="s2">&quot;</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18"></a>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="c1"># Iterate over $MY_FILE_NUMS</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_FILE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21"></a>
+</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22"></a><span class="w">    </span><span class="c1"># Get the $IDX-th file from $FILES</span>
+</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23"></a><span class="w">    </span><span class="nv">INPUT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">FILES</span><span class="p">[</span><span class="nv">$IDX</span><span class="p">]</span><span class="si">}</span>
+</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24"></a>
+</span><span id="__span-24-25"><a id="__codelineno-24-25" name="__codelineno-24-25"></a><span class="w">    </span><span class="c1"># Run my_cmd on $INPUT_FILE</span>
+</span><span id="__span-24-26"><a id="__codelineno-24-26" name="__codelineno-24-26"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$INPUT_FILE</span>
+</span><span id="__span-24-27"><a id="__codelineno-24-27" name="__codelineno-24-27"></a><span class="k">done</span>
 </span></code></pre></div></td></tr></table></div>
 <div class="admonition example">
 <p class="admonition-title">Use this Script</p>
 <p>To use this script specify specify the files that you are using for inputs (be sure to include a wildcard *) in line 12 and adjust line 25 to run your application.</p>
 </div>
 <p>In this example a list of files are passed into the <code>my_cmd</code> application. Line 12 specifies which files are the input files. The expansion that happens in line 13 to get the names of the files will only work if you include a wildcard in line 12. To test if you have it right run <code>ls $INPUT_DIR</code>. You should see all the files you expect to pass into your script.</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-11">11</a></span>
-<span class="normal"><a href="#__codelineno-23-12">12</a></span>
-<span class="normal"><a href="#__codelineno-23-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="c1"># Specify Input Directory</span>
-</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="nv">INPUT_DIR</span><span class="o">=</span>inputs/*
-</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="nv">FILES</span><span class="o">=(</span><span class="si">${</span><span class="nv">INPUT_DIR</span><span class="si">}</span><span class="o">)</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="c1"># Specify Input Directory</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="nv">INPUT_DIR</span><span class="o">=</span>inputs/*
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="nv">FILES</span><span class="o">=(</span><span class="si">${</span><span class="nv">INPUT_DIR</span><span class="si">}</span><span class="o">)</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Line 22 gets the file assigned to the current iteration, and line 25 passes that into <code>my_cmd</code></p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-21">21</a></span>
-<span class="normal"><a href="#__codelineno-24-22">22</a></span>
-<span class="normal"><a href="#__codelineno-24-23">23</a></span>
-<span class="normal"><a href="#__codelineno-24-24">24</a></span>
-<span class="normal"><a href="#__codelineno-24-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21"></a><span class="c1"># Get the $IDX-th line from $INPUT_FILE</span>
-</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22"></a><span class="nv">INPUT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">FILES</span><span class="p">[</span><span class="nv">$IDX</span><span class="p">]</span><span class="si">}</span>
-</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23"></a>
-</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24"></a><span class="c1"># Run my_cmd on $INPUT_FILE</span>
-</span><span id="__span-24-25"><a id="__codelineno-24-25" name="__codelineno-24-25"></a>my_cmd<span class="w"> </span><span class="nv">$INPUT_FILE</span>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-21">21</a></span>
+<span class="normal"><a href="#__codelineno-26-22">22</a></span>
+<span class="normal"><a href="#__codelineno-26-23">23</a></span>
+<span class="normal"><a href="#__codelineno-26-24">24</a></span>
+<span class="normal"><a href="#__codelineno-26-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-21"><a id="__codelineno-26-21" name="__codelineno-26-21"></a><span class="c1"># Get the $IDX-th line from $INPUT_FILE</span>
+</span><span id="__span-26-22"><a id="__codelineno-26-22" name="__codelineno-26-22"></a><span class="nv">INPUT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">FILES</span><span class="p">[</span><span class="nv">$IDX</span><span class="p">]</span><span class="si">}</span>
+</span><span id="__span-26-23"><a id="__codelineno-26-23" name="__codelineno-26-23"></a>
+</span><span id="__span-26-24"><a id="__codelineno-26-24" name="__codelineno-26-24"></a><span class="c1"># Run my_cmd on $INPUT_FILE</span>
+</span><span id="__span-26-25"><a id="__codelineno-26-25" name="__codelineno-26-25"></a>my_cmd<span class="w"> </span><span class="nv">$INPUT_FILE</span>
 </span></code></pre></div></td></tr></table></div>
 
 
