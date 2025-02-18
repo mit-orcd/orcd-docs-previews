@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1323,7 +1323,7 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@orcd-login003.mit.edu
 </span></code></pre></div></p>
 <p>Load an intel module,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>intel/2024.2.1
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module load intel/2024.2.1
 </span></code></pre></div></p>
 <p>Check commands for intel compiler and MPI and environment variables for MKL are ready for use,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ which icx
@@ -1374,8 +1374,14 @@ or MPI codes,
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>MPIFC=mpiifort
 </span></code></pre></div>
 Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
-<p>To run your program compiled on Rocky 8 nodes, submit jobs to a partition with Rocky 8 and specify the OS with <code>--constraint=rocky8</code>. </p>
-<p>To run your program compiled on CentOS 7 nodes, submit jobs to a partition with CentOS 7 and specify the OS with <code>--constraint=centos7</code>. </p>
+<p>To run your program on Rocky 8 nodes, submit a job script specifying a partition with <code>-p &lt;partition-name&gt;</code> and the OS with <code>--constraint=rocky8</code>, and loading the intel module,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>module load intel/2024.2.1
+</span></code></pre></div></p>
+<p>To run your program on CentOS 7 nodes, submit a job script specifying a partition with <code>-p &lt;partition-name&gt;</code> and the OS with <code>--constraint=centos7</code>, and loading the intel modules,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>module load intel/2018-01
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>module load impi/2018-01
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>module load mkl/2018-01 
+</span></code></pre></div></p>
 <h2 id="references">References</h2>
 <p>Refer to the following references for more details on logging in, compiling C/Fortran codes, using GNU make, and using partitions in Slurm job scheduler. </p>
 <blockquote>
@@ -1403,7 +1409,7 @@ Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 6, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 18, 2025</span>
   </span>
 
     
@@ -1459,7 +1465,7 @@ Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f13b1293.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
