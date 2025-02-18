@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/filesystems-file-transfer/filesystems/">
+        <link rel="canonical" href="https://orcd.mit.edu/filesystems-file-transfer/lustre-best-practices/">
       
       
-        <link rel="prev" href="../../recipes/vscode/">
-      
-      
-        <link rel="next" href="../project-filesystems/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>General Use Filesystems - ORCD Docs</title>
+        <title>Lustre Best Practices - ORCD Docs</title>
       
     
     
@@ -72,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#general-use-filesystems" class="md-skip">
+        <a href="#lustre-best-practices" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              General Use Filesystems
+              Lustre Best Practices
             
           </span>
         </div>
@@ -390,19 +386,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -417,7 +411,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Filesystems and File Transfer
@@ -428,31 +422,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    General Use Filesystems
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../filesystems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -462,62 +435,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#engaging" class="md-nav__link">
-    <span class="md-ellipsis">
-      Engaging
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#satori" class="md-nav__link">
-    <span class="md-ellipsis">
-      Satori
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    <span class="md-ellipsis">
-      SuperCloud
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#openmind" class="md-nav__link">
-    <span class="md-ellipsis">
-      OpenMind
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1231,36 +1148,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#engaging" class="md-nav__link">
+  <a href="#avoid-using-the-command-ls-l" class="md-nav__link">
     <span class="md-ellipsis">
-      Engaging
+      Avoid using the command ls -l
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#satori" class="md-nav__link">
+  <a href="#avoid-having-a-large-number-of-files-in-a-single-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      Satori
+      Avoid having a Large Number of Files in a Single Directory
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
+  <a href="#avoid-storing-and-accessing-small-files-on-lustre" class="md-nav__link">
     <span class="md-ellipsis">
-      SuperCloud
+      Avoid Storing and Accessing Small Files on Lustre
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#openmind" class="md-nav__link">
+  <a href="#avoid-accessing-and-running-executable-files-from-lustre" class="md-nav__link">
     <span class="md-ellipsis">
-      OpenMind
+      Avoid Accessing and Running Executable Files from Lustre
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avoid-having-multiple-processes-open-the-same-files-at-the-same-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avoid Having Multiple Processes Open the Same File(s) at the Same Time
     </span>
   </a>
   
@@ -1282,234 +1208,34 @@
 
 
 
-<h1 id="general-use-filesystems">General Use Filesystems</h1>
-<p>Large HPC systems often have different filesystems for different purposes. ORCD systems are no different, and each have their own approach. This page documents these.</p>
-<h2 id="engaging">Engaging</h2>
-<p>Users each get a Home Directory that is backed up and meant for important files. An additional larger Pool space is provided for storing larger datasets longer term. Larger Scratch space is not backed up. <a href="../project-filesystems/">Additional storage can be purchased</a>, and PIs can request an additional 5TB of shared Pool storage for their lab. The Scratch spaces are meant for data used in actively running jobs. It will be faster to access Scratch during your job for the majority of workloads, but it is not backed up and should not be used for long term storage. Any files that cannot be easily replaced should be stored in Home or Pool storage, or backed up outside of Engaging.</p>
-<p>See the table below for a description of each storage space. If your account was created before January 2025 and has not yet been migrated to the new storage, select the second tab.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Account Created or Migrated After Jan 2025</label><label for="__tabbed_1_2">Account Created Before Jan 2025 or Not Yet Migrated</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th><div style="width:18em">Path</div></th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> Flash</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>200 GB</td>
-<td>Backed up with snapshots</td>
-<td>Use for important files and software</td>
-</tr>
-<tr>
-<td>Pool <br> Hard Disk</td>
-<td><code>/home/&lt;username&gt;/orcd/c7/pool</code></td>
-<td>1 TB</td>
-<td>Disaster recovery backup</td>
-<td>Storing larger datasets</td>
-</tr>
-<tr>
-<td>Scratch <br> Flash</td>
-<td><code>/home/&lt;username&gt;/orcd/c7/scratch</code></td>
-<td>4 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Scratch space for I/O heavy jobs</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Scratch is Not Backed Up</p>
-<p>Scratch is meant for temporary storage while running compute jobs. It is not meant for long term storage and <strong>is not backed up</strong>. <strong>If you have not logged in for 6 months files in scratch will be deleted</strong>. Any files that you would like to keep long-term should be copied onto another storage location with backup.</p>
-</div>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th><div style="width:12em">Path</div></th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> NFS</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>100 GB</td>
-<td>Backed up</td>
-<td>Use for important files</td>
-</tr>
-<tr>
-<td>NFS</td>
-<td><code>/pool001/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space</td>
-</tr>
-<tr>
-<td>Lustre</td>
-<td><code>/nobackup1/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space <br> Heavy I/O jobs with few, large files</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Lustre /nobackup1 is Not Backed Up</p>
-<p>/nobackup1 is meant for temporary storage while running compute jobs. It is not meant for long term storage and <strong>is not backed up</strong>. Any files that you would like to keep long-term should be copied onto another storage location with backup.</p>
-</div>
+<h1 id="lustre-best-practices">Lustre Best Practices</h1>
 <div class="admonition note">
-<p class="admonition-title">Lustre /nobackup1 performs best with fewer, larger files</p>
-<p>Having large numbers of small files will make Lustre slower than NFS and can slow down the filesystem overall, so it is important to follow the <a href="../lustre-best-practices/">Lustre Best Practices</a>.</p>
+<p class="admonition-title">Lustre will be Retired</p>
+<p>We are in the process of migrating all lustre storage to a new flash Scratch filesystem. This page applies if you still have storage on <code>/nobackup1</code>. While these are all good general best practices, not everything on this page is relevant to the new Scratch storage.</p>
 </div>
-</div>
-</div>
-</div>
-<h2 id="satori">Satori</h2>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>25GB</td>
-<td>Backed up</td>
-<td>Use for important files. Quota increase request to 100GB.</td>
-</tr>
-<tr>
-<td>GPFS</td>
-<td><code>/nobackup/users/&lt;username&gt;</code></td>
-<td>500GB</td>
-<td>Not backed up</td>
-<td>Scratch space. Quota increase request to 2TB.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="supercloud">SuperCloud</h2>
-<p>SuperCloud uses Lustre for all central/shared storage (accessible to all nodes in the system). This storage is not backed up. See the SuperCloud <a href="https://supercloud.mit.edu/best-practices-and-performance-tips">Best Practices and Performance Tips</a> page for best practices using the Lustre filesystem. Quotas or limits are set on the storage as guardrails. Individual and group storage use and quotas can been viewed on the <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a> on the SuperCloud Web Portal (only accessible if you have an account). Additional storage may be granted on a case by case basis. Local disk spaces will be faster than the Lustre shared filesystem, but all are temporary and can only be accessed on the node where they are created.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Access</th>
-<th>Backed up</th>
-<th>Limits</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> Lustre</td>
-<td><code>/home/gridsan/&lt;username&gt;</code></td>
-<td>User only</td>
-<td>Not backed up</td>
-<td>See <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a></td>
-</tr>
-<tr>
-<td>Group Directories <br> Lustre</td>
-<td><code>/home/gridsan/groups/&lt;groupname&gt;</code></td>
-<td>Files shared within a group</td>
-<td>Not backed up</td>
-<td>See <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a></td>
-</tr>
-<tr>
-<td>Job-specific Temporary Storage <br> Local Disk</td>
-<td>Access using the <code>$TMPDIR</code> environment variable</td>
-<td>User or Group</td>
-<td>Not backed up <br>  Temporary directory created at the start of a job and cleaned up at the end of the job</td>
-<td>NA</td>
-</tr>
-<tr>
-<td>Local Disk Space</td>
-<td>Create the directory <code>/state/partition1/user/$USER</code> as needed</td>
-<td>User or Group</td>
-<td>Not backed up <br> Cleaned up monthly during downtimes</td>
-<td>NA</td>
-</tr>
-</tbody>
-</table>
-<h2 id="openmind">OpenMind</h2>
-<p>OpenMind provides a number of different storage options. See the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/Which-directory-should-I-use%3F">OpenMind Documentation page on Storage</a> for more information, best practices, and recommendations.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>20 GB</td>
-<td>Backed up</td>
-<td>Use for very important files. Physically located on Flash 2.</td>
-</tr>
-<tr>
-<td>Flash 1</td>
-<td><code>/om/user/&lt;username&gt;</code> (individual users) and <code>/om/group/&lt;groupname&gt;</code> (groups)</td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Fast internal storage</td>
-</tr>
-<tr>
-<td>Flash 1 Scratch</td>
-<td><code>/om/scratch/&lt;week-day&gt;</code></td>
-<td>N/A</td>
-<td>Not backed up <br> purged 3 weeks after creation</td>
-<td>Scratch space</td>
-</tr>
-<tr>
-<td>Flash 2</td>
-<td><code>/om2/user/&lt;username&gt;</code> (individual users) and <code>/om2/group/&lt;groupname&gt;</code> (groups)</td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Fast internal storage</td>
-</tr>
-<tr>
-<td>Flash 2 Scratch</td>
-<td><code>/om2/scratch/&lt;week-day&gt;</code></td>
-<td>N/A</td>
-<td>Not backed up <br> purged 2 weeks after creation</td>
-<td>Scratch space</td>
-</tr>
-<tr>
-<td>NFS</td>
-<td><code>/om3</code>, <code>/om4</code>, <code>/om5</code></td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Slow internal long-term storage</td>
-</tr>
-<tr>
-<td>NESE</td>
-<td><code>/nese</code></td>
-<td>Per group</td>
-<td>Backed up</td>
-<td>Slow internal long-term storage</td>
-</tr>
-</tbody>
-</table>
+<p>Lustre is a type of file system technology used on the engaging cluster, known to most users as the <code>/nobackup1b</code> or <code>/nobackup1c</code> file systems. The Lustre storage system is built to manage extremely high rates of input and output, and can read and write large files faster than traditional storage like NFS, the home directory.</p>
+<p>Since it is designed to read and write large files, it has difficulties running jobs that read and write lots of small files. When Lustre is faced with many small file input and output, it can get overloaded and in return responds very slowly across the entire filesystem, effecting more than just the user who is running the job with small file input and output.</p>
+<p>Along with avoiding small file input and output, there are a few other things users should know to avoid when using the Lustre file system (<code>nobackup1b</code>/<code>nobackup1c</code>)</p>
+<h2 id="avoid-using-the-command-ls-l">Avoid using the command <code>ls -l</code></h2>
+<p>The <code>ls -l</code> command displays a lot of information such as ownership, permissions, and the size of files and directories. Some of this information, such as the file size, is only stored in part of the Lustre technology, and so this information must be queried for all files and directories on the file system. This can be very resource consuming and take a long time to complete since many files are stored on <code>/nobackup1b</code> and <code>/nobackup1c</code> by many users.</p>
+<p>Instead of using <code>ls -l</code>, you should:</p>
+<ul>
+<li>Use <code>ls</code> by itself if you just want to see if a file exists</li>
+<li>Use <code>ls -l &lt;filename&gt;</code> if you want the long listing of a specific file</li>
+</ul>
+<h2 id="avoid-having-a-large-number-of-files-in-a-single-directory">Avoid having a Large Number of Files in a Single Directory</h2>
+<p>Opening a file keeps a lock on the parent directory. When many files in the same directory are to be opened, it creates contention. A better practice is to split a large number of files (in the thousands or more) into multiple subdirectories to minimize contention.</p>
+<h2 id="avoid-storing-and-accessing-small-files-on-lustre">Avoid Storing and Accessing Small Files on Lustre</h2>
+<p>Accessing small files on the Lustre filesystem is not efficient. There are 2 other locations users can store smaller sized files that are much better suited to handle them. These locations are Pool and the user’s Home Directory. For more information on these storage locations, please see the page on <a href="../filesystems/">General Use Filesystems</a>.</p>
+<p>To limit users storing lots of small files on <code>/nobackup1b</code> or <code>/nobackup1c</code>, there is a inode quota of 50k on these locations. An inode is a file, directory, or symlink, since all *unix systems treat these inodes the same in terms of permissions and storage.</p>
+<p>To check how much of your quota you have used, you can use the command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lfs<span class="w"> </span>quota<span class="w"> </span>-h<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>/nobackup1
+</span></code></pre></div>
+<h2 id="avoid-accessing-and-running-executable-files-from-lustre">Avoid Accessing and Running Executable Files from Lustre</h2>
+<p>Executables run slower when they are run from <code>/nobackup1</code>, and shouldn’t be run from login or head nodes, regardless if they are ran from <code>/nobackup1</code>, Pool, or a user’s Home Directory. To learn how to run on Engaging, see the section on <a href="../../running-jobs/overview/">Running Jobs</a>.</p>
+<p>Executable files for jobs are best stored in a user’s home directory. Storing executable files in Pool is also acceptable, but less ideal. Input data, such as datasets or input files, can be stored on <code>/nobackup1</code> and your job can generate any large data output to <code>/nobackup1</code>. Any files you need to keep long term should also be stored in Home, Pool, or another backed up location. Anything stored in a location that is not backed up, such as <code>/nobackup1</code>, has some risk of being lost.</p>
+<h2 id="avoid-having-multiple-processes-open-the-same-files-at-the-same-time">Avoid Having Multiple Processes Open the Same File(s) at the Same Time</h2>
+<p>On Lustre filesystems, if multiple processes try to open the same file(s), some processes will not able to find the file(s) and your job will fail.</p>
 
 
 
@@ -1530,7 +1256,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
   </span>
 
     
