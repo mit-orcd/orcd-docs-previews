@@ -1009,6 +1009,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ORCA
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1019,6 +1031,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-test-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running a Test Case
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1157,6 +1197,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-test-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running a Test Case
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1197,7 +1254,7 @@ Here are the steps to do so:</p>
 <ul>
 <li>Upload the <code>.tar.xz</code> file to Engaging using <code>scp</code>:</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>scp<span class="w"> </span>/path/to/orca_6_0_1_linux_x86-64_shared_openmpi416.tar.xz<span class="w"> </span><span class="nv">$USER</span>@orcd-login001.mit.edu<span class="w"> </span>~/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>scp<span class="w"> </span>/path/to/source/orca_6_0_1_linux_x86-64_shared_openmpi416.tar.xz<span class="w"> </span><span class="nv">$USER</span>@orcd-login001.mit.edu<span class="w"> </span>/path/to/destination
 </span></code></pre></div>
 <ul>
 <li>On Engaging, extract the <code>tar.xz</code> file:</li>
@@ -1208,6 +1265,24 @@ Here are the steps to do so:</p>
 <li>Add this version of ORCA to your path:</li>
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/path/to/orca_6_0_1_linux_x86-64_shared_openmpi416:<span class="nv">$PATH</span>
+</span></code></pre></div>
+<h2 id="running-a-test-case">Running a Test Case</h2>
+<p>To see if our installation was successful, we can run a test case adapted from
+the <a href="https://www.faccts.de/docs/orca/6.0/tutorials/first_steps/first_calc.html">ORCA 6.0 Tutorials</a>.</p>
+<p>First, create an empty directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>~/orca_test
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>~/orca_test
+</span></code></pre></div>
+<p>Next, create a test file:</p>
+<div class="language-text highlight"><span class="filename">water.inp</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>!HF DEF2-SVP
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>* xyz 0 1
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>O   0.0000   0.0000   0.0626
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>H  -0.7920   0.0000  -0.4973
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>H   0.7920   0.0000  -0.4973
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>*
+</span></code></pre></div>
+<p>Run <code>orca</code> on this file and save the output to another file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>orca<span class="w"> </span>water.inp<span class="w"> </span>&gt;<span class="w"> </span>water.out
 </span></code></pre></div>
 
 
