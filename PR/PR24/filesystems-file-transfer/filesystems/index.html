@@ -11,14 +11,14 @@
         <link rel="canonical" href="https://orcd.mit.edu/filesystems-file-transfer/filesystems/">
       
       
-        <link rel="prev" href="../../orcd-systems/">
+        <link rel="prev" href="../../recipes/vscode/">
       
       
         <link rel="next" href="../project-filesystems/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
     
     
       
@@ -26,10 +26,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +65,6 @@
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -96,7 +95,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -119,9 +118,10 @@
     
     
     
+    
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -130,21 +130,21 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -197,12 +197,14 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Home
+    
   </span>
   
 
@@ -213,6 +215,7 @@
     
       
       
+  
   
   
   
@@ -222,6 +225,7 @@
   
   <span class="md-ellipsis">
     ORCD Systems
+    
   </span>
   
 
@@ -234,10 +238,162 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started Tutorial
     
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accessing ORCD Systems
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing ORCD Systems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ondemand-login/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging in with OnDemand
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-login/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logging in with SSH via Terminal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH Key Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode Remote SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
     
     
     
@@ -246,23 +402,23 @@
       
         
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
     Filesystems and File Transfer
+    
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Filesystems and File Transfer
           </label>
@@ -273,6 +429,7 @@
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -288,6 +445,7 @@
   
   <span class="md-ellipsis">
     General Use Filesystems
+    
   </span>
   
 
@@ -299,6 +457,7 @@
   
   <span class="md-ellipsis">
     General Use Filesystems
+    
   </span>
   
 
@@ -320,29 +479,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    SuperCloud
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#engaging" class="md-nav__link">
-    Engaging
+    <span class="md-ellipsis">
+      Engaging
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#satori" class="md-nav__link">
-    Satori
+    <span class="md-ellipsis">
+      Satori
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supercloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      SuperCloud
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#openmind" class="md-nav__link">
-    OpenMind
+    <span class="md-ellipsis">
+      OpenMind
+    </span>
   </a>
   
 </li>
@@ -361,12 +528,36 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../project-filesystems/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Project Specific Filesystems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transferring-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transferring Files
+    
   </span>
   
 
@@ -388,16 +579,194 @@
   
   
   
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../data-security/" class="md-nav__link">
+      <a href="../../software/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Data Security and Privacy
+    Overview
+    
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/apptainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Container
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling Codes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/julia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Julia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/R/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -407,7 +776,7 @@
   
   
   
-    
+  
     
     
     
@@ -416,23 +785,110 @@
       
         
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    ORCD Recipes
+    Running Jobs
+    
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Running Jobs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scheduler Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/requesting-resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requesting Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ORCD Recipes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
           </label>
@@ -443,12 +899,14 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../recipes/gromacs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     GROMACS
+    
   </span>
   
 
@@ -460,6 +918,7 @@
             
               
                 
+  
   
   
   
@@ -469,6 +928,7 @@
   
   <span class="md-ellipsis">
     MPI for Python
+    
   </span>
   
 
@@ -480,6 +940,7 @@
             
               
                 
+  
   
   
   
@@ -489,6 +950,7 @@
   
   <span class="md-ellipsis">
     MuJoCo
+    
   </span>
   
 
@@ -500,6 +962,7 @@
             
               
                 
+  
   
   
   
@@ -509,6 +972,7 @@
   
   <span class="md-ellipsis">
     NVHPC with CUDA aware MPI
+    
   </span>
   
 
@@ -523,12 +987,102 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../recipes/basic_vasp_gcc_example/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     VASP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/mpi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/relion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RELION
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode Remote SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/pycharm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PyCharm
+    
   </span>
   
 
@@ -550,12 +1104,98 @@
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acknowledging Us
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Security and Privacy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-of-conduct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acceptable Use and Code of Conduct
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-help/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Help
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../tags/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Index
+    
   </span>
   
 
@@ -591,29 +1231,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#supercloud" class="md-nav__link">
-    SuperCloud
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#engaging" class="md-nav__link">
-    Engaging
+    <span class="md-ellipsis">
+      Engaging
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#satori" class="md-nav__link">
-    Satori
+    <span class="md-ellipsis">
+      Satori
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supercloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      SuperCloud
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#openmind" class="md-nav__link">
-    OpenMind
+    <span class="md-ellipsis">
+      OpenMind
+    </span>
   </a>
   
 </li>
@@ -633,10 +1281,130 @@
                   
 
 
+
 <h1 id="general-use-filesystems">General Use Filesystems</h1>
 <p>Large HPC systems often have different filesystems for different purposes. ORCD systems are no different, and each have their own approach. This page documents these.</p>
+<h2 id="engaging">Engaging</h2>
+<p>Users each get a Home Directory that is backed up and meant for important files. An additional larger Pool space is provided for storing larger datasets longer term. Larger Scratch space is not backed up. <a href="../project-filesystems/">Additional storage can be purchased</a>, and PIs can request an additional 5TB of shared Pool storage for their lab. The Scratch spaces are meant for data used in actively running jobs. It will be faster to access Scratch during your job for the majority of workloads, but it is not backed up and should not be used for long term storage. Any files that cannot be easily replaced should be stored in Home or Pool storage, or backed up outside of Engaging.</p>
+<p>See the table below for a description of each storage space. If your account was created before January 2025 and has not yet been migrated to the new storage, select the second tab.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Account Created or Migrated After Jan 2025</label><label for="__tabbed_1_2">Account Created Before Jan 2025 or Not Yet Migrated</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th><div style="width:18em">Path</div></th>
+<th>Quota</th>
+<th>Backed up</th>
+<th>Purpose/Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home Directory <br> Flash</td>
+<td><code>/home/&lt;username&gt;</code></td>
+<td>200 GB</td>
+<td>Backed up with snapshots</td>
+<td>Use for important files and software</td>
+</tr>
+<tr>
+<td>Pool <br> Hard Disk</td>
+<td><code>/home/&lt;username&gt;/orcd/c7/pool</code></td>
+<td>1 TB</td>
+<td>Disaster recovery backup</td>
+<td>Storing larger datasets</td>
+</tr>
+<tr>
+<td>Scratch <br> Flash</td>
+<td><code>/home/&lt;username&gt;/orcd/c7/scratch</code></td>
+<td>4 TB</td>
+<td><strong>Not backed up</strong></td>
+<td>Scratch space for I/O heavy jobs</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Scratch is Not Backed Up</p>
+<p>Scratch is meant for temporary storage while running compute jobs. It is not meant for long term storage and <strong>is not backed up</strong>. <strong>If you have not logged in for 6 months files in scratch will be deleted</strong>. Any files that you would like to keep long-term should be copied onto another storage location with backup.</p>
+</div>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th><div style="width:12em">Path</div></th>
+<th>Quota</th>
+<th>Backed up</th>
+<th>Purpose/Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home Directory <br> NFS</td>
+<td><code>/home/&lt;username&gt;</code></td>
+<td>100 GB</td>
+<td>Backed up</td>
+<td>Use for important files</td>
+</tr>
+<tr>
+<td>NFS</td>
+<td><code>/pool001/&lt;username&gt;</code></td>
+<td>1 TB</td>
+<td>Not backed up</td>
+<td>Scratch space</td>
+</tr>
+<tr>
+<td>Lustre</td>
+<td><code>/nobackup1/&lt;username&gt;</code></td>
+<td>1 TB</td>
+<td>Not backed up</td>
+<td>Scratch space <br> Heavy I/O jobs with few, large files</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Lustre /nobackup1 is Not Backed Up</p>
+<p>/nobackup1 is meant for temporary storage while running compute jobs. It is not meant for long term storage and <strong>is not backed up</strong>. Any files that you would like to keep long-term should be copied onto another storage location with backup.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Lustre /nobackup1 performs best with fewer, larger files</p>
+<p>Having large numbers of small files will make Lustre slower than NFS and can slow down the filesystem overall, so it is important to follow the <a href="../lustre-best-practices/">Lustre Best Practices</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="satori">Satori</h2>
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th>Path</th>
+<th>Quota</th>
+<th>Backed up</th>
+<th>Purpose/Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home Directory</td>
+<td><code>/home/&lt;username&gt;</code></td>
+<td>25GB</td>
+<td>Backed up</td>
+<td>Use for important files. Quota increase request to 100GB.</td>
+</tr>
+<tr>
+<td>GPFS</td>
+<td><code>/nobackup/users/&lt;username&gt;</code></td>
+<td>500GB</td>
+<td>Not backed up</td>
+<td>Scratch space. Quota increase request to 2TB.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="supercloud">SuperCloud</h2>
-<p>SuperCloud uses Lustre for all central/shared storage (accessible to all nodes in the system). This storage is not backed up. See the SuperCloud <a href="https://supercloud.mit.edu/best-practices-and-performance-tips">Best Practices and Performance Tips</a> page for best practices using the Lustre filesystem. Quotas or limits are set on the storage as guardrails. Additional storage may be granted on a case by case basis. Local disk spaces will be faster than the Lustre shared filesystem, but all are temporary and can only be accessed on the node where they are created.</p>
+<p>SuperCloud uses Lustre for all central/shared storage (accessible to all nodes in the system). This storage is not backed up. See the SuperCloud <a href="https://supercloud.mit.edu/best-practices-and-performance-tips">Best Practices and Performance Tips</a> page for best practices using the Lustre filesystem. Quotas or limits are set on the storage as guardrails. Individual and group storage use and quotas can been viewed on the <a href="https://txe1-portal.mit.edu/profile/user_profile.php">User Profile Page</a> on the SuperCloud Web Portal (only accessible if you have an account). Additional storage may be granted on a case by case basis. Local disk spaces will be faster than the Lustre shared filesystem, but all are temporary and can only be accessed on the node where they are created.</p>
 <table>
 <thead>
 <tr>
@@ -678,70 +1446,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="engaging">Engaging</h2>
-<p>Users each get a small home directory that is backed up and meant for important files. Larger scratch space is not backed up. <a href="../project-filesystems/">Additional storage can be purchased</a>. The Lustre scratch space will be faster than NFS for the majority of workloads, however having large numbers of small files will make it slower than NFS and can slow down the filesystem overall, so it is important to follow the <a href="https://engaging-web.mit.edu/eofe-wiki/best_practices/lustre/">Lustre Best Practices</a>. See the <a href="https://engaging-web.mit.edu/eofe-wiki/storage/">Engaging Documentation Page on Storage</a> for more information.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> NFS</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>100 GB</td>
-<td>Backed up</td>
-<td>Use for important files</td>
-</tr>
-<tr>
-<td>Lustre</td>
-<td><code>/nobackup1/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space <br> Faster than NFS</td>
-</tr>
-<tr>
-<td>NFS</td>
-<td><code>/pool001/&lt;username&gt;</code></td>
-<td>1 TB</td>
-<td>Not backed up</td>
-<td>Scratch space</td>
-</tr>
-</tbody>
-</table>
-<h2 id="satori">Satori</h2>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th>Path</th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>25GB</td>
-<td>Backed up</td>
-<td>Use for important files. Quota increase request to 100GB.</td>
-</tr>
-<tr>
-<td>GPFS</td>
-<td><code>/nobackup/users/&lt;username&gt;</code></td>
-<td>500GB</td>
-<td>Not backed up</td>
-<td>Scratch space. Quota increase request to 2TB.</td>
-</tr>
-</tbody>
-</table>
 <h2 id="openmind">OpenMind</h2>
 <p>OpenMind provides a number of different storage options. See the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/Which-directory-should-I-use%3F">OpenMind Documentation page on Storage</a> for more information, best practices, and recommendations.</p>
 <table>
@@ -760,42 +1464,35 @@
 <td><code>/home/&lt;username&gt;</code></td>
 <td>20 GB</td>
 <td>Backed up</td>
-<td>Use for very important files. Physically located on Vast.</td>
+<td>Use for very important files. Physically located on Flash 2.</td>
 </tr>
 <tr>
-<td>Weka</td>
+<td>Flash 1</td>
 <td><code>/om/user/&lt;username&gt;</code> (individual users) and <code>/om/group/&lt;groupname&gt;</code> (groups)</td>
 <td>Per group</td>
 <td>Backed up</td>
 <td>Fast internal storage</td>
 </tr>
 <tr>
-<td>Weka Scratch</td>
+<td>Flash 1 Scratch</td>
 <td><code>/om/scratch/&lt;week-day&gt;</code></td>
 <td>N/A</td>
 <td>Not backed up <br> purged 3 weeks after creation</td>
 <td>Scratch space</td>
 </tr>
 <tr>
-<td>Vast</td>
+<td>Flash 2</td>
 <td><code>/om2/user/&lt;username&gt;</code> (individual users) and <code>/om2/group/&lt;groupname&gt;</code> (groups)</td>
 <td>Per group</td>
 <td>Backed up</td>
 <td>Fast internal storage</td>
 </tr>
 <tr>
-<td>Vast Scratch</td>
+<td>Flash 2 Scratch</td>
 <td><code>/om2/scratch/&lt;week-day&gt;</code></td>
 <td>N/A</td>
 <td>Not backed up <br> purged 2 weeks after creation</td>
 <td>Scratch space</td>
-</tr>
-<tr>
-<td>Lustre Scratch</td>
-<td><code>/nobackup/scratch/&lt;week-day&gt;</code></td>
-<td>N/A</td>
-<td>Not backed up <br> purged 3 weeks after creation</td>
-<td>Scratch space <br>  See <a href="https://www.nas.nasa.gov/hecc/support/kb/lustre-best-practices_226.html">Lustre Best Practices</a> page</td>
 </tr>
 <tr>
 <td>NFS</td>
@@ -814,16 +1511,33 @@
 </tbody>
 </table>
 
-  <hr>
-<div class="md-source-file">
-  <small>
+
+
+
+
+
+
+  
     
-      Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 21, 2023</span>
+  
+  
+
+
+  <aside class="md-source-file">
+    
       
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 14, 2025</span>
+  </span>
+
     
-  </small>
-</div>
+    
+    
+    
+  </aside>
 
 
 
@@ -834,6 +1548,9 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
@@ -866,10 +1583,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
