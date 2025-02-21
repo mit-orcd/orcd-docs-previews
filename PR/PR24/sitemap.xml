@@ -2,146 +2,154 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://orcd.mit.edu/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/acknowledgements/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/code-of-conduct/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/data-security/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/getting-help/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/getting-started/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/orcd-systems/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/tags/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/accessing-orcd/ondemand-login/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/accessing-orcd/ssh-login/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/accessing-orcd/ssh-setup/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/filesystems-file-transfer/filesystems/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/filesystems-file-transfer/lustre-best-practices/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/filesystems-file-transfer/project-filesystems/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/filesystems-file-transfer/transferring-files/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/images/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
-         <loc>https://orcd.mit.edu/recipes/basic_vasp_gcc_example/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <loc>https://orcd.mit.edu/recipes/build-vasp-gcc-cpu/</loc>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/gromacs/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/h100_getting_started/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/julia_install/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/mpi/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/mpi4py/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/mujoco/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/nvhpc-a100-with-cuda-and-mpi-example/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
+    </url>
+    <url>
+         <loc>https://orcd.mit.edu/recipes/orca/</loc>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/pycharm/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/relion/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/vscode/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
+    </url>
+    <url>
+         <loc>https://orcd.mit.edu/running-jobs/job-arrays/</loc>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/running-jobs/overview/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/running-jobs/requesting-resources/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/R/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/apptainer/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/compile/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/julia/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/modules/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/overview/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
     <url>
          <loc>https://orcd.mit.edu/software/python/</loc>
-         <lastmod>2025-02-19</lastmod>
+         <lastmod>2025-02-21</lastmod>
     </url>
 </urlset>
