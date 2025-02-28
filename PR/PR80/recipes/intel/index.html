@@ -846,6 +846,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpi4py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI for Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mujoco/" class="md-nav__link">
         
   
@@ -890,33 +934,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../gromacs/" class="md-nav__link">
+      <a href="../build-vasp-gcc-cpu/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    GROMACS
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mpi4py/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    MPI for Python
+    VASP
     
   </span>
   
@@ -1392,29 +1414,52 @@
 </div>
 </div>
 <h2 id="compile-and-run-programs-with-intel-compiler">Compile and run programs with Intel compiler</h2>
-<p>Once the environment is set up in either of the preivous two sections, you can compile your C or Fortran codes like this,
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Rocky 8 nodes</label><label for="__tabbed_2_2">CentOS 7 nodes</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Once the environment is set up, you can compile your C or Fortran codes like this,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>icx -O3 name.c -o name
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ifort -O3 name.c -o name
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ifort -O3 name.f90 -o name
 </span></code></pre></div>
 or MPI codes,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mpicc -O3 name.c -o name
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mpiifort -O3 name.c -o name
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mpiifort -O3 name.f90 -o name
 </span></code></pre></div></p>
 <p>If you use GNU Make to build your program, set up the varialbes in the Makefile, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>CC=icc
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>CC=icx
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>FC=ifort
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>MPICC=mpicc
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>MPIFC=mpiifort
 </span></code></pre></div>
 Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
-<p>To run your program on Rocky 8 nodes, submit a job script specifying a partition with <code>-p &lt;partition-name&gt;</code> and the OS with <code>--constraint=rocky8</code>, and loading the intel module,
+<p>Finally submit a job script specifying a partition with <code>-p &lt;partition-name&gt;</code> and loading the intel module,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>module load intel/2024.2.1
 </span></code></pre></div></p>
-<p>To run your program on CentOS 7 nodes, submit a job script specifying a partition with <code>-p &lt;partition-name&gt;</code> and the OS with <code>--constraint=centos7</code>, and loading the intel modules,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>module load intel/2018-01
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>module load impi/2018-01
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>module load mkl/2018-01 
+</div>
+<div class="tabbed-block">
+<p>Once the environment is set up, you can compile your C or Fortran codes like this,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>icc -O3 name.c -o name
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ifort -O3 name.f90 -o name
+</span></code></pre></div>
+or MPI codes,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mpicc -O3 name.c -o name
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mpiifort -O3 name.f90 -o name
 </span></code></pre></div></p>
+<p>If you use GNU Make to build your program, set up the varialbes in the Makefile, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>CC=icc
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>FC=ifort
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>MPICC=mpicc
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>MPIFC=mpiifort
+</span></code></pre></div>
+Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
+<p>Finally submit a job script specifying a partition with <code>-p &lt;partition-name&gt;</code> and loading the intel module,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>module load intel/2018-01
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>module load impi/2018-01
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>module load mkl/2018-01 
+</span></code></pre></div></p>
+</div>
+</div>
+</div>
 <h2 id="references">References</h2>
 <p>Refer to the following references for more details on logging in, compiling C/Fortran codes, using GNU make, and using partitions in Slurm job scheduler. </p>
 <blockquote>
@@ -1442,7 +1487,7 @@ Use the variable <code>MKLROOT</code> in the Makefile when needed.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 26, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 28, 2025</span>
   </span>
 
     
