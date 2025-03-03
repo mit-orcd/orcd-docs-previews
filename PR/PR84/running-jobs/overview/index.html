@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
@@ -917,6 +917,28 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../job-arrays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Job Arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -959,6 +981,50 @@
             ORCD Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/mpi4py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MPI for Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1011,33 +1077,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/gromacs/" class="md-nav__link">
+      <a href="../../recipes/build-vasp-gcc-cpu/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    GROMACS
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/mpi4py/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    MPI for Python
+    VASP
     
   </span>
   
@@ -1148,6 +1192,50 @@
   
   <span class="md-ellipsis">
     RAG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/intel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intel compiler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/orca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ORCA
     
   </span>
   
@@ -1499,6 +1587,7 @@
 <li>down: nodes that are not currently in service</li>
 <li>drain: nodes that will be put in a <code>down</code> state once all jobs running on them are completed</li>
 </ul>
+<p>You can also use sinfo to see what resources each node has. The output can be quite long so we recommend limiting to a specific partition. For example, to see what </p>
 <h2 id="running-jobs">Running Jobs</h2>
 <p>How you run your job depends on the type of job you would like to run. There are two "modes" for running jobs: interactive and batch jobs. Interactive jobs allow you to run interactively on a compute node in a shell. Batch jobs, on the other hand, are for running a pre-written script or executable. Interactive jobs are mainly used for testing, debugging, and interactive data analysis. Batch jobs are the traditional jobs you see on an HPC system and should be used when you want to run a script that doesn't require that you interact with it.</p>
 <h3 id="job-flags">Job Flags</h3>
@@ -1546,7 +1635,7 @@
 <p>To see all your currently running and pending jobs run the <code>squeue --me</code> command: </p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>squeue<span class="w"> </span>--me
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">             </span>JOBID<span class="w"> </span>PARTITION<span class="w">     </span>NAME<span class="w">     </span>USER<span class="w"> </span>ST<span class="w">       </span>TIME<span class="w">  </span>NODES<span class="w"> </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">          </span><span class="m">60735877</span><span class="w"> </span>mit_norma<span class="w"> </span>interact<span class="w"> </span>milechin<span class="w">  </span>R<span class="w">      </span><span class="m">29</span>:32<span class="w">      </span><span class="m">1</span><span class="w"> </span>node1707
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">          </span><span class="m">60735877</span><span class="w"> </span>mit_norma<span class="w"> </span>interact<span class="w"> </span>username<span class="w">  </span>R<span class="w">      </span><span class="m">29</span>:32<span class="w">      </span><span class="m">1</span><span class="w"> </span>node1707
 </span></code></pre></div>
 <p>each line in the output is a different job. The default fields are:</p>
 <ul>
@@ -1683,7 +1772,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
