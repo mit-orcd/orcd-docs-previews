@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/software/building-software/">
       
       
+        <link rel="prev" href="../R/">
+      
+      
+        <link rel="next" href="../apptainer/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Building Software - ORCD Docs</title>
+        <title>Other Software - ORCD Docs</title>
       
     
     
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Building Software
+              Other Software
             
           </span>
         </div>
@@ -495,17 +499,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -520,7 +526,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Software
@@ -600,50 +606,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../apptainer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Container
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../compile/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Compiling Codes
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../julia/" class="md-nav__link">
         
   
@@ -671,6 +633,227 @@
   
   <span class="md-ellipsis">
     R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Other Software
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Other Software
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-0-check-for-pre-built-binaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 0: Check for Pre-Built Binaries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-download-and-unpack-the-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Download and Unpack the Source Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-an-interactive-job-for-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Start an Interactive Job for Compilation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-load-any-dependency-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Load Any Dependency Modules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-configure-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the configure script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-cmake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running cmake
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-build-the-software-with-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Build the Software with make
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-install-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Install Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-confirm-software-installation-was-successful" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Confirm Software Installation Was Successful
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-add-the-software-to-your-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 8: Add the Software to Your PATH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apptainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling Codes
     
   </span>
   
@@ -1389,7 +1572,7 @@
 
 <h1 id="building-software">Building Software</h1>
 <p>If you need software that is not not a Python, Julia, or R package and available as a <a href="../modules/">module</a> on the cluster (current modules can be seen with the command module avail) you can request this software be compiled as a module by reaching out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>. If you expect there won't be many others who will be using this software, or if you need a special version of software for your job, you can compile the software yourself for personal use.</p>
-<p>(mention recipes)</p>
+<p>For some common software we have written recipes for how to build them on Engaging. Check the "ORCD Recipes" section on the sidebar, or check out the <a href="../../tags/#howto-recipes">Howto Recipes</a> on the Index page.</p>
 <p>You can usually install whatever software you need in any directory you have write access to: your home, pool, or shared storage. This means the installation will be in this directory, rather than in a system-wide directory available for everyone. Most software can be installed this way, but it is not always well documented. If the binaries, or the executable files, for the software are available, you can put those in your home directory and add that path to your <code>$PATH</code> environment variable (see the Environment Variables unit in the section on the Linux Command Line for more information). Otherwise, you may have to build the software from source.</p>
 <div class="admonition warning">
 <p class="admonition-title">The <code>sudo</code> Command</p>
@@ -1513,7 +1696,7 @@ This will allocate 1 node from the <code>mit_normal</code> partition with 4 CPUs
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 6, 2025 13:55:14">March 6, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 7, 2025 20:54:30">March 7, 2025</span>
   </span>
 
     
