@@ -18,7 +18,7 @@
     
     
       
-        <title>Run Deepl Learning Codes on GPUs - ORCD Docs</title>
+        <title>Run Deep Learning Codes on GPUs - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#run-deepl-learning-codes-on-gpus" class="md-skip">
+        <a href="#run-deep-learning-codes-on-gpus" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Run Deepl Learning Codes on GPUs
+              Run Deep Learning Codes on GPUs
             
           </span>
         </div>
@@ -1349,9 +1349,9 @@
 
 
 
-<h1 id="run-deepl-learning-codes-on-gpus">Run Deepl Learning Codes on GPUs</h1>
+<h1 id="run-deep-learning-codes-on-gpus">Run Deep Learning Codes on GPUs</h1>
 <p>Deep leaning is the fundation of artificial intelligence nowadays. Deep leaning programs can be accelerated substantially on GPUs. </p>
-<p>PyTorch is a popular Python package for working on deep learning project.</p>
+<p>PyTorch is a popular Python package for working on deep learning projects.</p>
 <p>This page shows recipes to run Pytorch programs on GPUs. </p>
 <h2 id="installing-pytorch">Installing PyTorch</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
@@ -1373,9 +1373,9 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>We use a PyTorch eample, which trains a Convolutional neural network (CNN) based on the CIFAR10 data set. Refer to <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">description of this example</a>. </p>
-<p>Download the codes <a href="./codes/cnn_cifar10_cpu.py">for CPU</a> and <a href="./codes/cnn_cifar10_gpu.py">for GPU</a>.
- <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget https://mit-orcd.github.io/orcd-docs-previews/PR/PR89/recipes/torch-gpu/codes/cnn_cifar10_cpu.py
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>wget https://mit-orcd.github.io/orcd-docs-previews/PR/PR89/recipes/torch-gpu/codes/cnn_cifar10_gpu.py
+<p>Download the <a href="../scripts/torch-gpu/cnn_cifar10_cpu.py">codes for CPU</a> and <a href="../scripts/torch-gpu/cnn_cifar10_gpu.py">for GPU</a>.
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>wget 
 </span></code></pre></div></p>
 <p>Prepare a job script named <code>job.sh</code> like this,
  <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>#!/bin/bash
@@ -1438,7 +1438,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 21, 2025 21:13:11">March 21, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 21, 2025 21:20:55">March 21, 2025</span>
   </span>
 
     
