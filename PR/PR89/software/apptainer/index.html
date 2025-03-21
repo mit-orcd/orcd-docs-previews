@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1333,6 +1333,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FAQs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../tags/" class="md-nav__link">
         
   
@@ -1644,41 +1665,41 @@ The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]<
 </div>
 </div>
 <h2 id="build-singularity-images">Build Singularity images</h2>
-<p>In the previous section, it is assumed that all needed packages have been installed in the image. If some needed packages do not exist in the image, users need to build a new image. </p>
+<p>In the previous section, it is assumed that all needed packages have been installed in the image. Users need to build a new image if some needed packages do not exist in the image. </p>
 <p>To save work for the building process, search for an image providing the right OS and necessary dependencies to support your target application, then use it as a base image and build your target application on top of it. </p>
 <p>The following is an example of building Python packages such as Pytorch and Pandas in a container image. </p>
-<p>First, download a Docker image that provides the Ubuntu OS and have Python and PyTorch installed already,
+<p>First, download a Docker image that provides the Ubuntu OS and has Python and PyTorch installed already,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>singularity build --sandbox my-image  docker://bitnami/pytorch:latest
 </span></code></pre></div></p>
 <p>The command <code>build</code> here does not build anything yet, but just downloads the image and converts it to a new format. The flag <code>--sandbox</code> tells <code>build</code> to convert the image to the Sandbox format, which is convenient for installing packages interactively. </p>
-<p>Log in to the container shell, then you can install system packages using <code>apt-get</code> as is on an Ubuntu machine and build Python packages using <code>pip install</code>, taking Pandas for example, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ singularity shell --writable my-image
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Apptainer&gt; apt-get update
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>Apptainer&gt; pip install pandas
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>Apptainer&gt; python 
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>[GCC 10.2.1 20210110] on linux
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>&gt;&gt;&gt; import pandas as pd
-</span></code></pre></div></p>
+<p>Now you can install additional packages in the base image. In many installation processes, it requires virtual root privilege, which is enabled by the <code>fakeroot</code> command here. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Engaging</label><label for="__tabbed_4_2">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>The flag <code>--writable</code> is to enable the write permission to modify files in the container. </p>
+<p>Log in a head node that provides the <code>fakeroot</code> command,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ssh &lt;user&gt;@orcd-login004.mit.edu
+</span></code></pre></div></p>
 </div>
 <div class="tabbed-block">
-<p>The flags <code>--fakeroot --writable</code> is to enable the write permission to modify files in the container. Get an interative session on node115 to obtain the <code>fackeroot</code> package.
+<p>Get an interative session on node115 that provides the <code>fakeroot</code> command,
  <div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>srun -t 120 -w node115 --pty bash
 </span></code></pre></div></p>
-<details class="note">
-<summary>Note</summary>
-<p>The <code>apt-get</code> command is to install software in the Ubuntu OS. This is supported by the by the <code>fakeroot</code> package, which is installed on node115 on OpenMind. Users need to install <code>fakeroot</code> in their home directories.  </p>
-</details>
 </div>
 </div>
 </div>
-<p>Once the needed package are built in the image, you can use it as was shown in the preivious sections. </p>
-<p>Alternatively, you can build a container image on other machines on which you have <code>root</code> or <code>sudo</code> access. One way is to build a Docker image on a laptop/desktop such as MAC or PC. Another way is to build a Singularity image on a Linux machine that has Apptainer/Singularity installed. Once the image is built completely, transfer it to the cluster, and run it with Singularity.</p>
+<p>Start a container shell with the flags <code>--writable --fakeroot</code>, which enables the write permission and virtual root privileges in the container, and then you can install your packages. Here is an exmaple, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$ singularity shell --writable --fakeroot my-image
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Apptainer&gt; apt-get update
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Apptainer&gt; pip install pandas
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Apptainer&gt; python 
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>[GCC 10.2.1 20210110] on linux
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>&gt;&gt;&gt; import torch
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>&gt;&gt;&gt; import pandas as pd
+</span></code></pre></div></p>
+<p>Here the <code>apt-get</code> is to install system software on an Ubuntu machine, which is supported by the <code>fakeroot</code> flag. The <code>pip install</code> is to build Python packages. Finally, the package Pandas is built in the base image with PyTorch. </p>
+<p>Alternatively, you can build a Docker image on a laptop/desktop such as MAC or PC, transfer it to the cluster, and run it with Singularity. Many packages have been developed and built in the Docker environment, so this approach is more convenient in many cases. </p>
 
 
 
@@ -1699,7 +1720,7 @@ The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 18, 2025 21:40:41">February 18, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 7, 2025 21:16:41">March 7, 2025</span>
   </span>
 
     
