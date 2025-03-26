@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/software/apptainer/">
+        <link rel="canonical" href="https://orcd.mit.edu/software/building-software/">
       
       
-        <link rel="prev" href="../building-software/">
+        <link rel="prev" href="../R/">
       
       
-        <link rel="next" href="../compile/">
+        <link rel="next" href="../apptainer/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Containers - ORCD Docs</title>
+        <title>Other Software - ORCD Docs</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#singularity-and-apptainer" class="md-skip">
+        <a href="#building-software" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Containers
+              Other Software
             
           </span>
         </div>
@@ -647,28 +647,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../building-software/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Other Software
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -685,7 +663,7 @@
           
   
   <span class="md-ellipsis">
-    Containers
+    Other Software
     
   </span>
   
@@ -697,7 +675,7 @@
         
   
   <span class="md-ellipsis">
-    Containers
+    Other Software
     
   </span>
   
@@ -720,55 +698,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#run-applications-with-singularity" class="md-nav__link">
+  <a href="#step-0-check-for-pre-built-binaries" class="md-nav__link">
     <span class="md-ellipsis">
-      Run applications with Singularity
+      Step 0: Check for Pre-Built Binaries
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Run applications with Singularity">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-download-and-unpack-the-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Download and Unpack the Source Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-an-interactive-job-for-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Start an Interactive Job for Compilation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-load-any-dependency-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Load Any Dependency Modules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure Software">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preparations" class="md-nav__link">
+  <a href="#running-the-configure-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparations
+      Running the configure script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#download-an-image" class="md-nav__link">
+  <a href="#running-cmake" class="md-nav__link">
     <span class="md-ellipsis">
-      Download an image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-a-program-interactively" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run a program interactively
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#submit-a-batch-job" class="md-nav__link">
-    <span class="md-ellipsis">
-      Submit a batch job
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#more-on-using-singularity" class="md-nav__link">
-    <span class="md-ellipsis">
-      More on using Singularity
+      Running cmake
     </span>
   </a>
   
@@ -780,9 +767,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-singularity-images" class="md-nav__link">
+  <a href="#step-5-build-the-software-with-make" class="md-nav__link">
     <span class="md-ellipsis">
-      Build Singularity images
+      Step 5: Build the Software with make
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-install-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Install Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-confirm-software-installation-was-successful" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Confirm Software Installation Was Successful
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-add-the-software-to-your-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 8: Add the Software to Your PATH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
     </span>
   </a>
   
@@ -792,6 +815,28 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apptainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1417,55 +1462,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#run-applications-with-singularity" class="md-nav__link">
+  <a href="#step-0-check-for-pre-built-binaries" class="md-nav__link">
     <span class="md-ellipsis">
-      Run applications with Singularity
+      Step 0: Check for Pre-Built Binaries
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Run applications with Singularity">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-download-and-unpack-the-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Download and Unpack the Source Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-start-an-interactive-job-for-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Start an Interactive Job for Compilation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-load-any-dependency-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Load Any Dependency Modules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure Software">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#preparations" class="md-nav__link">
+  <a href="#running-the-configure-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparations
+      Running the configure script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#download-an-image" class="md-nav__link">
+  <a href="#running-cmake" class="md-nav__link">
     <span class="md-ellipsis">
-      Download an image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-a-program-interactively" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run a program interactively
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#submit-a-batch-job" class="md-nav__link">
-    <span class="md-ellipsis">
-      Submit a batch job
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#more-on-using-singularity" class="md-nav__link">
-    <span class="md-ellipsis">
-      More on using Singularity
+      Running cmake
     </span>
   </a>
   
@@ -1477,9 +1531,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#build-singularity-images" class="md-nav__link">
+  <a href="#step-5-build-the-software-with-make" class="md-nav__link">
     <span class="md-ellipsis">
-      Build Singularity images
+      Step 5: Build the Software with make
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-install-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Install Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-confirm-software-installation-was-successful" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Confirm Software Installation Was Successful
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-add-the-software-to-your-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 8: Add the Software to Your PATH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
     </span>
   </a>
   
@@ -1499,229 +1589,114 @@
                 
                   
 
-  <nav class="md-tags" >
-    
-      
-      
-      
-        <a href="../../tags/#tag:apptainer" class="md-tag">Apptainer</a>
-      
-    
-      
-      
-      
-        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
-      
-    
-      
-      
-      
-        <a href="../../tags/#tag:openmind" class="md-tag">OpenMind</a>
-      
-    
-      
-      
-      
-        <a href="../../tags/#tag:singularity" class="md-tag">Singularity</a>
-      
-    
-      
-      
-      
-        <a href="../../tags/#tag:software" class="md-tag">Software</a>
-      
-    
-  </nav>
 
 
-
-<h1 id="singularity-and-apptainer">Singularity and Apptainer</h1>
-<p>Containers provide an isolated environment that supports user applications. In many cases, it is helpful to use a container to obtain the right environment for your applications on HPC clusters, so as to avoid installing too many dependencies.</p>
-<p>Containers have great portability and mobility, that says, it is convenient to migrate your applications bewtween different platforms, such as laptops/desktops, cloud platforms and HPC clusters. </p>
-<p>The most well known container is Docker, which is designed for laptops/desktops and cloud platforms. On ORCD clusters, we use Apptainer and Singularity instead, which are particularly designed for high-perfromance computing. Apptainer is extended from Singularity. Both are compatible with Docker. </p>
+<h1 id="building-software">Building Software</h1>
+<p>If you need software that is not a Python, Julia, or R package and available as a <a href="../modules/">module</a> on the cluster (current modules can be seen with the command module avail) you can request this software be compiled as a module by reaching out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>. If you expect there won't be many others who will be using this software, or if you need a special version of software for your job, you can compile the software yourself for personal use.</p>
+<p>For some common software we have written recipes for how to build them on Engaging. Check the "ORCD Recipes" section on the sidebar, or check out the <a href="../../tags/#tag:howto-recipes">Howto Recipes</a> on the Index page.</p>
+<p>You can usually install whatever software you need in any directory you have write access to: your home, pool, or shared storage. This means the installation will be in this directory, rather than in a system-wide directory available for everyone. Most software can be installed this way, but it is not always well documented. If the binaries, or the executable files, for the software are available, you can put those in your home directory and add that path to your <code>$PATH</code> environment variable (see the Environment Variables unit in the section on the Linux Command Line for more information). Otherwise, you may have to build the software from source.</p>
+<div class="admonition warning">
+<p class="admonition-title">The <code>sudo</code> Command</p>
+<p>You will not be able to run the <code>sudo</code> command on any ORCD system. The sudo command is used to run commands that could create system-wide changes that affect all users on the system. If instructions tell you to run a <code>sudo</code> command, see if you can run the command without <code>sudo</code>, or search for instructions on how to install without sudo, such as by building from source. If you are still having trouble reach out to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a> for help.</p>
+</div>
+<p>Software compilation workflows will vary based on the software and its dependencies, but this is a general workflow for compiling software. Check if the documentation has instructions for building from source and refer to those in addition to these steps.</p>
+<div class="admonition tip">
+<p class="admonition-title">Suggested Directory Structure</p>
+<p>There can be a lot of moving parts when building software, and it's easy to forget where or what you installed, so it is helpful to stay organized. We recommend a directory structure that looks like this:</p>
+<ul>
+<li>$HOME/software - A directory called "software" to keep all your builds<ul>
+<li>[software_name] - The name of the software<ul>
+<li>[source_code] - The directory of source code you downloaded</li>
+<li>install - For the installation files</li>
+<li>deps - For any dependencies needed to build your software<ul>
+<li>[dep1_src] - Downloaded source for dependency 1</li>
+<li>[dep2_src] - Downloaded source for dependency 2</li>
+<li>install - Directory for all dependency installs so they are in one place</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="step-0-check-for-pre-built-binaries">Step 0: Check for Pre-Built Binaries</h2>
+<p>In some cases your software will distribute pre-built binaries, or executable files, that you can run without building the software yourself. You will want to look for files that are labeled for the x86 architecture and linux operating system.</p>
+<p>You can follow the instructions in <a href="#step-1-download-and-unpack-the-source-code">Step 1</a> for downloading the binaries onto Engaging and unpacking them. Once you have done that, skip to <a href="">Step X</a> to set your <code>$PATH</code> to use the software.</p>
+<p>Please note that this process assumes you have downloaded the source code for the software you wish to compile, and that source code is located at /home/$USER on the engaging cluster:</p>
+<h2 id="step-1-download-and-unpack-the-source-code">Step 1: Download and Unpack the Source Code</h2>
+<p>Go to your software's download or releases page and look for the source code distributions. If there are different distributions for Linux and Windows, be sure to select the one for Linux.</p>
+<p>You can usually left-click and select "Copy Link Address" to get the URL to the download, then in a terminal on Engaging use the <code>wget</code> command to download the source. If the code is in GitHub you can check if they have tagged releases in the right column under "Releases", or clone the repository.</p>
+<p>Often the source is distributed in <code>tar.gz</code> files, so you will need to use the <code>tar</code> command to unpack:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tar<span class="w"> </span>-xf<span class="w"> </span>my-software.tar.gz
+</span></code></pre></div>
+<h2 id="step-2-start-an-interactive-job-for-compilation">Step 2: Start an Interactive Job for Compilation</h2>
+<p>Builds are not too computationally heavy, but tend to run more slowly on the login nodes. To start an interactive job for compilation, use the command:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>salloc<span class="w"> </span>-p<span class="w"> </span>mit_normal<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span>
+</span></code></pre></div>
+This will allocate 1 node from the <code>mit_normal</code> partition with 4 CPUs for compiling your software. You will receive output that your request for allocation has been submitted, and when a node has been allocated for you to use, it will say “[Node_name] are ready for job”.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the following, the terminology Singularity will be used in most cases. The statements hold if the terminologies Singularity and Apptainer are switched. </p>
+<p>Be sure to request the partition you intend to run your jobs on. The node you build on will need to match the operating system of the nodes you plan to run your jobs on.</p>
 </div>
-<p>Users can use Singularity to support many applications, such as Python, R, C/Fortran packages, and many GUI software. In particular, containers are popular in supporting Python pakcages for the artificial intelligence (AI) and data science communities, such as Pytorch, Tensorflow, and many others. The Ubuntu operating system (OS) is widely used in the AI community and it is convinient to install many AI appications in Ubuntu environment. Users can use Singularity to obtain Ubuntu OS other than Rocky 8 OS on the host cluster.</p>
-<p>In this document, we will focus on how to use Singularity on ORCD clusters. First, many applications are well-supported in existing Docker images. Search for an image on the internet, in which your target applicaiton has already been installed by some developers, then download the image and use it directly. If there is no suitable image for your target application, you can build an image to support it.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>An image is a file to support container. Users can launch a containter based on an image.</p>
-</div>
-<h2 id="run-applications-with-singularity">Run applications with Singularity</h2>
-<p>Let us start with running an application with Singularity on the cluster first. </p>
-<h3 id="preparations">Preparations</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">OpenMind</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Log in to a head node,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh &lt;user&gt;@orcd-login002.mit.edu
+<h2 id="step-3-load-any-dependency-modules">Step 3: Load Any Dependency Modules</h2>
+<p>Make sure you have a <code>gcc</code> module loaded with the <code>module list</code> command. If you don't see one, pick one of the more recent versions and load it with the <code>module load</code> command.</p>
+<p>If your software uses <code>cmake</code> to build, you will also need to load a cmake module:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>cmake
 </span></code></pre></div>
- Check available Apptainer versions in modules,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module av apptainer
+<p>If your application uses MPI load an MPI module as well. Again, if you aren't sure which version to choose we recommend using a newer version.</p>
+<p>Check your documentation for any other dependencies and load any available modules for those.</p>
+<h2 id="step-4-configure-software">Step 4: Configure Software</h2>
+<p>The next step is often to run some kind of configure step. This is the step where you specify what build options you want or where any dependencies are installed. During this step there are usually checks for required dependencies and a working compiler. It is also at this step that you usually specify where you want your software installed.</p>
+<p>The two most common technologies for this step are a <code>configure</code> script and <code>cmake</code>. For these your software will come with either a <code>configure</code> script or a <code>CMakeLists.txt</code> (for <code>cmake</code>). If it comes with both you can check your software's documentation to see if they recommend one over the other. You will also want to check for any additional build flags you would like enabled, or additional instructions for this step.</p>
+<h3 id="running-the-configure-script">Running the <code>configure</code> script</h3>
+<p>First go to the directory that contains the <code>configure</code> script. When you run <code>configure</code> you will need to specify the install location, usually somewhere in your home directory. You can do this with the <code>--prefix</code> flag:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/<span class="o">[</span>install_directory<span class="o">]</span>
 </span></code></pre></div>
- Load an Apptainer module and its dependency, for example, 
- <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load apptainer/1.1.9
-</span></code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>Log in to the head node,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh &lt;user&gt;@openmind7.mit.edu
+<p>where ‘install_directory’ is the directory where you would like the software to be installed to. If you plan to install multiple pieces of personal software, we recommend making a folder entitled <code>`software</code> in your home directory and installing software there. We like to use the path <code>/home/$USER/software/[software_name]/install</code> where <code>[software_name]</code> is the name of your software. The <code>install</code> directory is there to differentiate from any source code that may be stored in the same location. If you keep the source code elsewhere you can leave off <code>install</code> from the path.</p>
+<h3 id="running-cmake">Running <code>cmake</code></h3>
+<p>If your software has a <code>CMakeLists.txt</code> file, it uses cmake to build and you can use the flag <code>-DCMAKE_INSTALL_PREFIX</code> to specify an install location in your home directory. If you've installed any additional dependencies you can specify their location with the <code>-DCMAKE_PREFIX_PATH</code> flag. Consult the install documentation for any additional flags for other options that you might want.</p>
+<p>First go to the top level source code directory that should have the <code>CMakeLists.txt</code> file. Create a build directory and enter it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir<span class="w"> </span>build
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>build
 </span></code></pre></div>
- As a certain amount of computing resources are required to run Singularity, always start with getting an  interactive session on a compute node,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>srun -t 60 --constraint=rocky8 -c 4 --mem=10G --pty bash
+<p>This <code>build</code> directory is where you will run cmake.</p>
+<p>Then use the cmake command with the option <code>-DCMAKE_INSTALL_PREFIX</code> pointing to the install location you want and <code>-DCMAKE_PREFIX_PATH</code> pointing to the location of any dependencies (if you have them). The “..” at the end tells cmake to look in the directory above for the <code>CMakeLists.txt</code> file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$HOME</span>/<span class="o">[</span>install_directory<span class="o">]</span><span class="w"> </span>-DCMAKE_PREFIX_PATH<span class="o">=</span><span class="nv">$HOME</span>/path/to/deps<span class="w"> </span>..
 </span></code></pre></div>
- The <code>constraint=rocky8</code> is to request a node with the Rocky 8 OS. </p>
-<p>Check available Apptainer versions in modules,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>module av openmind8/apptainer
+<h2 id="step-5-build-the-software-with-make">Step 5: Build the Software with <code>make</code></h2>
+<p>Next you will run the ‘make’ command to build the software. If you have started an interactive job, you will want to specify that you want to use the CPUs you had allocated for compilation (4 in this example). You can do this by using the command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span>
 </span></code></pre></div>
- Load an Apptainer module, for example, 
- <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>module load openmind8/apptainer/1.1.7
-</span></code></pre></div></p>
+<p>This step can take a long time depending on the size of the software you are building.</p>
+<p>If you ran the configure step with <code>cmake</code>, sometimes <code>cmake</code> will run this step for you. You will get a message that there is nothing to do.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>One nice thing about <code>make</code> is if it gets interrupted it will pick up where it left off. If you do happen to get logged out while running <code>make</code>, make sure you have <a href="#step-3-load-any-dependency-modules">set up your environment</a> in the same way you did the first time. This includes loading modules or setting environment variables.</p>
 </div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Apptainer modules support both apptainer and singularity commands.</p>
-</div>
-<h3 id="download-an-image">Download an image</h3>
-<p>Search for an image that provides your target application, for exmaple on <a href="https://hub.docker.com/">Docker Hub</a>. Here is an example for downloading a Docker image to support Pytorch,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>singularity pull my-image.sif docker://bitnami/pytorch:latest
+<h2 id="step-6-install-software">Step 6: Install Software</h2>
+<p>Once your make command finishes successfully, it is time to install the software. This is done simply with the command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>make<span class="w"> </span>install
 </span></code></pre></div>
-The <code>my-image.sif</code> is the name of the image. You can name it as you like. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In Apptainer, the command <code>singularity</code> is a soft link to an executable named <code>apptainer</code>, so all <code>singularity</code> commands on this page can be replaced by the <code>apptainer</code> command. They work the same. </p>
-</div>
-<h3 id="run-a-program-interactively">Run a program interactively</h3>
-<p>When the image is ready, launch a container based on the image and then run your application in the container. If you want to work interactively to test and debug codes, it is convineient to log in the containe shell, for exmaple, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ singularity shell my-image.sif 
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Apptainer&gt; python
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Python 3.11.9 (main, May 13 2024, 16:49:42) [GCC 12.2.0] on linux
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>&gt;&gt;&gt; import torch
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>&gt;&gt;&gt; # Run your programs here.
-</span></code></pre></div></p>
-<p>Alternatively, execute a command in the container to run your programs, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>singularity exec my-image.sif python my-code.py
-</span></code></pre></div></p>
-<p>Use the full path to the image file if it is not in the current directory. </p>
-<p>The <code>python</code> here is installed in the container and has nothing to do with the <code>python</code> or <code>anaconda</code> modules that have been installed on the host. As the python environment in the container provides all pacakges you need, you don't need to install any python packages and their dependecies. Now you can see the advantage of using a conatainer. </p>
-<h3 id="submit-a-batch-job">Submit a batch job</h3>
-<p>When the tests are completed, you can submit a batch job to run your program in the background. Here is a typical batch job script (e.g. named <code>job.sh</code>).</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">OpenMind</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>#!/bin/bash                      
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>#SBATCH -N 1                         # one node
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>#SBATCH -n 2                         # two CPU cores
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>#SBATCH -p mit_normal     # a partition with Rocky 8 nodes
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>module load apptainer/1.1.9   # load modules
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>singularity exec my-image.sif python my-code.py   # Run the program 
+<p>This command copies all the installation files, the files needed to run the software, to its final install location that you set in <a href="#step-4-configure-software">Step 4</a>. This command will often fail if you don't set an install location, as the most common default is to install in a system-wide directory.</p>
+<h2 id="step-7-confirm-software-installation-was-successful">Step 7: Confirm Software Installation Was Successful</h2>
+<p>At this point, you should be able to run the software you have compiled if compiled successfully. Binaries, or the executable files, are usually placed in the <code>bin</code> directory of your install directory. You run a binary to test that it works by typing out the path to that binary. For example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$HOME</span>/software/<span class="o">[</span>software_name<span class="o">]</span>/install/bin/my_cmd
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>#!/bin/bash                      
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>#SBATCH -t 01:30:00                  # walltime = 1 hours and 30 minutes
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>#SBATCH -N 1                         # one node
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>#SBATCH -n 2                         # two CPU cores
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>#SBATCH --constraint=rocky8          # nodes with Rocky 8 OS
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>module load openmind8/apptainer/1.1.7      # load an apptainer module
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>singularity exec my-image.sif python my-code.py   # Run the program 
+<p>Note that this path will change depending on where you installed your software.</p>
+<p>You may need to load some or all of the modules that you had loaded when you built the software, and you may need to set additional environment variables. Your software's documentation may help.</p>
+<h2 id="step-8-add-the-software-to-your-path">Step 8: Add the Software to Your PATH</h2>
+<p>The <code>$PATH</code> environment variable lists the directories that Linux searches for command executable files. While you can type out the full path to your newly installed binary as in <a href="#step-7-confirm-software-installation-was-successful">Step 7</a>, it can be more convenient to type only the command itself. To do that you can add the install location to your <code>$PATH</code>. It is important to set it properly, if you remove existing entries from your <code>$PATH</code> it can affect your ability to run basic commands like <code>ls</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/software/<span class="o">[</span>software_name<span class="o">]</span>/install/bin:<span class="nv">$PATH</span>
 </span></code></pre></div>
-</div>
-</div>
-</div>
-<p>The last line is a command to run a Python program uisng Singularity.  </p>
-<p>Submit the job script using <code>sbatch</code>,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sbatch job.sh
-</span></code></pre></div></p>
-<h3 id="more-on-using-singularity">More on using Singularity</h3>
-<p>In many cases, GPUs are needed to accelerate programs. As the GPU driver is installed on the host, use the flag <code>--nv</code> to pass necessary GPU driver libraries into the container, so that the program can "see" the GPUs in the container. </p>
-<p>Check if GPUs are available in a container,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>singularity exec --nv my-image.sif nvidia-smi
-</span></code></pre></div></p>
-<p>Here is an exmaple to run Python programs on GPUs.
-<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>singularity exec --nv my-image.sif python my-code.py  
-</span></code></pre></div></p>
-<p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. If your programs read/write data files in other directories (e.g. <code>/path/to/data</code>), bind them to the container using the flag <code>-B</code>,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>singularity exec -B /path/to/data my-image.sif python my-code.py  
-</span></code></pre></div></p>
-<p>In summary, a commonly used syntax to run a program with Singularity is the following,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>singularity exec [--nv] [-B &lt;path-to-data&gt;] &lt;image-name&gt; &lt;executable-name&gt; [source-code-name]
-</span></code></pre></div>
-The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]</code> are optional, depending on use cases. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label><label for="__tabbed_3_2">OpenMind</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Here is an example job script to run a python program with a GPU and data files saved in <code>/nobakcup1</code> or <code>/pool001</code> directories,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>#!/bin/bash                      
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>#SBATCH -t 01:30:00         # walltime = 1 hours and 30 minutes
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>#SBATCH -N 1                # one node
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>#SBATCH -n 2                # two CPU cores
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>#SBATCH --gres=gpu:1        # one GPU
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>#SBATCH -p sched_mit_psfc_gpu_r8     # a partition with Rocky 8 nodes
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>module load apptainer/1.1.9   # load modules
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>singularity exec --nv -B /nobakcup1,/pool001 my-image.sif python my-code.py   # Run the program
-</span></code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>Here is an example job script to run a Python program with a GPU and data files saved in <code>/om</code> or <code>/om2</code> directories,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>#!/bin/bash                      
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>#SBATCH -t 01:30:00             # walltime = 1 hours and 30 minutes
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>#SBATCH -N 1                    # one node
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>#SBATCH -n 2                    # two CPU cores
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>#SBATCH --gres=gpu:1            # one GPU
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>#SBATCH --constraint=rocky8     # nodes with Rocky 8 OS
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>module load openmind8/apptainer/1.1.7        # load an apptainer module
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>singularity exec --nv -B /om,om2 my-image.sif python my-code.py  # Run the program
-</span></code></pre></div></p>
-</div>
-</div>
-</div>
-<h2 id="build-singularity-images">Build Singularity images</h2>
-<p>In the previous section, it is assumed that all needed packages have been installed in the image. Users need to build a new image if some needed packages do not exist in the image. </p>
-<p>To save work for the building process, search for an image providing the right OS and necessary dependencies to support your target application, then use it as a base image and build your target application on top of it. </p>
-<p>The following is an example of building Python packages such as Pytorch and Pandas in a container image. </p>
-<p>First, download a Docker image that provides the Ubuntu OS and has Python and PyTorch installed already,
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>singularity build --sandbox my-image  docker://bitnami/pytorch:latest
-</span></code></pre></div></p>
-<p>The command <code>build</code> here does not build anything yet, but just downloads the image and converts it to a new format. The flag <code>--sandbox</code> tells <code>build</code> to convert the image to the Sandbox format, which is convenient for installing packages interactively. </p>
-<p>Now you can install additional packages in the base image. In many installation processes, it requires virtual root privilege, which is enabled by the <code>fakeroot</code> command here. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Engaging</label><label for="__tabbed_4_2">OpenMind</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Log in a head node that provides the <code>fakeroot</code> command,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ssh &lt;user&gt;@orcd-login004.mit.edu
-</span></code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>Get an interative session on node115 that provides the <code>fakeroot</code> command,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>srun -t 120 -w node115 --pty bash
-</span></code></pre></div></p>
-</div>
-</div>
-</div>
-<p>Start a container shell with the flags <code>--writable --fakeroot</code>, which enables the write permission and virtual root privileges in the container, and then you can install your packages. Here is an exmaple, 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$ singularity shell --writable --fakeroot my-image
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Apptainer&gt; apt-get update
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>Apptainer&gt; pip install pandas
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Apptainer&gt; python 
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>Python 3.8.17 (default, Jun 16 2023, 21:48:21) 
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>[GCC 10.2.1 20210110] on linux
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>&gt;&gt;&gt; import torch
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>&gt;&gt;&gt; import pandas as pd
-</span></code></pre></div></p>
-<p>Here the <code>apt-get</code> is to install system software on an Ubuntu machine, which is supported by the <code>fakeroot</code> flag. The <code>pip install</code> is to build Python packages. Finally, the package Pandas is built in the base image with PyTorch. </p>
-<p>Alternatively, you can build a Docker image on a laptop/desktop such as MAC or PC, transfer it to the cluster, and run it with Singularity. Many packages have been developed and built in the Docker environment, so this approach is more convenient in many cases. </p>
+<p>Note that this path will change depending on where you installed your software.</p>
+<h2 id="examples">Examples</h2>
+<p>The Recipes section in the documentation contains several examples of builds that have been done on Engaging. Some examples include:</p>
+<ul>
+<li><a href="../../recipes/build-vasp-gcc-cpu/">Vasp</a></li>
+<li><a href="../../recipes/gromacs/">Gromacs</a></li>
+<li><a href="../../recipes/orca/">Orca</a> (Installing pre-built binaries)</li>
+</ul>
 
 
 
@@ -1742,7 +1717,7 @@ The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 7, 2025 21:16:41">March 7, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 25, 2025 15:31:19">March 25, 2025</span>
   </span>
 
     

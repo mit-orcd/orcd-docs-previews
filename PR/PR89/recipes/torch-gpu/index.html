@@ -18,7 +18,7 @@
     
     
       
-        <title>Run Deep Learning Codes on GPUs - ORCD Docs</title>
+        <title>Deep Learning with Pytorch on GPUs - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#run-deep-learning-codes-on-gpus" class="md-skip">
+        <a href="#deep-learning-with-pytorch-on-gpus" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Run Deep Learning Codes on GPUs
+              Deep Learning with Pytorch on GPUs
             
           </span>
         </div>
@@ -600,50 +600,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../software/apptainer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Container
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../software/compile/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Compiling Codes
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../software/julia/" class="md-nav__link">
         
   
@@ -671,6 +627,72 @@
   
   <span class="md-ellipsis">
     R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/building-software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/apptainer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling Codes
     
   </span>
   
@@ -1288,22 +1310,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-pytorch-on-cpu-and-a-single-gpu" class="md-nav__link">
+  <a href="#pytorch-on-cpu-and-a-single-gpu" class="md-nav__link">
     <span class="md-ellipsis">
-      Run PyTorch on CPU and a single GPU
+      PyTorch on CPU and a single GPU
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-pytorch-on-multiple-gpus" class="md-nav__link">
+  <a href="#pytorch-on-multiple-gpus" class="md-nav__link">
     <span class="md-ellipsis">
-      Run PyTorch on multiple GPUs
+      PyTorch on multiple GPUs
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Run PyTorch on multiple GPUs">
+    <nav class="md-nav" aria-label="PyTorch on multiple GPUs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1364,7 +1386,7 @@
 
 
 
-<h1 id="run-deep-learning-codes-on-gpus">Run Deep Learning Codes on GPUs</h1>
+<h1 id="deep-learning-with-pytorch-on-gpus">Deep Learning with Pytorch on GPUs</h1>
 <p>Deep leaning is the fundation of artificial intelligence nowadays. Deep leaning programs can be accelerated substantially on GPUs. </p>
 <p>PyTorch is a popular Python package for working on deep learning projects.</p>
 <p>This page shows recipes to run Pytorch programs on GPUs. </p>
@@ -1383,8 +1405,8 @@
 </div>
 </div>
 </div>
-<h2 id="run-pytorch-on-cpu-and-a-single-gpu">Run PyTorch on CPU and a single GPU</h2>
-<p>We use a PyTorch eample, which trains a Convolutional neural network (CNN) based on the CIFAR10 data set. Refer to <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">description of this example</a>. </p>
+<h2 id="pytorch-on-cpu-and-a-single-gpu">PyTorch on CPU and a single GPU</h2>
+<p>We use an example code training a Convolutional neural network (CNN) based on the CIFAR10 data set. Refer to <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">description of this example</a>. </p>
 <p>Download the <a href="../scripts/torch-gpu/cnn_cifar10_cpu.py">codes for CPU</a> and <a href="../scripts/torch-gpu/cnn_cifar10_gpu.py">for GPU</a>. </p>
 <p>=== "Engaging"  <br />
      Prepare a job script named <code>job.sh</code> like this,
@@ -1394,16 +1416,15 @@
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>#SBATCH -t 30
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>#SBATCH -n 2
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>#SBATCH --mem=10GB
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>#SBATCH -o output/%N-%J.out
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>module load cuda/12.4.0
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>module load miniforge/24.3.0-0
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>source activate pytorch
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>echo &quot;~~~~~~~~ Run the pytorch code on CPU ~~~~~~~~~&quot;
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>time python cnn_cifar10_cpu.py
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>echo &quot;~~~~~~~~ Run the pytorch code on GPU ~~~~~~~~~&quot;
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>time python cnn_cifar10_gpu.py
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>module load cuda/12.4.0
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>module load miniforge/24.3.0-0
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>source activate pytorch
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>echo &quot;~~~~~~~~ Run the pytorch code on CPU ~~~~~~~~~&quot;
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>time python cnn_cifar10_cpu.py
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>echo &quot;~~~~~~~~ Run the pytorch code on GPU ~~~~~~~~~&quot;
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>time python cnn_cifar10_gpu.py
 </span></code></pre></div>
      then submit it,
      <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sbatch job.sh
@@ -1416,16 +1437,35 @@ and then log in the node,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ssh &lt;nodeXXX&gt;
 </span></code></pre></div>
 and check if the program runs on a GPU with the <code>nvtop</code> command.</p>
-<h2 id="run-pytorch-on-multiple-gpus">Run PyTorch on multiple GPUs</h2>
-<p>There are various parallelisms to implement deep leaning programs on GPUs, including data parallel and tensor parallel. </p>
+<h2 id="pytorch-on-multiple-gpus">PyTorch on multiple GPUs</h2>
+<p>There are various parallelisms to implement distributed deep leaning programs on mulitple GPUs, including data parallel and tensor parallel. </p>
 <h3 id="data-parallel">Data parallel</h3>
+<p>We use an exmaple code that trains a linear network based on a random data set. The Pytorch package <a href="https://PyTorch.org/docs/stable/notes/ddp.html">Distributed Data Parallel</a> is used. Refer to <a href="https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html">description of this example</a>.  </p>
+<p>Download the codes <a href="../scripts/torch-gpu/datautils.py">datautils.py</a> and <a href="../scripts/torch-gpu/multigpu.py">multigpu.py</a>. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>test</p>
+<p>Prepare a job script named <code>job.sh</code> like this,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>#!/bin/bash
+</span></code></pre></div>
+ then submit it,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch job.sh
+</span></code></pre></div></p>
 </div>
 </div>
 </div>
+<p>The program will run on 4 GPUs on a single node. </p>
+<p>Check if the program runs on multiple GPUs using the <code>nvtop</code> command as described in the above section.  </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>To run on multiple GPUs on multiple nodes, modify the job script like this,
+ <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>#!/bin/bash
+</span></code></pre></div></p>
+</div>
+</div>
+</div>
+<p>The program will run on 2 ndoes with 4 GPUs on each node. </p>
 
 
 
@@ -1446,7 +1486,7 @@ and check if the program runs on a GPU with the <code>nvtop</code> command.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 21, 2025 21:26:48">March 21, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 26, 2025 13:29:50">March 26, 2025</span>
   </span>
 
     
