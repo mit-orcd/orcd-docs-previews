@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.10">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
     
     
       
@@ -115,11 +115,13 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -151,6 +153,7 @@
     </div>
   </div>
 </div>
+      
     
     
   </nav>
@@ -1425,16 +1428,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#data-parallel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Data parallel
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Data parallel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#single-node-multi-gpu-data-parallel" class="md-nav__link">
     <span class="md-ellipsis">
       Single-node multi-GPU data parallel
@@ -1454,53 +1447,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#model-parallel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Model parallel
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Model parallel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#single-node-multi-gpu-tp-fsdp" class="md-nav__link">
-    <span class="md-ellipsis">
-      Single-node multi-GPU TP + FSDP
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multi-node-multi-gpu-tensor-parallel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Multi-node multi-GPU tensor parallel
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rference" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rference
-    </span>
-  </a>
   
 </li>
       
@@ -1609,14 +1555,13 @@ and then log in the node,
 and check if the the GPU usage with the <code>nvtop</code> command.</p>
 <h2 id="pytorch-on-multiple-gpus">PyTorch on multiple GPUs</h2>
 <p>Deep learning programs can be further accelerated on multiple GPUs. </p>
-<p>There are various parallelisms to enable distributed deep leaning on mulitple GPUs, including data parallel and model parallel. In the following two sections, we introduce recipes to run PyTorch programs on multiple GPUs based on these two parallelisms respectively. </p>
-<h3 id="data-parallel">Data parallel</h3>
+<p>There are various parallelisms to enable distributed deep leaning on mulitple GPUs, including data parallel and model parallel. We will introduce recipes for data parallel on this page.  </p>
 <p>Data parallel allows traning a model with multiple batches of data simultaneously. The model has to fit into the GPU memory.</p>
 <p>On a cluster, there are many nodes and multiple GPUs on each node. We first introduce a recipe to run PyTorch programs with multiple GPUs on one node, and then extend it to multiple nodes. </p>
 <p>We use an exmaple code that trains a linear network with a random data set, based on the <a href="https://PyTorch.org/docs/stable/notes/ddp.html">Distributed Data Parallel</a> package in PyTorch. Refer to the description of <a href="https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html">this example for multiple GPUs within one node</a> and <a href="https://pytorch.org/tutorials/intermediate/ddp_series_multinode.html">for multiple GPUs across multiple nodes</a>. </p>
-<p>Download the codes for this example: <a href="../scripts/torch-gpu/datautils.py">datautils.py</a>, <a href="../scripts/torch-gpu/multigpu.py">multigpu.py</a>, <a href="./scripts/torch-gpu/multigpu_torchrun.py">multigpu_torchrun.py</a>, and <a href="./scripts/torch-gpu/multinode.py">multinode.py</a>.</p>
-<h4 id="single-node-multi-gpu-data-parallel">Single-node multi-GPU data parallel</h4>
-<p>We first introcude a recipe for for single-node multi-GPU data parallel. The program <code>multigpu.py</code> is set up for this purpose. </p>
+<p>Download the codes for this example: <a href="../scripts/torch-gpu/datautils.py">datautils.py</a>, <a href="../scripts/torch-gpu/multigpu.py">multigpu.py</a>, <a href="../scripts/torch-gpu/multigpu_torchrun.py">multigpu_torchrun.py</a>, and <a href="../scripts/torch-gpu/multinode.py">multinode.py</a>.</p>
+<h3 id="single-node-multi-gpu-data-parallel">Single-node multi-GPU data parallel</h3>
+<p>In this section, we introcude a recipe for for single-node multi-GPU data parallel. The program <code>multigpu.py</code> is set up for this purpose. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1655,8 +1600,8 @@ and check if the the GPU usage with the <code>nvtop</code> command.</p>
 <summary>GPU communication within one node</summary>
 <p>The NVIDIA Collective Communications Library (NCCL) is set as backend in the PyTorch programs <code>multigpu.py</code> and <code>multigpu_torchrun.py</code>, so the data communication bewteen GPUs within one node benifits from the high bandwidth of NVLinks. </p>
 </details>
-<h4 id="multi-node-multi-gpu-data-parallel">Multi-node multi-GPU data parallel</h4>
-<p>Now we introcude a recipe to extend the above exmaple to multi-node multi-GPU data parallel. The program <code>multinode.py</code> is set up for this purpose. </p>
+<h3 id="multi-node-multi-gpu-data-parallel">Multi-node multi-GPU data parallel</h3>
+<p>Now we extend the above exmaple to multi-node multi-GPU data parallel. The program <code>multinode.py</code> is set up for this purpose. </p>
 <p>There are two key points in this approach.</p>
 <ol>
 <li>
@@ -1708,30 +1653,9 @@ and check if the the GPU usage with the <code>nvtop</code> command.</p>
 <p>The flags with <code>rdzv</code> are required by <code>torchrun</code> to coordinate processes across nodes. The <code>--rdzv-backend=c10d</code> is to use a C10d store (by default TCPStore) as the rendezvous backend, the  advantage of which is that it requires no 3rd-party dependency. The <code>--rdzv-endpoint=$master_node_ip:1234</code> is to set up the IP address and port of the the master node. The IP address is obtained in a previous part in the job script.</p>
 <p>Refer to details of torchrun on <a href="https://pytorch.org/docs/stable/elastic/run.html">this page</a>.</p>
 <details>
-<summary>GPU communication within one node nad across nodes</summary>
-<p>The NCCL is set as backend in the PyTorch program <code>multinode.py</code>, so the data communication bewteen GPUs within one node benifits from the high bandwidth of NVLinks, and the data communication bewteen GPUs acress nodes benifits from the bandwidth of Infiniband network. </p>
+<summary>GPU communication across nodes</summary>
+<p>The NCCL is set as backend in the PyTorch program <code>multinode.py</code>, so the data communication bewteen GPUs within one node benifits from the high bandwidth of NVLinks, and the data communication bewteen GPUs across nodes benifits from the bandwidth of Infiniband network. </p>
 </details>
-<h3 id="model-parallel">Model parallel</h3>
-<p>Usually the model size is big in deep-learning training processes especially for the large language models (LLMs) based on the transformer architecture. When the model does not fit in the memory of a single GPU, the normal data parallelism mentioned in the previous secction does not work. There is a <a href="https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/">Fully Sharded Data Parallel (FSDP)</a> approach in PyTorch to split the model into multiple GPUs so that the memory requreiment fits, but this approach is still within the data parallel framework and does not gain additional speedup beyond data parallel. </p>
-<p>A better approach is model parallel, which splits the model into the memory of multiple GPUs and speeds up the computation too. There are various schemes of model parallel, such as pipeline parallel (PP) and tensor parallel (TP). Usually, model parallel is applied on top of data parallel to gain further speedup. </p>
-<p>Here we use an example that implements hybrid TP and FSDP (refered as TP + FSDP in the following), where the LLAMA2 model . Refer to <a href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html">the description of this example</a>. Download the codes: <a href="../scripts/torch-gpu/fsdp_tp_example.py">fsdp_tp_example.py</a> , [llama2_model.py]</p>
-<p>llama2_model.py  log_utils.py</p>
-<h4 id="single-node-multi-gpu-tp-fsdp">Single-node multi-GPU TP + FSDP</h4>
-<p>We first introcude a recipe for for single-node multi-GPU TP + FSDP. The program <code>fsdp_tp_example.py</code> is set up for this purpose. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Engaging</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>To run on multiple GPUs across two nodes, prepare a job script like this,
- <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>
-</span></code></pre></div></p>
-</div>
-</div>
-</div>
-<h4 id="multi-node-multi-gpu-tensor-parallel">Multi-node multi-GPU tensor parallel</h4>
-<p>FSDP cross node, less communication. 
-tp within a node, more data communication. </p>
-<h2 id="rference">Rference</h2>
-<p>orcd github</p>
 
 
 
@@ -1752,7 +1676,7 @@ tp within a node, more data communication. </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 31, 2025 18:46:55">March 31, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 2, 2025 19:12:52">April 2, 2025</span>
   </span>
 
     
