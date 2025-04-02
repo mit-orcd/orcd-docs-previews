@@ -1495,22 +1495,22 @@
 
 
 <h1 id="deep-learning-with-pytorch-on-gpus">Deep Learning with Pytorch on GPUs</h1>
-<p>Deep leaning is the fundation of artificial intelligence nowadays. Deep leaning programs can be accelerated substantially on GPUs. </p>
+<p>Deep learning is the foundation of artificial intelligence nowadays. Deep learning programs can be accelerated substantially on GPUs. </p>
 <p>PyTorch is a popular Python package for working on deep learning projects.</p>
-<p>On this page, we introduce recipes to run deep-learning programs on GPUs wtih Pytorch. </p>
+<p>This page introduces recipes to run deep-learning programs on GPUs with Pytorch. </p>
 <h2 id="installing-pytorch">Installing PyTorch</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>First, load a Miniforge module to provide python platform, 
+<p>First, load a Miniforge module to provide Python platform, 
  <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load miniforge/24.3.0-0
 </span></code></pre></div>
- Create a new environment and install PyToch,
+ Create a new environment and install PyTorch,
  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conda create -n torch
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>source activate torch
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pip install torch
 </span></code></pre></div>
- This installs PyTorch with CUDA support by default, which enables it running on GPUs. </p>
+ This installs PyTorch with CUDA support by default, which enables it to run on GPUs.  </p>
 </div>
 </div>
 </div>
@@ -1543,10 +1543,10 @@
 </div>
 </div>
 </div>
-<p>The <code>mit_normal_gpu</code> partition is for all MIT users. If your lab has a parititon with GPUs, you can use it too.  </p>
-<p>The <code>#SBATCH</code> flags <code>-N 1 -n 2</code> requets two CPU cores on one node and the <code>--mem=10GB</code> means 10 GB of memory per node (not per core).</p>
-<p>The programs <code>cnn_cifar10_cpu.py</code> and <code>cnn_cifar10_gpu.py</code> will run on CPUs and a GPU respectively. When the problme size is large, the program will be accelerated on a GPU. </p>
-<p>While the job is running, you can check if the program runs on GPU. First, check the hostname that it runs on,
+<p>The <code>mit_normal_gpu</code> partition is for all MIT users. If your lab has a partition with GPUs, you can use it too.  </p>
+<p>The <code>#SBATCH</code> flags <code>-N 1 -n 2</code> requests two CPU cores on one node, and the <code>--mem=10GB</code> means 10 GB of memory per node (not per core).</p>
+<p>The programs <code>cnn_cifar10_cpu.py</code> and <code>cnn_cifar10_gpu.py</code> will run on CPUs and a GPU, respectively. When the problem size is large, the program will be accelerated on a GPU. </p>
+<p>While the job is running, you can check if the program runs on a GPU. First, check the hostname that it runs on,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>squeue -u $USER
 </span></code></pre></div>
 and then log in the node,
@@ -1555,13 +1555,13 @@ and then log in the node,
 and check the GPU usage with the <code>nvtop</code> command.</p>
 <h2 id="pytorch-on-multiple-gpus">PyTorch on multiple GPUs</h2>
 <p>Deep learning programs can be further accelerated on multiple GPUs. </p>
-<p>There are various parallelisms to enable distributed deep leaning on mulitple GPUs, including data parallel and model parallel. We will focus on data parallel on this page.  </p>
-<p>Data parallel allows traning a model with multiple batches of data simultaneously. The model has to fit into the GPU memory.</p>
+<p>There are various parallelisms to enable distributed deep learning on multiple GPUs, including data parallel and model parallel. We will focus on data parallel on this page.   </p>
+<p>Data parallel allows training a model with multiple batches of data simultaneously. The model has to fit into the GPU memory.</p>
 <p>On a cluster, there are many nodes and multiple GPUs on each node. We will first introduce a recipe to run PyTorch programs with multiple GPUs within one node, and then extend it to multiple nodes. </p>
-<p>We use an exmaple code that trains a linear network with a random data set, which is implemented with the <a href="https://PyTorch.org/docs/stable/notes/ddp.html">Distributed Data Parallel</a> package in PyTorch. Refer to the description of this example <a href="https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html">for multiple GPUs within one node</a> and <a href="https://pytorch.org/tutorials/intermediate/ddp_series_multinode.html">for multiple GPUs across multiple nodes</a>. </p>
+<p>We use an example code that trains a linear network with a random data set, which is implemented with the <a href="https://PyTorch.org/docs/stable/notes/ddp.html">Distributed Data Parallel</a> package in PyTorch. Refer to the description of this example <a href="https://pytorch.org/tutorials/beginner/ddp_series_multigpu.html">for multiple GPUs within one node</a> and <a href="https://pytorch.org/tutorials/intermediate/ddp_series_multinode.html">for multiple GPUs across multiple nodes</a>. </p>
 <p>Download the codes for this example: <a href="../scripts/torch-gpu/datautils.py">datautils.py</a>, <a href="../scripts/torch-gpu/multigpu.py">multigpu.py</a>, <a href="../scripts/torch-gpu/multigpu_torchrun.py">multigpu_torchrun.py</a>, and <a href="../scripts/torch-gpu/multinode.py">multinode.py</a>.</p>
 <h3 id="single-node-multi-gpu-data-parallel">Single-node multi-GPU data parallel</h3>
-<p>In this section, we introcude a recipe for single-node multi-GPU data parallel. The program <code>multigpu.py</code> is set up for this purpose. </p>
+<p>In this section, we introduce a recipe for single-node multi-GPU data parallel. The program <code>multigpu.py</code> is set up for this purpose. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1597,10 +1597,10 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 <p>The flags with <code>rdzv</code> (meaning the Rendezvous tool) are required by <code>torchrun</code> to coordinate multiple processes. The flag <code>--rdzv-id=$SLURM_JOB_ID</code> sets to the <code>rdzv</code> ID be the job ID, but it can be any random number. The flag <code>--rdzv-endpoint=localhost:1234</code> is to set the host and the port. Use <code>localhost</code> when there is only one node. The port can be any 4- or 5-digit number lager than 1024.   </p>
 <details>
 <summary>GPU communication within one node</summary>
-<p>The NVIDIA Collective Communications Library (NCCL) is set as backend in the PyTorch programs <code>multigpu.py</code> and <code>multigpu_torchrun.py</code>, so that the data communication bewteen GPUs within one node benifits from the high bandwidth of NVLinks. </p>
+<p>The NVIDIA Collective Communications Library (NCCL) is set as the backend in the PyTorch programs <code>multigpu.py</code> and <code>multigpu_torchrun.py</code>, so that the data communication between GPUs within one node benefits from the high bandwidth of NVLinks.  </p>
 </details>
 <h3 id="multi-node-multi-gpu-data-parallel">Multi-node multi-GPU data parallel</h3>
-<p>Now we extend the above exmaple to multi-node multi-GPU data parallel. The program <code>multinode.py</code> is set up for this purpose. </p>
+<p>Now we extend the above example to multi-node multi-GPU data parallel. The program <code>multinode.py</code> is set up for this purpose.</p>
 <p>There are two key points in this approach.</p>
 <ol>
 <li>
@@ -1646,13 +1646,13 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </div>
 </div>
 </div>
-<p>As the <code>#SBATCH</code> flags <code>-N 2</code> and <code>--ntasks-per-node=1</code> request for two nodes with one task per node, the <code>srun</code> command lanches a <code>torchrun</code> command on each of the two nodes.</p>
+<p>As the <code>#SBATCH</code> flags <code>-N 2</code> and <code>--ntasks-per-node=1</code> request for two nodes with one task per node, the <code>srun</code> command launches a <code>torchrun</code> command on each of the two nodes.</p>
 <p>The <code>#SBATCH</code> flags <code>--cpus-per-task=4</code> and <code>--gpus-per-node=4</code> request 4 GPU cores and 4 GPUs on each node. Accordingly, the <code>torchrun</code> flags are set as <code>--nnodes=$SLURM_NNODES --nproc-per-node=$SLURM_CPUS_PER_TASK</code>, so that the <code>torchrun</code> command runs the program on 4 GPUs on each of the two nodes. That says the program runs on 8 GPUs, and thus the training process happens on 8 batches of data simultaneously. </p>
-<p>The flags with <code>rdzv</code> are required by <code>torchrun</code> to coordinate processes across nodes. The <code>--rdzv-backend=c10d</code> is to use a C10d store (by default TCPStore) as the rendezvous backend, the  advantage of which is that it requires no 3rd-party dependency. The <code>--rdzv-endpoint=$master_node_ip:1234</code> is to set up the IP address and the port of the the master node. The IP address is obtained in a previous part in the job script.</p>
+<p>The flags with <code>rdzv</code> are required by <code>torchrun</code> to coordinate processes across nodes. The <code>--rdzv-backend=c10d</code> is to use a C10d store (by default TCPStore) as the rendezvous backend, the advantage of which is that it requires no 3rd-party dependency. The <code>--rdzv-endpoint=$master_node_ip:1234</code> is to set up the IP address and the port of the master node. The IP address is obtained in a previous part of the job script.</p>
 <p>Refer to details of torchrun on <a href="https://pytorch.org/docs/stable/elastic/run.html">this page</a>.</p>
 <details>
 <summary>GPU communication across nodes</summary>
-<p>The NCCL is set as backend in the PyTorch program <code>multinode.py</code>, so that the data communication bewteen GPUs within one node benifits from the high bandwidth of NVLinks, and the data communication bewteen GPUs across nodes benifits from the bandwidth of Infiniband network. </p>
+<p>The NCCL is set as backend in the PyTorch program <code>multinode.py</code>, so that the data communication between GPUs within one node benefits from the high bandwidth of NVLinks, and the data communication between GPUs across nodes benefits from the bandwidth of the Infiniband network. </p>
 </details>
 
 
@@ -1674,7 +1674,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 2, 2025 20:22:11">April 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 2, 2025 20:36:23">April 2, 2025</span>
   </span>
 
     
