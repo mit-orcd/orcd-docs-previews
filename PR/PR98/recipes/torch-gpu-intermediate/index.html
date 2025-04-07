@@ -18,7 +18,7 @@
     
     
       
-        <title>Intermediate Distributed Deep Leaning with PyTorch - ORCD Docs</title>
+        <title>Intermediate Distributed Deep Learning with PyTorch - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#intermediate-distributed-deep-leaning-with-pytorch" class="md-skip">
+        <a href="#intermediate-distributed-deep-learning-with-pytorch" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Intermediate Distributed Deep Leaning with PyTorch
+              Intermediate Distributed Deep Learning with PyTorch
             
           </span>
         </div>
@@ -1497,15 +1497,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    <span class="md-ellipsis">
-      References
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1550,7 +1541,7 @@
 
 
 
-<h1 id="intermediate-distributed-deep-leaning-with-pytorch">Intermediate Distributed Deep Leaning with PyTorch</h1>
+<h1 id="intermediate-distributed-deep-learning-with-pytorch">Intermediate Distributed Deep Learning with PyTorch</h1>
 <p>Deep leaning is the foundation of artificial intelligence nowadays. Deep leaning programs can be accelerated substantially on GPUs. </p>
 <p>There are various parallelisms to enable distributed deep learning on multiple GPUs, including data parallel and model parallel. </p>
 <p>We have introduced <a href="../torch-gpu/">basic recipes of data parallel with PyTorch</a> . PyTorch is a popular Python package for working on deep learning projects.</p>
@@ -1610,7 +1601,7 @@ and then log in the node,
 </span></code></pre></div>
 and check the GPU usage with the <code>nvtop</code> command.</p>
 <h3 id="single-node-multi-gpu-fsdp">Single-node multi-GPU FSDP</h3>
-<p>We extend this exeample to multiple GPUs on a single node. </p>
+<p>Now we extend this exeample to multiple GPUs on a single node with FSDP. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1634,7 +1625,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </div>
 </div>
 </div>
-<p>As is set up in the protram <code>FSDP_mnist.py</code>, it will run on all GPUs reqeusted in Slurm, that is 4. That says the model is split into 4 shards with each shard stored on a GPU, and the training process happens on 4 batches of data simutanesously. </p>
+<p>As is set up in the program <code>FSDP_mnist.py</code>, it will run on all GPUs reqeusted in Slurm, that is 4. That says the model is split into 4 shards with each shard stored on a GPU, and the training process happens on 4 batches of data simutanesously. </p>
 <h2 id="hybrid-fully-sharded-data-parallel-and-tensor-parallel">Hybrid Fully Sharded Data Parallel and Tensor Parallel</h2>
 <p>In thie section, we introduce recipes of hybrid FSDP and TP.</p>
 <p>We use an example that implements FSDP + TP on LLAMA2 (Large Language Model Meta AI 2). Refer to <a href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html">the description of this example</a>. Download the codes: <a href="./scripts/torch-gpu/fsdp_tp_example.py">fsdp_tp_example.py</a>, <a href="./scripts/torch-gpu/llama2_model.py">llama2_model.py</a>, and <a href="./scripts/torch-gpu/log_utils.py">log_utils.py</a>.</p>
@@ -1705,15 +1696,13 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </div>
 </div>
 </div>
-<p>The configuration of <code>#SBATCH</code> and <code>torchrun</code> flags is similar to that in <a href="../torch-gpu/">the basic recipes of data parallel</a>. </p>
+<p>The configuration of <code>#SBATCH</code> and <code>torchrun</code> flags is similar to that in <a href="../torch-gpu/">the basic recipe of data parallel</a>. </p>
 <p>The program runs on 8 GPUs with 4 per node. As is set up in the code <code>fsdp_tp_example.py</code>, the training process happens on 4 batches of data with FSDP,  and the model is trained with TP computation on 2 GPUs for each batch of data.</p>
 <details>
 <summary>Topology of GPU Communication</summary>
 <p>The NVIDIA Collective Communications Library (NCCL) is set as backend in all of the PyTorch programs here, so that the data communication between GPUs within one node benefits from the high bandwidth of NVLinks, and the data communication between GPUs across nodes benefits from the bandwidth of the Infiniband network. </p>
 <p>The inter-node communication is much slower than the intra-node one. The communicating data size of TP is much larger than that of FSDP. The topology of GPU Communication is set up (in the code <code>fsdp_tp_example.py</code>) in a way that TP communication is intra-node and FSDP communication is inter-node node, so that the usage of bandwidth is optimized. </p>
 </details>
-<h2 id="references">References</h2>
-<p>orcd github</p>
 
 
 
@@ -1734,7 +1723,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 7, 2025 19:06:17">April 7, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 7, 2025 20:23:53">April 7, 2025</span>
   </span>
 
     
