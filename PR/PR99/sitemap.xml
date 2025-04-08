@@ -37,6 +37,10 @@
          <lastmod>2025-04-08</lastmod>
     </url>
     <url>
+         <loc>https://orcd.mit.edu/transition-guide-supercloud/</loc>
+         <lastmod>2025-04-08</lastmod>
+    </url>
+    <url>
          <loc>https://orcd.mit.edu/accessing-orcd/ondemand-login/</loc>
          <lastmod>2025-04-08</lastmod>
     </url>
@@ -134,10 +138,6 @@
     </url>
     <url>
          <loc>https://orcd.mit.edu/recipes/torch-gpu/</loc>
-         <lastmod>2025-04-08</lastmod>
-    </url>
-    <url>
-         <loc>https://orcd.mit.edu/recipes/transition-guide-supercloud/</loc>
          <lastmod>2025-04-08</lastmod>
     </url>
     <url>
