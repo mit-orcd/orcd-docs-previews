@@ -1568,7 +1568,7 @@
 <h2 id="fully-sharded-data-parallel">Fully Sharded Data Parallel</h2>
 <p>We use an example code <a href="https://github.com/pytorch/examples/tree/main/mnist">to train a convolutional neural network (CNN) with the MNIST data set</a>. </p>
 <p>We will first run the example on a single GPU and then extend it to <a href="https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html">multiple GPUs with FSDP</a>.</p>
-<p>Download the codes <a href="./scripts/torch-gpu/mnist_gpu.py">mnist_gpu.py</a> and <a href="./scripts/torch-gpu/FSDP_mnist.py">FSDP_mnist.py</a> for these two cases respectively. </p>
+<p>Download the codes <a href="../scripts/torch-gpu-2/mnist_gpu.py">mnist_gpu.py</a> and <a href="../scripts/torch-gpu-2/FSDP_mnist.py">FSDP_mnist.py</a> for these two cases respectively. </p>
 <h3 id="an-example-with-a-single-gpu">An example with a single GPU</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label></div>
 <div class="tabbed-content">
@@ -1628,7 +1628,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 <p>As is set up in the program <code>FSDP_mnist.py</code>, it will run on all GPUs reqeusted in Slurm, that is 4 in this case. That says the model is split into 4 shards with each shard stored on a GPU, and the training process happens on 4 batches of data simutanesously. Communication between GPUs happens under the hood. </p>
 <h2 id="hybrid-fully-sharded-data-parallel-and-tensor-parallel">Hybrid Fully Sharded Data Parallel and Tensor Parallel</h2>
 <p>Tensor parallel can be applied on top of data parall to gain further speed up. In thie section, we introduce recipes of hybrid FSDP and TP.</p>
-<p>We use an example that implements FSDP + TP on LLAMA2 (Large Language Model Meta AI 2). Refer to <a href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html">the description of this example</a>. Download the codes: <a href="./scripts/torch-gpu/fsdp_tp_example.py">fsdp_tp_example.py</a>, <a href="./scripts/torch-gpu/llama2_model.py">llama2_model.py</a>, and <a href="./scripts/torch-gpu/log_utils.py">log_utils.py</a>.</p>
+<p>We use an example that implements FSDP + TP on LLAMA2 (Large Language Model Meta AI 2). Refer to <a href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html">the description of this example</a>. Download the codes: <a href="../scripts/torch-gpu-2/fsdp_tp_example.py">fsdp_tp_example.py</a>, <a href="../scripts/torch-gpu-2/llama2_model.py">llama2_model.py</a>, and <a href="../scripts/torch-gpu-2/log_utils.py">log_utils.py</a>.</p>
 <h3 id="single-node-multi-gpu-fsdp-tp">Single-node multi-GPU FSDP + TP</h3>
 <p>First, let's look run the example on multiple GPUs within a single node. </p>
 <p>The code <code>fsdp_tp_example.py</code> is set up for this purpose. The TP size is set to be 2 in the code. The total number of GPUs should be equal to a multiple of the TP size, that is an even number in this case, then the FSDP size is equal to the number of GPUs devided by the TP size.</p>
@@ -1723,7 +1723,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 10, 2025 15:10:25">April 10, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 10, 2025 15:17:49">April 10, 2025</span>
   </span>
 
     
