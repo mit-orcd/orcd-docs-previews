@@ -1726,7 +1726,7 @@
 <p>Once you have selected your target collection navigate to the directory where you want to transfer your data. Create a directory called "SuperCloud" and select it.</p>
 <p>Select the items you want to transfer from SuperCloud in the left pane, or "Select all" to transfer your entire home directory. Symlinks (to group directories) and their contents are not transferred.</p>
 <div class="admonition hint">
-<p class="admonition-title">Deselect dot (.) files</p>
+<p class="admonition-title">Deselect dot . files</p>
 <p>Click "Show Hidden Items" to deselect . files. Your .bashrc and any conda environments will not work on another system and could cause issues.</p>
 </div>
 <p>Under Transfer and Timer options select:</p>
@@ -1734,9 +1734,13 @@
 <li>Skip files on source with errors</li>
 <li>Fail on quota errors</li>
 <li>Encrypt transfer</li>
-<li>Apply filter rules to the transfer- May be best to exclude dot (.) files (see screenshot)</li>
-<li>Consider: sync, if you have already transferred some files</li>
+<li>Consider:<ul>
+<li>Excluding dot files (ex: .bashrc). Check "Apply filter rules to the transfer" and set to exclude all matching <code>.*</code> (see screenshot below)</li>
+<li>Sync, This is helpful if you've already transferred files and only want to transfer new files</li>
 </ul>
+</li>
+</ul>
+<p><img alt="Globus Transfer and Timer Options" src="../images/globus_transfer_settings.png" /></p>
 <p>Once you have selected your source files, destination, and transfer settings click the "Start" button on the left pane (the SuperCloud side). You can view the transfer progress on the "Activity" page, and Globus will send you an email when the transfer is done.</p>
 <p>If Globus Connect Personal stops on SuperCloud, for example if the job ends, restart it in the same way and Globus should continue the transfer where it left off.</p>
 
@@ -1759,7 +1763,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 22, 2025 20:02:31">April 22, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 22, 2025 20:14:26">April 22, 2025</span>
   </span>
 
     
