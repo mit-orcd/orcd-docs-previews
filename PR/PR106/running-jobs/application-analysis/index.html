@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/running-jobs/application-analysis/">
       
       
+        <link rel="prev" href="../requesting-resources/">
+      
+      
+        <link rel="next" href="../job-arrays/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Analyzing Job Resource Usage - ORCD Docs</title>
+        <title>Application Analysis - ORCD Docs</title>
       
     
     
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Analyzing Job Resource Usage
+              Application Analysis
             
           </span>
         </div>
@@ -741,18 +745,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -768,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Running Jobs
@@ -816,6 +822,161 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Application Analysis
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Analysis
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#htop" class="md-nav__link">
+    <span class="md-ellipsis">
+      htop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="htop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-htop" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Run htop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-htop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using htop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvidia-smi" class="md-nav__link">
+    <span class="md-ellipsis">
+      nvidia-smi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nvidia-smi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-nvidia-smi" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Run nvidia-smi
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-nvidia-smi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using nvidia-smi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nvtop" class="md-nav__link">
+    <span class="md-ellipsis">
+      nvtop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="nvtop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-nvtop" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Run nvtop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1529,14 +1690,14 @@
 
 
 <h1 id="analyzing-job-resource-usage">Analyzing Job Resource Usage</h1>
-<p>Here we provide an overview for how to analyze the resources your jobs use, utilizing the commands <code>htop</code>, <code>nvidia-smi</code>, and <code>nvtop</code>. Using these tools are important for both optimizing your code and only requesting the amount of resources your jobs need, leaving more resources open for others to use. A good place to start before using the commands we outline in this doc is with the <code>sacct</code> command, and its documentation can be found <a href="https://orcd-docs.mit.edu/running-jobs/requesting-resources/#memory">here</a>.</p>
+<p>Here we provide an overview for how to analyze the resources your jobs use, utilizing the commands <code>htop</code>, <code>nvidia-smi</code>, and <code>nvtop</code>. Using these tools is important for both optimizing your code as well as only requesting the amount of resources your jobs need, leaving more resources open for others to use. A good place to start before using the commands we outline here is with the documentation on <a href="https://orcd-docs.mit.edu/running-jobs/requesting-resources">Requesting Resources</a>.</p>
 <h2 id="htop">htop</h2>
 <p>You can get a lot of information about your running jobs through the <code>htop</code> command. It sort of gives you a way to watch the compute node your job is running on work on your job. It will show you your current instantaneous CPU and Memory utilization, how many cores are being used, how many threads are running, a list of your processes running on the node, among other things. If you are familiar with the top Linux command it is similar but shows more information.</p>
 <h3 id="how-to-run-htop">How to Run htop</h3>
 <p>The key thing to know is you need to run the <code>htop</code> command on the node where your job is running. First, get the name of the node your job is running on. You can do this by running the <code>squeue --me</code> command. The last column has the node name. If you are running in an interactive job the node name will also be at your command prompt.</p>
 <p>The next step is to ssh to the node where your job is running. Run the command <code>ssh NODENAME</code>, where NODENAME is the name of the node you just found. If you are running an interactive job, open a new terminal tab or window and log into Engaging. Note that you can only ssh to nodes where you have a job running, and you should exit the node once you are done monitoring your job with the exit command.</p>
 <p><img alt="htop ssh" src="../../images/application-analysis/htop_ssh.png" /></p>
-<p>In the above image, you can see we have run ssh node1600, and the command prompt now indicates we are on that node. From here we can run:</p>
+<p>In the above image, you can see we have run <code>ssh node1600</code>, and the command prompt now indicates we are on that node. From here we can run:</p>
 <p><code>htop -u USERNAME</code></p>
 <p>where USERNAME is your username. Specifying your username filters out processes that don't belong to you and makes it easier to interpret the output.</p>
 <h3 id="using-htop">Using htop</h3>
@@ -1558,9 +1719,9 @@
 <p>The nvidia-smi command is useful for evaluating how your GPU-accelerated applications are making use of the GPU(s) that they are using. It will give you information about GPU utilization, GPU Memory utilization, and processes using the GPU.</p>
 <h3 id="how-to-run-nvidia-smi">How to Run nvidia-smi</h3>
 <p>Like htop in the previous unit, you must be on the same node as your job to run nvidia-smi to monitor it. Further, because it is a GPU utility, if you try to run nvidia-smi on a node without a GPU you will get a command not found error. And, similar to htop, you will only see statistics for the GPU(s) you have allocated to your job, so if you are on a node with GPUs but didn't request any, you won't see any listed. For more information about how to request GPUs for your job, see the pages on <a href="https://orcd-docs.mit.edu/running-jobs/requesting-resources/#gpus">Requesting Resources</a> and <a href="https://orcd-docs.mit.edu/running-jobs/overview">Scheduler Overview</a>.</p>
-<p>First, get the name of the node your job is running on. You can do this by running the <code>squeue --me</code> command. The last column has the node name. In the image below you can see the node name, node2804, in the last line of the squeue output. The next step is to ssh to the node where your job is running. Run the command ssh NODENAME, where NODENAME is the name of the node you just found. If you are running an interactive job, open a new terminal tab or window and log into Engaging and ssh to the node from there. Note that you can only ssh to nodes where you have a job running, and you should exit the node once you are done monitoring your job with the exit command.</p>
+<p>First, get the name of the node your job is running on. You can do this by running the <code>squeue --me</code> command. The last column has the node name. In the image below you can see the node name, node2804, in the last line of the squeue output. The next step is to ssh to the node where your job is running. Run the command <code>ssh NODENAME</code>, where NODENAME is the name of the node you just found. If you are running an interactive job, open a new terminal tab or window and log into Engaging and ssh to the node from there. Note that you can only ssh to nodes where you have a job running, and you should exit the node once you are done monitoring your job with the exit command.</p>
 <p><img alt="" src="../../images/application-analysis/nvidia-smi_ssh.png" /></p>
-<p>In the above image, you can see we have run ssh node2804, and the command prompt now indicates we are on that node. From here we can run the nvidia-smi command as shown.</p>
+<p>In the above image, you can see we have run <code>ssh node2804</code>, and the command prompt now indicates we are on that node. From here we can run the nvidia-smi command as shown.</p>
 <h3 id="using-nvidia-smi">Using nvidia-smi</h3>
 <p>When you run nvidia-smi you will get a single snapshot. If you would like this to continuously refresh, which is a bit more useful in practice, you can use the -l flag, which prints a refresh to the screen at a regular interval. By default this interval is 5 seconds, or you can specify an interval yourself. For example, if you want it to refresh every 10 seconds you would run <code>nvidia-smi -l 10</code>. Pressing Control+C on your keyboard will stop the continuous refresh.</p>
 <p><img alt="" src="../../images/application-analysis/nvidia-smi_output.png" /></p>
@@ -1574,13 +1735,13 @@
 <p><img alt="" src="../../images/application-analysis/nvidia-smi_output_box4.png" /></p>
 <p>The final table at the bottom shows the process(es) running on the GPU(s) you have allocated. You'll have the GPU number in the first column. If you have asked for one GPU this will always be a "0". Type refers to whether the process is a compute (C) or graphics (G) task. You'll have the Process Name, which will be "python" if you are running a python script as seen here. The last column shows the GPU Memory Usage.</p>
 <h2 id="nvtop">nvtop</h2>
-<p><code>nvtop</code> is like <code>htop</code>, except for monitoring GPU usage. It enables you to see the real-time statistics of your job on the GPU, including memory, compute, and power consumption.</p>
+<p><code>nvtop</code> is like <code>htop</code>, except for monitoring GPU usage. Like <code>nvidia-smi</code>, <code>nvtop</code> enables you to see the real-time statistics of your job on the GPU, including memory, compute, and power consumption. It additionally shows a sliding history of GPU compute and memory usage as well as a snapshot of CPU usage. <code>nvtop</code> in general shows more information than <code>nvidia-smi</code> and has a different look. It is up to the user's preference to pick one or use both.</p>
 <h3 id="how-to-run-nvtop">How to Run nvtop</h3>
-<p>The principles of usage are very similar to that of htop, and here we will outline them. ssh into the node on which you are running a job using a GPU (<code>ssh NODENAME</code>) and run <code>nvtop</code>. You can refer to the htop section <a href="#how-to-run-htop">above</a> for more details on the ssh process. After running nvtop, you will see your usage updating in real time. Below we show an example of using this to monitor the GPU usage of <a href="https://orcd-docs.mit.edu/recipes/rag/">RAG</a>. If you don't yet have a GPU application and would like to get a sense of how to use nvtop, RAG could be a good example to start with. </p>
+<p>The principles of usage are very similar to that of <a href="#htop">htop</a>, and we will outline them here. First, ssh into the node on which you are running a job using a GPU (<code>ssh NODENAME</code>) and run <code>nvtop</code>. You can refer to the htop section <a href="#how-to-run-htop">above</a> for more details on finding the nodename as well as the ssh process. After running nvtop, you will see your usage updating in real time. Below we show an example of using this to monitor the GPU usage of <a href="https://orcd-docs.mit.edu/recipes/rag/">RAG</a>. If you don't yet have a GPU application and would like to get a sense of how to use nvtop, RAG could be a good example to start with. </p>
 <p><img alt="" src="../../images/application-analysis/nvtop-pre-computation.png" /></p>
-<p>In the first image above, we have only loaded the model and have not yet asked a prompt which kicks off computation. As we expect, we see that the model takes considerable memory, but the compute of the GPU is not being used. </p>
+<p>In the first image above, we have only loaded the model and have not yet asked a prompt which kicks off computation. As we expect, we see that the model takes considerable memory (31GB out of the possible 45GB), but the compute of the GPU is not being used.</p>
 <p><img alt="" src="../../images/application-analysis/nvtop-during-computation.png" /></p>
-<p>In the second image above, we see the results of nvtop when we have queried the RAG model, and therefore started computation on the GPU. We see that the GPU compute is now being at 99%. We can also see that the power and temperature of the system have shot up.Normally at this step, you would evaluate whether you want to request more or less memory in the future and whether the job can be modified to use the GPU's compute more efficiently.</p>
+<p>In the second image above, we see the results of nvtop after we have queried the RAG model, and therefore started computation on the GPU. In the bottom section, we see that both the GPU and CPU compute are now at 99%. We can observe the GPU and CPU memory usage on this line as well. On the top right, we see that "RX", data reception rate, and "TX", data transmission rate, have increased. These metrics are for data transfer between the CPU and GPU. We can also notice that the power and temperature of the system have shot up. At this point, you could evaluate whether you want to request more or less memory in the future and whether the job can be modified to use the GPU's compute more efficiently.</p>
 
 
 
@@ -1601,7 +1762,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 17, 2025 20:30:35">April 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 24, 2025 19:07:09">April 24, 2025</span>
   </span>
 
     
