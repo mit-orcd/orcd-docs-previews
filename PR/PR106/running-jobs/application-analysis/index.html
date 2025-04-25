@@ -1738,10 +1738,17 @@
 <p><code>nvtop</code> is like <code>htop</code>, except for monitoring GPU usage. Like <code>nvidia-smi</code>, <code>nvtop</code> enables you to see the real-time statistics of your job on the GPU, including memory, compute, and power consumption. It additionally shows a sliding history of GPU compute and memory usage as well as a snapshot of CPU usage. <code>nvtop</code> in general shows more information than <code>nvidia-smi</code> and has a different look. It is up to the user's preference to pick one or use both.</p>
 <h3 id="how-to-run-nvtop">How to Run nvtop</h3>
 <p>The principles of usage are very similar to that of <a href="#htop">htop</a>, and we will outline them here. First, ssh into the node on which you are running a job using a GPU (<code>ssh NODENAME</code>) and run <code>nvtop</code>. You can refer to the htop section <a href="#how-to-run-htop">above</a> for more details on finding the nodename as well as the ssh process. After running nvtop, you will see your usage updating in real time. Below we show an example of using this to monitor the GPU usage of <a href="https://orcd-docs.mit.edu/recipes/rag/">RAG</a>. If you don't yet have a GPU application and would like to get a sense of how to use nvtop, RAG could be a good example to start with. </p>
-<p><img alt="" src="../../images/application-analysis/nvtop-pre-computation.png" /></p>
-<p>In the first image above, we have only loaded the model and have not yet asked a prompt which kicks off computation. As we expect, we see that the model takes considerable memory (31GB out of the possible 45GB), but the compute of the GPU is not being used.</p>
-<p><img alt="" src="../../images/application-analysis/nvtop-during-computation.png" /></p>
-<p>In the second image above, we see the results of nvtop after we have queried the RAG model, and therefore started computation on the GPU. In the bottom section, we see that both the GPU and CPU compute are now at 99%. We can observe the GPU and CPU memory usage on this line as well. On the top right, we see that "RX", data reception rate, and "TX", data transmission rate, have increased. These metrics are for data transfer between the CPU and GPU. We can also notice that the power and temperature of the system have shot up. At this point, you could evaluate whether you want to request more or less memory in the future and whether the job can be modified to use the GPU's compute more efficiently.</p>
+<p><img alt="" src="../../images/application-analysis/nvtop-static.png" /></p>
+<p>Above, we see a display that comes up after running <code>nvtop</code>. Highlighted in yellow are some static device properties. In the top left, "Device 0" is always listed if we are only using one GPU. Next to it is "L40S", the model of GPU that we are running on, and to the right of that is the interconnect interface. In the bottom yellow box, the clock speed and memory speed of the L40S are listed.</p>
+<p><img alt="" src="../../images/application-analysis/nvtop-compute.png" /></p>
+<p>In the image above, we have only loaded the model and have not yet asked a prompt which kicks off computation. As we expect, we see that the model takes considerable memory (31GB out of the possible 45GB), but the compute of the GPU is not being used. These can be seen in two places on the screen, highlighted in yellow.</p>
+<p><img alt="" src="../../images/application-analysis/nvtop-history.png" /></p>
+<p>Now, we see the results of nvtop after we have queried the RAG model, and therefore started computation on the GPU. Highlighted is the sliding history window of GPU compute and memory usage, and as expected we see a rise in both values.</p>
+<p><img alt="" src="../../images/application-analysis/nvtop-cpu.png" /></p>
+<p>In addition to the GPU's compute running at 99%, the CPU is also running at 99%. nvtop provides a snapshot of both GPU and CPU usage as outlined above.</p>
+<p><img alt="" src="../../images/application-analysis/nvtop-dynamic.png" /></p>
+<p>On the top right, we see that "RX", data reception rate, and "TX", data transmission rate, have increased after querying the RAG model. These metrics are for data transfer between the CPU and GPU. We can also notice that the power and temperature of the system have shot up from our first look at the nvtop output. The metrics outlined in this snapshot are ones the user has less direct control over, but they can be useful for getting a better idea of how the GPU is operating.</p>
+<p>After taking a look at all the metrics above, you could evaluate whether you want to request more or less memory in the future and whether the job can be modified to use the GPU's compute more efficiently.</p>
 
 
 
@@ -1762,7 +1769,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 24, 2025 19:07:09">April 24, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 25, 2025 02:37:26">April 25, 2025</span>
   </span>
 
     

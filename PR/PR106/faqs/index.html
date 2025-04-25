@@ -1543,6 +1543,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#how-do-i-install-pytorch-on-satori" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I install PyTorch on Satori?
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1707,6 +1716,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#how-do-i-install-pytorch-on-satori" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I install PyTorch on Satori?
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1837,6 +1855,28 @@ SSH key"</p>
 </li>
 </ol>
 <p>See <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux">GitHub's documentation on SSH keys</a> for more information.</p>
+<h3 id="how-do-i-install-pytorch-on-satori">How do I install PyTorch on Satori?</h3>
+<p>Satori uses a ppc64le architecture, which is unfortunately not supported by the
+newer versions of many Python packages. As a result, the newest version of
+PyTorch that is available on Satori is version 2.1.2.</p>
+<p>The following channels offer more packages that work on the ppc64le
+architecture:</p>
+<ul>
+<li><code>https://ftp.osuosl.org/pub/open-ce/current</code></li>
+<li><code>https://opence.mit.edu</code></li>
+<li><code>https://public.dhe.ibm.com/ibmdl/export/pub/software/server/ibm-ai/conda/</code></li>
+<li><code>conda-forge</code></li>
+</ul>
+<p>You can add these channels with the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conda<span class="w"> </span>config<span class="w"> </span>--prepend<span class="w"> </span>channels<span class="w"> </span>&lt;channel&gt;
+</span></code></pre></div>
+<p>Some users have had more success installing their own version of Miniconda,
+which can be accomplished as such:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh<span class="w"> </span>.
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./Miniconda3-latest-Linux-ppc64le.sh
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>./Miniconda3-latest-Linux-ppc64le.sh<span class="w"> </span>-b<span class="w"> </span>-p<span class="w"> </span>./mc3
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">source</span><span class="w"> </span>./mc3/bin/activate
+</span></code></pre></div>
 
 
 
@@ -1857,7 +1897,7 @@ SSH key"</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 16, 2025 15:40:32">April 16, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 24, 2025 19:40:34">April 24, 2025</span>
   </span>
 
     
