@@ -1694,10 +1694,11 @@ that the amount of memory reported by <code>sacct</code> is only accurate for jo
 <p>If the <code>MaxRSS</code> value is larger than what you have requested, or you run out of memory, you will have to request additional memory for your job.</p>
 <h2 id="gpus">GPUs</h2>
 <p>GPUs are available through the <code>mit_normal_gpu</code> partition. You can also run <a href="../overview/#preemptable-jobs">preemptable</a> GPU jobs on the <code>mit_preemptable</code> partition.</p>
-<p>To request a GPU use the <code>--gres</code> flag is in the following way:</p>
+<p>To request a GPU use the <code>--gres</code> flag in the following way:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>--gres<span class="o">=</span>gpu:<span class="o">[</span>GPU_TYPE<span class="o">]</span>:<span class="o">[</span><span class="c1">#GPUS]</span>
 </span></code></pre></div>
 <p>For example, to request 1 L40S GPU, use the flag <code>--gres=gpu:l40s:1</code>, or to request 2 H100 GPUs use the flag <code>--gres=gpu:h200:2</code>. If you don't request a GPU type you will be allocated an L40S GPU.</p>
+<p>The <code>--gres</code> flag is applied per node, so for a multi-node (distributed) GPU job use the number of GPUs you need per node rather than the total number of GPUs.</p>
 <p>You can see how many GPUs of which type are on each node in a partition using the <code>sinfo</code> command. For example, to check <code>mit_normal_gpu</code> run the command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sinfo<span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>-O<span class="w"> </span>Partition,Nodes,CPUs,Memory,Gres
 </span></code></pre></div>
@@ -1721,7 +1722,7 @@ that the amount of memory reported by <code>sacct</code> is only accurate for jo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 30, 2025 19:04:21 UTC">May 30, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 30, 2025 19:09:10 UTC">May 30, 2025</span>
   </span>
 
     
