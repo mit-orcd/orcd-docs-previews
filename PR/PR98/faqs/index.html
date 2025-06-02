@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -848,6 +848,52 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-jobs/available-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Available Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-jobs/application-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1458,9 +1504,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#can-you-increase-the-time-limit-for-my-job" class="md-nav__link">
+  <a href="#how-do-i-increase-the-time-limit-for-my-job" class="md-nav__link">
     <span class="md-ellipsis">
-      Can you increase the time limit for my job?
+      How do I increase the time limit for my job?
     </span>
   </a>
   
@@ -1506,6 +1552,24 @@
   <a href="#xfce-desktop-has-failed-to-start-how-can-i-fix-this" class="md-nav__link">
     <span class="md-ellipsis">
       Xfce desktop has failed to start. How can I fix this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-i-use-git-on-the-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I use Git on the cluster?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-i-install-pytorch-on-satori" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I install PyTorch on Satori?
     </span>
   </a>
   
@@ -1613,9 +1677,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#can-you-increase-the-time-limit-for-my-job" class="md-nav__link">
+  <a href="#how-do-i-increase-the-time-limit-for-my-job" class="md-nav__link">
     <span class="md-ellipsis">
-      Can you increase the time limit for my job?
+      How do I increase the time limit for my job?
     </span>
   </a>
   
@@ -1666,6 +1730,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#how-do-i-use-git-on-the-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I use Git on the cluster?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-do-i-install-pytorch-on-satori" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I install PyTorch on Satori?
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1685,8 +1767,9 @@
 <h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
 <h3 id="how-do-i-get-gpu-access">How do I get GPU access?</h3>
 <p>Currently we have many public GPUs available to the MIT community on Satori and
-we are working on getting more on Engaging. You can request GPUs for your job
-by following <a href="../running-jobs/requesting-resources/#gpus">this documentation</a>.</p>
+we are working on getting more on Engaging. If you have access to a partition
+with GPUs (e.g., if your lab has purchased some), you can request GPUs for your
+job by following <a href="../running-jobs/requesting-resources/#gpus">this documentation</a>.</p>
 <p>If your lab would like to purchase GPUs to be hosted on Engaging, please contact
 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
 <h3 id="how-do-i-check-the-status-of-my-job">How do I check the status of my job?</h3>
@@ -1701,18 +1784,22 @@ module requests to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;
 <h3 id="can-i-use-export-controlled-software-on-the-cluster">Can I use export controlled software on the cluster?</h3>
 <p>Export controlled software has specific requirements around who is allowed to
 access the software. Often, our clusters do not meet these requirements, so
-we generally do not allow this software to be on our systems. Please refer to
-the terms of use of the software and direct any questions to
+we generally do not allow such software to be used on our systems. Please refer
+to the terms of use of the software and direct any questions to
 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
-<h3 id="can-you-increase-the-time-limit-for-my-job">Can you increase the time limit for my job?</h3>
+<h3 id="how-do-i-increase-the-time-limit-for-my-job">How do I increase the time limit for my job?</h3>
+<p>Use the <code>-t</code> flag in your job script. If you do not specify, Slurm will give
+you the maximum time limit for that partition. You can check the maximum time
+limit by running <code>sinfo -p &lt;partition name&gt;</code>.</p>
 <p>For public partitions on Engaging, such as <code>mit_normal</code>, we cannot increase the
-time limit for any particular job, as these resources are shared. For jobs that
-need to run longer than the time limit on the partition, we encourage
+maximum job time limit, as these resources are shared. For jobs that
+need to run longer than the time limit, we encourage
 checkpointing, which is a way of periodically saving progress so that subsequent
-jobs can pick up where another job left off. The implementation of checkpointing
+jobs can pick up where previous jobs left off. The implementation of checkpointing
 is domain specific and can vary greatly. You can find more information on
 checkpointing <a href="https://rc-docs.northeastern.edu/en/latest/best-practices/checkpointing.html">here</a>.</p>
-<p>For partitions owned by other groups, please email <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
+<p>For increasing the maximum time limit on partitions owned by other groups,
+please email <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
 <h3 id="how-do-i-get-an-account">How do I get an account?</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">Satori</label><label for="__tabbed_1_3">SuperCloud</label></div>
 <div class="tabbed-content">
@@ -1756,6 +1843,63 @@ Anaconda install. We recommend <strong>not</strong> running <code>conda init</co
 errors such as this one.</p>
 <p>To fix this, remove or comment out all conda setup commands from your
 <code>~/.bashrc</code> file.</p>
+<h3 id="how-do-i-use-git-on-the-cluster">How do I use Git on the cluster?</h3>
+<p>Git is highly encouraged for use on the cluster. It is useful for backing up
+code and version control, especially when collaborating with others.</p>
+<p>We recommend setting up an SSH key with GitHub for security and convenience.
+This allows you to use the "SSH" link rather than the "HTTPS" link when cloning
+repositories. To set up an SSH key, follow these steps:</p>
+<ol>
+<li>
+<p><a href="../accessing-orcd/ssh-login/">SSH</a> to the cluster you're using</p>
+</li>
+<li>
+<p>Enter the following from the command line:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$USER</span><span class="s2">@mit.edu&quot;</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Press "enter" to save your private and public keys to the default <code>~/.ssh</code>
+location. When prompted, optionally enter a passphrase for higher security. You
+will now have two new files in your <code>~/.ssh</code> directory: <code>id_ed25519</code> and
+<code>id_ed25519.pub</code>.</p>
+</li>
+<li>
+<p>Print the contents of your <strong>public key</strong> (using <code>cat id_ed25519.pub</code>) and
+copy the output</p>
+</li>
+<li>
+<p>Navigate to <a href="https://github.com">GitHub.com</a> &gt; click your profile in the top right
+corner &gt; select "Settings" &gt; "SSH and GPG keys" &gt; "New SSH key"</p>
+</li>
+<li>
+<p>Add a title (e.g., "engaging"), paste your <strong>public key</strong>, and click "Add
+SSH key"</p>
+</li>
+</ol>
+<p>See <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux">GitHub's documentation on SSH keys</a> for more information.</p>
+<h3 id="how-do-i-install-pytorch-on-satori">How do I install PyTorch on Satori?</h3>
+<p>Satori uses a ppc64le architecture, which is unfortunately not supported by the
+newer versions of many Python packages. As a result, the newest version of
+PyTorch that is available on Satori is version 2.1.2.</p>
+<p>The following channels offer more packages that work on the ppc64le
+architecture:</p>
+<ul>
+<li><code>https://ftp.osuosl.org/pub/open-ce/current</code></li>
+<li><code>https://opence.mit.edu</code></li>
+<li><code>https://public.dhe.ibm.com/ibmdl/export/pub/software/server/ibm-ai/conda/</code></li>
+<li><code>conda-forge</code></li>
+</ul>
+<p>You can add these channels with the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>conda<span class="w"> </span>config<span class="w"> </span>--prepend<span class="w"> </span>channels<span class="w"> </span>&lt;channel&gt;
+</span></code></pre></div>
+<p>Some users have had more success installing their own version of Miniconda,
+which can be accomplished as such:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-ppc64le.sh<span class="w"> </span>.
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./Miniconda3-latest-Linux-ppc64le.sh
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>./Miniconda3-latest-Linux-ppc64le.sh<span class="w"> </span>-b<span class="w"> </span>-p<span class="w"> </span>./mc3
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">source</span><span class="w"> </span>./mc3/bin/activate
+</span></code></pre></div>
 
 
 
@@ -1776,7 +1920,7 @@ errors such as this one.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 10, 2025 19:33:51">March 10, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 24, 2025 19:40:34 UTC">April 24, 2025</span>
   </span>
 
     
@@ -1831,10 +1975,10 @@ errors such as this one.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="../js/open_in_new_tab.js"></script>
       
