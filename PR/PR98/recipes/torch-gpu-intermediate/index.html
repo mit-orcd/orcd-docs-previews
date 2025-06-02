@@ -1612,7 +1612,7 @@
 </div>
 </div>
 <h2 id="fully-sharded-data-parallel">Fully Sharded Data Parallel</h2>
-<p>We use an example code <a href="https://github.com/pytorch/examples/tree/main/mnist">to train a convolutional neural network (CNN) with the MNIST data set</a>. </p>
+<p>We use <a href="https://github.com/pytorch/examples/tree/main/mnist">an example code</a> to train a convolutional neural network (CNN) with the MNIST data set.</p>
 <p>We will first run the example on a single GPU and then extend it to <a href="https://pytorch.org/tutorials/intermediate/FSDP_tutorial.html">multiple GPUs with FSDP</a>.</p>
 <p>Download the codes <a href="../scripts/torch-gpu-2/mnist_gpu.py">mnist_gpu.py</a> and <a href="../scripts/torch-gpu-2/FSDP_mnist.py">FSDP_mnist.py</a> for these two cases respectively. </p>
 <h3 id="an-example-with-a-single-gpu">An example with a single GPU</h3>
@@ -1626,7 +1626,7 @@
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>#SBATCH -N 1
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>#SBATCH -n 1
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>#SBATCH --mem=20GB
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>#SBATCH --gres=gpu:1  
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>#SBATCH --gres=gpu:h200:1  
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>module load miniforge/24.3.0-0
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>source activate torch
@@ -1658,7 +1658,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>#SBATCH -N 1
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>#SBATCH -n 4
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>#SBATCH --mem=20GB
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>#SBATCH --gres=gpu:4
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>#SBATCH --gres=gpu:h200:4
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
 </span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>module load miniforge/24.3.0-0
 </span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>source activate torch
@@ -1677,7 +1677,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 <p>We use an example that implements FSDP + TP on LLAMA2 (Large Language Model Meta AI 2). Refer to <a href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html">the description of this example</a>. Download the codes: <a href="../scripts/torch-gpu-2/fsdp_tp_example.py">fsdp_tp_example.py</a>, <a href="../scripts/torch-gpu-2/llama2_model.py">llama2_model.py</a>, and <a href="../scripts/torch-gpu-2/log_utils.py">log_utils.py</a>.</p>
 <h3 id="single-node-multi-gpu-fsdp-tp">Single-node multi-GPU FSDP + TP</h3>
 <p>First, let's run the example on multiple GPUs within a single node. </p>
-<p>The code <code>fsdp_tp_example.py</code> is set up for this purpose. The TP size is set to be 2 in the code. The total number of GPUs should be equal to a multiple of the TP size, that is, an even number in this case, then the FSDP size is equal to the number of GPUs divided by the TP size.</p>
+<p>The code <code>fsdp_tp_example.py</code> is set up for this purpose. The TP size is set to be 2 in the code. The total number of GPUs should be equal to a multiple of the TP size, then the FSDP size is equal to the number of GPUs divided by the TP size.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1688,7 +1688,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>#SBATCH -N 1
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>#SBATCH -n 4
 </span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>#SBATCH --mem=30GB
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>#SBATCH --gres=gpu:4
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>#SBATCH --gres=gpu:h200:4
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>module load miniforge/24.3.0-0
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>source activate torch
@@ -1705,7 +1705,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </div>
 </div>
 <p>With the flags <code>--nnodes=1 --nproc-per-node=4</code>, the <code>torchrun</code> command will run the program on 4 GPUs within one node. The training process happens on 2 batches of data with FSDP, and the model is trained with TP sharded computation on 2 GPUs for each batch of data.</p>
-<p>The flags with <code>rdzv</code> (meaning the Rendezvous protocol) are required by <code>torchrun</code> to coordinate multiple processes. The flag <code>--rdzv-id=$SLURM_JOB_ID</code> sets to the <code>rdzv</code> ID be the job ID, but it can be any random number. The flag <code>--rdzv-endpoint=localhost:1234</code> is to set the host and the port. Use <code>localhost</code> when there is only one node. The port can be any 4- or 5-digit number larger than 1024. </p>
+<p>The flags with <code>rdzv</code> (meaning the Rendezvous protocol) are required by <code>torchrun</code> to coordinate multiple processes. The flag <code>--rdzv-id=$SLURM_JOB_ID</code> sets to the <code>rdzv</code> ID to be the job ID, but it can be any random number. The flag <code>--rdzv-endpoint=localhost:1234</code> is to set the host and the port. Use <code>localhost</code> when there is only one node. The port can be any 4- or 5-digit number larger than 1024. </p>
 <h3 id="multi-node-multi-gpu-fsdp-tp">Multi-node multi-GPU FSDP + TP</h3>
 <p>Finally, we run this example on multiple GPUs across multiple nodes. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Engaging</label></div>
@@ -1717,7 +1717,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>#SBATCH -N 2
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>#SBATCH --ntasks-per-node=1
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>#SBATCH --cpus-per-task=4
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>#SBATCH --gpus-per-node=4 
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>#SBATCH --gpus-per-node=h200:4 
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>#SBATCH --mem=30GB
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
 </span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>module load miniforge/24.3.0-0
@@ -1769,7 +1769,7 @@ and check the GPU usage with the <code>nvtop</code> command.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 2, 2025 15:51:26 UTC">June 2, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 2, 2025 16:05:28 UTC">June 2, 2025</span>
   </span>
 
     
