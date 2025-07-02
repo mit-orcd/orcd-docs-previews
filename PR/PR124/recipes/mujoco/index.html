@@ -11,18 +11,14 @@
         <link rel="canonical" href="https://orcd.mit.edu/recipes/mujoco/">
       
       
-        <link rel="prev" href="../mpi/">
-      
-      
-        <link rel="next" href="../nvhpc-a100-with-cuda-and-mpi-example/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>MuJoCo - ORCD Docs</title>
+        <title>Mujoco - ORCD Docs</title>
       
     
     
@@ -107,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MuJoCo
+              Mujoco
             
           </span>
         </div>
@@ -905,20 +901,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -934,7 +928,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
@@ -1074,98 +1068,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    MuJoCo
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    MuJoCo
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#install-the-mujoco-binaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install the MuJoCo Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-mujoco-py" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Mujoco-Py
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-mujoco-in-a-job" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using MuJoCo in a Job
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1624,7 +1526,7 @@
       
       
       
-        <a href="../../tags/#tag:mujoco" class="md-tag">MuJoCo</a>
+        <a href="../../tags/#tag:physics" class="md-tag">Physics</a>
       
     
       
@@ -1637,6 +1539,10 @@
 
 
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This page has been archived. The information present is not updated and may no longer be accurate.</p>
+</div>
 <h1 id="installing-and-using-mujoco">Installing and Using MuJoCo<a class="headerlink" href="#installing-and-using-mujoco" title="Permanent link">&para;</a></h1>
 <p>MuJoCo is a free and open source physics engine that aims to facilitate research and development in robotics, biomechanics, graphics and animation, and other areas where fast and accurate simulation is needed.</p>
 <p>You can learn about MuJoCo here: <a href="https://mujoco.org">https://mujoco.org</a>.</p>
@@ -1647,7 +1553,7 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>mujoco-2.3.0-linux-x86_64.tar.gz
 </span></code></pre></div>
 <p>In order for mujoco-py to find the MuJoCo binaries, set the following paths:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MUJOCO_PY_MUJOCO_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/path/to/mujoco230/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MUJOCO_PY_MUJOCO_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/path/to/mujoco-2.3.0/
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:<span class="nv">$MUJOCO_PY_MUJOCO_PATH</span>/bin
 </span></code></pre></div>
 <h2 id="install-mujoco-py">Install Mujoco-Py<a class="headerlink" href="#install-mujoco-py" title="Permanent link">&para;</a></h2>
@@ -1655,19 +1561,18 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">echo</span><span class="w"> </span>MUJOCO_PY_MUJOCO_PATH
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">echo</span><span class="w"> </span>LD_LIBRARY_PATH
 </span></code></pre></div>
-<p>If any of these are not set properly you can set them as described above (see <a href="#install-the-mujoco-binaries">here for MUJOCO_PY_MUJOCO_PATH, LD_LIBRARY_PATH</a>.</p>
+<p>If any of these are not set properly you can set them as described above (see <a href="#install-the-mujoco-binaries">here for MUJOCO_PY_MUJOCO_PATH and LD_LIBRARY_PATH</a>).</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Next load either a Python or Anaconda module. In this example I loaded the latest anaconda3 module (run <code>module avail anaconda</code> to see the current list of available anaconda modules):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>anaconda3/2022.10
+<p>Next load either a Python or Anaconda module. In this example I loaded the <code>miniforge</code> module (run <code>module avail miniforge</code> to see the current list of available Anaconda modules):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
 </span></code></pre></div>
 <p>From here on you can follow the <a href="https://github.com/openai/mujoco-py">standard instructions to install mujoco-py</a>, using the <code>--user</code> flag where appropriate to install in your home directory, or install in an anaconda or virtual environment (do not use the <code>--user</code> flag if you want to install in a conda or virtual environment). Here I am installing in my home directory with <code>--user</code>:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span><span class="s1">&#39;mujoco-py&lt;2.2,&gt;=2.1&#39;</span>
 </span></code></pre></div>
-<p>Start up python and import mujoco_py to complete the build process:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>import<span class="w"> </span>mujoco_py
+<p>Start up python and import <code>mujoco_py</code> to complete the build process:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">mujoco_py</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1684,8 +1589,8 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pkgname1
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pip<span class="w"> </span>install<span class="w"> </span>pkgname2
 </span></code></pre></div>
-<p>Since you are installing into virtual environment, <strong>do not use the <code>--user</code> flag</strong>.</p>
-<p>Once you’ve installed the packages you need, start Python and import mujoco_py to finish the build:</p>
+<p>Since you are installing into a virtual environment, <strong>do not use the <code>--user</code> flag</strong>.</p>
+<p>Once you’ve installed the packages you need, start Python and import <code>mujoco_py</code> to finish the build:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>import<span class="w"> </span>mujoco_py
 </span></code></pre></div>
@@ -1709,7 +1614,7 @@
 </span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">qpos</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="using-mujoco-in-a-job">Using MuJoCo in a Job<a class="headerlink" href="#using-mujoco-in-a-job" title="Permanent link">&para;</a></h2>
-<p>To use MuJoCo you’ll need to first load the same Python or Anaconda module you used to install mujoco-py. If you installed it into a conda environment or python virtual environment, load that environment as well. We recommend you do this in your job submission script rather than in your .bashrc or at the command line before you submit the job. This way you know your job is configured properly every time it runs.</p>
+<p>To use MuJoCo you’ll need to first load the same Python or Anaconda module you used to install mujoco-py. If you installed it into a conda environment or python virtual environment, load that environment as well. We recommend you do this in your job submission script rather than in your <code>.bashrc</code> or at the command line before you submit the job. This way you know your job is configured properly every time it runs.</p>
 <p>You can use the following test scripts to test your MuJoCo setup in a job environment, and as a starting point for your own job:</p>
 <div class="language-py highlight"><span class="filename">mujoco_test.py</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span> <span class="nn">mujoco_py</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">import</span> <span class="nn">os</span>
@@ -1776,7 +1681,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 31, 2024 17:52:12 UTC">July 31, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 1, 2025 19:19:54 UTC">July 1, 2025</span>
   </span>
 
     
@@ -1834,7 +1739,7 @@
       <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
