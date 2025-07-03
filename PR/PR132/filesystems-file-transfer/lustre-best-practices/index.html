@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -1080,29 +1080,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/mujoco/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    MuJoCo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
@@ -1494,7 +1471,7 @@
         <li class="md-nav__item">
   <a href="#avoid-using-the-command-ls-l" class="md-nav__link">
     <span class="md-ellipsis">
-      Avoid using the command ls -l
+      Avoid Using the Command ls -l
     </span>
   </a>
   
@@ -1503,7 +1480,7 @@
         <li class="md-nav__item">
   <a href="#avoid-having-a-large-number-of-files-in-a-single-directory" class="md-nav__link">
     <span class="md-ellipsis">
-      Avoid having a Large Number of Files in a Single Directory
+      Avoid Having a Large Number of Files in a Single Directory
     </span>
   </a>
   
@@ -1557,17 +1534,17 @@
 <p class="admonition-title">Lustre will be Retired</p>
 <p>We are in the process of migrating all lustre storage to a new flash Scratch filesystem. This page applies if you still have storage on <code>/nobackup1</code>. While these are all good general best practices, not everything on this page is relevant to the new Scratch storage.</p>
 </div>
-<p>Lustre is a type of file system technology used on the engaging cluster, known to most users as the <code>/nobackup1b</code> or <code>/nobackup1c</code> file systems. The Lustre storage system is built to manage extremely high rates of input and output, and can read and write large files faster than traditional storage like NFS, the home directory.</p>
-<p>Since it is designed to read and write large files, it has difficulties running jobs that read and write lots of small files. When Lustre is faced with many small file input and output, it can get overloaded and in return responds very slowly across the entire filesystem, effecting more than just the user who is running the job with small file input and output.</p>
-<p>Along with avoiding small file input and output, there are a few other things users should know to avoid when using the Lustre file system (<code>nobackup1b</code>/<code>nobackup1c</code>)</p>
-<h2 id="avoid-using-the-command-ls-l">Avoid using the command <code>ls -l</code><a class="headerlink" href="#avoid-using-the-command-ls-l" title="Permanent link">&para;</a></h2>
+<p>Lustre is a type of file system technology used on the Engaging cluster, known to most users as the <code>/nobackup1b</code> or <code>/nobackup1c</code> file systems. The Lustre storage system is built to manage extremely high rates of input and output, and can read and write large files faster than traditional storage like NFS, the home directory.</p>
+<p>Since it is designed to read and write large files, it has difficulties running jobs that read and write lots of small files. When Lustre is faced with many small file input and output, it can get overloaded and in return responds very slowly across the entire filesystem, affecting more than just the user who is running the job with small file input and output.</p>
+<p>Along with avoiding small file input and output, there are a few other things users should know to avoid when using the Lustre file system (<code>nobackup1b</code>/<code>nobackup1c</code>).</p>
+<h2 id="avoid-using-the-command-ls-l">Avoid Using the Command <code>ls -l</code><a class="headerlink" href="#avoid-using-the-command-ls-l" title="Permanent link">&para;</a></h2>
 <p>The <code>ls -l</code> command displays a lot of information such as ownership, permissions, and the size of files and directories. Some of this information, such as the file size, is only stored in part of the Lustre technology, and so this information must be queried for all files and directories on the file system. This can be very resource consuming and take a long time to complete since many files are stored on <code>/nobackup1b</code> and <code>/nobackup1c</code> by many users.</p>
 <p>Instead of using <code>ls -l</code>, you should:</p>
 <ul>
 <li>Use <code>ls</code> by itself if you just want to see if a file exists</li>
 <li>Use <code>ls -l &lt;filename&gt;</code> if you want the long listing of a specific file</li>
 </ul>
-<h2 id="avoid-having-a-large-number-of-files-in-a-single-directory">Avoid having a Large Number of Files in a Single Directory<a class="headerlink" href="#avoid-having-a-large-number-of-files-in-a-single-directory" title="Permanent link">&para;</a></h2>
+<h2 id="avoid-having-a-large-number-of-files-in-a-single-directory">Avoid Having a Large Number of Files in a Single Directory<a class="headerlink" href="#avoid-having-a-large-number-of-files-in-a-single-directory" title="Permanent link">&para;</a></h2>
 <p>Opening a file keeps a lock on the parent directory. When many files in the same directory are to be opened, it creates contention. A better practice is to split a large number of files (in the thousands or more) into multiple subdirectories to minimize contention.</p>
 <h2 id="avoid-storing-and-accessing-small-files-on-lustre">Avoid Storing and Accessing Small Files on Lustre<a class="headerlink" href="#avoid-storing-and-accessing-small-files-on-lustre" title="Permanent link">&para;</a></h2>
 <p>Accessing small files on the Lustre filesystem is not efficient. There are 2 other locations users can store smaller sized files that are much better suited to handle them. These locations are Pool and the user’s Home Directory. For more information on these storage locations, please see the page on <a href="../filesystems/">General Use Filesystems</a>.</p>
@@ -1576,7 +1553,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lfs<span class="w"> </span>quota<span class="w"> </span>-h<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>/nobackup1
 </span></code></pre></div>
 <h2 id="avoid-accessing-and-running-executable-files-from-lustre">Avoid Accessing and Running Executable Files from Lustre<a class="headerlink" href="#avoid-accessing-and-running-executable-files-from-lustre" title="Permanent link">&para;</a></h2>
-<p>Executables run slower when they are run from <code>/nobackup1</code>, and shouldn’t be run from login or head nodes, regardless if they are ran from <code>/nobackup1</code>, Pool, or a user’s Home Directory. To learn how to run on Engaging, see the section on <a href="../../running-jobs/overview/">Running Jobs</a>.</p>
+<p>Executables run slower when they are run from <code>/nobackup1</code>, and shouldn’t be run from login or head nodes, regardless if they are run from <code>/nobackup1</code>, Pool, or a user’s Home Directory. To learn how to run on Engaging, see the section on <a href="../../running-jobs/overview/">Running Jobs</a>.</p>
 <p>Executable files for jobs are best stored in a user’s home directory. Storing executable files in Pool is also acceptable, but less ideal. Input data, such as datasets or input files, can be stored on <code>/nobackup1</code> and your job can generate any large data output to <code>/nobackup1</code>. Any files you need to keep long term should also be stored in Home, Pool, or another backed up location. Anything stored in a location that is not backed up, such as <code>/nobackup1</code>, has some risk of being lost.</p>
 <h2 id="avoid-having-multiple-processes-open-the-same-files-at-the-same-time">Avoid Having Multiple Processes Open the Same File(s) at the Same Time<a class="headerlink" href="#avoid-having-multiple-processes-open-the-same-files-at-the-same-time" title="Permanent link">&para;</a></h2>
 <p>On Lustre filesystems, if multiple processes try to open the same file(s), some processes will not able to find the file(s) and your job will fail.</p>
@@ -1600,7 +1577,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 11, 2025 16:01:22 UTC">February 11, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 20:07:48 UTC">June 27, 2025</span>
   </span>
 
     
@@ -1658,7 +1635,7 @@
       <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
