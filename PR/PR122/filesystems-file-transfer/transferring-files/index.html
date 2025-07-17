@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -541,13 +541,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#transferring-files-with-the-command-line" class="md-nav__link">
+  <a href="#ondemand" class="md-nav__link">
     <span class="md-ellipsis">
-      Transferring Files with the Command Line
+      OnDemand
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Transferring Files with the Command Line">
+    <nav class="md-nav" aria-label="OnDemand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-and-editing-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing and Editing Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#globus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Globus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Line">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -586,24 +619,6 @@
   <a href="#graphical-applications-for-file-transfer" class="md-nav__link">
     <span class="md-ellipsis">
       Graphical Applications for File Transfer
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transferring-files-with-a-web-portal" class="md-nav__link">
-    <span class="md-ellipsis">
-      Transferring Files with a Web Portal
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#globus" class="md-nav__link">
-    <span class="md-ellipsis">
-      Globus
     </span>
   </a>
   
@@ -1220,29 +1235,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/mujoco/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    MuJoCo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
@@ -1632,13 +1624,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#transferring-files-with-the-command-line" class="md-nav__link">
+  <a href="#ondemand" class="md-nav__link">
     <span class="md-ellipsis">
-      Transferring Files with the Command Line
+      OnDemand
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Transferring Files with the Command Line">
+    <nav class="md-nav" aria-label="OnDemand">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-and-editing-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing and Editing Files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#globus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Globus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Command Line">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1682,24 +1707,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#transferring-files-with-a-web-portal" class="md-nav__link">
-    <span class="md-ellipsis">
-      Transferring Files with a Web Portal
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#globus" class="md-nav__link">
-    <span class="md-ellipsis">
-      Globus
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1718,8 +1725,98 @@
 
 <h1 id="transferring-files">Transferring Files<a class="headerlink" href="#transferring-files" title="Permanent link">&para;</a></h1>
 <p>There are a few different ways to transfer files depending on your goals, the data you are transferring, and what you are comfortable with. On this page we cover the different methods of transferring files, as well as touch on how to transfer files between systems.</p>
-<p>For most of these options you will need to know the hostname of the node where you will be transferring files. This is often a login node, but may also be a dedicated data transfer node. Select the system you are using to see options for the hostname here:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">Satori</label><label for="__tabbed_1_3">OpenMind</label><label for="__tabbed_1_4">SuperCloud</label></div>
+<p>We recommend using <a href="#ondemand">OnDemand</a> for every-day file transfer and <a href="#globus">Globus</a> for transferring large files or large numbers of files. For those who prefer to use the command line you can use <a href="#command-line">scp or rsync</a>.</p>
+<p>For system-specific information on transferring files for Satori, SuperCloud, or OpenMind, click on one of the following tabs. This page discusses transferring files for Engaging.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Satori</label><label for="__tabbed_1_2">SuperCloud</label><label for="__tabbed_1_3">OpenMind</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://mit-satori.github.io/satori-getting-started.html#transferring-files">Satori Transferring Files Documentation Page</a></p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://mit-supercloud.github.io/supercloud-docs/transferring-files/">SuperCloud Transferring Files Documentation Page</a></p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-transfer-files%3F">OpenMind Transferring Files Documentation Page</a></p>
+</div>
+</div>
+</div>
+<h2 id="ondemand">OnDemand<a class="headerlink" href="#ondemand" title="Permanent link">&para;</a></h2>
+<p>Engaging and Satori both have an OnDemand web portal. SuperCloud has its own custom portal.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">Satori</label><label for="__tabbed_2_3">SuperCloud</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://engaging-ood.mit.edu/">Engaging OnDemand Portal</a></p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://satori-portal.mit.edu/">Satori OnDemand Portal</a></p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://txe1-portal.mit.edu">SuperCloud Web Portal</a> (<a href="https://mit-supercloud.github.io/supercloud-docs/transferring-files/#downloading-files-through-the-web-portal">Documentation</a>)</p>
+</div>
+</div>
+</div>
+<p>With the Engaging and Satori OnDemand portals you can do the following using the File Browser:</p>
+<ul>
+<li>Upload and download files and directories</li>
+<li>Rename, move, and delete files and directories</li>
+<li>View and edit files</li>
+</ul>
+<p>Once you are logged into OnDemand, you can use the File Browser by selecting Files -&gt; Home Directory in the menu bar at the top left of the page.</p>
+<p>To upload and download you can drag and drop files and directories between your File Browser window and your desktop Finder/Explorer windows. You can also use the "Upload" and "Download" buttons. Select multiple files by holding the Control (or Command) key and clicking on the files you'd like to select. Those files can then be downloaded with the "Download" button.</p>
+<h3 id="viewing-and-editing-files">Viewing and Editing Files<a class="headerlink" href="#viewing-and-editing-files" title="Permanent link">&para;</a></h3>
+<p>The File Browser is also the easiest way to view and edit files in place. Click on the file that you would like to view or edit. Then click either the "View" or "Edit" buttons directly above the list of files.</p>
+<p>The editor has some nice features like line numbers and syntax highlighting for most languages. You can also change the display colors, the font size, and whether you'd like the words to wrap. Click "Save" to save any edits you made.</p>
+<h2 id="globus">Globus<a class="headerlink" href="#globus" title="Permanent link">&para;</a></h2>
+<p>If you are moving more than a few files, or your files are particularly large, we recommend using Globus. Globus is a tool that helps transfer large amounts of data between systems. We have Globus collections set up on each ORCD system. Collections are the mechanism Globus uses for accessing data.</p>
+<p>Some advantages of using Globus are:</p>
+<ul>
+<li>It is easy to initiate transfers through the Globus webpage</li>
+<li>You don't need to stay logged into Globus through the entire transfer</li>
+<li>If your transfer is interrupted it will continue automatically where it left off once the connection is re-established</li>
+</ul>
+<p>To transfer data:</p>
+<ol>
+<li><strong>Log in:</strong> Log into <a href="https://www.globus.org/">Globus</a> with your MIT credentials.</li>
+<li><strong>Select your source and destination collections:</strong> In the "File Manager" tab in each of the two "Collection" boxes search for the collections for the systems you want to transfer data between (<a href="https://app.globus.org/file-manager?origin_id=ec54b570-cac5-47f7-b2a1-100c2078686f">MIT ORCD Engaging Collection</a> for Engaging, or see below for a full list of ORCD  Collections). To transfer data to or from your own computer you will need to set up Globus Connect Personal. Follow the instructions on the page for your system listed <a href="https://docs.globus.org/globus-connect-personal/">here</a>.</li>
+<li><strong>Navigate to your source and destination directories:</strong> On the source side navigate to the source directory and select the files and/or directories you'd like to transfer. On the destination side navigate to the location where you'd like to copy your files</li>
+<li><strong>Select any additional settings:</strong> Click on "Transfer and Timer Options" for additional settings, such as syncing new or changed files and scheduling recurring transfers.</li>
+<li><strong>Initiate the transfer:</strong> Once you have selected the files and options you want, press the "Start" button on the source column.</li>
+<li><strong>Monitor your transfer (optional):</strong> Click on "Activity" to view the status of your active transfers. You will also get an email when you transfer is complete, or if Globus runs into any issues with the transfer.</li>
+</ol>
+<p>The Globus Documentation has a <a href="https://docs.globus.org/guides/tutorials/manage-files/transfer-files/">tutorial</a> with screenshots to demonstrate this process.</p>
+<p>Here is a list of Globus Collections on ORCD systems:</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Globus Collection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Engaging</td>
+<td><a href="https://app.globus.org/file-manager?origin_id=ec54b570-cac5-47f7-b2a1-100c2078686f">MIT ORCD Engaging Collection</a></td>
+</tr>
+<tr>
+<td>Satori</td>
+<td><a href="https://app.globus.org/file-manager?destination_id=4841ad03-4878-4d3a-bb58-babb32074cef">mithpc#satori</a></td>
+</tr>
+<tr>
+<td>OpenMind</td>
+<td>mithpc#openmind</td>
+</tr>
+</tbody>
+</table>
+<p>More documentation on transferring files through Globus can be found on the <a href="https://docs.globus.org/guides/tutorials/manage-files/transfer-files/">Globus Documentation Pages</a>. Globus also has an <a href="https://docs.globus.org/faq/transfer-sharing/">FAQ</a> that is helpful for answering any questions you might have.</p>
+<h2 id="command-line">Command Line<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h2>
+<p>The most common commands used to transfer files are <code>scp</code> and <code>rsync</code>. You will need to run both of these commands from your local computer, before logging into any ORCD system. In order to use these two commands you will need:</p>
+<ul>
+<li>The hostname of the remote machine you are transferring files to or from, these are listed below</li>
+<li>The full path on the remote machine where you are copying the file to or from</li>
+<li>The ability to ssh to the remote machine where you are transferring files to or from</li>
+</ul>
+<p>The hostname of the node where you will be transferring files is often a login node, but may also be a dedicated data transfer node. Select the system you are using to see options for the hostname here:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label><label for="__tabbed_3_2">Satori</label><label for="__tabbed_3_3">OpenMind</label><label for="__tabbed_3_4">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ul>
@@ -1747,144 +1844,129 @@
 </div>
 </div>
 </div>
-<p>For more information specific to the system you are using, you can consult your system's documentation here:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">Satori</label><label for="__tabbed_2_3">SuperCloud</label><label for="__tabbed_2_4">OpenMind</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>Engaging does not have an additional documentation page.</p>
-</div>
-<div class="tabbed-block">
-<p><a href="https://mit-satori.github.io/satori-getting-started.html#transferring-files">Satori Transferring Files Documentation Page</a></p>
-</div>
-<div class="tabbed-block">
-<p><a href="https://supercloud.mit.edu/accessing-and-transferring-data-and-files">SuperCloud Transferring Files Documentation Page</a></p>
-</div>
-<div class="tabbed-block">
-<p><a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-transfer-files%3F">OpenMind Transferring Files Documentation Page</a></p>
-</div>
-</div>
-</div>
-<h2 id="transferring-files-with-the-command-line">Transferring Files with the Command Line<a class="headerlink" href="#transferring-files-with-the-command-line" title="Permanent link">&para;</a></h2>
-<p>Two of the most common commands used to transfer files are <code>scp</code> and <code>rsync</code>. You will need to run both of these commands from your local computer, before logging into any ORCD system. In order to use these two command you will need:</p>
-<ul>
-<li>The hostname of the remote machine you are transferring files or from (usually the login node)</li>
-<li>The path on the remote machine where you are copying the file to or from</li>
-<li>To be able to ssh to the remote machine where you are transferring files to or from</li>
-</ul>
-<p>Both <code>scp</code> and <code>rsync</code> work similar to <code>cp</code>, in that you specify a source (where the file is coming from) and destination (where the file is going to).</p>
-<p>Unless you have your paths memorized, the easiest way to do this is to have two terminals open. One logged into the ORCD system you are transferring files to or from, one not logged in. In each navigate to the respective directories where the file exists or you want to transfer it to. In the local tab navigate to where you want to put the transferred file or to to the file you want to transfer. In the ORCD system tab use the <code>pwd</code> command to print out the path to your current location. You can use this to run the <code>scp</code> or <code>rsync</code> command.</p>
+<p>Both <code>scp</code> and <code>rsync</code> work similar to <code>cp</code>, in that you specify a source (where the file is coming from) and destination (where the file is going to). The main difference is that you will need to specify the hostname of the remote system.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># using cp to copy files within the same system</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cp<span class="w"> </span>/path/to/source<span class="w"> </span>/path/to/destination
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># using scp to copy files from the local system to &lt;hostname&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>scp<span class="w"> </span>/path/to/source<span class="w"> </span>&lt;hostname&gt;:/path/to/destination
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># using scp to copy files from &lt;hostname&gt; to the local system</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>scp<span class="w"> </span>&lt;hostname&gt;:/path/to/source<span class="w"> </span>/path/to/destination
+</span></code></pre></div>
+<p>Unless you have your paths memorized, the easiest way to do this is to have two terminals open. The first terminal is logged into Engaging or other remote system, the second is on your local computer. In each navigate to the respective source and destination directories. In the Engaging tab you can run the <code>pwd</code> command to print out the path to your current location and copy the output to use in the <code>scp</code> or <code>rsync</code> command.</p>
 <h3 id="scp">scp<a class="headerlink" href="#scp" title="Permanent link">&para;</a></h3>
 <p>First, open a terminal on your computer (not logged into any ORCD system).</p>
 <p>To transfer a file from your local computer to an ORCD system you would use the command:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:4"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Engaging</label><label for="__tabbed_3_2">Satori</label><label for="__tabbed_3_3">OpenMind</label><label for="__tabbed_3_4">SuperCloud</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Engaging</label><label for="__tabbed_4_2">Satori</label><label for="__tabbed_4_3">OpenMind</label><label for="__tabbed_4_4">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>scp<span class="w"> </span>&lt;file-name&gt;<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@txe1-login.mit.edu:&lt;path-to-supercloud-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@txe1-login.mit.edu:&lt;path-to-supercloud-dir&gt;
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>For example, let's say you have the local file <code>myscript.py</code> and you want to transfer it to the directory <code>mycode</code> in your home directory. The command would be:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Engaging</label><label for="__tabbed_4_2">Satori</label><label for="__tabbed_4_3">OpenMind</label><label for="__tabbed_4_4">SuperCloud</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Engaging</label><label for="__tabbed_5_2">Satori</label><label for="__tabbed_5_3">OpenMind</label><label for="__tabbed_5_4">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>scp<span class="w"> </span>myscript.py<span class="w"> </span>USERNAME@orcd-login001.mit.edu:/home/USERNAME/mycode/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>scp<span class="w"> </span>myscript.py<span class="w"> </span>USERNAME@orcd-login001.mit.edu:/home/USERNAME/mycode/
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>scp<span class="w">  </span>myscript.py<span class="w"> </span>USERNAME@satori-login-001.mit.edu:/home/USERNAME/mycode/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>scp<span class="w">  </span>myscript.py<span class="w"> </span>USERNAME@satori-login-001.mit.edu:/home/USERNAME/mycode/
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>scp<span class="w">  </span>myscript.py<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:/home/USERNAME/mycode/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scp<span class="w">  </span>myscript.py<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:/home/USERNAME/mycode/
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scp<span class="w"> </span>myscript.py<span class="w"> </span>USERNAME@txe1-login.mit.edu:/home/gridsan/USERNAME/mycode/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>scp<span class="w"> </span>myscript.py<span class="w"> </span>USERNAME@txe1-login.mit.edu:/home/gridsan/USERNAME/mycode/
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>To transfer the other direction (from an ORCD system to your local computer) switch the order:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:4"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><input id="__tabbed_5_4" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Engaging</label><label for="__tabbed_5_2">Satori</label><label for="__tabbed_5_3">OpenMind</label><label for="__tabbed_5_4">SuperCloud</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>scp<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>scp<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>scp<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>scp<span class="w"> </span>USERNAME@txe1-login.mit.edu:&lt;path-to-supercloud-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
-</span></code></pre></div>
-</div>
-</div>
-</div>
-<p>If you were to have the file <code>results.csv</code> that you want to copy from the <code>output</code> directory in your home directory to the current directory on your computer the command would be:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Engaging</label><label for="__tabbed_6_2">Satori</label><label for="__tabbed_6_3">OpenMind</label><label for="__tabbed_6_4">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>scp<span class="w"> </span>USERNAME@orcd-login001.mit.edu:/home/USERNAME/output/results.csv<span class="w"> </span>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>scp<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>scp<span class="w"> </span>USERNAME@satori-login-001.mit.edu:/home/USERNAME/output/results.csv<span class="w"> </span>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>scp<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>scp<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:/home/USERNAME/output/results.csv<span class="w"> </span>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>scp<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>scp<span class="w"> </span>USERNAME@txe1-login.mit.edu:/home/gridsan/USERNAME/output/results.csv<span class="w"> </span>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>scp<span class="w"> </span>USERNAME@txe1-login.mit.edu:&lt;path-to-supercloud-file&gt;<span class="w"> </span>&lt;path-to-local-dir&gt;
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>If you were to have the file <code>results.csv</code> that you want to copy from the <code>output</code> directory in your remote home directory to the current directory on your computer the command would be:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><input id="__tabbed_7_4" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Engaging</label><label for="__tabbed_7_2">Satori</label><label for="__tabbed_7_3">OpenMind</label><label for="__tabbed_7_4">SuperCloud</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>scp<span class="w"> </span>USERNAME@orcd-login001.mit.edu:/home/USERNAME/output/results.csv<span class="w"> </span>.
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>scp<span class="w"> </span>USERNAME@satori-login-001.mit.edu:/home/USERNAME/output/results.csv<span class="w"> </span>.
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>scp<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:/home/USERNAME/output/results.csv<span class="w"> </span>.
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>scp<span class="w"> </span>USERNAME@txe1-login.mit.edu:/home/gridsan/USERNAME/output/results.csv<span class="w"> </span>.
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p>Note the <code>.</code> in the command above means the current directory.</p>
 <p>Similar to the <code>cp</code> command, if you want to transfer an entire directory and all of its subdirectories, use the <code>-r</code> (recursive) flag for either direction:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><input id="__tabbed_7_4" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Engaging</label><label for="__tabbed_7_2">Satori</label><label for="__tabbed_7_3">OpenMind</label><label for="__tabbed_7_4">SuperCloud</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><input id="__tabbed_8_4" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Engaging</label><label for="__tabbed_8_2">Satori</label><label for="__tabbed_8_3">OpenMind</label><label for="__tabbed_8_4">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;file-name&gt;<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-directory-name&gt;<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-directory-name&gt;<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-directory-name&gt;<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@txe1-login.mit.edu:&lt;path-to-supercloud-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-directory-name&gt;<span class="w"> </span>USERNAME@txe1-login.mit.edu:&lt;path-to-supercloud-dir&gt;
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To <code>scp</code> files to/from the new login nodes on Engaging, you will need to
-authenticate with Duo.</p>
+<p>To <code>scp</code> files to/from the login nodes on Engaging, you will need to
+authenticate with Duo. You may get a Duo push without any indication from the command line.</p>
 </div>
 <h3 id="rsync">rsync<a class="headerlink" href="#rsync" title="Permanent link">&para;</a></h3>
 <p>The use of <code>rsync</code> is very similar to <code>scp</code>, but the behavior is different. By default <code>rsync</code> will not transfer files that are identical at both the source and destination. There are additional flags you can use to specify what <code>rsync</code> should do when files differ. The <code>rsync</code> command can be very useful when you want to "sync" updates to a directory or when transferring large directories. If a transfer fails during <code>rsync</code> you can re-run the command and it will pick up where it left off, rather than re-transfer everything.</p>
@@ -1902,17 +1984,15 @@ authenticate with Duo.</p>
 <p>You can run <code>rsync --help</code> to print out a full list of flags that can be used with the <code>rsync</code> command.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To <code>rsync</code> files to/from the new login nodes on Engaging, you will need to
-authenticate with Duo.</p>
+<p>To <code>rsync</code> files to/from the login nodes on Engaging, you will need to
+authenticate with Duo. You may get a Duo push without any indication from the command line.</p>
 </div>
 <h3 id="moving-files-between-orcd-systems">Moving files between ORCD Systems<a class="headerlink" href="#moving-files-between-orcd-systems" title="Permanent link">&para;</a></h3>
-<p>If you need to move files between ORCD systems you can do so one of two ways.</p>
-<ol>
-<li>ssh to one of the ORCD systems and initiate the transfer from that system to the other. Once you are logged into one system the process is the same as if you were to transfer files to or from your own computer.</li>
-<li>Run the <code>scp</code> or <code>rsync</code> command on your local system and specify the hostnames and paths for each of the source and destination systems. For example to move a file from Engaging to Satori using <code>scp</code> you would run:</li>
-</ol>
-<div class="language-bash highlight"><span class="filename">Transferring files from Engaging to Satori</span><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>scp<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-file&gt;<span class="w"> </span>USERNAME@satori-login-001.mit.edu:&lt;path-to-satori-dir&gt;
+<p>If you need to move files between ORCD systems you ssh to one of the ORCD systems and initiate the transfer from that system to the other. Once you are logged into one system the process is the same as if you were to transfer files to or from your own computer. For example to move a file from Satori to Engaging using <code>scp</code> you would first log into Satori and then use <code>scp</code> to transfer the file:
+<div class="language-bash highlight"><span class="filename">Transferring files from Satori to Engaging</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ssh<span class="w"> </span>USERNAME@satori-login001.mit.edu
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>scp<span class="w"> </span>&lt;path-to-satori-file&gt;<span class="w"> </span>USERNAME@orcd-login001.mit.edu:&lt;path-to-engaging-directory&gt;
 </span></code></pre></div>
+You can also <code>ssh</code> into Engaging and initiate the transfer from there using a similar command.</p>
 <h2 id="graphical-applications-for-file-transfer">Graphical Applications for File Transfer<a class="headerlink" href="#graphical-applications-for-file-transfer" title="Permanent link">&para;</a></h2>
 <p>There are a few applications you can download that will allow you to transfer files with  drag-and-drop, similar to how you would move files around on your own computer.</p>
 <p>Some of the most common options are:</p>
@@ -1921,43 +2001,7 @@ authenticate with Duo.</p>
 <li><a href="https://filezilla-project.org/">FileZilla</a> (Mac, Windows, and Linux)</li>
 <li><a href="https://winscp.net/eng/index.php">WinSCP</a> (Windows only)</li>
 </ul>
-<p>To use these you will need to know the hostname of the ORCD system you are accessing, either one of the login nodes or a dedicated data transfer node. See the list of hostnames at the top of this page to see which you should use for the system you are transferring files to.</p>
-<h2 id="transferring-files-with-a-web-portal">Transferring Files with a Web Portal<a class="headerlink" href="#transferring-files-with-a-web-portal" title="Permanent link">&para;</a></h2>
-<p>Most ORCD systems have some form of portal that can be accessed through your browser and used to transfer or download files. Engaging and Satori both use OnDemand. SuperCloud has its own custom portal.</p>
-<ul>
-<li><a href="https://engaging-ood.mit.edu/">Engaging OnDemand Portal</a></li>
-<li><a href="https://satori-portal.mit.edu/">Satori OnDemand Portal</a></li>
-<li><a href="https://txe1-portal.mit.edu">SuperCloud Web Portal</a> (<a href="https://mit-supercloud.github.io/supercloud-docs/transferring-files/#downloading-files-through-the-web-portal">Documentation</a>)</li>
-</ul>
-<p>For documentation on how to download and transfer files on the SuperCloud Web Portal, see the link above.</p>
-<p>If you are using Engaging or Satori, you can use the file browser by selecting Files -&gt; Home Directory in the menu bar at the top of the page. You can drag and drop files into and out of this page or use the "Upload" and "Download" buttons. Select multiple files by holding the Control (or Command) key and clicking on the files you'd like to select. Those files can then be downloaded with the "Download" button.</p>
-<h2 id="globus">Globus<a class="headerlink" href="#globus" title="Permanent link">&para;</a></h2>
-<p>Globus is a tool that helps transfer data between designated endpoints. These transfers can be initiated through the Globus webpage, don't require staying logged in through the entire transfer, and will restart automatically if something fails during the transfer. There are endpoints on a few ORCD systems with basic Globus features. Please note that these basic Globus endpoints will transfer data unencrypted. An MIT Globus subscription with more features is coming soon!</p>
-<p>To transfer data log into <a href="https://www.globus.org/">Globus</a> with your MIT credentials. On the "File Manager" tab in one of the two "Collection" boxes search for the endpoint for the system you want to transfer data to or from. The column on the left should list where you want to transfer from, the column on the right should list where you want to transfer to. Endpoints on ORCD systems are listed below.</p>
-<table>
-<thead>
-<tr>
-<th>System</th>
-<th>Globus Endpoint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Engaging</td>
-<td>mithpc#engaging</td>
-</tr>
-<tr>
-<td>Satori</td>
-<td>mithpc#satori</td>
-</tr>
-<tr>
-<td>OpenMind</td>
-<td>mithpc#openmind</td>
-</tr>
-</tbody>
-</table>
-<p>To transfer data to or from your own computer you will need to set up a personal endpoint. Follow the instructions on the page for your system listed <a href="https://docs.globus.org/globus-connect-personal/">here</a>.</p>
-<p>More documentation on transferring files through Globus can be found on the <a href="https://docs.globus.org/guides/tutorials/manage-files/transfer-files/">Globus Documentation Pages</a>. Globus also has an <a href="https://docs.globus.org/faq/globus-connect-endpoints/">FAQ</a> that is helpful for answering any questions you might have.</p>
+<p>To use these you will need to know the hostname of the ORCD system you are accessing, either one of the login nodes or a dedicated data transfer node. See the list of hostnames at the top of the <a href="#command-line">Command Line</a> section to see which you should use for the system you are transferring files to.</p>
 
 
 
@@ -1978,7 +2022,7 @@ authenticate with Duo.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 3, 2025 16:22:04 UTC">March 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 1, 2025 13:35:31 UTC">July 1, 2025</span>
   </span>
 
     
@@ -2036,7 +2080,7 @@ authenticate with Duo.</p>
       <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       

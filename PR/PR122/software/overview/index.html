@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -1202,29 +1202,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/mujoco/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    MuJoCo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
@@ -1708,20 +1685,20 @@
 </tr>
 <tr>
 <td><em>Community</em></td>
-<td>Software that has been built and installed by request, but is not commonly used. Support is on a best-effort basis. Should work when built but not guaranteed to work indefinitely or when replaced with newer versions when deprecated, except by request.</td>
+<td>Software that has been built and installed by request, but is not commonly used. Support is on a best-effort basis. These should work when built but are not guaranteed to work indefinitely or when replaced with newer versions when deprecated, except by request.</td>
 </tr>
 <tr>
 <td><em>Deprecated</em></td>
-<td>Software that is no longer supported or expected to work. May be kept for legacy reasons, or will soon be removed. If software you are using is listed as deprecated or soon to be deprecated migrate to the newer version (if available) or request a newer version (if not available). If migrating to a newer version is not an option you may be able to run your application with Singularity.</td>
+<td>Software that is no longer supported or expected to work. May be kept for legacy reasons, or will soon be removed. If software you are using is listed as deprecated or soon to be deprecated, migrate to the newer version (if available) or request a newer version (if not available). If migrating to a newer version is not an option you may be able to run your application with <a href="../apptainer/">Apptainer</a>.</td>
 </tr>
 </tbody>
 </table>
-<p>Each individual ORCD system may not label or organize their software in this way. However, this is the support model that will be used going forward. Engaging, in particular, will organize its software in this way.</p>
+<p>Each individual ORCD system may not label or organize their software in this way. However, this is the support model that will be used going forward. Engaging, in particular, organizes its software in this way.</p>
 <p>Here are some general notes by system on this for Engaging and SuperCloud. Click on the tab for the system you are interested in:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Engaging nodes are one of two operating systems: Centos 7 and Rocky 8. Each operating system has its own software stack.</p>
+<p>Engaging nodes are one of two operating systems: Centos 7 (<code>sched_mit_hill</code> partition) and Rocky 8 (<code>mit_normal</code>, <code>mit_normal_gpu</code>, <code>mit_preemptable</code>, and <code>mit_quicktest</code> partitions). Each operating system has its own software stack.</p>
 <p>Centos 7 has been around for longer, so it has more software installed. These nodes have a very large list of <a href="../modules/">modules</a>, older ones that no longer work have not necessarily been removed but can be considered deprecated. Centos 7 nodes will either be retired or migrated to Rocky 8 in the near future, so when given the choice use Rocky 8 nodes.</p>
 <p>Rocky 8 nodes have a significantly shorter list of modules and are organized into core, community, and deprecated. Core software will be displayed by default, community and deprecated software will require a "module use" command to display. See the page on <a href="../modules/">modules</a> for more information.</p>
 </div>
@@ -1733,9 +1710,9 @@
 <h2 id="steps-for-getting-software">Steps for Getting Software<a class="headerlink" href="#steps-for-getting-software" title="Permanent link">&para;</a></h2>
 <p>One of the first steps for getting a workflow running on a new system is to set up any software or packages needed to run it. Here are a few steps to do that on an ORCD system.</p>
 <h3 id="check-if-the-software-or-package-is-already-installed">Check if the Software or Package is Already Installed<a class="headerlink" href="#check-if-the-software-or-package-is-already-installed" title="Permanent link">&para;</a></h3>
-<p>As mentioned above, there is a lot of software already installed. Using the software we've installed saves you time. This software may also perform better or be better configured to use the system. For example, it may be installed in a faster part of the filesystem or configured to use special hardware available on the cluster.</p>
+<p>As mentioned above, there is a lot of software already installed. Using the software we've installed saves you time. This software may also perform better or be better configured to use on the system. For example, it may be installed in a faster part of the filesystem or configured to use special hardware available on the cluster.</p>
 <p>For software check the <code>module avail</code> command (see the page on <a href="../modules/">modules</a> for more information). Some software is available without a module, you can check if a particular command is available using the <code>which</code> command at the command line. For example, run <code>which git</code> to see if the <code>git</code> command is available. If it is, the path to the <code>git</code> command will print to the screen.</p>
-<p>Common languages like <a href="">Python</a>, <a href="">Julia</a>, and <a href="">R</a> are provided through modules as well. Packages for these are sometimes provided along with the installation. A quick way to check if a package is available is to try to import it.</p>
+<p>Common languages like <a href="../python/">Python</a>, <a href="../julia/">Julia</a>, and <a href="../R/">R</a> are provided through modules as well. Packages for these are sometimes provided along with the installation. A quick way to check if a package is available is to try to import it.</p>
 <h3 id="install-the-software-or-package">Install the Software or Package<a class="headerlink" href="#install-the-software-or-package" title="Permanent link">&para;</a></h3>
 <p>If we don't have the software you need, you can often install it yourself. You will need to install them in your home directory or another directory you have access to. You will not be able to install software in any of the system-wide directories, as changes to these affect everyone using the system (for example you will not be able to install in any location that requires <code>sudo</code>).</p>
 <details>
@@ -1744,7 +1721,7 @@
 <p>You should not need <code>sudo</code> to install packages in your own space. For software installs, the <code>sudo</code> is only used to put the installation files in the system-wide directory, so it is not needed to install in your own directories. The <a href="">Installing Software</a> page covers how to specify installation directories for some of the more common build systems. </p>
 </details>
 <p>Sometimes you can find pre-built binaries for the software you want. These are the easiest to install. Often you will need to build the software you need. See the page on <a href="">Installing Software</a> for more information. You may also check the Recipes section of these pages to see if there is an existing recipe for installing the software you are interested in.</p>
-<p>For <a href="">Python</a>, <a href="">Julia</a>, and <a href="">R</a> packages, each of these have their own package managers for installing packages. See the respective documentation pages linked above for each of these.</p>
+<p>For <a href="../python/">Python</a>, <a href="../julia/">Julia</a>, and <a href="../R/">R</a> packages, each of these have their own package managers for installing packages. See the respective documentation pages linked above for each of these.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Satori is unique in that its nodes have a different architecture than those in other ORCD systems. They are IBM machines with the ppc64le architecture. There is some software that does not support this architecture. When selecting pre-built software, be sure to select the one for ppc64le.</p>
@@ -1771,7 +1748,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 8, 2024 20:22:31 UTC">May 8, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 27, 2025 14:53:36 UTC">June 27, 2025</span>
   </span>
 
     
@@ -1829,7 +1806,7 @@
       <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
