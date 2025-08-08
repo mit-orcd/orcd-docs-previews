@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1720,7 +1720,7 @@
       
       
       
-        <a href="../../tags/#tag:software-installation" class="md-tag">Software installation</a>
+        <a href="../../tags/#tag:install-recipes" class="md-tag">Install Recipes</a>
       
     
   </nav>
@@ -1745,7 +1745,7 @@ adapted from <a href="https://guide.cryosparc.com/setup-configuration-and-manage
 <p>You will need to obtain a CryoSPARC license ID <a href="https://guide.cryosparc.com/setup-configuration-and-management/how-to-download-install-and-configure/obtaining-a-license-id">here</a>.
 Licenses are free for academic use. Once you have received your license ID, save
 it as an environment variable for future uses:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export CRYOSPARC_LICENSE_ID=&quot;&lt;your_license_id&gt;&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export CRYOSPARC_LICENSE_ID=&quot;your_license_id&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>~/.bash_profile
 </span></code></pre></div>
 <p>Next, choose a working directory to use for your installation:</p>
@@ -1765,7 +1765,7 @@ it as an environment variable for future uses:</p>
 running the user interface and scheduling jobs on the worker nodes, while the
 "worker" software is used for running computations.</p>
 <p>You will need to run the installation on a compute node. To do this, request
-an interactive session:</p>
+an interactive job:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>salloc<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">8</span><span class="w"> </span>--mem-per-cpu<span class="o">=</span>4G<span class="w"> </span>-p<span class="w"> </span>mit_normal
 </span></code></pre></div>
 <h3 id="master-node-setup">Master Node Setup<a class="headerlink" href="#master-node-setup" title="Permanent link">&para;</a></h3>
@@ -1797,9 +1797,9 @@ an interactive session:</p>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">                      </span>--lastname<span class="w"> </span>&lt;your_last_name&gt;
 </span></code></pre></div>
 <h4 id="connect-the-master-node-to-the-cluster">Connect the Master Node to the Cluster<a class="headerlink" href="#connect-the-master-node-to-the-cluster" title="Permanent link">&para;</a></h4>
-<p>The master node can be set up to submit jobs to the cluster using the Slurm
-scheduler. This is the preferred setup for Engaging so that GPU resources are
-not allocated to your job when they are not in use.</p>
+<p>The master node can be set up to submit jobs to other nodes on Engaging using
+the Slurm scheduler. This is the preferred setup for Engaging so that GPU
+resources are not allocated to your job when they are not in use.</p>
 <p>Create the following two files within the <code>$CRYOSPARC_WORKDIR/cryosparc_master</code>
 directory. You will need to hard-code the path to the <code>cryosparc_worker</code>
 directory in <code>cluster_info.json</code> (using the <code>$CRYOSPARC_WORKDIR</code> environment
@@ -1831,6 +1831,17 @@ variable will not work):</p>
 <p>Now, from the same directory where you created these two files, run:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cryosparcm<span class="w"> </span>cluster<span class="w"> </span>connect
 </span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example, we have specified the <code>mit_normal_gpu</code> partition for
+running jobs. This partition is available to the entire MIT community.
+As of August 2025, the time limit for jobs on this partition is 6 hours.
+While this is suitable for many CryoSPARC jobs, some jobs require longer
+runtimes. To run these longer jobs, you
+will need to obtain a rental reservation on the <code>mit_normal_gpu</code>. Once you
+have a reservation, add your reservation ID to
+<code>cluster_script.sh</code> and run <code>cryosparcm cluster connect</code> again.</p>
+</div>
 <h3 id="worker-node-setup">Worker Node Setup<a class="headerlink" href="#worker-node-setup" title="Permanent link">&para;</a></h3>
 <p>Before you can start running jobs, however, you will need to install
 <code>cryosparc_worker</code>. This can be done in the same compute node session that we
@@ -1893,30 +1904,30 @@ adapted here:</p>
 </span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a><span class="c1"># Print instructions for pulling up the UI:</span>
 </span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>cat<span class="w"> </span><span class="m">1</span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="w"> </span><span class="s">&lt;&lt;END</span>
 </span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>
-</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a><span class="s">To open the CryoSPARC user interface, port forward to the compute node in a new shell window on your local computer:</span>
+</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a><span class="s">~~FOLLOW THE BELOW INSTRUCTIONS~~</span>
 </span><span id="__span-12-44"><a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>
-</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a><span class="s">    ssh -L 61000:$(hostname):61000 ${USER}@orcd-login001.mit.edu</span>
+</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a><span class="s">To open the CryoSPARC user interface, port forward to the compute node in a new shell window on your local computer:</span>
 </span><span id="__span-12-46"><a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>
-</span><span id="__span-12-47"><a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a><span class="s">Now, point your web browser to http://localhost:61000</span>
+</span><span id="__span-12-47"><a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a><span class="s">    ssh -L 61000:$(hostname):61000 ${USER}@orcd-login001.mit.edu</span>
 </span><span id="__span-12-48"><a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>
-</span><span id="__span-12-49"><a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a><span class="s">When you&#39;re finished, run:</span>
+</span><span id="__span-12-49"><a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a><span class="s">Now, point your web browser to http://localhost:61000</span>
 </span><span id="__span-12-50"><a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>
-</span><span id="__span-12-51"><a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a><span class="s">scancel $SLURM_JOB_ID</span>
+</span><span id="__span-12-51"><a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a><span class="s">When you&#39;re finished, run:</span>
 </span><span id="__span-12-52"><a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a>
-</span><span id="__span-12-53"><a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a><span class="s">END</span>
+</span><span id="__span-12-53"><a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a><span class="s">scancel $SLURM_JOB_ID</span>
 </span><span id="__span-12-54"><a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a>
-</span><span id="__span-12-55"><a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a>sleep<span class="w"> </span>infinity<span class="w"> </span><span class="p">&amp;</span>
-</span><span id="__span-12-56"><a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a><span class="nb">wait</span>
+</span><span id="__span-12-55"><a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a><span class="s">END</span>
+</span><span id="__span-12-56"><a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a>
+</span><span id="__span-12-57"><a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a>sleep<span class="w"> </span>infinity<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-12-58"><a id="__codelineno-12-58" name="__codelineno-12-58" href="#__codelineno-12-58"></a><span class="nb">wait</span>
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you have a rental reservation on <code>mit_normal</code> so that you can have longer
-runtimes for the master node software, you will need to add the following
-flags to your job script:</p>
+<p>If you have a rental reservation on <code>mit_normal</code> so that you can have longer runtimes for the master node software, add the following flags to <code>run_cryosparc.sbatch</code>:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">#SBATCH -t DD-HH:MM:SS # Enter a longer runtime here</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#SBATCH --reservation=&lt;rental_reservation_id&gt;</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH --qos=&lt;rental_reservation_id&gt;</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">#SBATCH --account=&lt;rental_reservation_id&gt;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH --qos=&lt;rental_reservation_qos_id&gt;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">#SBATCH --account=&lt;rental_reservation_account_id&gt;</span>
 </span></code></pre></div>
 </div>
 <p>You can run this script with the command <code>sbatch run_cryosparc.sbatch</code>.</p>
@@ -1946,8 +1957,7 @@ master session. The Job ID was printed when you submitted your job and you can
 also find it in your output file.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Try not to cancel your job before CryoSPARC has successfully started (e.g., during the "configuring database" phase), as
-this can cause issues starting it the next time.</p>
+<p>Try not to cancel your job before CryoSPARC has successfully started (e.g., during the "configuring database" phase), as this can cause issues starting it the next time.</p>
 </div>
 <h2 id="faqs">FAQs<a class="headerlink" href="#faqs" title="Permanent link">&para;</a></h2>
 <p><strong>What are my resource limits for submitting jobs?</strong></p>
@@ -1979,7 +1989,7 @@ will simply pend until the other jobs have finished.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 17, 2025 14:49:14 UTC">July 17, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 8, 2025 14:17:38 UTC">August 8, 2025</span>
   </span>
 
     
@@ -2037,7 +2047,7 @@ will simply pend until the other jobs have finished.</p>
       <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
