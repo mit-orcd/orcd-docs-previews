@@ -18,7 +18,7 @@
     
     
       
-        <title>Deep Learning with PyTorch on GPUs - ORCD Docs</title>
+        <title>Serial and parallel executions - ORCD Docs</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deep-learning-with-pytorch-on-gpus" class="md-skip">
+        <a href="#serial-and-parallel-executions" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deep Learning with PyTorch on GPUs
+              Serial and parallel executions
             
           </span>
         </div>
@@ -1469,9 +1469,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installing-pytorch" class="md-nav__link">
+  <a href="#run-multiple-programs-sequentially-in-a-job" class="md-nav__link">
     <span class="md-ellipsis">
-      Installing PyTorch
+      Run multiple programs sequentially in a job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-multiple-programs-parallelly-in-a-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run multiple programs parallelly in a job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combine-parallel-run-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine parallel run and job array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combine-sequential-run-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine sequential run and job array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combine-sequential-run-parallel-run-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combine sequential run, parallel run, and job array
     </span>
   </a>
   
@@ -1515,14 +1551,116 @@
 
 
 
-<h1 id="deep-learning-with-pytorch-on-gpus">Deep Learning with PyTorch on GPUs<a class="headerlink" href="#deep-learning-with-pytorch-on-gpus" title="Permanent link">&para;</a></h1>
-<p>T</p>
-<h2 id="installing-pytorch">Installing PyTorch<a class="headerlink" href="#installing-pytorch" title="Permanent link">&para;</a></h2>
+<h1 id="serial-and-parallel-executions">Serial and parallel executions<a class="headerlink" href="#serial-and-parallel-executions" title="Permanent link">&para;</a></h1>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block"></div>
 </div>
 </div>
+<p>It often happens that users need to submit many jobs to run a program many times with different input parameters or files.  </p>
+<p>First, do not execute the command <code>sbatch</code> in a loop, because this is inefficient for job scheduling. When the interation number is large, it will slow down the Slurm scheduler and affects all users. </p>
+<p>A good practice is to use job array, which is much more effecient. Refer to <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-submit-a-job-array%3F">this page</a> for details of job array. </p>
+<p>However, a user submitted too many jobs in a short time period, even with job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user on the cluster is set to be 500. It is good for a user to submit up to 500 jobs with a job array.</p>
+<p>If a user needs to run a program for more than 500 times, it is recommended to combine serial execution and/or parallel execution with job array. </p>
+<p>On this page, we will introduce serial execution and parallel execution, and how to use them with job array. </p>
+<h2 id="run-multiple-programs-sequentially-in-a-job">Run multiple programs sequentially in a job<a class="headerlink" href="#run-multiple-programs-sequentially-in-a-job" title="Permanent link">&para;</a></h2>
+<p>This script runs 10 programs sequentially in a job. Each program uses 2 CPU cores and 2 GB of memory.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#!/bin/bash            # Bash shell
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>#SBATCH -t 02:00:00    # Two hours
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>#SBATCH -N 1           # 1 node
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#SBATCH --ntasks-per-core=1       # 1 task per CPU core: turn off hyperthreading.
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>#SBATCH -n 2          # 2 physical CPU cores
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>#SBATCH --mem=2GB      # 2 GB of memory
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>N_PROGRAMS=10
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>for i in `seq 1 $N_PROGRAMS`      # Loop from 1 to number of tasks (=10).
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>do
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   python name.py  $i    # Run a python program using the loop index as input 
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>done
+</span></code></pre></div></p>
+<p>Use the loop index in the Python code to set up different input parameters for the program. </p>
+<p>Note that this sequential run increases the total run time. You need to request a wall time that is long enough to complete all the programs. </p>
+<p><strong><em>This approach is good for short run time programs.</em></strong> If each program requires a long run time, the total run time would exceed the maximum wall time limit. </p>
+<h2 id="run-multiple-programs-parallelly-in-a-job">Run multiple programs parallelly in a job<a class="headerlink" href="#run-multiple-programs-parallelly-in-a-job" title="Permanent link">&para;</a></h2>
+<p>This script runs 10 programs parallelly in a job. Each program uses 2 CPU cores and 2 GB of memory, and thus the job requires 20 CPU cores and 20 GB of memory in total. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/bash            # Bash shell
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>#SBATCH -t 02:00:00    # Two hours
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>#SBATCH -N 1           # 1 node
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>#SBATCH --ntasks-per-core=1       # 1 task per CPU core: turn off hyperthreading.
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>#SBATCH -n 20          # 20 physical CPU cores
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>#SBATCH --mem=20GB     # 20 GB of memory
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>N_PROGRAMS=10
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>for i in `seq 1 $N_PROGRAMS`  # Loop from 1 to number of programs
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>do
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>   python name.py $i &amp;     # Run a python program in background, using the loop index as input 
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>done
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>wait          # Wait for all programs to be completed, then exit the batch job. 
+</span></code></pre></div></p>
+<p>The <code>&amp;</code> mark is to put the program in the background, and then these 10 programs will run simultaneously.
+The <code>wait</code> command at the end ensures that the batch job will not be terminated until all background programs are completed.  </p>
+<p>Use the loop index in the Python code to set up different input parameters for the program.</p>
+<p><strong><em>This approach is good for cases when each program requires a small number of CPU cores and a small amount of memory.</em></strong> If each program requires many CPU cores or large memory, running multiple jobs in parallel would require too many CPUs or too much memory, which does not fit within one node. </p>
+<h2 id="combine-parallel-run-and-job-array">Combine parallel run and job array<a class="headerlink" href="#combine-parallel-run-and-job-array" title="Permanent link">&para;</a></h2>
+<p>You can use job array on top of this approach to scale up the number of programs. For example, simply adding a line <code>#SBATCH --array=0-999</code> to the above script, you submit <code>10 * 1,000 = 10,000</code> programs simultaneously. <strong><em>This approach is useful to submit a large number of programs beyond the per-user job limit, when each program requires small resources (CPUs and memory)</em></strong>.</p>
+<h2 id="combine-sequential-run-and-job-array">Combine sequential run and job array<a class="headerlink" href="#combine-sequential-run-and-job-array" title="Permanent link">&para;</a></h2>
+<p>Here is an example of combining a sequential run and a job array. <strong><em>This approach is useful to submit a large number of short run time programs beyond the per-user job limit.</em></strong> </p>
+<p>First, write a script to run multiple programs sequentially,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># This is the bash script named run_serial.sh
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>for i in `seq 1 10`          # Loop for serial runs
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>do
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    index=$(($1*$2+$i))      # Calculate global index
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    python name.py $index    # Use global index as input
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>done
+</span></code></pre></div>
+Here is the job script to run the above script with a job array, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>#!/bin/bash                     # Bash shell
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>#SBATCH -t 02:00:00             # Two hours
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>#SBATCH -N 1                    # 1 node
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>#SBATCH --ntasks-per-core=1     # 1 task per CPU core: turn off hyperthreading.
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>#SBATCH -n 2                    # 2 physical CPU cores
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>#SBATCH --mem=2GB               # 2 GB of memory
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>#SBATCH --array=0-999           # Job array 
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>nmax=$SLURM_ARRAY_TASK_COUNT    # Num of tasks per array
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>id=$SLURM_ARRAY_TASK_ID         # Task ID
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>./run_serial.sh  $id  $nmax     # Execute a bash script
+</span></code></pre></div>
+The input argument <code>$1</code> and <code>$2</code> of the run script is provided as the array task ID (<code>$SLURM_ARRAY_TASK_ID</code>) and total number of tasks in the array (<code>$SLURM_ARRAY_TASK_COUNT</code>), which are used to calculate the global index. Use the global index in the Python code to set up different input parameters for the program.</p>
+<p>With this, you submit <code>10 * 1,000 = 10,000</code> programs simultaneously, which is beyond the per-user job limit.</p>
+<h2 id="combine-sequential-run-parallel-run-and-job-array">Combine sequential run, parallel run, and job array<a class="headerlink" href="#combine-sequential-run-parallel-run-and-job-array" title="Permanent link">&para;</a></h2>
+<p>Here is an example of combining a sequential run, a parallel run, and a job array. <strong><em>This approach is useful for submitting a large number of programs beyond the per-user job limit, when each program requires a short run time and small resources (CPUs and memory)</em></strong>. </p>
+<p>First, write a script to run multiple programs sequentially and parallelly,
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a># This is the bash script named run_hybrid.sh
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>N_SERIAL=10
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>N_PARALLEL=10
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>for i in `seq 1 $N_SERIAL`        # Loop for serial runs
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>do
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   for j in `seq 1 $N_PARALLEL`   # Loop for parallel runs
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>   do
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>     index=$(($1*$2+$i))          # Global index
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>     python name.py $index &amp;      # Run a python program in background. Use global index as input
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>   done
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>   wait                           # Wait for all parallel runs complete, then go to the next step in the outer loop.
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>done 
+</span></code></pre></div>
+Here is the job script to run the above script with a job array, 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>#!/bin/bash               # Bash shell
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>#SBATCH -t 02:00:00       # Two hours
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>#SBATCH -N 1              # 1 node
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>#SBATCH --ntasks-per-core=1       # 1 task per CPU core: turn off hyperthreading.
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>#SBATCH -n 20             # 20 physical CPU cores
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>#SBATCH --mem=20GB        # 20 GB of memory
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>#SBATCH --array=0-999     # Job array 
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>nmax=$SLURM_ARRAY_TASK_COUNT     # Num of tasks per array
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>id=$SLURM_ARRAY_TASK_ID          # Task ID
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>./run_hybrid.sh $id $nmax        # Execute a bash script
+</span></code></pre></div>
+With this, you submit <code>10 * 10 * 1,000 = 100,000</code> programs simultaneously, which is way beyond the per-user job limit.</p>
+<blockquote>
+<p>Note: The examples here are in bash. Users can use Python to implement them similarly. </p>
+</blockquote>
 
 
 
@@ -1543,7 +1681,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 8, 2025 16:59:42 UTC">August 8, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 8, 2025 17:28:59 UTC">August 8, 2025</span>
   </span>
 
     
