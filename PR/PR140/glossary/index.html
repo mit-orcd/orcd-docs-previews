@@ -1513,6 +1513,42 @@
 
 
 <h1 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h1>
+<p><strong>Apptainer / Singularity:</strong> A container platform designed for high-performance computing (HPC) environments. It allows users to create and run containers that encapsulate their applications and dependencies, ensuring reproducibility and portability across different systems.</p>
+<p><strong>Batch Job:</strong> A type of job submitted to the scheduler to run in the background without direct interactive supervision. These are typically used for longer-running programs and are submitted using a script.</p>
+<p><strong>Binary / Executable File:</strong> A pre-built program file that can be run directly without needing to be compiled from source code. These are often placed in the <code>bin</code> directory of a software installation.</p>
+<p><strong>CLI (Command Line Interface):</strong> A text-based user interface used to interact with software and operating systems by typing commands into a console or terminal.</p>
+<p><strong>Container:</strong> A lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools. Containers are isolated from each other and the host system, allowing for consistent and reproducible environments across different computing platforms.</p>
+<p><strong>Container Image:</strong> A static file that contains the complete filesystem and configuration needed to run a containerized application. It serves as a blueprint for creating containers.</p>
+<p><strong>Compute Node:</strong> The primary nodes within an HPC cluster where the actual computational work of user jobs is performed.</p>
+<p><strong>Computing Cluster:</strong> A collection of interconnected computers (nodes) that work together to perform complex computations, often used in high-performance computing (HPC) environments.</p>
+<p><strong>CPU Core:</strong> The smallest unit of processing on a node that can be used by a job. In HPC, jobs can request a specific number of CPU cores to perform parallel tasks.</p>
+<p><strong>Environment:</strong> The overall configuration and settings in which a program or job runs, including system variables, paths, and loaded modules.</p>
+<p><strong>Environment Variable:</strong> Named values in your shell environment that store configuration information for the operating system and running programs. Examples include <code>$PATH</code> (which tells Linux where to look for executable files) or <code>$SLURM_ARRAY_JOB_ID</code> (set by the scheduler during job execution).</p>
+<p><strong>Filesystem:</strong> The method and structure by which files and directories are organized and stored on a computer. ORCD's clusters use a shared filesystem accessible by all nodes in the cluster.</p>
+<p><strong>Globus:</strong> A data management service that enables secure, reliable, and efficient transfer of files across multiple systems and locations.</p>
+<p><strong>GPU (Graphics Processing Unit):</strong> A specialized processor designed to accelerate graphics rendering and parallel processing tasks, commonly used in high-performance computing for tasks such as machine learning and simulations.</p>
+<p><strong>GUI (Graphical User Interface):</strong> A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation.</p>
+<p><strong>Home Directory:</strong> A personal directory allocated to each user on the cluster, located at <code>/home/$USER</code>. This is the default working directory for users when they log in.</p>
+<p><strong>Interactive Job:</strong> A job that allows users to interact with the application or process while it is running, typically through a command line interface or graphical user interface.</p>
+<!-- CHECK -->
+<p><strong>I/O (Input/Output):</strong> The communication between a program and the filesystem, including reading from and writing to files. I/O performance can be a critical factor in the efficiency of HPC applications.</p>
+<p><strong>Job:</strong> A unit of work submitted to the scheduler (e.g., Slurm) to be executed on the compute nodes of an HPC cluster</p>
+<p><strong>Local Filesystem:</strong> The storage system that is physically attached to a node, as opposed to shared or networked filesystems. Local filesystems typically offer faster access times but are limited to the storage capacity of the individual node.</p>
+<p><strong>Login Node:</strong> A specialized node within an HPC cluster that users first connect to via SSH or a web portal. It is intended for tasks like file editing, package installation, data downloads, and submitting jobs to compute nodes, but not for heavy computations.</p>
+<p><strong>Memory:</strong> The hardware component (such as RAM or cache) where data and applications are temporarily stored for active use by the processor. Data in memory is volatile and is lost when the computer is powered off or restarted.</p>
+<p><strong>Module:</strong> A software tool that allows users to easily manage different versions of software, libraries, and compilers in a shared computing environment. Users can load or unload modules to configure their environment for specific tasks.</p>
+<p><strong>MPI (Message Passing Interface):</strong> A standardized library of functions for parallel computing that enables data communication between processes running across multiple CPU cores or nodes. It's primarily used for distributed-memory parallelism, where each process has its own memory.</p>
+<p><strong>Node:</strong> An individual computing unit within an HPC cluster, which can be a physical or virtual machine. Each node typically has its own CPU cores and memory.</p>
+<p><strong>OpenMP:</strong> A shared-memory parallelism technique where different parts of a program run concurrently as "threads" within a single process, sharing the same memory space. OpenMP is a common standard for implementing multithreading.</p>
+<p><strong>Partition:</strong> A logical grouping of compute nodes within an HPC cluster, managed by the scheduler (Slurm). Different partitions may have varying CPU types, GPU availability, memory limits, or time limits, and jobs are submitted to specific partitions.</p>
+<!-- CHECK -->
+<p><strong>Process:</strong> An instance of a running program, which can consist of one or more threads. Each process has its own memory space.</p>
+<p><strong>Python Environment:</strong> A self-contained directory that includes a specific version of Python and a set of installed Python packages. This allows users to manage dependencies and avoid conflicts between different projects.</p>
+<p><strong>Scratch Storage:</strong> Temporary, high-speed storage areas optimized for I/O-heavy jobs. Data stored here is typically not backed up and is meant for actively running jobs rather than long-term storage.</p>
+<p><strong>Slurm / Scheduler:</strong> An open-source workload manager designed for high-performance computing (HPC) clusters. It is used to allocate resources, schedule jobs, and manage job queues on the cluster.</p>
+<p><strong>Terminal / Shell / Command Line / Console:</strong> A text-based interface used to interact with the operating system and run commands.</p>
+<!-- CHECK -->
+<p><strong>Thread:</strong> A smaller unit of a process that can run concurrently with other threads within the same process, sharing the same memory space.</p>
 
 
 
@@ -1533,7 +1569,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 5, 2025 18:04:49 UTC">August 5, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 8, 2025 13:35:32 UTC">August 8, 2025</span>
   </span>
 
     
