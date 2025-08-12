@@ -1566,45 +1566,43 @@
 <p>On this page, the word job means either an invividualy job or a task in a job array. For ecample, submitting a job array with 100 tasks means submitting 100 jobs. </p>
 </details>
 <p>When a user needs to run a program for more than 500 times, it is recommended to combine serial execution and/or parallel execution with job array.</p>
-<p>On this page, we will introduce serial execution and parallel execution, and how to intergrate them with job array. </p>
+<p>On this page, we will introduce serial execution and parallel execution, and how to intergrate them with job array. A Python code <a href="./scripts/many-jobs/mycode.py">mycode.py</a> is used for all examples. </p>
 <h2 id="serial-execution">Serial execution<a class="headerlink" href="#serial-execution" title="Permanent link">&para;</a></h2>
-<p>Serial execution means running within a job
-T
-his script runs 10 programs sequentially in a job. Each program uses 2 CPU cores and 2 GB of memory.
+<p>Serial execution means executing multiple programs serially within a job. Here is an example job script that runs 10 programs serially. </p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#!/bin/bash            # Bash shell
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>#SBATCH -t 02:00:00    # Two hours
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>#SBATCH -N 1           # 1 node
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#SBATCH --ntasks-per-core=1       # 1 task per CPU core: turn off hyperthreading.
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>#SBATCH -n 2          # 2 physical CPU cores
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>#SBATCH --mem=2GB      # 2 GB of memory
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>N_PROGRAMS=10
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>for i in `seq 1 $N_PROGRAMS`      # Loop from 1 to number of tasks (=10).
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>do
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   python name.py  $i    # Run a python program using the loop index as input 
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>done
-</span></code></pre></div></p>
-<p>Use the loop index in the Python code to set up different input parameters for the program. </p>
-<p>Note that this sequential run increases the total run time. You need to request a wall time that is long enough to complete all the programs. </p>
-<p><strong><em>This approach is good for short run time programs.</em></strong> If each program requires a long run time, the total run time would exceed the maximum wall time limit. </p>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#SBATCH -n 2           # 2 CPU cores
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>#SBATCH --mem=2GB      # 2 GB of memory
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>N_PROGRAMS=10
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>for i in `seq 1 $N_PROGRAMS`     # Loop from 1 to number of tasks (=10).
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>do
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   python mycode.py  $i    # Run the program serially
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>done
+</span></code></pre></div>
+<p>Each program uses 2 CPU cores and 2 GB of memory.</p>
+<p>The program is executed 10 times with different input parameters (i.e. the loop index )for each time. The next execution will start after the current execution is completed. </p>
+<p>Note that the serial execution increases the total run time. Request a wall time that is long enough for all the programs to be completed. </p>
+<p><strong>This approach is good for short run time programs.</strong> If each program requires a long run time, the total run time would exceed the maximum wall time limit. </p>
 <h2 id="run-multiple-programs-parallelly-in-a-job">Run multiple programs parallelly in a job<a class="headerlink" href="#run-multiple-programs-parallelly-in-a-job" title="Permanent link">&para;</a></h2>
-<p>This script runs 10 programs parallelly in a job. Each program uses 2 CPU cores and 2 GB of memory, and thus the job requires 20 CPU cores and 20 GB of memory in total. 
+<p>Serial execution means executing multiple programs paralelly within a job. Here is an example job script that runs 10 programs parallelly. 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/bash            # Bash shell
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>#SBATCH -t 02:00:00    # Two hours
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>#SBATCH -N 1           # 1 node
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>#SBATCH --ntasks-per-core=1       # 1 task per CPU core: turn off hyperthreading.
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>#SBATCH -n 20          # 20 physical CPU cores
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>#SBATCH --mem=20GB     # 20 GB of memory
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>N_PROGRAMS=10
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>for i in `seq 1 $N_PROGRAMS`  # Loop from 1 to number of programs
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>do
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>   python name.py $i &amp;     # Run a python program in background, using the loop index as input 
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>done
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>wait          # Wait for all programs to be completed, then exit the batch job. 
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>#SBATCH -n 20          # 20 CPU cores
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>#SBATCH --mem=20GB     # 20 GB of memory
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>N_PROGRAMS=10
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>for i in `seq 1 $N_PROGRAMS` # Loop from 1 to number of programs
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>do
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   python name.py $i &amp;       # Run a program parallely in background
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>done
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>wait          # Wait for all programs to be completed, then exit the batch job. 
 </span></code></pre></div></p>
-<p>The <code>&amp;</code> mark is to put the program in the background, and then these 10 programs will run simultaneously.
-The <code>wait</code> command at the end ensures that the batch job will not be terminated until all background programs are completed.  </p>
+<p>Each program uses 2 CPU cores and 2 GB of memory, so the job requires 20 CPU cores and 20 GB of memory in total. </p>
+<p>The main difference from the previous exampe is the <code>&amp;</code> mark at the end of command that runs the program, which runs the program in the background, and all 10 programs start to run almost simultaneously.</p>
+<p>The <code>wait</code> command at the end ensures that the batch job will not be terminated until all background programs are completed.  </p>
 <p>Use the loop index in the Python code to set up different input parameters for the program.</p>
 <p><strong><em>This approach is good for cases when each program requires a small number of CPU cores and a small amount of memory.</em></strong> If each program requires many CPU cores or large memory, running multiple jobs in parallel would require too many CPUs or too much memory, which does not fit within one node. </p>
 <h2 id="combine-parallel-run-and-job-array">Combine parallel run and job array<a class="headerlink" href="#combine-parallel-run-and-job-array" title="Permanent link">&para;</a></h2>
@@ -1687,7 +1685,7 @@ With this, you submit <code>10 * 10 * 1,000 = 100,000</code> programs simultaneo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 16:33:11 UTC">August 12, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 17:03:45 UTC">August 12, 2025</span>
   </span>
 
     
