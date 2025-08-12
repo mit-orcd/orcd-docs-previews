@@ -1559,7 +1559,7 @@
 </div>
 <p>Users often need to submit many jobs to run a program many times with different input parameters or files.  </p>
 <p>It is straightforward to execute the command <code>sbatch</code> in a loop, but this approach is inefficient for job scheduling. When the iteration number is large, it will slow down the Slurm scheduler and affect all users. </p>
-<p>A good practice is to use a job array, which is much more efficient. Refer to <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-submit-a-job-array%3F">this page</a> for details of job array. </p>
+<p>A good practice is to use a job array, which is much more efficient. Refer to <a href="https://orcd-docs.mit.edu/running-jobs/job-arrays/">this page</a> for details of job array. </p>
 <p>However, if a user submits too many jobs in a short time, even with a job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user on the cluster is set to be 500, so that there are not too many jobs queuing in a given time period. It is good for a user to submit up to 500 jobs with a job array.</p>
 <details>
 <summary>Terminology: job and job array</summary>
@@ -1615,6 +1615,7 @@
 <p class="admonition-title">Note</p>
 <p><strong>This approach is useful for submitting a large number of short-run-time programs beyond the per-user job limit.</strong></p>
 </div>
+<p>Also refer to <a href="https://orcd-docs.mit.edu/running-jobs/job-arrays/">this page</a> for more examples of integrating serial execution and job array.</p>
 <h2 id="parallel-execution">Parallel execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h2>
 <p>Parallel execution means executing multiple programs in parallel within a job. Here is an example job script that runs 10 programs in parallel. 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>#!/bin/bash
@@ -1695,7 +1696,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 18:45:46 UTC">August 12, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 18:57:34 UTC">August 12, 2025</span>
   </span>
 
     
