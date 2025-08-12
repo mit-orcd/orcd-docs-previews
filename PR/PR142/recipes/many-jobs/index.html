@@ -1584,7 +1584,8 @@
 <p>Each program uses 2 CPU cores and 2 GB of memory.</p>
 <p>The program is executed 10 times with different input parameters (i.e. the loop index )for each time. The next execution will start after the current execution is completed. </p>
 <p>Note that the serial execution increases the total run time. Request a wall time that is long enough for all the programs to be completed. </p>
-<p><strong>This approach is good for programs with short run times.</strong> If each program requires a long run time, the total run time may exceed the maximum wall time limit. </p>
+<p>!!! "Pros and cons"
+    <strong>This approach is good for programs with short run times.</strong> If each program requires a long run time, the total run time may exceed the maximum wall time limit. </p>
 <h2 id="integrate-serial-execution-and-job-array">Integrate serial execution and job array<a class="headerlink" href="#integrate-serial-execution-and-job-array" title="Permanent link">&para;</a></h2>
 <p>To scale up the number of programs, use job array together with serial execution. Here is an example to submit <code>10 * 100 = 1,000</code> programs,</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/bash                     # Bash shell
@@ -1680,7 +1681,7 @@ With this, you submit <code>10 * 10 * 1,000 = 100,000</code> programs simultaneo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 17:29:55 UTC">August 12, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 17:32:01 UTC">August 12, 2025</span>
   </span>
 
     
