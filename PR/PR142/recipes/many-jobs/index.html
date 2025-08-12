@@ -1507,7 +1507,7 @@
         <li class="md-nav__item">
   <a href="#integrate-sequential-execution-parallel-execution-and-job-array" class="md-nav__link">
     <span class="md-ellipsis">
-      Integrate sequential execution, parallel execution and job array
+      Integrate sequential execution, parallel execution, and job array
     </span>
   </a>
   
@@ -1557,16 +1557,16 @@
 <div class="tabbed-block"></div>
 </div>
 </div>
-<p>It often happens that users need to submit many jobs to run a program many times with different input parameters or files.  </p>
-<p>It is straightforward to execute the command <code>sbatch</code> in a loop, but this approach is inefficient for job scheduling. When the interation number is large, it will slow down the Slurm scheduler and affects all users. </p>
-<p>A good practice is to use job array, which is much more effecient. Refer to <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-submit-a-job-array%3F">this page</a> for details of job array. </p>
-<p>However, if a user submits too many jobs in a short time period, even with a job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user on the cluster is set to be 500, so that there are not too many jobs queuing in a time peiriod. It is good for a user to submit up to 500 jobs with a job array.</p>
+<p>Users often need to submit many jobs to run a program many times with different input parameters or files.  </p>
+<p>It is straightforward to execute the command <code>sbatch</code> in a loop, but this approach is inefficient for job scheduling. When the iteration number is large, it will slow down the Slurm scheduler and affect all users. </p>
+<p>A good practice is to use a job array, which is much more efficient. Refer to <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-submit-a-job-array%3F">this page</a> for details of job array. </p>
+<p>However, if a user submits too many jobs in a short time, even with a job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user on the cluster is set to be 500, so that there are not too many jobs queuing in a given time period. It is good for a user to submit up to 500 jobs with a job array.</p>
 <details>
 <summary>Terminology: job and job array</summary>
 <p>On this page, the word job means either an individual job or a task in a job array. For example, submitting a job array with 100 tasks means submitting 100 jobs. </p>
 </details>
-<p>When a user needs to run a program for more than 500 times, it is recommended to combine serial execution and/or parallel execution with job array.</p>
-<p>On this page, we will introduce serial execution and parallel execution, and how to integrate them with job array. A Python code <a href="./scripts/many-jobs/mycode.py">mycode.py</a> is used for all examples. </p>
+<p>When a user needs to run a program more than 500 times, it is recommended to combine serial execution and/or parallel execution with a job array.</p>
+<p>On this page, we will introduce serial execution and parallel execution, and how to integrate them with a job array. A Python code <a href="./scripts/many-jobs/mycode.py">mycode.py</a> is used for all examples. </p>
 <h2 id="serial-execution">Serial execution<a class="headerlink" href="#serial-execution" title="Permanent link">&para;</a></h2>
 <p>Serial execution means executing multiple programs serially within a job. Here is an example job script that runs 10 programs serially. </p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#!/bin/bash
@@ -1584,12 +1584,12 @@
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>done
 </span></code></pre></div>
 <p>Each program uses 2 CPU cores and 2 GB of memory.</p>
-<p>The program is executed 10 times with different input parameters (i.e. the loop index )for each time. The next execution will start after the current execution is completed. </p>
-<p>Note that the serial execution increases the total run time. Request a wall time that is long enough for all the programs to be completed. </p>
+<p>The program is executed 10 times with different input parameters (i.e. the loop index ) each time. The next execution will start after the current execution is completed. </p>
+<p>Note that the serial execution increases the total run time. Request a wall time that is long enough for all the programs to complete. </p>
 <p>!!!"Pros and cons"
    <strong>This approach is good for programs with short run times.</strong> If each program requires a long run time, the total run time may exceed the maximum wall time limit. </p>
 <h2 id="integrate-serial-execution-and-job-array">Integrate serial execution and job array<a class="headerlink" href="#integrate-serial-execution-and-job-array" title="Permanent link">&para;</a></h2>
-<p>To scale up the number of programs, use job array together with serial execution. Here is an example to submit <code>10 * 100 = 1,000</code> programs,</p>
+<p>To scale up the number of programs, use a job array together with serial execution. Here is an example to submit <code>10 * 100 = 1,000</code> programs,</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/bash
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>#SBATCH -t 02:00:00             # Two hours
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>#SBATCH -N 1                    # 1 node
@@ -1610,9 +1610,9 @@
 </span></code></pre></div>
 <p>The array task ID (<code>$SLURM_ARRAY_TASK_ID</code>) and total number of tasks in the array (<code>$SLURM_ARRAY_TASK_COUNT</code>) are used to calculate the global index. Use the global index as the input parameter for the program.</p>
 <p>!!! "Best-case scenario"
-   <strong>This approach is useful for submitting a large number of short run time programs beyond the per-user job limit.</strong></p>
+   <strong>This approach is useful for submitting a large number of short-run-time programs beyond the per-user job limit.</strong></p>
 <h2 id="parallel-execution">Parallel execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h2>
-<p>Parallel execution means executing multiple programs paralelly within a job. Here is an example job script that runs 10 programs parallelly. 
+<p>Parallel execution means executing multiple programs in parallel within a job. Here is an example job script that runs 10 programs in parallel. 
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>#!/bin/bash
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>#SBATCH -t 00:30:00    # 30 minutes
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>#SBATCH -N 1           # 1 node
@@ -1629,16 +1629,16 @@
 </span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>wait          # Wait for all programs to be completed, then exit the batch job. 
 </span></code></pre></div></p>
 <p>Each program uses 2 CPU cores and 2 GB of memory, so the job requests 20 CPU cores and 20 GB of memory in total. </p>
-<p>The main difference from the serial execution is taht an <code>&amp;</code> mark is added at the end of execution command, which runs the program in the background, and all 10 programs start to run almost simultaneously.</p>
+<p>The main difference from the serial execution is that an <code>&amp;</code> mark is added at the end of the execution command, which runs the program in the background, and all 10 programs start to run almost simultaneously.</p>
 <p>The <code>wait</code> command in the last line ensures that the batch job will not be terminated until all background programs are completed.  </p>
 <p>!!! "Pros and cons"
    <strong>This approach is good when each program requires a small number of CPU cores and a small amount of memory.</strong> If each program requires many CPU cores or large memory, executing multiple programs in parallel would require too many CPUs or too much memory, which may not fit within one node. </p>
 <h2 id="integrate-parallel-execution-and-job-array">Integrate parallel execution and job array<a class="headerlink" href="#integrate-parallel-execution-and-job-array" title="Permanent link">&para;</a></h2>
-<p>To scale up the number of programs, use job array together with parallel execution. For example, simply adding a line <code>#SBATCH --array=0-99</code> to the above script, users can submit <code>10 * 100 = 1,000</code> programs simultaneously. </p>
+<p>To scale up the number of programs, use a job array together with parallel execution. For example, simply adding a line <code>#SBATCH --array=0-99</code> to the above script, users can submit <code>10 * 100 = 1,000</code> programs simultaneously. </p>
 <p>!!! "Best-case scenario"
    <strong>This approach is useful to submit a large number of programs beyond the per-user job limit, when each program requires small resources (CPUs and memory)</strong></p>
-<h2 id="integrate-sequential-execution-parallel-execution-and-job-array">Integrate sequential execution, parallel execution and job array<a class="headerlink" href="#integrate-sequential-execution-parallel-execution-and-job-array" title="Permanent link">&para;</a></h2>
-<p>To furhter scale up the number of programs, one may consider integrating sequential execution, parallel execution and job array. Here is an example job script to submit <code>10 * 10 * 100 = 10,000</code> programs.</p>
+<h2 id="integrate-sequential-execution-parallel-execution-and-job-array">Integrate sequential execution, parallel execution, and job array<a class="headerlink" href="#integrate-sequential-execution-parallel-execution-and-job-array" title="Permanent link">&para;</a></h2>
+<p>To further scale up the number of programs, one may consider integrating sequential execution, parallel execution, and a job array. Here is an example job script to submit <code>10 * 10 * 100 = 10,000</code> programs.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>#!/bin/bash
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>#SBATCH -t 02:00:00       # Two hours
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>#SBATCH -N 1              # 1 node
@@ -1658,9 +1658,9 @@
 </span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>   for j in `seq 1 $N_PARALLEL`   # Loop for parallel executions
 </span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>   do
 </span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>     index=$(($nmax * $i + $id))  # Global index
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>     python mycode.py $index &amp;      # Run a program in background. 
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>     python mycode.py $index &amp;      # Run a program in the background. 
 </span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>   done 
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>   wait                           # Wait for all parallel executions complete, then go to the next iteration in the loop of serial executions.
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>   wait                           # Wait for all parallel executions to complete, then go to the next iteration in the loop of serial executions.
 </span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>done 
 </span></code></pre></div>
 <p>!!! "Best-case scenario"
@@ -1685,7 +1685,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 18:01:55 UTC">August 12, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2025 18:06:57 UTC">August 12, 2025</span>
   </span>
 
     
