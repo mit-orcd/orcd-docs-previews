@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -1213,29 +1213,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../recipes/mujoco/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    MuJoCo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
@@ -1753,16 +1730,17 @@ convenient reference to get started. Each system has its own in-depth documentat
 <div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">Satori</label><label for="__tabbed_1_3">SuperCloud</label><label for="__tabbed_1_4">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Login into the respective OnDemand Portal <a href="https://engaging-ood.mit.edu">https://engaging-ood.mit.edu</a> using your MIT kerberos credentials. The system will then be prompted to create your account automatically. Wait couple minutes for the system to create all the pieces for your account before submitting your first job.</p>
+<p>Login into the respective OnDemand Portal <a href="https://engaging-ood.mit.edu">https://engaging-ood.mit.edu</a> using your MIT kerberos credentials. The system will then be prompted to create your account automatically. Wait a couple of minutes for the system to create all the pieces for your account before submitting your first job.</p>
 </div>
 <div class="tabbed-block">
-<p>Login into the respective OnDemand Portal <a href="https://satori-portal.mit.edu/">https://satori-portal.mit.edu/</a> using your MIT kerberos credentials. The system will then be prompted to create your account automatically. Wait couple minutes for the system to create all the pieces for your account before submitting your first job.</p>
+<p>Login into the respective OnDemand Portal <a href="https://satori-portal.mit.edu/">https://satori-portal.mit.edu/</a> using your MIT kerberos credentials. The system will then be prompted to create your account automatically. Wait a couple of minutes for the system to create all the pieces for your account before submitting your first job.</p>
 </div>
 <div class="tabbed-block">
 <p>Follow the instructions on the <a href="https://supercloud.mit.edu/requesting-account">Account Request Page</a>.</p>
 </div>
 <div class="tabbed-block">
-<p>OpenMind will be available to the general MIT Community starting 2024. Those currently eligible can follow the instructions on the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/Cookbook:-Getting-started#account">Getting an Account</a> page.</p>
+<p>OpenMind will be retired later this year. BCS users are encouraged to transition their workflows to Engaging, where they can use the <code>ou_bcs_low</code>, <code>ou_bcs_normal</code>, and <code>ou_bcs_high</code> partitions for access to GPUs. All other MIT users can access these resources through the <code>mit_preemptable</code> partition on Engaging.</p>
+<p>If you are in BCS and you would still like an account on OpenMind, see the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/Cookbook:-Getting-started#account">Getting an Account</a> page on OpenMind's documentation..</p>
 </div>
 </div>
 </div>
@@ -1803,13 +1781,13 @@ you can log in. The different ORCD systems provide multiple ways to log in, incl
 <p>Replace <code>USERNAME</code> below with your Kerberos username and use the login node you would like to log in with, the example below is using <code>orcd-login001</code>.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>USERNAME@orcd-login001.mit.edu
 </span></code></pre></div>
-<p>If you are prompted for a password enter your Kerberos password.  You can add an ssh key if you do not want to enter your Kerberos password at login, see the <a href="../accessing-orcd/ssh-setup/">SSH Login</a> page for more information. All login nodes require Two-Factor Authentication.</p>
+<p>If you are prompted for a password enter your Kerberos password.  You can add an ssh key if you do not want to enter your Kerberos password at login, see the <a href="../accessing-orcd/ssh-setup/">SSH Key</a> page for more information. All login nodes require Two-Factor Authentication.</p>
 </div>
 <div class="tabbed-block">
 <p>Satori has two login nodes: <code>satori-login-001</code> and <code>satori-login-002</code>. Replace <code>USERNAME</code> below with your Kerberos username and use the login node you would like to log in with, the example below is using <code>satori-login-001</code>.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>USERNAME@satori-login-001.mit.edu
 </span></code></pre></div>
-<p>If you are prompted for a password enter your Kerberos password. You can add an ssh key if you do not want to enter your Kerberos password at login.</p>
+<p>If you are prompted for a password enter your Kerberos password. You can add an <a href="../accessing-orcd/ssh-setup/">ssh key</a> if you do not want to enter your Kerberos password at login.</p>
 </div>
 <div class="tabbed-block">
 <p>In order to log into SuperCloud with ssh you will need to add ssh keys to your account on the Web Portal. Follow the instructions on the <a href="https://supercloud.mit.edu/getting-started">SuperCloud Getting Started</a> page to add your keys.</p>
@@ -1821,7 +1799,7 @@ you can log in. The different ORCD systems provide multiple ways to log in, incl
 <p>Log into OpenMind with the following command in a terminal window. Replace <code>USERNAME</code> below with your Kerberos username.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh<span class="w"> </span>USERNAME@openmind.mit.edu
 </span></code></pre></div>
-<p>If you are prompted for a password enter your Kerberos password. You can add an ssh key if you do not want to enter your Kerberos password at login.</p>
+<p>If you are prompted for a password enter your Kerberos password. You can add an <a href="../accessing-orcd/ssh-setup/">ssh key</a> if you do not want to enter your Kerberos password at login.</p>
 </div>
 </div>
 </div>
@@ -1829,7 +1807,7 @@ you can log in. The different ORCD systems provide multiple ways to log in, incl
 <div class="tabbed-set tabbed-alternate" data-tabs="4:4"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><input id="__tabbed_4_4" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Engaging</label><label for="__tabbed_4_2">Satori</label><label for="__tabbed_4_3">SuperCloud</label><label for="__tabbed_4_4">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>You can log into OnDemand Web Portal with the link: <a href="https://engaging-ood.mit.edu">https://engaging-ood.mit.edu</a>. For full detailed instructions please see the <a href="../accessing-orcd/ondemand-login/">Engaging Documentation</a>.</p>
+<p>You can log into OnDemand Web Portal with the link: <a href="https://engaging-ood.mit.edu">https://engaging-ood.mit.edu</a>. For full detailed instructions please see the <a href="../accessing-orcd/ondemand-login/">OnDemand Documentation</a>.</p>
 </div>
 <div class="tabbed-block">
 <p>You can log into the OnDemand Web Portal with the link: <a href="https://satori-portal.mit.edu">https://satori-portal.mit.edu</a>. For full detailed instructions please see the <a href="https://mit-satori.github.io/satori-ssh.html">Satori Documentation</a>.</p>
@@ -1838,13 +1816,13 @@ you can log in. The different ORCD systems provide multiple ways to log in, incl
 <p>You can log into the SuperCloud Web Portal with the link: <a href="https://txe1-portal.mit.edu">https://txe1-portal.mit.edu</a>. For full detailed instructions please see the <a href="https://mit-supercloud.github.io/supercloud-docs/getting-started/">SuperCloud Documentation</a>.</p>
 </div>
 <div class="tabbed-block">
-<p>OpenMind does not currently have a web portal, but there are plans to add one in the future. Check back, and in the meantime check out OpenMind's documentation on the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-use-Xfast-remote-desktop%3F">FastX Remote Desktop</a>. You may find it provides what you are looking for.</p>
+<p>OpenMind does not have a web portal. However, check out OpenMind's documentation on the <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-use-Xfast-remote-desktop%3F">FastX Remote Desktop</a>. You may find it provides what you are looking for.</p>
 </div>
 </div>
 </div>
 <h2 id="shared-hpc-clusters">Shared HPC Clusters<a class="headerlink" href="#shared-hpc-clusters" title="Permanent link">&para;</a></h2>
 <p>Each ORCD system is a shared HPC cluster. You are sharing this
-resources with a number of other researchers, staff, and students so it
+resources with a number of other researchers, staff, and students, so it
 is important that you read this page and use the system as intended.</p>
 <p>Being a cluster, there are several machines connected together with a
 network. We refer to these as <strong>nodes</strong>. Most nodes in the cluster are
@@ -1902,15 +1880,15 @@ directories. The list of directories that lead to a particular directory
 or file is called its <strong>path</strong>. In Linux, directories on a path are
 separated by forward slashes <code>/</code>. It is also important to note that
 everything in Linux is case sensitive, so a file <code>myScript.sh</code> is not
-the same as the file <code>myscript.sh</code>. When you first log in you are in you
+the same as the file <code>myscript.sh</code>. When you first log in, you are in your
 <strong>home directory</strong>. Your home directory is where you can put all the
 code and data you need to run your job. Your home directory is not
-accessible to other users, if you need a space to share files with other
+accessible to other users, so if you need a space to share files with other
 users, let us know and we can make a shared <strong>group directory</strong> for you.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Engaging</label><label for="__tabbed_6_2">Satori</label><label for="__tabbed_6_3">SuperCloud</label><label for="__tabbed_6_4">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>The path to your home directory on Satori is <code>/home/&lt;USERNAME&gt;</code>, where <code>&lt;USERNAME&gt;</code> is your username. The character <code>~</code> is also shorthand for your home directory in any Linux commands.</p>
+<p>The path to your home directory on Engaging is <code>/home/&lt;USERNAME&gt;</code>, where <code>&lt;USERNAME&gt;</code> is your username. The character <code>~</code> is also shorthand for your home directory in any Linux commands.</p>
 </div>
 <div class="tabbed-block">
 <p>The path to your home directory on Satori is <code>/home/&lt;USERNAME&gt;</code>, where <code>&lt;USERNAME&gt;</code> is your username. The character <code>~</code> is also shorthand for your home directory in any Linux commands.</p>
@@ -1967,7 +1945,7 @@ text, but you can try it out yourself and watch the short demonstration
 <li><code>tail filename</code>: shows the last 10 lines of a file (useful when
     you are monitoring a log file or output file to see that the
     values are correct)<ul>
-<li>t<code>ail &lt;number&gt; filename</code>: show you the last &lt;number&gt;
+<li><code>tail &lt;number&gt; filename</code>: show you the last &lt;number&gt;
     lines of a file.</li>
 <li><code>tail -f filename</code>: shows you new lines as they are written
     to the end of the file. Press CMD+C or Control+C to exit.
@@ -2026,7 +2004,7 @@ authenticate with Duo)</p>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>&lt;user&gt;@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scp<span class="w"> </span>&lt;local-file-name&gt;<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
 </span></code></pre></div>
 </div>
 </div>
@@ -2049,7 +2027,7 @@ authenticate with Duo)</p>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>scp<span class="w"> </span>&lt;user&gt;@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;/&lt;file-name&gt;<span class="w"> </span>&lt;path-to-local-dest&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>scp<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;/&lt;file-name&gt;<span class="w"> </span>&lt;path-to-local-dest&gt;
 </span></code></pre></div>
 </div>
 </div>
@@ -2072,7 +2050,7 @@ authenticate with Duo)</p>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-dir-name&gt;<span class="w"> </span>&lt;user&gt;@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>&lt;local-dir-name&gt;<span class="w"> </span>USERNAME@openmind-dtn.mit.edu:&lt;path-to-openmind-dir&gt;
 </span></code></pre></div>
 </div>
 </div>
@@ -2151,7 +2129,7 @@ memory, or requires a GPU you should request additional resources as needed. Not
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="April 8, 2025 15:27:02 UTC">April 8, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 2, 2025 18:31:01 UTC">July 2, 2025</span>
   </span>
 
     
@@ -2206,10 +2184,10 @@ memory, or requires a GPU you should request additional resources as needed. Not
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="../js/open_in_new_tab.js"></script>
       
