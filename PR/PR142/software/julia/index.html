@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -855,6 +855,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../licensed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Licensed Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../building-software/" class="md-nav__link">
         
   
@@ -1359,29 +1382,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/relion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    RELION
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../recipes/build-vasp-gcc-cpu/" class="md-nav__link">
         
   
@@ -1552,6 +1552,28 @@
   
   <span class="md-ellipsis">
     FAQs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -1758,7 +1780,7 @@ technical and numerical computing, known for its speed and ease of use. Because
 of its popularity, we have pre-installed versions of Julia on each of our
 clusters. You can begin using Julia right away by running <code>module load julia</code>
 or by specifying the module specifically:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">Satori</label><label for="__tabbed_1_3">SuperCloud</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Engaging</label><label for="__tabbed_1_2">SuperCloud</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>On Rocky8 nodes:</p>
@@ -1769,11 +1791,7 @@ or by specifying the module specifically:</p>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>julia/1.5.3-rls2opu
-</span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>julia/1.10.1
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>julia/1.10.1
 </span></code></pre></div>
 </div>
 </div>
@@ -1786,13 +1804,13 @@ an environment for that version, which will be saved in <code>~/.julia/environme
 <p>You can change the default package install location by setting the
 <code>$JULIA_DEPOT_PATH</code> environment variable from the command line before you start
 Julia. For example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JULIA_DEPOT_PATH</span><span class="o">=</span>/home/<span class="nv">$USER</span>/orcd/r8/pool
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JULIA_DEPOT_PATH</span><span class="o">=</span>/home/<span class="nv">$USER</span>/orcd/r8/pool
 </span></code></pre></div>
 <h2 id="juliaup">Juliaup<a class="headerlink" href="#juliaup" title="Permanent link">&para;</a></h2>
 <p>Juliaup provides a convenient way to manage different versions of Julia and
 different package installations. It can be installed by running the following
 command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://install.julialang.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://install.julialang.org<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </span></code></pre></div>
 <p>You will be asked if you want to proceed with default settings or to customize
 your installation. We recommend customizing your installation. The default
@@ -1802,10 +1820,6 @@ settings are as follows:</p>
 <p>Save the <code>.juliaup</code> folder to your home directory. This folder contains all
 installations of Julia and their associated packages that are managed by
 Juliaup.</p>
-<ul>
-<li>On Satori, home directories are limited to 20 GB, so you may want to
-change this location to <code>/nobackup/users/$USER</code>.</li>
-</ul>
 </li>
 <li>
 <p>Edit your <code>.bashrc</code> and <code>.bash_profile</code> files to automatically add the
@@ -1819,7 +1833,7 @@ your <code>$PATH</code> any time you connect to the cluster.</p>
 </li>
 <li>
 <p>To add Juliaup to your <code>$PATH</code> manually, run:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/path/to/.juliaup/bin<span class="si">${</span><span class="nv">PATH</span><span class="p">:+:</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}}</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/path/to/.juliaup/bin<span class="si">${</span><span class="nv">PATH</span><span class="p">:+:</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}}</span>
 </span></code></pre></div></p>
 </li>
 </ul>
@@ -1827,18 +1841,14 @@ your <code>$PATH</code> any time you connect to the cluster.</p>
 </ol>
 <p>Click <a href="https://github.com/JuliaLang/juliaup">here</a> for more information on
 installing and using Juliaup.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Currently, Juliaup is not compatible with Satori or SuperCloud.</p>
-</div>
 <h2 id="using-different-julia-versions">Using Different Julia Versions<a class="headerlink" href="#using-different-julia-versions" title="Permanent link">&para;</a></h2>
 <h3 id="juliaup-versions">Juliaup Versions<a class="headerlink" href="#juliaup-versions" title="Permanent link">&para;</a></h3>
 <p>If you're using <a href="#juliaup">Juliaup</a>, installing different versions of Julia is
 straightforward:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Install Julia 1.9.0:</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>juliaup<span class="w"> </span>add<span class="w"> </span><span class="m">1</span>.9.0
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Use Julia 1.9.0:</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>julia<span class="w"> </span>+1.9.0
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Install Julia 1.9.0:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>juliaup<span class="w"> </span>add<span class="w"> </span><span class="m">1</span>.9.0
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Use Julia 1.9.0:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>julia<span class="w"> </span>+1.9.0
 </span></code></pre></div>
 <p>Note that Juliaup installs versions and packages to your <code>.julia</code> folder.</p>
 <h3 id="manual-installation">Manual Installation<a class="headerlink" href="#manual-installation" title="Permanent link">&para;</a></h3>
@@ -1849,18 +1859,18 @@ pre-installed on the cluster, you can manually download it.</p>
 link to the <code>.tar.gz</code> file that corresponds to the version you need. Be sure to
 select the version for a Linux operating system and x86_64 architecture.</p>
 <p>Download the <code>.tar.gz</code> file:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>wget<span class="w"> </span><span class="o">[</span>link<span class="w"> </span>to<span class="w"> </span>file<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>wget<span class="w"> </span><span class="o">[</span>link<span class="w"> </span>to<span class="w"> </span>file<span class="o">]</span>
 </span></code></pre></div></p>
 <p>Extract the <code>.tar.gz</code> file:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span><span class="o">[</span>file<span class="w"> </span>name<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span><span class="o">[</span>file<span class="w"> </span>name<span class="o">]</span>
 </span></code></pre></div></p>
 <p>Add the downloaded version to your path:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/path/to/julia/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/path/to/julia/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </span></code></pre></div></p>
 <p>The following example is for Julia 1.9.0:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>wget<span class="w"> </span>https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span>julia-1.9.0-linux-x86_64.tar.gz
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/julia-1.9.0/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>wget<span class="w"> </span>https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>tar<span class="w"> </span>-xvzf<span class="w"> </span>julia-1.9.0-linux-x86_64.tar.gz
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/julia-1.9.0/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </span></code></pre></div></p>
 <h2 id="jupyter-notebooks">Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permanent link">&para;</a></h2>
 <p>While Jupyter is heavily integrated with Python, it supports compatibility with
@@ -1876,9 +1886,9 @@ Modules" section. You can see which Julia modules are available by running
 <code>module avail julia</code> from the command line.</p>
 <p>For Jupyter to recognize Julia, you need to have the <code>IJulia</code> package
 installed and built in your Julia environment:</p>
-<div class="language-julia highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
+<div class="language-julia highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Note that the Julia environment you are using needs to match the version of
 Julia that you are loading as a module.</p>
@@ -1898,22 +1908,22 @@ as a module, we suggest running a Jupyter notebook manually via port forwarding.
 This involves running the notebook on a compute node, and then accessing the
 notebook on your local machine by SSH tunnelling through a login node.</p>
 <p>To do this, first request a compute node with your desired resources:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>salloc<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-p<span class="w"> </span>mit_normal
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>salloc<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-p<span class="w"> </span>mit_normal
 </span></code></pre></div>
 <p>Make a note of the node that your job is running on. In this example, we're
 running on <code>node1600</code>.</p>
 <p>Then, start your desired version of Julia add the <code>IJulia</code> package to your
 environment:</p>
-<div class="language-Julia highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">quit</span><span class="p">()</span>
+<div class="language-Julia highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">quit</span><span class="p">()</span>
 </span></code></pre></div>
 <p>Because of Jupyter's interaction with Python, you need to create and activate a
 Conda environment with <code>jupyter</code> installed:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>jupyter_env<span class="w"> </span>jupyter
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>conda<span class="w"> </span>activate<span class="w"> </span>jupyter_env
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>jupyter_env<span class="w"> </span>jupyter
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>conda<span class="w"> </span>activate<span class="w"> </span>jupyter_env
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1922,30 +1932,30 @@ Conda environment with <code>jupyter</code> installed:</p>
 </div>
 <p>Now, we can run the notebook. To be able to access it on our local machine, we
 need to add a few arguments:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>jupyter-lab<span class="w"> </span>--ip<span class="o">=</span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="o">=</span><span class="m">8888</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>jupyter-lab<span class="w"> </span>--ip<span class="o">=</span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="o">=</span><span class="m">8888</span>
 </span></code></pre></div>
 <p>The port can be any number between 1024 and 9999. When you run the notebook,
 the output will contain a link with a token that allows you to access the
 notebook:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>http://127.0.0.1:&lt;remote port&gt;/lab?token=&lt;token&gt;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>http://127.0.0.1:&lt;remote port&gt;/lab?token=&lt;token&gt;
 </span></code></pre></div>
 <p>For example:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>http://127.0.0.1:8888/lab?token=7e97d59f9a17c91c11289bc5bec35ad3921725c6db55fe33
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>http://127.0.0.1:8888/lab?token=7e97d59f9a17c91c11289bc5bec35ad3921725c6db55fe33
 </span></code></pre></div>
 <p>In a second terminal window, set up an SSH tunnel to your Jupyter notebook
 that's running on the compute node:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ssh<span class="w"> </span>-L<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>port&gt;:&lt;node&gt;:&lt;remote<span class="w"> </span>port&gt;<span class="w"> </span>&lt;USER&gt;@orcd-login001.mit.edu
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh<span class="w"> </span>-L<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>port&gt;:&lt;node&gt;:&lt;remote<span class="w"> </span>port&gt;<span class="w"> </span>&lt;USER&gt;@orcd-login001.mit.edu
 </span></code></pre></div>
 <p>In general, it's easier if you keep the local port and the remote port as the
 same number:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">8888</span>:node1600:8888<span class="w"> </span>&lt;USER&gt;@orcd-login001.mit.edu
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ssh<span class="w"> </span>-L<span class="w"> </span><span class="m">8888</span>:node1600:8888<span class="w"> </span>&lt;USER&gt;@orcd-login001.mit.edu
 </span></code></pre></div>
 <p>Now you can access Jupyter in an internet browser:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>http://127.0.0.1:&lt;local port&gt;/lab?token=&lt;token&gt;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>http://127.0.0.1:&lt;local port&gt;/lab?token=&lt;token&gt;
 </span></code></pre></div>
 <p>If you kept the local and remote ports as the same number, then you can directly
 copy the link that was given to you earlier:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>http://127.0.0.1:8888/lab?token=7e97d59f9a17c91c11289bc5bec35ad3921725c6db55fe33
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>http://127.0.0.1:8888/lab?token=7e97d59f9a17c91c11289bc5bec35ad3921725c6db55fe33
 </span></code></pre></div>
 <h3 id="vs-code">VS Code<a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h3>
 <p>Please refer to the <a href="../../recipes/vscode/">VS Code page</a> for using VS Code on
@@ -1980,7 +1990,7 @@ purge</code>. </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="January 21, 2025 14:58:54 UTC">January 21, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2025 20:35:04 UTC">September 5, 2025</span>
   </span>
 
     
@@ -2035,10 +2045,10 @@ purge</code>. </p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
