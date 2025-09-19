@@ -11,10 +11,14 @@
         <link rel="canonical" href="https://orcd.mit.edu/recipes/cuda-q/">
       
       
+        <link rel="prev" href="../nvhpc-a100-with-cuda-and-mpi-example/">
+      
+      
+        <link rel="next" href="../orca/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
@@ -22,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -924,18 +928,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -951,7 +957,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             ORCD Recipes
@@ -1114,6 +1120,98 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    CUDA-Q
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    CUDA-Q
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Usage Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-multiple-gpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Multiple GPUs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1509,15 +1607,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-one-gpu" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using One GPU
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#using-multiple-gpus" class="md-nav__link">
     <span class="md-ellipsis">
       Using Multiple GPUs
@@ -1571,19 +1660,16 @@
 
 
 <h1 id="cuda-q">CUDA-Q<a class="headerlink" href="#cuda-q" title="Permanent link">&para;</a></h1>
-<p>CUDA-Q is a GPU-accelerated package for quantum simulations. Large quantum systems can be simulated with this framework. We will walk through installing and performing simulations with CUDA-Q on Engaging.</p>
+<p>CUDA-Q is a GPU-accelerated package for quantum simulations. In general, simulations are exponentially more expensive with an increasing qubit number, and the CUDA-Q framework enables simulations of larger systems than possible with a CPU alone. We will walk through installing and performing simulations with CUDA-Q on Engaging.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>We will set up a <a href="https://orcd-docs.mit.edu/software/python/#creating-python-virtual-environments">virtual environment</a> for CUDA-Q as follows:
-In your directory of choice (we'll assume it's called <code>cudaq</code>), run the following commands (TODO - might want to break this up a bit)
+In a directory, which we will assume is named <code>cudaq</code>, run the following commands
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load miniforge
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>module load cuda (TODO - are these two needed here?)
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>module load openmpi
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python -m venv cuda-q_env
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>source cudaq_env/bin/activate
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pip install cudaq
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python -m venv cudaq_env
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>source cudaq_env/bin/activate
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>pip install cudaq
 </span></code></pre></div>
-Note that we load cuda (TODO describe this) and openmpi (TODO describe this).</p>
-<p>Now that we've installed CUDA-Q, we will follow a few different examples from the <a href="https://nvidia.github.io/cuda-quantum/latest/index.html">CUDA-Q docs</a>.</p>
+Now that we've installed CUDA-Q, we will follow a few different examples from the <a href="https://nvidia.github.io/cuda-quantum/latest/index.html">CUDA-Q docs</a>.</p>
 <h2 id="basic-usage-example">Basic Usage Example<a class="headerlink" href="#basic-usage-example" title="Permanent link">&para;</a></h2>
 <p>We will run a small example to verify GPU acceleration, following the check <a href="https://nvidia.github.io/cuda-quantum/latest/using/quick_start.html">here</a>.</p>
 <p>Paste the following code into a python file named <code>test_cudaq.py</code>:
@@ -1610,20 +1696,16 @@ Now, we will run this with a GPU and verify that it is faster than with a CPU al
 First, request a node with a GPU using the following command:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>salloc -p mit_normal_gpu -G 1
 </span></code></pre></div>
-Now, load the appropriate modules and activate the <code>cudaq</code> (TODO - do we want this ticks here?) virtual environment:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module load miniforge
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>module load cuda
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>module load openmpi
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>source cudaq_env/bin/activate
+Now, load the appropriate modules and activate the <code>cudaq</code> virtual environment:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>source cudaq_env/bin/activate
 </span></code></pre></div>
-Finally, we will run the program for 28 qubits, which would be prohitibitive to run with a CPU alone (TODO - double check this and make consistent with the statement above):
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python test_cudaq.py --target nvidia
+Finally, we will run the program for 28 qubits using the command below, which should take a few seconds on a GPU but would be prohitibitive to run with a CPU alone. Note that the <code>-- target nvidia</code> is not needed because CUDA-Q should automatically detect the GPU and use it.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python test_cudaq.py 28 --target nvidia
 </span></code></pre></div>
-You should get an output of this format, but the numbers could be slightly different due to stochasticity:
+You should get an output similar to the one below, but the numbers 512 and 488 could be slightly different due to stochasticity. The "target nvidia" indicates that a GPU is being used. If it wasn't, the output would read "Running on target qpp-cpu".</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Running on target nvidia
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>{ 0000000000000000000000000000:512 1111111111111111111111111111:488 }
-</span></code></pre></div></p>
-<h2 id="using-one-gpu">Using One GPU<a class="headerlink" href="#using-one-gpu" title="Permanent link">&para;</a></h2>
+</span></code></pre></div>
 <h2 id="using-multiple-gpus">Using Multiple GPUs<a class="headerlink" href="#using-multiple-gpus" title="Permanent link">&para;</a></h2>
 <p>TODO - link this: https://nvidia.github.io/cuda-quantum/latest/using/examples/multi_gpu_workflows.html</p>
 <p>We can run the program using 
@@ -1650,7 +1732,7 @@ Above, N is the number of GPUs, which must be a power of 2.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 14, 2025 20:23:23 UTC">September 14, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 19, 2025 17:55:57 UTC">September 19, 2025</span>
   </span>
 
     
@@ -1708,7 +1790,7 @@ Above, N is the number of GPUs, which must be a power of 2.</p>
       <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
