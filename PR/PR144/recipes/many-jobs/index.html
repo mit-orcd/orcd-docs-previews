@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/recipes/X11/">
+        <link rel="canonical" href="https://orcd.mit.edu/recipes/many-jobs/">
       
       
-        <link rel="prev" href="../vscode/">
+        <link rel="prev" href="../../running-jobs/application-analysis/">
       
       
-        <link rel="next" href="../../hosted-hardware/">
+        <link rel="next" href="../af3/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>X11 - ORCD Docs</title>
+        <title>Advanced Job Array - ORCD Docs</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-x11-with-engaging-cluster" class="md-skip">
+        <a href="#advanced-job-array" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              X11
+              Advanced Job Array
             
           </span>
         </div>
@@ -968,10 +968,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../many-jobs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Advanced Job Array
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -982,6 +1004,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#serial-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serial execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrate-serial-execution-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrate serial execution and job array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrate-parallel-execution-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrate parallel execution and job array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrate-sequential-execution-parallel-execution-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrate sequential execution, parallel execution, and job array
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1313,19 +1400,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../X11/" class="md-nav__link">
         
   
   
@@ -1336,7 +1414,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1545,6 +1622,59 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#serial-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Serial execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrate-serial-execution-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrate serial execution and job array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrate-parallel-execution-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrate parallel execution and job array
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integrate-sequential-execution-parallel-execution-and-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integrate sequential execution, parallel execution, and job array
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1557,30 +1687,173 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
+      
+    
+      
+      
+      
+        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
+      
+    
+      
+      
+      
+        <a href="../../tags/#tag:slurm" class="md-tag">Slurm</a>
+      
+    
+  </nav>
 
 
-<h1 id="using-x11-with-engaging-cluster">Using X11 with Engaging Cluster<a class="headerlink" href="#using-x11-with-engaging-cluster" title="Permanent link">&para;</a></h1>
-<p>While using the command line is often fast and efficient, we often just need to use a Graphical User Interface (GUI).</p>
-<p>This process allows you to use the cluster and present a GUI to your desktop machine using X11.</p>
-<h1 id="mac-and-linux">Mac and Linux<a class="headerlink" href="#mac-and-linux" title="Permanent link">&para;</a></h1>
-<p>On Linux or Mac, Open the terminal program of your choice. On the Mac, Iterm2 or Terminal are most common. </p>
-<p>On your Mac you will also have to make sure you have XQuartz installed</p>
-<p>ssh to the cluster log in node using your MIT kerberos ID. 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh -X &lt;your_mit_kerb&gt;@orcd-login001.mit.edu
+
+<h1 id="advanced-job-array">Advanced Job Array<a class="headerlink" href="#advanced-job-array" title="Permanent link">&para;</a></h1>
+<p>Users often need to submit many jobs to run a program many times with different input parameters or files.  </p>
+<p>It is straightforward to execute the command <code>sbatch</code> in a loop, but this approach is inefficient for job scheduling. When the iteration number is large, it will slow down the Slurm scheduler and affect all users.</p>
+<p>A good practice is to use a job array, which is much more efficient. Refer to <a href="https://orcd-docs.mit.edu/running-jobs/job-arrays/">this page</a> for details of job array. </p>
+<p>However, if a user submits too many jobs in a short time, even with a job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user is set to be 500, so that there are not too many jobs queuing in a given time period. A user can submit up to 500 jobs with a job array.</p>
+<details>
+<summary>Terminology: job and job array</summary>
+<p>On this page, the word job means either an individual job or a task in a job array. For example, submitting a job array with 100 tasks means submitting 100 jobs. </p>
+</details>
+<p>When a user needs to run a program more than 500 times, it is recommended to combine serial execution and/or parallel execution with a job array.</p>
+<p>On this page, we will introduce serial execution and parallel execution, and how to integrate them with a job array. A simple Python code named <a href="../scripts/many-jobs/mycode.py">mycode.py</a> is used for all examples. </p>
+<h2 id="serial-execution">Serial execution<a class="headerlink" href="#serial-execution" title="Permanent link">&para;</a></h2>
+<p>Serial execution means executing multiple programs serially within a job. Here is an example job script that runs 10 programs serially. </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#!/bin/bash
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>#SBATCH -t 02:00:00    # tow hours
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>#SBATCH -N 1           # 1 node
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>#SBATCH -n 2           # 2 CPU cores
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>#SBATCH --mem=2GB      # 2 GB of memory
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>module load miniforge/24.3.0-0
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>N_PROGRAMS=10
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>for i in `seq 1 $N_PROGRAMS`   # Loop for serial execution
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>do
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>   python mycode.py  $i    # Run the program serially
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>done
 </span></code></pre></div>
-You will get a DUO push 2 factor authentication notification asking you to log in. </p>
-<p>Once you are logged in, create your allocation in slurm using X11 option:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>salloc -N 1 -n 4 --mem-per-cpu=4G -p mit_normal --x11
-</span></code></pre></div>
-Load the module you want to use a GUI with. In this example, we're going run MATLAB on the cluster and have it display on our desktop or laptop: </p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load matlab
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>matlab &amp; 
-</span></code></pre></div>
-The "&amp;" in the above command puts the matlab program in the background and frees your terminal for other activities. </p>
+<p>Each program uses 2 CPU cores and 2 GB of memory.</p>
+<p>The program is executed 10 times with different input parameters (i.e. the loop index ) each time. The next execution will start after the current execution is completed. </p>
+<p>Note that the serial execution increases the total run time. Request a wall time that is long enough for all the programs to complete. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you are on a wireless network, the GUI may not show up on your desktop for several seconds. If you are connected via ethernet cable, it will be more responsive. For example, working remotely at the Rotch library on wireless it could take 20 seconds for the GUI to display on your system. This is not likely something you would want to do for your regular workflow, but it can be useful for small tasks or if you do not have another option.</p>
+<p><strong>This approach is good for programs with short run times.</strong> If each program requires a long run time, the total run time may exceed the maximum wall time limit.    </p>
+</div>
+<h2 id="integrate-serial-execution-and-job-array">Integrate serial execution and job array<a class="headerlink" href="#integrate-serial-execution-and-job-array" title="Permanent link">&para;</a></h2>
+<p>To scale up the number of programs, use a job array together with serial execution. Here is an example job script.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/bash
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>#SBATCH -t 02:00:00             # Two hours
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>#SBATCH -N 1                    # 1 node
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>#SBATCH -n 2                    # 2 CPU cores
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>#SBATCH --mem=2GB               # 2 GB of memory
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>#SBATCH --array=0-99            # Job array 
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>module load miniforge/24.3.0-0
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>nmax=$SLURM_ARRAY_TASK_COUNT    # Num of tasks per array
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>id=$SLURM_ARRAY_TASK_ID         # Task ID
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>N_PROGRAMS=10
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>for i in `seq 1 $N_PROGRAMS`             # Loop for serial execution
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>do
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    index=$(( $nmax * ($i -1) + $id ))   # Calculate the global index
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    python mycode.py $index     # Run the program serially, using the global index as input
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>done
+</span></code></pre></div>
+<p>The number of jobs (tasks) of the array is 100 and each job runs 10 programs serially, so <code>10 * 100 = 1,000</code> programs are submitted.</p>
+<p>The array task ID (<code>$SLURM_ARRAY_TASK_ID</code>) and total number of tasks in the array (<code>$SLURM_ARRAY_TASK_COUNT</code>) are used to calculate the global index. Use the global index as the input parameter for the program.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This approach is useful for submitting a large number of short-run-time programs.</strong></p>
+</div>
+<p>Also refer to <a href="https://orcd-docs.mit.edu/running-jobs/job-arrays/">this page</a> for more examples of integrating serial execution and job array.</p>
+<h2 id="parallel-execution">Parallel execution<a class="headerlink" href="#parallel-execution" title="Permanent link">&para;</a></h2>
+<p>Parallel execution means executing multiple programs in parallel within a job. Here is an example job script that runs 10 programs in parallel. 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>#!/bin/bash
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>#SBATCH -t 00:30:00    # 30 minutes
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>#SBATCH -N 1           # 1 node
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>#SBATCH -n 20          # 20 CPU cores
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>#SBATCH --mem=20GB     # 20 GB of memory
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>module load miniforge/24.3.0-0
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>N_PROGRAMS=10
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>for i in `seq 1 $N_PROGRAMS` # Loop from 1 to number of programs
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>do
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>   python mycode.py $i &amp;    # Run a program parallely in background
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>done
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>wait   # Wait for all programs to be completed, then exit the batch job. 
+</span></code></pre></div></p>
+<p>Each program uses 2 CPU cores and 2 GB of memory, so the job requests 20 CPU cores and 20 GB of memory for 10 programs. </p>
+<p>Here the main difference from the serial execution is that an <code>&amp;</code> mark is added at the end of the execution command, which puts the program in the background, and all 10 programs start to run almost simultaneously.</p>
+<p>The <code>wait</code> command in the last line ensures that the batch job will not be terminated until all background programs are completed.  </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This approach is good when each program requires a small number of CPU cores and a small amount of memory.</strong> If each program requires many CPU cores or large memory, executing multiple programs in parallel would require too many CPUs or too much memory, which may not fit within one node. </p>
+</div>
+<h2 id="integrate-parallel-execution-and-job-array">Integrate parallel execution and job array<a class="headerlink" href="#integrate-parallel-execution-and-job-array" title="Permanent link">&para;</a></h2>
+<p>To scale up the number of programs, use a job array together with parallel execution. Here is an example job script.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>#!/bin/bash
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>#SBATCH -t 02:00:00             # Two hours
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>#SBATCH -N 1                    # 1 node
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>#SBATCH -n 2                    # 2 CPU cores
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>#SBATCH --mem=2GB               # 2 GB of memory
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>#SBATCH --array=0-99            # Job array 
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>module load miniforge/24.3.0-0
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>nmax=$SLURM_ARRAY_TASK_COUNT    # Num of tasks per array
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>id=$SLURM_ARRAY_TASK_ID         # Task ID
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>N_PROGRAMS=10
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>for i in `seq 1 $N_PROGRAMS`    # Loop for serial execution
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>do
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    index=$(( $nmax * ($i - 1) + $id ))   # Calculate the global index
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    python mycode.py $index  &amp;   # Run a program parallely in background, using the global index as input
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>done
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>wait     # Wait for all programs to be completed, then exit the batch job. 
+</span></code></pre></div>
+<p>The number of jobs (tasks) of the array is 100 and each job runs 10 programs in parallel, so <code>10 * 100 = 1,000</code> programs are submitted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This approach is useful to submit a large number of programs, when each program requires small resources (CPUs and memory).</strong></p>
+</div>
+<h2 id="integrate-sequential-execution-parallel-execution-and-job-array">Integrate sequential execution, parallel execution, and job array<a class="headerlink" href="#integrate-sequential-execution-parallel-execution-and-job-array" title="Permanent link">&para;</a></h2>
+<p>To further scale up the number of programs, one may consider integrating sequential execution, parallel execution, and a job array. Here is an example job script. </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>#!/bin/bash
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>#SBATCH -t 02:00:00       # Two hours
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>#SBATCH -N 1              # 1 node
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>#SBATCH -n 20             # 20 CPU cores
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>#SBATCH --mem=20GB        # 20 GB of memory
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>#SBATCH --array=0-99      # Job array 
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>module load miniforge/24.3.0-0
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>nmax=$SLURM_ARRAY_TASK_COUNT     # Num of tasks per array
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>id=$SLURM_ARRAY_TASK_ID          # Task ID
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>N_SERIAL=10
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>N_PARALLEL=10
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>for i in `seq 1 $N_SERIAL`        # Loop for serial executions
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>do
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>   for j in `seq 1 $N_PARALLEL`   # Loop for parallel executions
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>   do
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>     index=$(( $nmax * ( $N_PARALLEL * ($i-1) + ($j-1) ) + $id ))  # Global index
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>     python mycode.py $index &amp;    # Run a program in the background, using the global index as input. 
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>   done 
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>   wait    # Wait for all parallel executions to complete, then go to the next iteration in the loop of serial executions.
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>done 
+</span></code></pre></div>
+<p>The number of jobs (tasks) of the array is 100 and each job runs <code>10 * 10 = 100</code> programs in the nested loops of serial and parallel executions, so <code>100 * 100 = 10,000</code> programs are submitted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>This approach is useful for submitting a large number of programs, when each program requires a short run time and small resources (CPUs and memory).</strong></p>
 </div>
 
 
@@ -1602,7 +1875,7 @@ The "&amp;" in the above command puts the matlab program in the background and f
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 26, 2025 21:19:03 UTC">March 26, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 13, 2025 22:51:46 UTC">August 13, 2025</span>
   </span>
 
     
