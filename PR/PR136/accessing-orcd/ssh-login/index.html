@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -813,6 +813,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../software/licensed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Licensed Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../software/building-software/" class="md-nav__link">
         
   
@@ -1033,6 +1056,29 @@
             ORCD Recipes
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/many-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced Job Array
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1317,29 +1363,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recipes/relion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    RELION
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../recipes/build-vasp-gcc-cpu/" class="md-nav__link">
         
   
@@ -1405,6 +1428,28 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hosted-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware Purchases
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1510,6 +1555,28 @@
   
   <span class="md-ellipsis">
     FAQs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -1682,7 +1749,7 @@
 </div>
 <h2 id="logging-in-via-ssh">Logging in via SSH<a class="headerlink" href="#logging-in-via-ssh" title="Permanent link">&para;</a></h2>
 <p>Once you have your terminal set up for your specific operating system, you can use SSH to access our HPC systems. Follow the commands below for your desired system.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">Satori</label><label for="__tabbed_2_3">SuperCloud</label><label for="__tabbed_2_4">OpenMind</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Engaging</label><label for="__tabbed_2_2">SuperCloud</label><label for="__tabbed_2_3">OpenMind</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The Engaging Cluster has 4 Rocky 8 login nodes: </p>
@@ -1710,35 +1777,20 @@ Replace <code>[username]</code> with your MIT Kerberos username and <code>[host]
 </div>
 </div>
 <div class="tabbed-block">
-<p>Satori has 2 login nodes:  </p>
-<ul>
-<li>Use <code>satori-login-001.mit.edu</code> for submitting training jobs and related activities.</li>
-<li>Use <code>satori-login-002.mit.edu</code> for transferring large files/datasets and compiling software.</li>
-</ul>
-<p>To login via the command line, run the SSH command:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@<span class="o">[</span>host<span class="o">]</span>
-</span></code></pre></div>
-Replace <code>[username]</code> with your MIT Kerberos username and <code>[host]</code> with the desired login node name (e.g., ssh your_name@satori-login-001.mit.edu).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You will be prompted to enter your MIT Kerberos password if you have not set up SSH keys. To set them up, please refer to our <a href="../ssh-setup/">SSH Key Setup Page</a>.</p>
-</div>
-</div>
-<div class="tabbed-block">
 <p>Accessing the SuperCloud system through SSH requires that your public ssh-key has been added to the <code>authorized_keys</code> file in your SuperCloud account. Follow the instructions on <a href="https://mit-supercloud.github.io/supercloud-docs/requesting-account/#generating-ssh-keys">this page</a> to create your keys and add them to your account.</p>
 <p>If you have any issues connecting to the system, please send an email to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#112;&#101;&#114;&#99;&#108;&#111;&#117;&#100;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#115;&#117;&#112;&#101;&#114;&#99;&#108;&#111;&#117;&#100;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
 <p>To connect to SuperCloud once your SSH keys are setup, follow these steps:  </p>
 <ol>
 <li>Open a command line terminal window.</li>
 <li>Enter the following command, replacing <code>[username]</code> with your SuperCloud username:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@txe1-login.mit.edu
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@txe1-login.mit.edu
 </span></code></pre></div></li>
 </ol>
 </div>
 <div class="tabbed-block">
 <p>To login to OpenMind, you must first be connected to the MIT Wi-Fi or MIT VPN. For further instructions, refer to this <a href="https://github.mit.edu/MGHPCC/OpenMind/wiki/How-to-log-in-Openmind%3F">page</a>.</p>
 <p>To login to OpenMind via the command line, run the SSH command:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@openmind.mit.edu
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@openmind.mit.edu
 </span></code></pre></div>
 Replace <code>[username]</code> with your MIT Kerberos username. </p>
 <div class="admonition note">
@@ -1768,7 +1820,7 @@ Replace <code>[username]</code> with your MIT Kerberos username. </p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 14, 2024 21:49:25 UTC">November 14, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 5, 2025 20:35:04 UTC">September 5, 2025</span>
   </span>
 
     
@@ -1823,10 +1875,10 @@ Replace <code>[username]</code> with your MIT Kerberos username. </p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
