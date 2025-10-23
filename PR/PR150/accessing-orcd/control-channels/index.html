@@ -450,18 +450,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ssh-controlchannel-and-vscode" class="md-nav__link">
+  <a href="#use-of-ssh-controlchannel" class="md-nav__link">
     <span class="md-ellipsis">
-      SSH ControlChannel and VSCode
+      Use of SSH ControlChannel
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-of-ssh-controlchannel" class="md-nav__link">
+  <a href="#ssh-controlchannel-and-vscode" class="md-nav__link">
     <span class="md-ellipsis">
-      Use of SSH ControlChannel
+      SSH ControlChannel and VSCode
     </span>
   </a>
   
@@ -1625,18 +1625,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ssh-controlchannel-and-vscode" class="md-nav__link">
+  <a href="#use-of-ssh-controlchannel" class="md-nav__link">
     <span class="md-ellipsis">
-      SSH ControlChannel and VSCode
+      Use of SSH ControlChannel
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-of-ssh-controlchannel" class="md-nav__link">
+  <a href="#ssh-controlchannel-and-vscode" class="md-nav__link">
     <span class="md-ellipsis">
-      Use of SSH ControlChannel
+      SSH ControlChannel and VSCode
     </span>
   </a>
   
@@ -1661,31 +1661,17 @@
       
       
       
-        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
-      
-    
-      
-      
-      
-        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
+        <a href="../../tags/#tag:logging-in" class="md-tag">Logging In</a>
       
     
   </nav>
 
 
 
-<h1 id="using-ssh-controlchannel-to-streamline-two-factor-ssh">Using SSH ControlChannel to Streamline Two Factor SSH<a class="headerlink" href="#using-ssh-controlchannel-to-streamline-two-factor-ssh" title="Permanent link">&para;</a></h1>
-<p>Two factor logins for SSH login sessions add security but they can be cumbersome to work with when 
-you need to create multiple login sessions. The <em>ControlChannel</em> feature of <a href="https://www.openssh.com/">OpenSSH</a> can 
-be used to create multiple SSH sessions tied to a single Two Factor sign on. Using this feature 
-means you can log in with Two Factor authentication once, then subsequent ssh login sessions will use the first ssh connection and Two Factor will not be needed. This will last until the initial connection is disconnected.</p>
-<h3 id="ssh-controlchannel-and-vscode">SSH ControlChannel and VSCode<a class="headerlink" href="#ssh-controlchannel-and-vscode" title="Permanent link">&para;</a></h3>
-<p>This setup is very helpful when using Visual Studio Code's Remote - SSH extension.</p>
-<p>When VS Code connects to a remote server, it doesn't just open one connection. It opens multiple, simultaneous SSH sessions in the background to handle different tasks: one for the file explorer, one for the integrated terminal, others for language servers, debuggers, and extensions.</p>
-<p>Without a control channel: If your server requires multi-factor authentication (MFA), VSCode's attempt to open these many connections at once can trigger a "storm" of MFA prompts. You get bombarded with notifications, and the editor may fail to connect properly.</p>
-<p>With a control channel: The experience is completely different.  VS Code establishes the initial "master" connection, and you approve a single MFA prompt. Every other connection VS Code needs is then instantly multiplexed through the existing socket. </p>
+<h1 id="using-ssh-controlchannel-to-streamline-two-factor-ssh">Using SSH ControlChannel to Streamline Two-Factor SSH<a class="headerlink" href="#using-ssh-controlchannel-to-streamline-two-factor-ssh" title="Permanent link">&para;</a></h1>
+<p>Two-factor logins for SSH login sessions add security but they can be cumbersome to work with when you need to create multiple login sessions. The <strong>ControlChannel</strong> feature of <a href="https://www.openssh.com/">OpenSSH</a> can be used to create multiple SSH sessions tied to a single two-factor sign on. Using this feature means you can log in with two-factor authentication once, then subsequent ssh login sessions will use the first ssh connection and two-factor will not be needed. This will last until the initial connection is disconnected.</p>
 <h2 id="use-of-ssh-controlchannel">Use of SSH ControlChannel<a class="headerlink" href="#use-of-ssh-controlchannel" title="Permanent link">&para;</a></h2>
-<p>The Simplest way to use th <em>ControlChannel</em> option is to create a section in the file <code>~/.ssh/config</code> that activates the <em>ControlChannel</em> feature on the nodes you use to connect. An example section is show below: </p>
+<p>The simplest way to use the ControlChannel option is to create a section in the file <code>~/.ssh/config</code> that activates the ControlChannel feature on the nodes you use to connect. An example section is show below: </p>
 <div class="language-yaml highlight"><span class="filename">~/.ssh/config</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="l l-Scalar l-Scalar-Plain">Host orcd-login</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">Hostname orcd-login.mit.edu</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ControlMaster auto</span>
@@ -1694,10 +1680,8 @@ means you can log in with Two Factor authentication once, then subsequent ssh lo
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">User USERNAME</span>
 </span></code></pre></div>
 <p>Replace <code>USERNAME</code> with the username you use on Engaging. In the 
-configuration file examples the <code>ControlPersist</code> option is not required, but is shown to 
-illustrate its use to keep the primary connection open for a time after that login 
-session is exited.</p>
-<p>To use the <em>ControlChannel</em> setup ssh using the name listed in the "Host" entry, in this example <code>orcd-login</code>:</p>
+configuration file examples the <code>ControlPersist</code> option is not required, but can be used to keep the primary connection open for a set time after that login session is exited. <code>ControlPersist</code> only works if you remain connected to the internet.</p>
+<p>To use the ControlChannel setup ssh using the name listed in the "Host" entry, in this example <code>orcd-login</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">First Connection</label><label for="__tabbed_1_2">Additional Connections</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1728,8 +1712,13 @@ session is exited.</p>
 </div>
 </div>
 <p>In this case you don't need to include your username because it is included in the <code>~/.ssh/config</code> file.</p>
-<p>Your initial connection will prompt you for your Kerberos password and Duo Two-Factor authentication. Additional connections will prompt you for a Kerberos password, unless you have ssh keys setup. If you have ssh keys you will only be prompted for your Kerberos password at the first login as part of the Two-Factor authentication, and additional connections will not require a Kerberos password.</p>
-<p>Port forwarding and X session forwarding is bound to the initial <em>ControlChannel</em> ssh session.</p>
+<p>Your initial connection will prompt you for your Kerberos password and Duo two-factor authentication. Additional connections will prompt you for a Kerberos password, unless you have ssh keys setup. If you have ssh keys you will only be prompted for your Kerberos password at the first login as part of the two-factor authentication, and additional connections will not require a Kerberos password.</p>
+<p>Port forwarding and X session forwarding is bound to the initial ControlChannel ssh session.</p>
+<h2 id="ssh-controlchannel-and-vscode">SSH ControlChannel and VSCode<a class="headerlink" href="#ssh-controlchannel-and-vscode" title="Permanent link">&para;</a></h2>
+<p>This setup is very helpful when using Visual Studio Code's Remote - SSH extension. When VS Code connects to a remote server, it doesn't just open one connection. It opens multiple, simultaneous SSH sessions in the background to handle different tasks: one for the file explorer, one for the integrated terminal, others for language servers, debuggers, and extensions.</p>
+<p>Without a control channel: If your server requires two-factor authentication , VS Code's attempt to open these many connections at once can trigger a "storm" of two-factor prompts. You get bombarded with notifications, and the editor may fail to connect properly.</p>
+<p>With a control channel: The experience is completely different.  VS Code establishes the initial "master" connection, and you approve a single two-factor prompt. Every other connection VS Code needs is then instantly multiplexed through the existing socket.</p>
+<p>There are some additional settings that make using VS Code with Engaging much easier with two-factor. See our <a href="https://orcd-docs.mit.edu/recipes/vscode/#other-vscode-best-practices-tips-and-tricks">VS Code Tips and Tricks</a>, particularly the "Connection Timeout" and "Max Reconnection Attempts" settings.</p>
 
 
 
@@ -1750,7 +1739,7 @@ session is exited.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 20, 2025 20:04:20 UTC">October 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 23, 2025 18:10:18 UTC">October 23, 2025</span>
   </span>
 
     
