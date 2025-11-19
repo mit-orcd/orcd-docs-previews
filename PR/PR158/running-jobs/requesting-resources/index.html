@@ -2098,25 +2098,38 @@ that the amount of memory reported by <code>sacct</code> is only accurate for jo
 <p>If the <code>MaxRSS</code> value is larger than what you have requested, or you run out of memory, you will have to request additional memory for your job.</p>
 <h2 id="gpus">GPUs<a class="headerlink" href="#gpus" title="Permanent link">&para;</a></h2>
 <p>GPUs are available through the <code>mit_normal_gpu</code> partition. You can also run <a href="../overview/#preemptable-jobs">preemptable</a> GPU jobs on the <code>mit_preemptable</code> partition.</p>
-<p>To request a GPU use the <code>-G</code> or <code>--gpus</code> flag in one of the two following ways:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>-G<span class="w"> </span><span class="o">[</span><span class="c1">#GPUS]</span>
-</span></code></pre></div>
-<p>or</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>-G<span class="w"> </span><span class="o">[</span>GPU_TYPE<span class="o">]</span>:<span class="o">[</span><span class="c1">#GPUS]</span>
-</span></code></pre></div>
-<p>For example, to request 1 L40S GPU, use  the flag <code>-G l40s:1</code>. To request 2 H200 GPUs use the flag <code>-G h200:2</code>. If you don't request a GPU type on <code>mit_normal_gpu</code> or <code>mit_preemptable</code> you will be allocated an L40S GPU.</p>
-<p>If you are running a multi-node (distributed) GPU job use the <code>--gpus-per-node</code> flag and specify the number of GPUs you need per node rather than the total number of GPUs.</p>
-<p>You can see how many GPUs of which type are on each node in a partition using the <code>sinfo</code> command. For example, to check <code>mit_normal_gpu</code> run the command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sinfo<span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>-O<span class="w"> </span>Partition,Nodes,CPUs,Memory,Gres
+<p>To request a GPU use the <code>-G</code> or <code>--gpus</code> flag and specify the number of GPUs that you need for the job (ex: <code>-G 1</code>). If you need a specific type of GPU specify that type with the pattern <code>-G [GPU_TYPE]:[#GPUS]</code>. </p>
+<p>For example, to request 1 L40S GPU, use  the flag <code>-G l40s:1</code>. To request 2 H200 GPUs use the flag <code>-G h200:2</code>. If you don't specify a GPU type on <code>mit_normal_gpu</code> or <code>mit_preemptable</code> you will be allocated an L40S GPU. L40S GPUs are good for most machine learning workloads. H200s should be reserved for jobs that require more memory than an L40S or require high precision (float 64).</p>
+<p>An example batch script that requests 4 cores and 1 GPU on the <code>mit_normal_gpu</code> partition to run a Python script would be:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Job Flags</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">#SBATCH -p mit_normal_gpu</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">#SBATCH -c 4</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">#SBATCH -G 1</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Set up environment</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># Run your application</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>python<span class="w"> </span>myscript.py
 </span></code></pre></div>
 <div class="admonition warning">
-<p class="admonition-title">Requesting CPUs in GPU Jobs</p>
-<p>To make sure there are enough CPUs for each GPU to accept jobs, we reserve a certain number of CPUs for each GPU. If you request too many CPUs (more than the number of CPUs divided by number of GPUs), then your job may not run or may be allocated an extra GPU, which will count against your allocation. Below is a table that shows the number of CPUs per GPU for nodes in <code>mit_normal</code>.</p>
+<p class="admonition-title">Requesting too many CPUs may use up your allocation</p>
+<p>To make sure there are enough CPUs for each GPU to accept jobs, we reserve a certain number of CPUs for each GPU. If you request too many CPUs (more than the number of CPUs divided by number of GPUs), then your job may not run or may be allocated an extra GPU, which will count against your allocation. See the table below for the number of CPUs available per GPU on <code>mit_normal_gpu</code>.</p>
+</div>
+<p>If you are running a multi-node (distributed) GPU job use the <code>--gpus-per-node</code> flag and specify the number of GPUs you need per node rather than the total number of GPUs.</p>
+<p>You can see how many GPUs of which type are on each node in a partition using the <code>sinfo</code> command. For example, to check <code>mit_normal_gpu</code> run the command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sinfo<span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>-O<span class="w"> </span>Partition,Nodes,CPUs,Memory,Gres
+</span></code></pre></div>
+<p>Below is a summary of the GPU nodes in <code>mit_normal_gpu</code>. See the <a href="../available-resources/#mit_normal_gpu">Available Resources</a> page for more details.</p>
 <table>
 <thead>
 <tr>
 <th>GPU Type</th>
 <th>Number of GPUs on Node</th>
+<th>GPU Memory</th>
+<th>Number of CPUs on Node</th>
 <th>Available CPUs per GPU</th>
 </tr>
 </thead>
@@ -2124,16 +2137,19 @@ that the amount of memory reported by <code>sacct</code> is only accurate for jo
 <tr>
 <td>L40S</td>
 <td>4</td>
+<td>44GB</td>
+<td>64</td>
 <td>16</td>
 </tr>
 <tr>
 <td>H200</td>
 <td>8</td>
+<td>140GB</td>
+<td>120</td>
 <td>15</td>
 </tr>
 </tbody>
 </table>
-</div>
 
 
 
@@ -2154,7 +2170,7 @@ that the amount of memory reported by <code>sacct</code> is only accurate for jo
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2025 21:06:42 UTC">November 18, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 19, 2025 19:52:35 UTC">November 19, 2025</span>
   </span>
 
     
