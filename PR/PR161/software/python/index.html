@@ -2395,7 +2395,7 @@
 
 
 <h1 id="installing-python-packages">Installing Python Packages<a class="headerlink" href="#installing-python-packages" title="Permanent link">&para;</a></h1>
-<p>Python is provided on Engaging through a set of <code>miniforge</code> <a href="../modules/">modules</a>. Check <code>module avail</code> to see a list of available versions. Miniforge is a conda distribution created by the community that maintains the conda-forge channel, is open source, and doesn't require purchasing a license to use.</p>
+<p>Python is provided on Engaging through a set of <code>miniforge</code> <a href="../modules/">modules</a>. Check <code>module avail miniforge</code> to see a list of available versions. Miniforge is a conda distribution created by the community that maintains the conda-forge channel, is open source, and doesn't require purchasing a license to use.</p>
 <p>To load the latest version of <code>miniforge</code> you can run:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
 </span></code></pre></div>
@@ -2408,175 +2408,168 @@
 <li><a href="#conda-environments">Install packages in your own conda/mamba environment</a></li>
 </ul>
 <p>Which you use is mostly personal preference, but sometimes it could depend on which packages your are installing. We encourage everyone to use environments, which can be created per project and will have fewer issues with package compatibility. Read through the pros and cons for each, they are meant to help you see when one might be better than another.</p>
+<p>Environments allow you to make self-contained “bundles” of packages that can be loaded and unloaded. This helps keep a consistent set of packages and versions for a given project, rather than putting all packages you've ever installed together.</p>
 <h2 id="python-virtual-environments">Python Virtual Environments<a class="headerlink" href="#python-virtual-environments" title="Permanent link">&para;</a></h2>
-<p>Environments allow you to make self-contained “bundles” of packages that can be loaded and unloaded. This helps keep a consistent set of packages and versions for a given project, rather than putting all packages you've ever installed together like they would be when you install with <a href="#home-directory-install"><code>pip install --user</code></a>. Python virtual environments can be placed anywhere you have write access to and have all their packages in that environment’s directory structure.</p>
+<p>Python virtual environments are a native python functionality and can be placed anywhere you have write access to and have all their packages in that environment’s directory structure.</p>
 <h3 id="creating-python-virtual-environments">Creating Python Virtual Environments<a class="headerlink" href="#creating-python-virtual-environments" title="Permanent link">&para;</a></h3>
 <p>To create a new environment, first load the <code>miniforge</code> module using the <code>module load</code> command. See the page on <a href="../modules/">Modules</a> for more information on how to load modules.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/24.3.0-0
+</span></code></pre></div>
 <p>To create a the environment use the <code>python -m venv</code> command: </p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/path/to/virtual/environment
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/path/to/virtual/environment
 </span></code></pre></div>
 <p>Note that you specify a path, and not only a name for the environment. This means you can place your environment wherever you'd like. Usually it is placed somewhere in the project directory it is used for. For example, if I want to create an environment for a project called <code>my_project</code> that lives in my home directory, I would run something like:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>~/my_project
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>my_project_env
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>~/my_project
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>my_project_env
 </span></code></pre></div>
 <p>This will create an environment at the path <code>~/my_project/my_project_env</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Virtual Environment documentation and tutorials will often tell you to run the command <code>python3 -m venv .venv</code> to create an environment. The <code>.</code> at the beginning of <code>.venv</code> creates a hidden directory in the current working directory. You won't see this directory if you run the <code>ls</code> command by itself, run <code>ls -a</code> to see hidden files and directories. If you are new to virtual environments and Linux we recommend using a descriptive name for your environment that is not hidden (doesn't start with <code>.</code>).</p>
+<p>Virtual Environment documentation and tutorials will often tell you to run the command <code>python3 -m venv .venv</code> to create an environment. The <code>.</code> at the beginning of <code>.venv</code> creates a hidden directory in the current working directory. You won't see this directory if you run the <code>ls</code> command by itself, run <code>ls -a</code> to see hidden files and directories. If you are new to virtual environments and Linux we recommend using a descriptive name for your environment, such as <code>projectname_venv</code>.</p>
 </div>
-<p>By default environments will be fully isolated and Python will only see the packages you've installed in the environment. You can signal your virtual environment to "see" system installed packages by using the flag <code>--system-site-packages</code> when creating the environment. This is useful when the module you are using has packages already installed. For example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>my_project_env
+<p>By default environments will be fully isolated and Python will only see the packages you've installed in the environment. You can signal your virtual environment to "see" system installed packages by using the flag <code>--system-site-packages</code> when creating the environment. This is useful when the miniforge module has some of the packages you are using. For example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>my_project_env
 </span></code></pre></div>
 <p>Before installing packages or using an environment we need to activate the environment:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
 </span></code></pre></div>
 <p>Using our example above, if we are in the <code>my_project</code> directory already, we can run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>my_project_env/bin/activate
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">source</span><span class="w"> </span>my_project_env/bin/activate
 </span></code></pre></div>
-<p>Finally we can now install packages into the environment. Once activating the environment new packages can be installed with the <code>pip</code> command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pkgname
+<p>We can now install packages into the environment. Once activating the environment new packages can be installed with the <code>pip</code> command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pkgname
 </span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Do not use <code>--user</code> flag to install, this will install into <code>$HOME/.local</code> instead of the environment.</p>
 </div>
 <p>When you are done using or installing packages into an environment you can deactivate it with the command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>deactivate
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>deactivate
 </span></code></pre></div>
 <h3 id="using-python-virtual-environments">Using Python Virtual Environments<a class="headerlink" href="#using-python-virtual-environments" title="Permanent link">&para;</a></h3>
 <p>In order to use an environment you will need to activate it as described above:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
 </span></code></pre></div>
-<p>Once it is activated any <code>python</code> commands will run in that environment and have access to the packages in the environment. To use an environment in a job activate the environment in your job script. An environment activated on the login node will not necessarily carry over to your job. Using the same example above, let's look at the script <code>myjob.sh</code> in the <code>my_project</code> directory:</p>
-<div class="language-bash highlight"><span class="filename">myjob.sh</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">source</span><span class="w"> </span>my_project_env/bin/activate
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>python<span class="w"> </span>myscript.py
+<p>Using our example above, if we are in the <code>my_project</code> directory already, we can run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">source</span><span class="w"> </span>my_project_env/bin/activate
+</span></code></pre></div>
+<p>Once it is activated any <code>python</code> commands will run in that environment and have access to the packages in the environment.</p>
+<p>To use an environment in a job include the command above in your job script. An environment activated on the login node will not necessarily carry over to your job. Using the same example above, let's look at the script <code>myjob.sh</code> in the <code>my_project</code> directory:</p>
+<div class="language-bash highlight"><span class="filename">myjob.sh</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1"># Activate the environment</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">source</span><span class="w"> </span>my_project_env/bin/activate
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1"># Run the python script</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>python<span class="w"> </span>myscript.py
 </span></code></pre></div>
 <p>When this job runs it will activate the environment in <code>my_project_env</code> and then run the python script <code>myscript.py</code> using the packages in that environment.</p>
 <h3 id="requirementstxt-and-virtual-environments">Requirements.txt and Virtual Environments<a class="headerlink" href="#requirementstxt-and-virtual-environments" title="Permanent link">&para;</a></h3>
 <p>Environments can be described by a <code>requirements.txt</code> file, which lists packages and optionally their versions. This file can be created from any existing virtual environment and used to re-create that environment. Version numbers are required to recreate the environment exactly.</p>
 <p>You can either create a <code>requirements.txt</code> file by hand by creating a file with one package name on each line, or you can create one from a currently active environment with the command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
 </span></code></pre></div>
 <p>Given a <code>requirements.txt</code> file you can use <code>pip</code> to install the packages in that file into your environment. First activate the environment, then install the packages with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </span></code></pre></div>
 <h3 id="pros-and-cons-for-virtual-environments">Pros and Cons for Virtual Environments<a class="headerlink" href="#pros-and-cons-for-virtual-environments" title="Permanent link">&para;</a></h3>
 <p>Pros</p>
 <ul>
-<li>Can be set to build “on top of” the central installation packages (not default behavior, use the <code>--system-site-packages</code> flag when creating)</li>
+<li>Can be set to build “on top of” the central installation packages by using the <code>--system-site-packages</code> flag when creating the environment</li>
 <li>Self-contained environments for each project help stay organized and avoid package dependency conflicts. For software development it allows you to keep better track of your package’s dependencies so others know what they need to install.</li>
 <li>Virtual environments are self-contained, fairly lightweight and can be put anywhere easily without additional configuration files</li>
 </ul>
 <p>Cons</p>
 <ul>
-<li>Environments will be the same version of the python that you used to make them</li>
-<li>Only installs packages available through PyPI, cannot install anaconda/conda-forge distributed packages or libraries</li>
+<li>Environments will include the same version of the python that you used to create them. If you need a different version of Python, you have to create the environment with that other version.</li>
+<li>Only installs packages available through PyPI, cannot install conda distributed packages or libraries</li>
 </ul>
 <h2 id="conda-environments">Conda Environments<a class="headerlink" href="#conda-environments" title="Permanent link">&para;</a></h2>
-<p>Environments allow you to make self-contained “bundles” of packages that can be loaded and unloaded. This helps keep a consistent set of packages and versions for a given project, rather than putting them all together like they would be when you install with <a href="#home-directory-install"><code>pip install --user</code></a>. Conda environments are a bit different from Python virtual environments, by default they are stored in the <code>.conda</code> directory in your home directory. They also tend to contain a lot more files than Virtual Environments. You can also install some system libraries into conda environments, which can make installing packages with system library dependencies easier.</p>
+<p>Conda environments are a bit different from Python virtual environments, by default they are stored in the <code>.conda</code> directory in your home directory. They also tend to contain a lot more files than Virtual Environments. You can also install some system libraries into conda environments, which can make installing packages with system library dependencies easier.</p>
 <p>You'll also see mention of mamba environments. Mamba and conda are nearly the same, however mamba has a different dependency solver. Mamba is often better and faster than conda at solving dependencies and picking packages, so we recommend using mamba whenever possible.</p>
 <h3 id="creating-conda-environments">Creating Conda Environments<a class="headerlink" href="#creating-conda-environments" title="Permanent link">&para;</a></h3>
-<p>First, load a <code>miniforge</code> module using the <code>module load</code> command. See the page on <a href="../modules/">Modules</a> for more information on how to load modules. See <a href="#modules-for-python">Modules for Python</a> above for information about specific modules for the system you are using.</p>
+<p>To create a new environment, first load the <code>miniforge</code> module using the <code>module load</code> command. See the page on <a href="../modules/">Modules</a> for more information on how to load modules.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We discourage installing miniconda or miniforge in your home directory. Engaging keeps up to date miniforge modules so installing your own is not necessary and will take up space in your home directory and potentially slow down your applications.</p>
 </div>
-<p>To create an environment you can use the <code>mamba create</code> or <code>conda create</code> command after loading your conda module:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>module<span class="w"> </span>load<span class="w"> </span>conda_module
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>pkg1<span class="w"> </span>pkg2<span class="w"> </span>pkg3
+<p>To create an environment you can use the <code>mamba create</code> or <code>conda create</code> command after loading the <code>miniforge</code> module:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>mamba<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12<span class="w"> </span>pkg1<span class="w"> </span>pkg2<span class="w"> </span>pkg3
 </span></code></pre></div>
 <p>or, using <code>conda</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>module<span class="w"> </span>load<span class="w"> </span>conda_module
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>pkg1<span class="w"> </span>pkg2<span class="w"> </span>pkg3
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>my_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12<span class="w"> </span>pkg1<span class="w"> </span>pkg2<span class="w"> </span>pkg3
 </span></code></pre></div>
-<p>where <code>conda_module</code> is the name of the conda or mamba module for the system you are using. In this example I am creating a conda environment named <code>my_env</code> with Python 3.10 and installing packages pkg1, pkg2, pkg3. We have found that conda/mamba creates more robust environments when you include all the packages you need when you create the environment.</p>
-<p>You can install additional packages by activating the environment and using the <code>mamba install</code> or <code>conda install</code> command. Again you would first load the appropriate module if it isn't already loaded:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>module<span class="w"> </span>load<span class="w"> </span>conda_module
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>mamba<span class="w"> </span>install<span class="w"> </span>pkg4
+<p>where <code>miniforge</code> loads the latest miniforge module. In this example I am creating a conda environment named <code>my_env</code> with Python 3.12 and installing packages pkg1, pkg2, pkg3.</p>
+<p>You can install additional packages by activating the environment and using the <code>mamba install</code> or <code>conda install</code> command. Again you would first load the <code>miniforge</code> module if it isn't already loaded:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>mamba<span class="w"> </span>install<span class="w"> </span>pkg4
 </span></code></pre></div>
-<p>where <code>conda_module</code> is the name of the conda or mamba module for the system you are using. Here I am showing with <code>mamba</code>, replace with <code>conda</code> if you have a conda environment. Packages that aren't available through conda channels can be installed with the <code>pip</code> command when the environment is activated:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>module<span class="w"> </span>load<span class="w"> </span>conda_module
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>pip<span class="w"> </span>install<span class="w"> </span>pkg5
+<p>where <code>miniforge</code> loads the latest miniforge module. Here I am installing with <code>mamba</code>. Packages that aren't available through conda channels can be installed with the <code>pip</code> command when the environment is activated:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>pip<span class="w"> </span>install<span class="w"> </span>pkg5
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To install packages with <code>pip</code> to a conda or mamba environment you should <em>not</em> include the <code>--user</code> flag. Further, if you are using a conda environment and want Python to <em>only</em> use packages in your environment, you can run the following two command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONNOUSERSITE</span><span class="o">=</span>True
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONNOUSERSITE</span><span class="o">=</span>True
 </span></code></pre></div>
 <p>This will make sure your conda environment packages will be chosen before those that may be installed in your home directory.</p>
 </div>
-<p>If you would like to use your conda environment in Jupyter, install the "jupyter" package into your environment. Once you have done that, you should see your conda environment listed in the available kernels.</p>
+<p>If you would like to use your conda environment in Jupyter, install the <code>jupyter</code> package into your environment. Once you have done that, you should see your conda environment listed in the available kernels.</p>
 <h3 id="using-conda-environments">Using Conda Environments<a class="headerlink" href="#using-conda-environments" title="Permanent link">&para;</a></h3>
-<p>Then, whenever you want to activate the environment, first load the anaconda module, then activate with <code>source activate my_env</code>. Using <code>source activate</code> instead of <code>conda activate</code> allows you to use your conda environment at the command line and in submission scripts without additional steps. See <a href="#condamamba-init">Conda/Mamba Init</a> in the Troubleshooting section below for more information.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>module<span class="w"> </span>load<span class="w"> </span>conda_module
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
+<p>Whenever you want to activate the environment, first load the miniforge module, then activate with <code>source activate my_env</code>. Using <code>source activate</code> instead of <code>conda activate</code> allows you to use your conda environment at the command line and in submission scripts without additional steps. See <a href="#condamamba-init">Conda/Mamba Init</a> in the <a href="#troubleshooting-python-package-issues">Troubleshooting</a> section below for more information.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
 </span></code></pre></div>
-<p>To use a conda environment in a job you can usually add these lines to you job script:</p>
-<div class="language-bash highlight"><span class="filename">myjob.sh</span><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>module<span class="w"> </span>load<span class="w"> </span>conda_module
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>python<span class="w"> </span>myscript.py
+<p>To use a conda environment in a job you can add these lines to you job script:</p>
+<div class="language-bash highlight"><span class="filename">myjob.sh</span><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># Load the miniforge module</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="c1"># Activate your environment</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>my_env
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="c1"># Run your Python script</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>python<span class="w"> </span>myscript.py
 </span></code></pre></div>
 <p>If this isn't working, see the Troubleshooting section below on <a href="#environment-is-not-activating-in-a-job-script">activating an environment in a job script</a>.</p>
 <h3 id="pros-and-cons-for-conda-environments">Pros and Cons for Conda Environments<a class="headerlink" href="#pros-and-cons-for-conda-environments" title="Permanent link">&para;</a></h3>
 <p>Pros</p>
 <ul>
-<li>Environments can be created with any supported version of Python.</li>
-<li>Can install packages available through various conda channels as well as PyPI (packages installed with <code>pip</code>).<ul>
-<li>Conda channels include many system libraries, making packages with complicated dependencies easier to install.</li>
-</ul>
-</li>
+<li>Environments can be created with any supported version of Python</li>
+<li>Can install packages available through various conda channels as well as PyPI (packages installed with <code>pip</code>)</li>
+<li>Conda channels include many system libraries, making packages with complicated dependencies easier to install</li>
 <li>Self-contained environments for each project help stay organized and avoid package dependency conflicts. For software development it allows you to keep better track of your package’s dependencies so others know what they need to install.</li>
 </ul>
 <p>Cons</p>
 <ul>
-<li>Can not be set to build “on top of” the central installation packages, which means basic package will be re-installed in your home directory.</li>
-<li>Can get very large and take up a lot of space in your home directory.</li>
-<li>It can sometimes be slower than other options.</li>
+<li>Can not be set to build “on top of” the central installation packages, which means basic package will be re-installed in your home directory</li>
+<li>Can get very large and take up a lot of space in your home directory</li>
+<li>It can sometimes be slower than other options</li>
 </ul>
 <h2 id="troubleshooting-python-package-issues">Troubleshooting Python Package Issues<a class="headerlink" href="#troubleshooting-python-package-issues" title="Permanent link">&para;</a></h2>
 <h3 id="check-your-python-executable">Check your Python Executable<a class="headerlink" href="#check-your-python-executable" title="Permanent link">&para;</a></h3>
 <p>When you use the <code>python</code> command Linux will pick the first <code>python</code> executable it finds in your <code>$PATH</code>. If Python is not finding your installed packages it is possible that the <code>python</code> running is not what you expect. Run the command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>which<span class="w"> </span>python
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>which<span class="w"> </span>python
 </span></code></pre></div>
 <p>This will print out the path to the <code>python</code> executable that is running. If it doesn't print the right one, check that you've activated your environment or loaded the module you were intending.</p>
 <h3 id="check-pythons-path">Check Python's Path<a class="headerlink" href="#check-pythons-path" title="Permanent link">&para;</a></h3>
 <p>Python has its own path that gets set when it looks for packages. This path depends on a few things, such as whether you have an environment loaded and how that environment is configured. When in doubt you can view this path in Python with the following commands:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">import</span> <span class="nn">sys</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">import</span> <span class="nn">sys</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 </span></code></pre></div>
 <p>Similar to the <code>PATH</code> environment variable, Python checks the locations on the path in the order they are listed and imports the first of the specified package it finds. If Python is loading the wrong version of a package, checking the path will tell you where to check for the wrong-version package. If Python can't find the package, the path will give you more information about where it is looking.</p>
 <h3 id="condamamba-init">Conda/Mamba Init<a class="headerlink" href="#condamamba-init" title="Permanent link">&para;</a></h3>
 <p>If you use conda or mamba you may at some point be asked to run <code>conda init</code> or <code>mamba init</code>. These commands will edit your <code>.bashrc</code> file which gets run every time you log in. These additional lines will make permanent changes to your environment that could have unintended effects on your use of the system. This can cause issues, including slowing down your logins and affecting any software builds you try to do.</p>
-<p>The best thing to do is to never run these commands, or if you have, to remove the lines that they  have added to your <code>.bashrc</code> file. Instead of running <code>conda activate</code> or <code>mamba activate</code>, you can use the <code>source activate</code> command.</p>
-<p>If this doesn't work for you, as an alternative, you can run the following line:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/conda.sh
-</span></code></pre></div>
-<p>whenever you want to use the <code>conda activate</code> command. Be sure to replace <code>/path/to/conda/install</code> with the path to the conda installation, for example if you installed <code>miniforge</code> in your home directory the full path might be <code>$HOME/miniforge3/etc/profile.d/conda.sh</code>.</p>
-<p>If you would like to use <code>mamba activate</code>, run the following line as well:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/mamba.sh
-</span></code></pre></div>
-<p>Both of these lines can be run at the command line, or put in a job script or setup script. Note that environments activated at the command line before launching a job may not carry over to the job itself, so it is always best load these environments in your job script.</p>
-<div class="language-bash highlight"><span class="filename">mycondajob.sh</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/conda.sh
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/mamba.sh
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>mamba<span class="w"> </span>activate<span class="w"> </span>myenv<span class="w"> </span><span class="c1"># or `conda activate myenv` for conda environments</span>
-</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
-</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>python<span class="w"> </span>myscript.sh
-</span></code></pre></div>
+<p>The best thing to do is to never run these commands, or if you have, to remove the lines that they  have added to your <code>.bashrc</code> file. Instead load the <code>miniforge</code> module before running <code>conda activate</code> or <code>mamba activate</code>, or you can use the <code>source activate</code> command.</p>
 <p>If you feel strongly that you want to keep the setup that <code>conda init</code> gives you in your <code>.bashrc</code>, first be aware that it could cause issues and it might be something to look into removing when troubleshooting. Second, one of the things these lines do is activate the base environment associated with the conda installation, which is usually the source of most of the issues you can run into. You can set conda to not activate the base environment at login by running the following line:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>conda<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>auto_activate_base<span class="w"> </span><span class="nb">false</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>conda<span class="w"> </span>config<span class="w"> </span>--set<span class="w"> </span>auto_activate_base<span class="w"> </span><span class="nb">false</span>
 </span></code></pre></div>
 <p>You only need to run this line once. It will edit a configuration file for conda (.condarc). You will still be able to run <code>mamba activate</code> or <code>conda activate</code>.</p>
 <h3 id="environment-is-not-activating-in-a-job-script">Environment is not Activating in a Job Script<a class="headerlink" href="#environment-is-not-activating-in-a-job-script" title="Permanent link">&para;</a></h3>
@@ -2592,35 +2585,24 @@
 <h4 id="activating-a-virtual-environment-in-a-script">Activating a Virtual Environment in a Script<a class="headerlink" href="#activating-a-virtual-environment-in-a-script" title="Permanent link">&para;</a></h4>
 <p>Usually activating the environment in your job script before running your Python script is sufficient. </p>
 <p>If your environment isn't activating, specifying the full path to the python executable in your environment sometimes fixes things. Here is a sample job script:</p>
-<div class="language-bash highlight"><span class="filename">myjob.sh</span><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>/path/to/virtual/environment/bin/python<span class="w"> </span>myscript.py
+<div class="language-bash highlight"><span class="filename">myjob.sh</span><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nb">source</span><span class="w"> </span>/path/to/virtual/environment/bin/activate
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>/path/to/virtual/environment/bin/python<span class="w"> </span>myscript.py
 </span></code></pre></div>
 <p>Be sure to replace <code>/path/to/virtual/environment</code> with the actual path to your virtual environment.</p>
 <h4 id="activating-a-condamamba-environment-in-a-script">Activating a Conda/Mamba Environment in a Script<a class="headerlink" href="#activating-a-condamamba-environment-in-a-script" title="Permanent link">&para;</a></h4>
-<p>Usually loading an anaconda module and then running <code>source activate myenv</code> will work to activate a conda or mamba environment in a job script (as shown <a href="#conda-environments">above</a>).</p>
-<p>One thing to try is suggested above in <a href="#condamamba-init">Conda/Mamba Init</a>:</p>
-<div class="language-bash highlight"><span class="filename">mycondajob.sh</span><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/conda.sh
-</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/mamba.sh<span class="w"> </span><span class="c1">#optional</span>
-</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
-</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>conda<span class="w"> </span>activate<span class="w"> </span>myenv<span class="w"> </span><span class="c1"># or `mamba activate myenv` for mamba environments</span>
-</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
-</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>python<span class="w"> </span>myscript.sh
-</span></code></pre></div>
+<p>Usually loading the <code>miniforge</code> module and then running <code>source activate myenv</code> will work to activate a conda or mamba environment in a job script (as shown <a href="#conda-environments">above</a>).</p>
 <p>If this doesn't work sometimes adding <code>eval "$(conda shell.bash hook)"</code> in the line before activating the environment will make it work:</p>
-<div class="language-bash highlight"><span class="filename">mycondajob.sh</span><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/conda.sh
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nb">source</span><span class="w"> </span>/path/to/conda/install/etc/profile.d/mamba.sh<span class="w"> </span><span class="c1">#optional</span>
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>conda<span class="w"> </span>shell.bash<span class="w"> </span>hook<span class="k">)</span><span class="s2">&quot;</span>
-</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
-</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>conda<span class="w"> </span>activate<span class="w"> </span>myenv<span class="w"> </span><span class="c1"># or `mamba activate myenv` for mamba environments</span>
-</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
-</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>python<span class="w"> </span>myscript.sh
+<div class="language-bash highlight"><span class="filename">mycondajob.sh</span><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>conda<span class="w"> </span>shell.bash<span class="w"> </span>hook<span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>conda<span class="w"> </span>activate<span class="w"> </span>myenv<span class="w"> </span><span class="c1"># or `mamba activate myenv` for mamba environments</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>python<span class="w"> </span>myscript.sh
 </span></code></pre></div>
 
 
@@ -2642,7 +2624,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 25, 2025 20:24:02 UTC">November 25, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 26, 2025 21:36:52 UTC">November 26, 2025</span>
   </span>
 
     
