@@ -862,6 +862,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Build Singularity images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reference
+      
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -2123,6 +2151,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Build Singularity images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Further reference
+      
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -2190,7 +2246,7 @@
 <p>In the following, the terminology Singularity will be used in most cases. The statements hold if the terminologies Singularity and Apptainer are switched. </p>
 </div>
 <p>Users can use Singularity to support many applications, such as Python, R, C/Fortran packages, and many GUI software. In particular, containers are popular in supporting Python pakcages for the artificial intelligence (AI) and data science communities, such as Pytorch, Tensorflow, and many others. The Ubuntu operating system (OS) is widely used in the AI community and it is convinient to install many AI appications in Ubuntu environment. Users can use Singularity to obtain Ubuntu OS other than Rocky 8 OS on the host cluster.</p>
-<p>In this document, we will focus on how to use Singularity on ORCD clusters. First, many applications are well-supported in existing Docker images. Search for an image on the internet, in which your target applicaiton has already been installed by some developers, then download the image and use it directly. If there is no suitable image for your target application, you can build an image to support it.</p>
+<p>In this document, we will focus on how to use Singularity on ORCD clusters. First, many applications are well-supported in existing Docker images. Search for an image on the internet, in which your target application has already been installed by some developers, then download the image and use it directly. If there is no suitable image for your target application, you can build an image to support it.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>An image is a file to support a container. Users can launch a containter based on an image.</p>
@@ -2221,7 +2277,7 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <p>In Apptainer, the command <code>singularity</code> is a soft link to an executable named <code>apptainer</code>, so all <code>singularity</code> commands on this page can be replaced by the <code>apptainer</code> command. They work the same. </p>
 </div>
 <h3 id="run-a-program-interactively">Run a program interactively<a class="headerlink" href="#run-a-program-interactively" title="Permanent link">&para;</a></h3>
-<p>When the image is ready, launch a container based on the image and then run your application in the container. If you want to work interactively to test and debug codes, it is convineient to log in the containe shell, for exmaple, 
+<p>When the image is ready, launch a container based on the image and then run your application in the container. If you want to work interactively to test and debug codes, it is convineient to log in the container shell, for exmaple, 
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>singularity<span class="w"> </span>shell<span class="w"> </span>my-image.sif<span class="w"> </span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Apptainer&gt;<span class="w"> </span>python
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Python<span class="w"> </span><span class="m">3</span>.11.9<span class="w"> </span><span class="o">(</span>main,<span class="w"> </span>May<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">16</span>:49:42<span class="o">)</span><span class="w"> </span><span class="o">[</span>GCC<span class="w"> </span><span class="m">12</span>.2.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
@@ -2233,7 +2289,7 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>singularity exec my-image.sif python my-code.py
 </span></code></pre></div></p>
 <p>Use the full path to the image file if it is not in the current directory. </p>
-<p>The <code>python</code> here is installed in the container and has nothing to do with the <code>python</code> or <code>anaconda</code> modules that have been installed on the host. As the python environment in the container provides all pacakges you need, you don't need to install any python packages and their dependecies. Now you can see the advantage of using a conatainer. </p>
+<p>The <code>python</code> here is installed in the container and has nothing to do with the <code>python</code> or <code>miniforge</code> modules that have been installed on the host. As the python environment in the container provides all pacakges you need, you don't need to install any python packages and their dependecies. Now you can see the advantage of using a conatainer. </p>
 <h3 id="submit-a-batch-job">Submit a batch job<a class="headerlink" href="#submit-a-batch-job" title="Permanent link">&para;</a></h3>
 <p>When the tests are completed, you can submit a batch job to run your program in the background. Here is a typical batch job script (e.g. named <code>job.sh</code>).</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash                      </span>
@@ -2245,20 +2301,20 @@ The <code>my-image.sif</code> is the name of the image. You can name it as you l
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer/1.4.2<span class="w">   </span><span class="c1"># load modules</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>my-image.sif<span class="w"> </span>python<span class="w"> </span>my-code.py<span class="w">   </span><span class="c1"># Run the program </span>
 </span></code></pre></div>
-<p>The last line is a command to run a Python program uisng Singularity.  </p>
+<p>The last line is a command to run a Python program using Singularity.  </p>
 <p>Submit the job script using <code>sbatch</code>,
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch<span class="w"> </span>job.sh
 </span></code></pre></div></p>
 <h3 id="more-on-using-singularity">More on using Singularity<a class="headerlink" href="#more-on-using-singularity" title="Permanent link">&para;</a></h3>
 <p>In many cases, GPUs are needed to accelerate programs. As the GPU driver is installed on the host, use the flag <code>--nv</code> to pass necessary GPU driver libraries into the container, so that the program can "see" the GPUs in the container. </p>
-<p>Check if GPUs are available in a container,
+<p>From an interactive job with a GPU, check if GPUs are available in a container,
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--nv<span class="w"> </span>my-image.sif<span class="w"> </span>nvidia-smi
 </span></code></pre></div></p>
-<p>Here is an exmaple to run Python programs on GPUs.
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--nv<span class="w"> </span>my-image.sif<span class="w"> </span>python<span class="w"> </span>my-code.py<span class="w">  </span>
+<p>Here is an example to run Python programs on GPUs:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--nv<span class="w"> </span>my-image.sif<span class="w"> </span>python<span class="w"> </span>my-code.py
 </span></code></pre></div></p>
-<p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. If your programs read/write data files in other directories (e.g. <code>/path/to/data</code>), bind them to the container using the flag <code>-B</code>,
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-B<span class="w"> </span>/path/to/data<span class="w"> </span>my-image.sif<span class="w"> </span>python<span class="w"> </span>my-code.py<span class="w">  </span>
+<p>By default, the home directory and the <code>/tmp</code> directory are bound to the container. If your programs read/write data files in other directories (e.g. <code>$HOME/orcd/scratch</code> or shared lab storage), bind the paths to the container using the flag <code>-B</code>,
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>singularity<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-B<span class="w"> </span>/path/to/data<span class="w"> </span>my-image.sif<span class="w"> </span>python<span class="w"> </span>my-code.py
 </span></code></pre></div></p>
 <p>In summary, a commonly used syntax to run a program with Singularity is the following,
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>singularity exec [--nv] [-B &lt;path-to-data&gt;] &lt;image-name&gt; &lt;executable-name&gt; [source-code-name]
@@ -2284,7 +2340,7 @@ The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]<
 </span></code></pre></div></p>
 <p>The command <code>build</code> here does not build anything yet, but just downloads the image and converts it to a new format. The flag <code>--sandbox</code> tells <code>build</code> to convert the image to the Sandbox format, which is convenient for installing packages interactively. </p>
 <p>Now you can install additional packages in the base image. In many installation processes, it requires virtual root privilege, which is enabled by the <code>fakeroot</code> command here. <code>fakeroot</code> is installed as a dependency of the <code>apptainer/1.4.2</code> module.</p>
-<p>Start a container shell with the flags <code>--writable --fakeroot</code>, which enables the write permission and virtual root privileges in the container, and then you can install your packages. Here is an exmaple,</p>
+<p>Start a container shell with the flags <code>--writable --fakeroot</code>, which enables the write permission and virtual root privileges in the container, and then you can install your packages. Here is an example,</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>singularity<span class="w"> </span>shell<span class="w"> </span>--writable<span class="w"> </span>--fakeroot<span class="w"> </span>my-image
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>Apptainer&gt;<span class="w"> </span>apt-get<span class="w"> </span>update
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Apptainer&gt;<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pandas
@@ -2296,7 +2352,46 @@ The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]<
 </span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>pandas<span class="w"> </span>as<span class="w"> </span>pd
 </span></code></pre></div>
 <p>Here the <code>apt-get</code> is to install system software on an Ubuntu machine, which is supported by the <code>fakeroot</code> flag. The <code>pip install</code> is to build Python packages. Finally, the package Pandas is built in the base image with PyTorch. </p>
-<p>Alternatively, you can build a Docker image on a laptop/desktop such as MAC or PC, transfer it to the cluster, and run it with Singularity. Many packages have been developed and built in the Docker environment, so this approach is more convenient in many cases. </p>
+<p>Alternatively, you can build a Docker image on a laptop/desktop such as MAC or PC, transfer it to the cluster, and run it with Singularity. Many packages have been developed and built in the Docker environment, so this approach is more convenient in many cases.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Images that have been built on one architecture cannot be used on a computer that has a different architecture. For example, if you built an image on a laptop with an ARM architecture (e.g., MAC laptop with M1, M2, M3 chip etc.), you will not be able to run your container on Engaging, which has an x86 architecture.</p>
+</div>
+<h3 id="definition-files">Definition files<a class="headerlink" href="#definition-files" title="Permanent link">&para;</a></h3>
+<p>It is sometimes advisable to use Apptainer <a href="https://apptainer.org/docs/user/main/definition_files.html">definition files</a> so that you can document exactly how you built your image. In a definition file, you can specify installation commands, environment variables, files to create, and more. This method also avoids the need of using <code>--sandbox</code> and <code>--writable</code> (i.e., building images interactively), which is not compatable with some filesystems. Here is an example of a definition file:</p>
+<div class="language-text highlight"><span class="filename">my_image.def</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Bootstrap: docker
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>From: rockylinux:8
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>%files
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    $HOME/freesurfer-Rocky8-8.0.0-1.x86_64.rpm /root/freesurfer-Rocky8-8.0.0-1.x86_64.rpm
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    $HOME/license.txt /usr/local/freesurfer/8.0.0-1/.license
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>%post
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    dnf -y upgrade dnf
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    dnf -y upgrade rpm
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    dnf -y install libgomp
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    dnf -y install mesa-dri-drivers
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>    dnf install -y findutils which
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    dnf -y --nogpgcheck localinstall /root/freesurfer-Rocky8-8.0.0-1.x86_64.rpm
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    rm /root/freesurfer-Rocky8-8.0.0-1.x86_64.rpm
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    dnf clean all
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>%environment
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>    export PATH=/usr/local/freesurfer/8.0.0-1/bin:/usr/local/freesurfer/8.0.0-1/fsfast/bin:/usr/local/freesurfer/8.0.0-1/tktools:/usr/local/freesurfer/8.0.0-1/mni/bin:$PATH
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>    export FREESURFER_HOME=/usr/local/freesurfer/8.0.0-1
+</span></code></pre></div>
+<p>In the above definition file, the <code>%files</code> section is where you list any files that you would like to copy over to the container environment. Here I have specified an <code>.rpm</code> file used for installing the Freesurfer software, as well as a license file. In the <code>%post</code> section, you specify the commands used to install your software and any dependencies, and the <code>%environment</code> section is used to set environment variables. At the top of the file, I have indicated that I want to use the <a href="https://hub.docker.com/layers/library/rockylinux/8">Rocky 8 base image</a> provided by Docker.</p>
+<p>You can build this container using the following (preferably in a <a href="../../running-jobs/overview/">job</a> on a compute node):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer/1.4.2
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>apptainer<span class="w"> </span>build<span class="w"> </span>--fakeroot<span class="w"> </span>my_image.sif<span class="w"> </span>my_image.def
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>We have a number of container images and definition files saved on Engaging that you are free to use or look at for examples. You can find them here: <code>/orcd/software/community/001/container_images</code></p>
+</div>
+<h2 id="further-reference">Further reference<a class="headerlink" href="#further-reference" title="Permanent link">&para;</a></h2>
 <p>For more information on building Apptainer/Singularity images, please refer to the official documentation <a href="https://apptainer.org/documentation/">here</a>.</p>
 
 
@@ -2318,7 +2413,7 @@ The terms in <code>&lt;&gt;</code> are must-needed, while the terms in <code>[]<
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 25, 2025 19:56:50 UTC">November 25, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="December 2, 2025 18:14:41 UTC">December 2, 2025</span>
   </span>
 
     
