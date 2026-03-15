@@ -2763,7 +2763,7 @@ additions for SLURM and Apptainer.</p>
 <p>The OpenClaw gateway runs inside a read-only Apptainer <code>.sif</code> container on a
 SLURM compute node. The agent calls cloud LLM APIs over HTTPS — no local GPU is
 needed for inference. All agent state (conversation history, configuration,
-workspace) is stored in <code>.openclaw/</code> inside the repo directory, so it survives
+workspace) is stored in <code>.openclaw/</code> next to the repo directory, so it survives
 job preemptions.</p>
 <p>You access the web dashboard from your laptop via an SSH tunnel through a login
 node, similar to the <a href="../jupyter/#port-forwarding">port forwarding approach used for Jupyter</a>.</p>
@@ -2795,26 +2795,25 @@ to launch data-processing or analysis tasks that benefit from GPU
 acceleration.</p>
 </div>
 <h2 id="step-1-clone-and-build-the-container-10-min">Step 1: Clone and Build the Container (~10 min)<a class="headerlink" href="#step-1-clone-and-build-the-container-10-min" title="Permanent link">&para;</a></h2>
-<p>Log in to a login node and clone the repository. To avoid home directory quota
-issues, clone to scratch:</p>
+<p>Log in to a login node and clone the repository:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>&lt;username&gt;@orcd-login.mit.edu
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/qsimeon/openclaw-engaging.git
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">cd</span><span class="w"> </span>openclaw-engaging
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/qsimeon/openclaw-engaging.git
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>openclaw-engaging
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>All scripts set the container's <code>$HOME</code> to the repo directory, so all
-OpenClaw state (<code>.openclaw/</code>) lives alongside the repo — not in your real
-home directory. Cloning on scratch or PI/group storage keeps everything
-off your home quota automatically.</p>
+<p>All scripts set the container's <code>$HOME</code> to the parent directory of the
+repo, so <code>.openclaw/</code> lives next to it (e.g., <code>~/.openclaw/</code> if you
+cloned to <code>~/</code>). If your home quota is tight, clone to scratch instead:
+<code>cd ~/orcd/scratch &amp;&amp; git clone ...</code></p>
 </div>
 <p>Load the Apptainer module and build the container image on a compute node:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer/1.4.2
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>apptainer<span class="w"> </span>build<span class="w"> </span>apptainer/openclaw.sif<span class="w"> </span>apptainer/openclaw.def
 </span></code></pre></div>
-<p>The build takes roughly 10 minutes. Verify it succeeded:</p>
+<p>The build takes roughly 10 minutes and pulls OpenClaw version 2026.3.14.
+Verify it succeeded:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apptainer/openclaw.sif<span class="w"> </span>openclaw<span class="w"> </span>--version
 </span></code></pre></div>
 <div class="admonition tip">
@@ -2829,10 +2828,11 @@ model selection, optional channels (Telegram, Slack, Discord), and skills.
 Run it on a compute node:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh
 </span></code></pre></div>
-<p>The script runs the interactive onboarding wizard first, then automatically
-applies HPC-specific settings (disabling the Docker-based sandbox, extending
-session timeouts, configuring the gateway for SSH tunnel access). You do not
-need to configure these manually.</p>
+<p>The script checks for upstream OpenClaw updates before building (and offers to
+merge them), runs the interactive onboarding wizard, then automatically applies
+HPC-specific settings (disabling the Docker-based sandbox, extending session
+timeouts, configuring the gateway for SSH tunnel access). You do not need to
+configure these manually.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You may see skill install failures mentioning "brew not installed." These
@@ -2857,7 +2857,7 @@ type <code>apptainer exec ...</code> for every operation.</p>
 <p>The web dashboard provides a browser-based chat interface for interacting with
 your agent. The 1-click launcher submits the SLURM job, waits for it to start,
 and prints the SSH tunnel command and dashboard URL:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch/openclaw-engaging<span class="w">  </span><span class="c1"># or wherever you cloned the repo</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>~/openclaw-engaging<span class="w">  </span><span class="c1"># or wherever you cloned the repo</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>./apptainer/start-gateway.sh
 </span></code></pre></div>
 <div class="admonition note">
@@ -2887,8 +2887,9 @@ your terminal. Then open the dashboard URL in your browser.</p>
 <p>Then re-run the SSH tunnel command.</p>
 </div>
 <h2 id="staying-updated">Staying Updated<a class="headerlink" href="#staying-updated" title="Permanent link">&para;</a></h2>
-<p>The gateway launcher automatically checks for upstream OpenClaw updates. When
-updates are available, you will see a notice before the gateway starts.</p>
+<p>Both <code>setup.sh</code> and the gateway launcher automatically check for upstream
+OpenClaw updates. In interactive mode you are prompted to merge; in
+non-interactive mode (e.g., <code>sbatch</code>) updates are applied automatically.</p>
 <p>To apply updates manually:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./apptainer/update.sh
 </span></code></pre></div>
@@ -2908,9 +2909,19 @@ Set <code>OPENCLAW_SLURM_BINDS=1</code> to bind-mount the host's SLURM commands
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>-m<span class="w"> </span><span class="s2">&quot;Write a SLURM batch script for my analysis and submit it&quot;</span>
 </span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">SLURM binds and container boundaries</p>
+<p>When <code>OPENCLAW_SLURM_BINDS=1</code> is enabled, the agent can submit SLURM jobs
+that run <strong>outside the container</strong> with full filesystem access. This is by
+design — it is the feature — but it means the agent can effectively escape
+the Apptainer boundary. <code>--containall</code> does not prevent this since
+submitted jobs run on fresh nodes without container isolation. Only enable
+SLURM binds when you trust the agent's task and have reviewed what it
+will do.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This relies on the host and container having compatible SLURM libraries.
+<p>SLURM binds rely on the host and container having compatible libraries.
 If you see errors about missing libraries, the agent can still write batch
 scripts for you to submit outside the container.</p>
 </div>
@@ -2943,21 +2954,23 @@ Monitor usage and costs, especially with batch jobs.</p>
 </div>
 <h3 id="session-persistence">Session Persistence<a class="headerlink" href="#session-persistence" title="Permanent link">&para;</a></h3>
 <p>All conversation history, agent configuration, and workspace state is stored in
-<code>.openclaw/</code> inside the repo directory (wherever you cloned <code>openclaw-engaging</code>).
-This directory is gitignored.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>~/orcd/scratch/openclaw-engaging/     # or wherever you cloned it
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>├── apptainer/
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├── docs/
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>├── .openclaw/                        # config, sessions, memory (gitignored)
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   ├── .env
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│   ├── openclaw.json
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   └── agents/
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>└── ...
+<code>.openclaw/</code> next to the repo directory. Your clone location determines where
+state lives — no extra configuration needed.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>~/                                    # cloned to ~/openclaw-engaging
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>├── openclaw-engaging/                # the repo
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>│   ├── apptainer/
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│   ├── docs/
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   └── ...
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>└── .openclaw/                        # config, sessions, memory
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    ├── .env
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    ├── openclaw.json
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    └── agents/
 </span></code></pre></div>
-<p>Since all scripts pass <code>--home $REPO_DIR</code> to Apptainer, the container's <code>$HOME</code>
-is the repo directory — not your real home directory. This means:</p>
+<p>The scripts set the container's <code>$HOME</code> to the <strong>parent</strong> of the repo
+directory. This means:</p>
 <ul>
-<li><strong>No home quota issues</strong> if you cloned to scratch or PI/group storage</li>
+<li>If you clone to <code>~/</code>, state lives at <code>~/.openclaw/</code></li>
+<li>If you clone to <code>~/orcd/scratch/</code>, state lives at <code>~/orcd/scratch/.openclaw/</code></li>
 <li>Sessions survive SLURM job preemptions — just resubmit the gateway job and
   reconnect</li>
 <li>You can switch between compute nodes freely</li>
@@ -2965,11 +2978,12 @@ is the repo directory — not your real home directory. This means:</p>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Moving an existing clone to scratch</p>
-<p>If you originally cloned to your home directory:</p>
+<p>If your home quota is tight, move the repo to scratch:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>mv<span class="w"> </span>~/openclaw-engaging<span class="w"> </span>~/orcd/scratch/
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>~/orcd/scratch/openclaw-engaging<span class="w"> </span>~/openclaw-engaging
 </span></code></pre></div>
-<p>See <a href="../../filesystems-file-transfer/filesystems/">Storage and Filesystems</a>
+<p><code>.openclaw/</code> will move with it (it lives next to the repo). See
+<a href="../../filesystems-file-transfer/filesystems/">Storage and Filesystems</a>
 for available storage options and paths.</p>
 </div>
 <div class="admonition warning">
@@ -3136,7 +3150,7 @@ close to the cloud deployment.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 13, 2026 05:33:52 UTC">March 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 15, 2026 20:44:40 UTC">March 15, 2026</span>
   </span>
 
     
