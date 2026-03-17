@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
@@ -2234,20 +2234,33 @@ You will be asked to enter a passphrase for additional security. You can either 
 </div>
 <h2 id="uploading-ssh-key-on-engaging">Uploading SSH Key on Engaging<a class="headerlink" href="#uploading-ssh-key-on-engaging" title="Permanent link">&para;</a></h2>
 <p>To upload your SSH key on Engaging, you must update the <code>authorized_keys</code> file on Engaging via terminal. Alternatively, you have the option to use OnDemand.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Terminal</label><label for="__tabbed_1_2">OnDemand</label></div>
+<p>If your system is a MAC or Linux machine, you can use the <code>ssh-copy-id</code> command to get your key onto the authorized_keys file on engaging. Windows users can try using git bash or WSL to access the <code>ssh-copy-id</code> command. </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Terminal with ssh-copy-id</label><label for="__tabbed_1_2">Terminal manual copy</label><label for="__tabbed_1_3">OnDemand</label></div>
 <div class="tabbed-content">
+<div class="tabbed-block">
+<p>This method reduces the risk of typos in your authorized_keys file. It also correctly sets the permissions of the authorized_keys file in your authorized_keys file on engaging. </p>
+<p>To add your SSH key with the Terminal and <code>ssh-copy-id</code>, please follow the steps outlined below (replace username with your Kerberos Login):</p>
+<ol>
+<li>Open your terminal on your MAC or Linux machine (use git bash or WSL on Windows)</li>
+<li>type
+   <div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh-copy-id<span class="w"> </span><span class="o">[</span>username<span class="o">]</span>@orcd-login.mit.edu
+</span></code></pre></div>
+   enter password, then select your DUO 2 Factor Authentication method. </li>
+<li>If successful, you will get a message indicating that your key has been copied and you should now be able to use your ssh key.</li>
+</ol>
+</div>
 <div class="tabbed-block">
 <p>To add your SSH key via Terminal, please follow the steps outlined below:</p>
 <ol>
 <li>Login to an HPC system login-node using MIT Kerberos Login.</li>
 <li>On your local machine, copy the contents of your public key (<code>~/.ssh/id_rsa.pub</code>):
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub
 </span></code></pre></div><blockquote>
 <p>Make sure to copy the entire line starting with ssh-rsa and ending with your email address or comment. </p>
 </blockquote>
 </li>
 <li>On the head-node, append the copied contents to the authorized_keys file located at <code>/home/[username]/.ssh/authorized_keys</code>. You can use any text editor of your choice, such as nano and vim. For example, if you're using <code>nano</code>, the command would be:
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nano<span class="w"> </span>/home/<span class="o">[</span>username<span class="o">]</span>/.ssh/authorized_keys
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nano<span class="w"> </span>/home/<span class="o">[</span>username<span class="o">]</span>/.ssh/authorized_keys
 </span></code></pre></div></li>
 </ol>
 <div class="admonition note">
@@ -2300,7 +2313,7 @@ You will be asked to enter a passphrase for additional security. You can either 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 11, 2026 22:05:03 UTC">February 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 27, 2026 20:46:45 UTC">February 27, 2026</span>
   </span>
 
     
