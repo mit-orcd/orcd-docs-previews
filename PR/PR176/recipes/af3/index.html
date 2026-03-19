@@ -2163,13 +2163,6 @@
       
       
       
-        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
-      
-    
-      
-      
-      
-      
         <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
       
     
@@ -2182,14 +2175,6 @@
 developed by Google that is used for predicting protein structures. Here we
 provide a brief description of how to run this model on the Engaging computing
 cluster.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>These instructions assume that you have access to a partition with a GPU on
-Engaging. If you do not have such access, then you may be able to run this
-on a CPU, but this would require editing the <a href="https://github.com/google-deepmind/alphafold3/tree/main">code distribution provided by
-Google DeepMind</a>
-and rebuilding the Apptainer image.</p>
-</div>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>For simplicity, in this example, we will create a folder in our home directory
 to use as our working directory:</p>
@@ -2197,16 +2182,9 @@ to use as our working directory:</p>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">WORKDIR</span><span class="o">=</span>~/af3
 </span></code></pre></div>
 <p><strong>Model weights</strong></p>
-<p>Each user needs to obtain the model weights individually due to licensing
-restrictions. These can be obtained by submitting a request to Google DeepMind. Usually,
-requests are granted within a few days. To make a request, follow the
-instructions on the
-<a href="https://github.com/google-deepmind/alphafold3?tab=readme-ov-file#obtaining-model-parameters">AlphaFold 3 GitHub Repository</a>.</p>
-<p>When you get access, you will receive a link to download the parameters. After
-you download them, you can upload them to Engaging using <code>scp</code> on your local
-machine (you will receive a Duo push notification - see
-<a href="../../filesystems-file-transfer/transferring-files/#scp">Transferring Files</a>):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>scp<span class="w"> </span>/path/to/source/af3.bin.zst<span class="w"> </span><span class="nv">$USER</span>@orcd-login001.mit.edu:~/af3
+<p>Each user needs to obtain the model weights individually due to licensing restrictions. These can be obtained by submitting a request to Google DeepMind. Usually, requests are granted within a few days. To make a request, follow the instructions on the <a href="https://github.com/google-deepmind/alphafold3?tab=readme-ov-file#obtaining-model-parameters">AlphaFold 3 GitHub Repository</a>.</p>
+<p>When you get access, you will receive a link to download the parameters. After you download them, you can upload them to Engaging using <code>scp</code> on your local machine (you may receive a Duo push notification - see <a href="../../filesystems-file-transfer/transferring-files/#scp">Transferring Files</a>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>scp<span class="w"> </span>/path/to/source/af3.bin.zst<span class="w"> </span><span class="nv">$USER</span>@orcd-login.mit.edu:~/af3
 </span></code></pre></div>
 <p>On Engaging, decompress the file and move to a <code>models</code> directory:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$WORKDIR</span>
@@ -2216,34 +2194,21 @@ machine (you will receive a Duo push notification - see
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>rm<span class="w"> </span>af3.bin.zst
 </span></code></pre></div>
 <p><strong>Container image</strong></p>
-<p>Google DeepMind provides instructions in their repository on running AlphaFold 3
-with Docker. Docker is not compatible with most HPC environments, so we need
-to run a pre-built container using Apptainer. We have an image saved globally on Engaging located
-at:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/orcd/software/community/001/container_images/alphafold3/20250321/alphafold3.sif
+<p>Google DeepMind provides instructions in their repository on running AlphaFold 3 with Docker. Docker is not compatible with most HPC environments, so we need to run a pre-built container using Apptainer. We have an image saved globally on Engaging, located at:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/orcd/software/community/001/container_images/alphafold3/20260318/alphafold3.sif
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The image that we have built uses a specific version of the
-<a href="https://github.com/google-deepmind/alphafold3">AlphaFold 3 GitHub repository</a>.
-As such, it does not change as their code base gets updated for bug fixes. If you would
-like us to update the image to reflect recent changes in the repository, let us know at
-<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
+<p>The image that we have built uses a specific version of the <a href="https://github.com/google-deepmind/alphafold3">AlphaFold 3 GitHub repository</a>. As such, it does not change as their code base gets updated for bug fixes. If you would like us to update the image to reflect recent changes in the repository, let us know at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
 </div>
 <h2 id="running-alphafold-3">Running AlphaFold 3<a class="headerlink" href="#running-alphafold-3" title="Permanent link">&para;</a></h2>
-<p>The last thing you will need to run AlphaFold 3 is the AlphaFold dataset.
-Because it is quite large, we have saved it globally on Engaging for all users
-at <code>/orcd/datasets/001/alphafold3</code>.</p>
-<p>Once you have everything you need, you will be ready to run AlphaFold 3. We will
-now go through a test case adapted from the
-<a href="https://github.com/google-deepmind/alphafold3">AlphaFold 3 GitHub Repository</a>.
-From the working directory, create an output directory and a test input file:</p>
+<p>The last thing you will need to run AlphaFold 3 is the AlphaFold dataset. Because it is quite large, we have saved it globally on Engaging for all users at <code>/orcd/datasets/001/alphafold3</code>.</p>
+<p>Once you have everything you need, you will be ready to run AlphaFold 3. We will now go through a test case adapted from the <a href="https://github.com/google-deepmind/alphafold3">AlphaFold 3 GitHub Repository</a>. From the working directory, create an output directory and a test input file:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir<span class="w"> </span>af_output
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>mkdir<span class="w"> </span>af_input
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>touch<span class="w"> </span>af_input/fold_input.json
 </span></code></pre></div>
-<p>Copy the following into <code>af_input/fold_input.json</code> (using <code>vim</code>, <code>emacs</code>, or
-<code>nano</code>):</p>
+<p>Copy the following into <code>af_input/fold_input.json</code> (using <code>vim</code>, <code>emacs</code>, or <code>nano</code>):</p>
 <div class="language-text highlight"><span class="filename">fold_input.json</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>{
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  &quot;name&quot;: &quot;2PV7&quot;,
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  &quot;sequences&quot;: [
@@ -2259,13 +2224,12 @@ From the working directory, create an output directory and a test input file:</p
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  &quot;version&quot;: 1
 </span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>}
 </span></code></pre></div>
-<p>You can either run this in an interactive session or in a batch job. If you have
-access to a partition with a GPU, replace the partition name below as necessary:</p>
+<p>You can either run this in an interactive session or in a batch job:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Interactive</label><label for="__tabbed_1_2">Batch</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Request an interactive session with a GPU:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>salloc<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>--gres<span class="o">=</span>gpu:1
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>salloc<span class="w"> </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>-n<span class="w"> </span><span class="m">16</span><span class="w"> </span>-p<span class="w"> </span>mit_normal_gpu<span class="w"> </span>-G<span class="w"> </span><span class="m">1</span>
 </span></code></pre></div>
 <p>Run this script (<code>sh run_alphafold.sh</code>):</p>
 <div class="language-bash highlight"><span class="filename">run_alphafold.sh</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/bin/bash</span>
@@ -2274,23 +2238,20 @@ access to a partition with a GPU, replace the partition name below as necessary:
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># Enter the path to the AF3 dataset and container image:</span>
 </span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nv">DATABASES_DIR</span><span class="o">=</span>/orcd/datasets/001/alphafold3
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nv">IMAGE_PATH</span><span class="o">=</span>/orcd/software/community/001/container_images/alphafold3/20250321/alphafold3.sif
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nv">IMAGE_PATH</span><span class="o">=</span>/orcd/software/community/001/container_images/alphafold3/20260318/alphafold3.sif
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Enter the directory of the AF3 material:</span>
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nv">WORKDIR</span><span class="o">=</span>~/af3
 </span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
 </span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$WORKDIR</span>/af_input:/root/af_input<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$WORKDIR</span>/af_output:/root/af_output<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$WORKDIR</span>/models:/root/models<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$DATABASES_DIR</span>:/root/public_databases<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span>--nv<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="nv">$IMAGE_PATH</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span>python<span class="w"> </span>/alphafold3/run_alphafold.py<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span>--json_path<span class="o">=</span>/root/af_input/fold_input.json<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span>--model_dir<span class="o">=</span>/root/models<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span>--output_dir<span class="o">=</span>/root/af_output<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span>--db_dir<span class="o">=</span>/root/public_databases
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$DATABASES_DIR</span>:/root/public_databases<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span>--nv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="nv">$IMAGE_PATH</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span>python<span class="w"> </span>/app/alphafold/run_alphafold.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span>--json_path<span class="o">=</span><span class="nv">$WORKDIR</span>/af_input/fold_input.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span>--model_dir<span class="o">=</span><span class="nv">$WORKDIR</span>/models<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span>--output_dir<span class="o">=</span><span class="nv">$WORKDIR</span>/af_output<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span>--db_dir<span class="o">=</span>/root/public_databases
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -2300,29 +2261,26 @@ access to a partition with a GPU, replace the partition name below as necessary:
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">#SBATCH -N 1</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">#SBATCH -n 16</span>
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">#SBATCH -p mit_normal_gpu</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#SBATCH --gres=gpu:1</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#SBATCH -G 1</span>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Enter the path to the AF3 dataset and container image:</span>
 </span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nv">DATABASES_DIR</span><span class="o">=</span>/orcd/datasets/001/alphafold3
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nv">IMAGE_PATH</span><span class="o">=</span>/orcd/software/community/001/container_images/alphafold3/20250321/alphafold3.sif
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="nv">IMAGE_PATH</span><span class="o">=</span>/orcd/software/community/001/container_images/alphafold3/20260318/alphafold3.sif
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
 </span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="c1"># Enter the directory of the AF3 material:</span>
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="nv">WORKDIR</span><span class="o">=</span>~/af3
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
 </span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$WORKDIR</span>/af_input:/root/af_input<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$WORKDIR</span>/af_output:/root/af_output<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$WORKDIR</span>/models:/root/models<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$DATABASES_DIR</span>:/root/public_databases<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span>--nv<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span><span class="nv">$IMAGE_PATH</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span>python<span class="w"> </span>/alphafold3/run_alphafold.py<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span>--json_path<span class="o">=</span>/root/af_input/fold_input.json<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span>--model_dir<span class="o">=</span>/root/models<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">    </span>--output_dir<span class="o">=</span>/root/af_output<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">    </span>--db_dir<span class="o">=</span>/root/public_databases
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span>--bind<span class="w"> </span><span class="nv">$DATABASES_DIR</span>:/root/public_databases<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span>--nv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="nv">$IMAGE_PATH</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span>python<span class="w"> </span>/app/alphafold/run_alphafold.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span>--json_path<span class="o">=</span><span class="nv">$WORKDIR</span>/af_input/fold_input.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span>--model_dir<span class="o">=</span><span class="nv">$WORKDIR</span>/models<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span>--output_dir<span class="o">=</span><span class="nv">$WORKDIR</span>/af_output<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span>--db_dir<span class="o">=</span>/root/public_databases
 </span></code></pre></div>
 <p>Submit the batch job:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sbatch<span class="w"> </span>run_alphafold.sbatch
@@ -2331,6 +2289,10 @@ access to a partition with a GPU, replace the partition name below as necessary:
 </div>
 </div>
 <p>Output is saved to the <code>af_output</code> directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Apptainer only binds your home directory by default. If your working directory is set to somewhere that is not in your home directory, then you will need to explicitly tell Apptainer to bind mount that directory. You can do this by adding <code>--bind $WORKDIR</code> to your <code>apptainer</code> command (after <code>exec</code> but before <code>$IMAGE_PATH</code>)</p>
+</div>
 
 
 
@@ -2351,7 +2313,7 @@ access to a partition with a GPU, replace the partition name below as necessary:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 11, 2025 15:10:47 UTC">July 11, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 18, 2026 20:17:27 UTC">March 18, 2026</span>
   </span>
 
     
