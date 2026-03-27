@@ -1472,10 +1472,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-install" class="md-nav__link">
+  <a href="#step-1-clone" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Install
+        Step 1: Clone
       
     </span>
   </a>
@@ -1483,10 +1483,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-build-setup-1520-min" class="md-nav__link">
+  <a href="#step-2-build-configure-1520-min" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Build + Setup (~15–20 min)
+        Step 2: Build + configure (~15–20 min)
       
     </span>
   </a>
@@ -2414,10 +2414,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-install" class="md-nav__link">
+  <a href="#step-1-clone" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Install
+        Step 1: Clone
       
     </span>
   </a>
@@ -2425,10 +2425,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-build-setup-1520-min" class="md-nav__link">
+  <a href="#step-2-build-configure-1520-min" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Build + Setup (~15–20 min)
+        Step 2: Build + configure (~15–20 min)
       
     </span>
   </a>
@@ -2750,12 +2750,10 @@ This recipe is the quick-start; the guide is the reference manual.</p>
 <div class="admonition warning">
 <p class="admonition-title">Responsible Use and Data Privacy</p>
 <ul>
-<li><strong>You are responsible for the actions of your agent.</strong> Be sure you
-  and any of your agents follow the
+<li><strong>You are responsible for the actions of your agent.</strong> Follow the
   <a href="https://orcd-docs.mit.edu/code-of-conduct/">Acceptable Use and Code of Conduct</a>.</li>
-<li><strong>Only use low-risk data.</strong> Prompts and file excerpts are sent to
-  cloud LLM APIs for processing. Do not use restricted or
-  export-controlled data. See
+<li><strong>Data privacy.</strong> Prompts and file excerpts go to cloud LLM APIs. Do
+  not use sensitive, restricted, or export-controlled data. See
   <a href="https://ist.mit.edu/security/data-classification">MIT data classification</a>.</li>
 <li><strong>Limit access.</strong> The agent runs in <code>--containall</code> mode by default,
   restricting it to the repo directory, <code>.openclaw/</code>, and <code>/tmp</code>. Use
@@ -2813,14 +2811,14 @@ a scarce shared resource and provide no benefit here. When GPU compute
 is needed for data processing, the agent can submit separate SLURM jobs
 that request their own GPUs (via <code>OPENCLAW_SLURM_BINDS=1</code>).</p>
 </div>
-<h2 id="step-1-install">Step 1: Install<a class="headerlink" href="#step-1-install" title="Permanent link">&para;</a></h2>
-<p>Log in to a login node and run the one-line installer:</p>
+<h2 id="step-1-clone">Step 1: Clone<a class="headerlink" href="#step-1-clone" title="Permanent link">&para;</a></h2>
+<p>Log in to a login node and run the one-line installer (about 30 seconds):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>&lt;username&gt;@orcd-login.mit.edu
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/qsimeon/openclaw-engaging/main/install_stage0.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch/oclaw/openclaw-engaging
 </span></code></pre></div>
-<p>The installer clones the repo to <code>~/orcd/scratch/oclaw/openclaw-engaging</code> and
-sets up the upstream remote automatically.</p>
+<p>The installer clones the repo to <code>~/orcd/scratch/oclaw/openclaw-engaging</code> (not
+your home directory) and sets up the upstream remote automatically.</p>
 <details class="note">
 <summary>Manual clone</summary>
 <p>If you prefer not to pipe to bash:</p>
@@ -2837,7 +2835,7 @@ sets up the upstream remote automatically.</p>
 repo (<code>~/orcd/scratch/oclaw/</code>). Agent state lives in
 <code>~/orcd/scratch/oclaw/.openclaw/</code> — off your home quota by default.</p>
 </div>
-<h2 id="step-2-build-setup-1520-min">Step 2: Build + Setup (~15–20 min)<a class="headerlink" href="#step-2-build-setup-1520-min" title="Permanent link">&para;</a></h2>
+<h2 id="step-2-build-configure-1520-min">Step 2: Build + configure (~15–20 min)<a class="headerlink" href="#step-2-build-configure-1520-min" title="Permanent link">&para;</a></h2>
 <p>The setup script builds the container, checks for upstream updates, runs the
 interactive onboarding wizard, and applies HPC-specific settings — all in one
 command. Stay at the terminal for the interactive prompts:</p>
@@ -2854,7 +2852,7 @@ gateway settings for Engaging. You do not need to configure these manually.</p>
 Run the build without a TTY (no prompts), then run onboarding interactively:
 
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--build-only
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--onboard-only
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--onboard-only
 </span></code></pre></div>
 
 The `--build-only` step does not need `--pty` since it has no interactive
@@ -2869,11 +2867,10 @@ are non-fatal — Homebrew is not available on HPC nodes, but the core agent
 functionality works without these optional skills.</p>
 </div>
 <h2 id="step-3-activate-the-openclaw-command-one-time">Step 3: Activate the <code>openclaw</code> Command (one-time)<a class="headerlink" href="#step-3-activate-the-openclaw-command-one-time" title="Permanent link">&para;</a></h2>
-<p>The setup script installs an Lmod modulefile to <code>~/modulefiles/openclaw.lua</code>.
-Add the module path to your shell and load the module:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;module use ~/modulefiles&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>module<span class="w"> </span>load<span class="w"> </span>openclaw
+<p><code>setup.sh</code> installs the Lmod modulefile to <code>~/modulefiles/openclaw.lua</code>.
+Use the module only (there is no <code>source …/openclaw-env.sh</code> / <code>.bashrc</code> shortcut):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;module use ~/modulefiles&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module<span class="w"> </span>load<span class="w"> </span>openclaw
 </span></code></pre></div>
 <p>This sets up the <code>openclaw</code> command and enables <code>--containall</code> by default.
 You no longer need to type <code>apptainer exec ...</code> for every operation. In future
@@ -3176,9 +3173,9 @@ the key differences on Engaging:</p>
   access to the dashboard.</li>
 <li><strong>No systemd</strong>: There is no service manager on compute nodes. The gateway
   runs as a foreground process inside the SLURM job.</li>
-<li><strong>GPU</strong>: Not needed for the agent itself. When GPU compute is required,
-  the agent submits separate SLURM jobs that request their own GPUs
-  (via <code>OPENCLAW_SLURM_BINDS=1</code>).</li>
+<li><strong>GPU</strong>: Not needed — agent submits GPU jobs via SLURM when compute is
+  required (<code>OPENCLAW_SLURM_BINDS=1</code>). Do not request GPU partitions for the
+  gateway or agent session.</li>
 </ul>
 <p>These are fundamental HPC constraints, not Apptainer limitations. The
 <code>openclaw</code> shortcut and persistent state directory keep the experience
@@ -3187,7 +3184,7 @@ close to the cloud deployment.</p>
 <div class="admonition note">
 <p class="admonition-title">Detailed guide</p>
 <p>For full details — troubleshooting, advanced config, gateway setup, session
-persistence — see the full
+persistence — see the
 <a href="https://github.com/qsimeon/openclaw-engaging/blob/main/docs/engaging-apptainer-guide.md">OpenClaw Engaging guide</a>.</p>
 </div>
 
@@ -3210,7 +3207,7 @@ persistence — see the full
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 27, 2026 00:14:04 UTC">March 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 27, 2026 03:04:58 UTC">March 27, 2026</span>
   </span>
 
     
