@@ -2740,6 +2740,13 @@ platform that connects to cloud LLM providers (Anthropic Claude, OpenAI GPT-4o,
 Google Gemini, OpenRouter, etc.). This recipe deploys OpenClaw on the Engaging
 cluster using <a href="../../software/apptainer/">Apptainer</a> so the agent has direct
 access to your research data and cluster compute resources.</p>
+<div class="admonition note">
+<p class="admonition-title">Detailed guide</p>
+<p>For full details — troubleshooting, advanced config, gateway setup, session
+persistence — see the full
+<a href="https://github.com/qsimeon/openclaw-engaging/blob/main/docs/engaging-apptainer-guide.md">OpenClaw Engaging guide</a>.
+This recipe is the quick-start; the guide is the reference manual.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Responsible Use and Data Privacy</p>
 <ul>
@@ -2762,13 +2769,6 @@ access to your research data and cluster compute resources.</p>
   container with your full user permissions. See
   <a href="#slurm-job-management-from-the-agent">SLURM Job Management</a>.</li>
 </ul>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Detailed guide</p>
-<p>For full details including troubleshooting, advanced configuration, gateway
-setup, and session persistence, see the
-<a href="https://github.com/qsimeon/openclaw-engaging/blob/main/docs/engaging-apptainer-guide.md">OpenClaw Engaging guide</a>.
-This recipe is the quick-start; the guide is the reference manual.</p>
 </div>
 <p>The code and Apptainer configuration for this recipe can be found in the
 <a href="https://github.com/qsimeon/openclaw-engaging">openclaw-engaging</a> GitHub
@@ -2848,15 +2848,20 @@ command. Stay at the terminal for the interactive prompts:</p>
 selection, optional channels (Telegram, Slack, Discord), and skills. After the
 wizard, the script automatically configures sandbox, session timeout, and
 gateway settings for Engaging. You do not need to configure these manually.</p>
-<details class="note">
-<summary>Split build and onboarding</summary>
-<p>If you prefer to build the container and run onboarding separately:</p>
+<details>
+<summary>Split into two steps (if you need to walk away during the build)</summary>
+
+Run the build without a TTY (no prompts), then run onboarding interactively:
+
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--build-only
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--onboard-only
 </span></code></pre></div>
-<p>The <code>--build-only</code> step does not need <code>--pty</code> since it has no interactive
-prompts. The <code>--onboard-only</code> step skips the container build.</p>
+
+The `--build-only` step does not need `--pty` since it has no interactive
+prompts. The `--onboard-only` step skips the container build.
+
 </details>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You may see skill install failures mentioning "brew not installed." These
@@ -2969,11 +2974,16 @@ scripts for you to submit outside the container.</p>
 </div>
 <h3 id="accessing-research-data">Accessing Research Data<a class="headerlink" href="#accessing-research-data" title="Permanent link">&para;</a></h3>
 <p>Since <code>--containall</code> is enabled by default, the agent can only see the repo
-directory and <code>/tmp</code>. To grant access to your data, use <code>APPTAINER_BIND</code>:</p>
+directory and <code>/tmp</code>. Grant access with <code>APPTAINER_BIND</code> in front of
+<code>openclaw</code> (not <code>apptainer exec -B</code>):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the datasets in ~/orcd/scratch/oclaw/workdata/&quot;</span>
 </span></code></pre></div>
 <p>You can bind multiple paths:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;/pool/lab-data,~/orcd/scratch/results&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Compare data in /pool/lab-data/ with ~/orcd/scratch/results/&quot;</span>
+</span></code></pre></div>
+<p>For batch jobs, set <code>APPTAINER_BIND</code> on the same line as <code>sbatch</code> so the job
+inherits it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;/orcd/data/your-group/datasets&quot;</span><span class="w"> </span>sbatch<span class="w"> </span>apptainer/slurm-openclaw.sh
 </span></code></pre></div>
 <h3 id="gpu-compute">GPU Compute<a class="headerlink" href="#gpu-compute" title="Permanent link">&para;</a></h3>
 <p>The agent itself does not need a GPU — do not add GPU requests to the
@@ -2981,7 +2991,7 @@ gateway or agent SLURM scripts. When your task requires GPU compute (e.g.,
 training a model, running inference locally), the agent can submit a
 separate SLURM job that requests its own GPU. Enable
 <code>OPENCLAW_SLURM_BINDS=1</code> so the agent can use <code>sbatch</code> directly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Submit a SLURM job on a GPU node to train my model in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Submit a SLURM job on a GPU node to train my model in ~/orcd/scratch/oclaw/workdata/&quot;</span>
 </span></code></pre></div>
 <p>The submitted job runs outside the container on a GPU node with full
 access to the cluster's GPU partitions. See
@@ -2990,7 +3000,7 @@ available GPU types and partitions.</p>
 <h3 id="changing-the-model">Changing the Model<a class="headerlink" href="#changing-the-model" title="Permanent link">&para;</a></h3>
 <p>You do not need to re-run the full setup wizard to switch models. Use the
 config command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>agent.model<span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-6&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>agent.model<span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-6&quot;</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">API Usage Limits</p>
@@ -3002,15 +3012,15 @@ Monitor usage and costs, especially with batch jobs.</p>
 <p>All conversation history, agent configuration, and workspace state is stored in
 <code>.openclaw/</code> next to the repo directory. Your clone location determines where
 state lives — no extra configuration needed.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>~/orcd/scratch/oclaw/                 # container $HOME (parent of repo)
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>├── openclaw-engaging/                # the repo
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>│   ├── apptainer/
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│   ├── docs/
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   └── ...
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>└── .openclaw/                        # config, sessions, memory
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    ├── .env
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    ├── openclaw.json
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    └── agents/
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>~/orcd/scratch/oclaw/                 # container $HOME (parent of repo)
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>├── openclaw-engaging/                # the repo
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>│   ├── apptainer/
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>│   ├── docs/
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>│   └── ...
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>└── .openclaw/                        # config, sessions, memory
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    ├── .env
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    ├── openclaw.json
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    └── agents/
 </span></code></pre></div>
 <p>The scripts set the container's <code>$HOME</code> to the <strong>parent</strong> of the repo
 directory (<code>~/orcd/scratch/oclaw/</code>). This means:</p>
@@ -3042,7 +3052,7 @@ boundary instead.</p>
   or affect other users</li>
 </ul>
 <p>To grant the agent access to a data directory, use <code>APPTAINER_BIND</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the data in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the data in ~/orcd/scratch/oclaw/workdata/&quot;</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3055,7 +3065,7 @@ shell configuration. This is <strong>not recommended</strong>.</p>
 <p>After setup, run the workspace initialization script to give your agent
 knowledge of the Engaging cluster (SLURM partitions, storage paths, module
 system, ORCD documentation links):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>./apptainer/orcd-workspace-init.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>./apptainer/orcd-workspace-init.sh
 </span></code></pre></div>
 <p>The agent loads this context automatically at the start of every session.</p>
 <h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
@@ -3110,7 +3120,7 @@ system, ORCD documentation links):</p>
 <h3 id="dashboard-asks-for-a-pairing-code">Dashboard asks for a pairing code<a class="headerlink" href="#dashboard-asks-for-a-pairing-code" title="Permanent link">&para;</a></h3>
 <p>If the dashboard prompts for device pairing instead of showing the chat
 interface, disable device authentication:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gateway.controlUi.dangerouslyDisableDeviceAuth<span class="w"> </span><span class="nb">true</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gateway.controlUi.dangerouslyDisableDeviceAuth<span class="w"> </span><span class="nb">true</span>
 </span></code></pre></div>
 <p>Then restart the gateway (cancel the SLURM job and relaunch with
 <code>./apptainer/start-gateway.sh</code>).</p>
@@ -3120,20 +3130,20 @@ interface, disable device authentication:</p>
 Identity Required" prompt, even after clicking the tokenized URL.</p>
 <ol>
 <li>Copy the token from the URL — it's the string after <code>?token=</code>:
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>http://localhost:18790/?token=abc123def456...
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>                              ^^^^^^^^^^^^^^ copy this part
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>http://localhost:18790/?token=abc123def456...
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>                              ^^^^^^^^^^^^^^ copy this part
 </span></code></pre></div></li>
 <li>Paste it into the token input field on the dashboard and submit.</li>
 <li>If you still see "Device Identity Required", ensure device auth is
    disabled:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gateway.controlUi.dangerouslyDisableDeviceAuth<span class="w"> </span><span class="nb">true</span>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gateway.controlUi.dangerouslyDisableDeviceAuth<span class="w"> </span><span class="nb">true</span>
 </span></code></pre></div>
    Then restart the gateway (<code>scancel &lt;jobid&gt;</code> and relaunch).</li>
 <li>If the token field doesn't appear, try a private/incognito window or
    append <code>/?token=&lt;your-token&gt;</code> manually to <code>http://localhost:18790/</code>.</li>
 </ol>
 <p><strong>Finding your token</strong> if you've lost the gateway output:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import json; print(json.load(open(&#39;.openclaw/openclaw.json&#39;))[&#39;gateway&#39;][&#39;auth&#39;][&#39;token&#39;])&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import json; print(json.load(open(&#39;.openclaw/openclaw.json&#39;))[&#39;gateway&#39;][&#39;auth&#39;][&#39;token&#39;])&quot;</span>
 </span></code></pre></div>
 <h3 id="enotdir-error-after-moving-the-repo-or-openclaw">ENOTDIR error after moving the repo or <code>.openclaw</code><a class="headerlink" href="#enotdir-error-after-moving-the-repo-or-openclaw" title="Permanent link">&para;</a></h3>
 <p>If the gateway fails with <code>ENOTDIR</code> after moving the repo directory or
@@ -3143,13 +3153,13 @@ resolve the new paths correctly.</p>
 <h3 id="out-of-memory-during-setup">Out of memory during setup<a class="headerlink" href="#out-of-memory-during-setup" title="Permanent link">&para;</a></h3>
 <p>The onboarding wizard can exceed 1 GB of memory. If <code>setup.sh</code> is killed
 with an OOM error, re-run with more memory:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh
 </span></code></pre></div>
 <h3 id="nodejs-or-module-errors">Node.js or module errors<a class="headerlink" href="#nodejs-or-module-errors" title="Permanent link">&para;</a></h3>
 <p>If you see <code>SyntaxError</code> or module resolution failures after updating,
 rebuild the container:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer/1.4.2
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>apptainer<span class="w"> </span>build<span class="w"> </span>apptainer/openclaw.sif<span class="w"> </span>apptainer/openclaw.def
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer/1.4.2
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>apptainer<span class="w"> </span>build<span class="w"> </span>apptainer/openclaw.sif<span class="w"> </span>apptainer/openclaw.def
 </span></code></pre></div>
 <h2 id="hpc-vs-cloud-differences">HPC vs. Cloud Differences<a class="headerlink" href="#hpc-vs-cloud-differences" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
@@ -3176,8 +3186,8 @@ close to the cloud deployment.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Detailed guide</p>
-<p>For full details including troubleshooting, advanced configuration, gateway
-setup, and session persistence, see the
+<p>For full details — troubleshooting, advanced config, gateway setup, session
+persistence — see the full
 <a href="https://github.com/qsimeon/openclaw-engaging/blob/main/docs/engaging-apptainer-guide.md">OpenClaw Engaging guide</a>.</p>
 </div>
 
@@ -3200,7 +3210,7 @@ setup, and session persistence, see the
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 26, 2026 22:09:24 UTC">March 26, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 27, 2026 00:14:04 UTC">March 27, 2026</span>
   </span>
 
     
