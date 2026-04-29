@@ -1,0 +1,3275 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://orcd.mit.edu/recipes/openclaw-engaging/">
+      
+      
+        <link rel="prev" href="../nvhpc-a100-with-cuda-and-mpi-example/">
+      
+      
+        <link rel="next" href="../orca/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>OpenClaw - ORCD Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#running-a-personal-openclaw-ai-assistant-on-engaging" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ORCD Docs" class="md-header__button md-logo" aria-label="ORCD Docs" data-md-component="logo">
+      
+  <img src="../../images/ORCD_logo_icononly.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ORCD Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenClaw
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ORCD Docs" class="md-nav__button md-logo" aria-label="ORCD Docs" data-md-component="logo">
+      
+  <img src="../../images/ORCD_logo_icononly.png" alt="logo">
+
+    </a>
+    ORCD Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../orcd-systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engaging System
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessing Engaging
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Accessing Engaging
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ondemand-login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging in with OnDemand
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging in with SSH via Terminal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/ssh-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH Key Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSCode Remote SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessing-orcd/control-channels/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH Control Channels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystems and File Transfer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Filesystems and File Transfer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/filesystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Use Filesystems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/transferring-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transferring Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/julia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Julia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/R/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    R
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling Codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/apptainer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Containers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/licensed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licensed Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/building-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running Jobs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Running Jobs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/requesting-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requesting Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/job-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Job Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/available-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Available Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/application-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCD Recipes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCD Recipes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../many-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Job Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../af3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AlphaFold 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cryosparc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CryoSPARC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gromacs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GROMACS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intel compiler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jupyter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpi4py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MPI for Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MPI Jobs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVHPC with CUDA aware MPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenClaw
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenClaw
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Clone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-build-configure-1520-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Build + configure (~15–20 min)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-activate-the-openclaw-command-one-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Activate the openclaw Command (one-time)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-test-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Test the Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-launch-the-web-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Launch the Web Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staying-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staying Updated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-and-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips and Customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips and Customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slurm-job-management-from-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SLURM Job Management from the Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-research-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing Research Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPU Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing the Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sandboxing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sandboxing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster-aware-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster-Aware Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-asks-for-a-pairing-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard asks for a pairing code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-not-auto-filling-device-identity-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token not auto-filling / "Device Identity Required"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enotdir-error-after-moving-the-repo-or-openclaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENOTDIR error after moving the repo or .openclaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-memory-during-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of memory during setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-or-module-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node.js or module errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hpc-vs-cloud-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HPC vs. Cloud Differences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../orca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pycharm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyCharm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../torch-gpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch on GPUs - I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../torch-gpu-intermediate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch on GPUs - II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RELION
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-vasp-gcc-cpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VASP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSCode Remote SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    X11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/compute-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compute Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/storage-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/hosted-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware Purchases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/accessing-group-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessing Group Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledging Us
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Security and Privacy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-of-conduct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acceptable Use and Code of Conduct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-help/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Help
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faqs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Clone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-build-configure-1520-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Build + configure (~15–20 min)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-activate-the-openclaw-command-one-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Activate the openclaw Command (one-time)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-test-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Test the Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-launch-the-web-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Launch the Web Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staying-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Staying Updated
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-and-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips and Customization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips and Customization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slurm-job-management-from-the-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SLURM Job Management from the Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-research-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing Research Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPU Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing the Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sandboxing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sandboxing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster-aware-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cluster-Aware Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-asks-for-a-pairing-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard asks for a pairing code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-not-auto-filling-device-identity-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Token not auto-filling / "Device Identity Required"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enotdir-error-after-moving-the-repo-or-openclaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENOTDIR error after moving the repo or .openclaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-memory-during-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of memory during setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodejs-or-module-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node.js or module errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hpc-vs-cloud-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HPC vs. Cloud Differences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:containers" class="md-tag">Containers</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:llm" class="md-tag">LLM</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="running-a-personal-openclaw-ai-assistant-on-engaging">Running a Personal OpenClaw AI Assistant on Engaging<a class="headerlink" href="#running-a-personal-openclaw-ai-assistant-on-engaging" title="Permanent link">&para;</a></h1>
+<p><em>Contributed by Quilee Simeon (qsimeon@mit.edu)</em></p>
+<p><a href="https://github.com/openclaw/openclaw">OpenClaw</a> is an open-source AI assistant
+platform that connects to cloud LLM providers (Anthropic Claude, OpenAI GPT-4o,
+Google Gemini, OpenRouter, etc.). This recipe deploys OpenClaw on the Engaging
+cluster using <a href="../../software/apptainer/">Apptainer</a> so the agent has direct
+access to your research data and cluster compute resources.</p>
+<div class="admonition note">
+<p class="admonition-title">Detailed guide</p>
+<p>For full details — troubleshooting, advanced config, gateway setup, session
+persistence — see the full
+<a href="https://github.com/qsimeon/openclaw-engaging/blob/main/docs/engaging-apptainer-guide.md">OpenClaw Engaging guide</a>.
+This recipe is the quick-start; the guide is the reference manual.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Responsible Use and Data Privacy</p>
+<ul>
+<li><strong>You are responsible for the actions of your agent.</strong> Follow the
+  <a href="https://orcd-docs.mit.edu/code-of-conduct/">Acceptable Use and Code of Conduct</a>.</li>
+<li><strong>Data privacy.</strong> Prompts and file excerpts go to cloud LLM APIs. Do
+  not use sensitive, restricted, or export-controlled data. See
+  <a href="https://ist.mit.edu/security/data-classification">MIT data classification</a>.</li>
+<li><strong>Limit access.</strong> The agent runs in <code>--containall</code> mode by default,
+  restricting it to the repo directory, <code>.openclaw/</code>, and <code>/tmp</code>. Use
+  <code>APPTAINER_BIND</code> to grant access only to directories the agent needs.</li>
+<li><strong>Review third-party skills</strong> before enabling — they execute code
+  with your permissions.</li>
+<li><strong>Monitor API usage.</strong> Some providers have suspended accounts for
+  very high automated usage. Be mindful of costs with batch jobs.</li>
+<li><strong>SLURM binds escape the container.</strong> If you enable
+  <code>OPENCLAW_SLURM_BINDS=1</code>, jobs submitted by the agent run outside the
+  container with your full user permissions. See
+  <a href="#slurm-job-management-from-the-agent">SLURM Job Management</a>.</li>
+</ul>
+</div>
+<p>The code and Apptainer configuration for this recipe can be found in the
+<a href="https://github.com/qsimeon/openclaw-engaging">openclaw-engaging</a> GitHub
+repository, which is a fork of the upstream
+<a href="https://github.com/openclaw/openclaw">OpenClaw</a> project with HPC-specific
+additions for SLURM and Apptainer.</p>
+<h2 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<p>The OpenClaw gateway runs inside a read-only Apptainer <code>.sif</code> container on a
+SLURM compute node. The agent calls cloud LLM APIs over HTTPS — no local GPU is
+needed for inference. The agent runs in <code>--containall</code> mode by default, so it
+can only see the repo directory, <code>.openclaw/</code>, and <code>/tmp</code> — not your home
+directory. All agent state is stored in <code>.openclaw/</code> next to the repo, so it
+survives job preemptions.</p>
+<p>You access the web dashboard from your laptop via an SSH tunnel through a login
+node, similar to the <a href="../jupyter/#port-forwarding">port forwarding approach used for Jupyter</a>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Your laptop (browser)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    │  SSH tunnel (port 18790)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ▼
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Login node (orcd-login.mit.edu)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │  forwards to compute node
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ▼
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Compute node (SLURM job)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    └── Apptainer container
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        └── OpenClaw gateway (port 18790)
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            └── calls cloud LLM APIs (HTTPS)
+</span></code></pre></div>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>An MIT Engaging account (<a href="https://orcd-docs.mit.edu/getting-started/">request access</a>)</li>
+<li>An API key from <a href="https://console.anthropic.com/">Anthropic</a>,
+  <a href="https://platform.openai.com/">OpenAI</a>, or
+  <a href="https://openrouter.ai/">OpenRouter</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The agent calls cloud LLM APIs for inference — <strong>no GPU is required</strong>.
+The gateway needs only 1 CPU and 4 GB RAM on any partition. Do not
+request GPU partitions for the gateway or agent session — GPU nodes are
+a scarce shared resource and provide no benefit here. When GPU compute
+is needed for data processing, the agent can submit separate SLURM jobs
+that request their own GPUs (via <code>OPENCLAW_SLURM_BINDS=1</code>).</p>
+</div>
+<h2 id="step-1-clone">Step 1: Clone<a class="headerlink" href="#step-1-clone" title="Permanent link">&para;</a></h2>
+<p>Log in to a login node and run the one-line installer (about 30 seconds):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>&lt;username&gt;@orcd-login.mit.edu
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/qsimeon/openclaw-engaging/main/install_stage0.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch/oclaw/openclaw-engaging
+</span></code></pre></div>
+<p>The installer clones the repo to <code>~/orcd/scratch/oclaw/openclaw-engaging</code> (not
+your home directory) and sets up the upstream remote automatically.</p>
+<details class="note">
+<summary>Manual clone</summary>
+<p>If you prefer not to pipe to bash:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/orcd/scratch/oclaw
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch/oclaw
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/qsimeon/openclaw-engaging.git
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">cd</span><span class="w"> </span>openclaw-engaging
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/openclaw/openclaw.git
+</span></code></pre></div>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All scripts set the container's <code>$HOME</code> to the parent directory of the
+repo (<code>~/orcd/scratch/oclaw/</code>). Agent state lives in
+<code>~/orcd/scratch/oclaw/.openclaw/</code> — off your home quota by default.</p>
+</div>
+<h2 id="step-2-build-configure-1520-min">Step 2: Build + configure (~15–20 min)<a class="headerlink" href="#step-2-build-configure-1520-min" title="Permanent link">&para;</a></h2>
+<p>The setup script builds the container, checks for upstream updates, runs the
+interactive onboarding wizard, and applies HPC-specific settings — all in one
+command. Stay at the terminal for the interactive prompts:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch/oclaw/openclaw-engaging
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh
+</span></code></pre></div>
+<p>The wizard walks you through configuring your LLM provider, API key, model
+selection, optional channels (Telegram, Slack, Discord), and skills. After the
+wizard, the script automatically configures sandbox, session timeout, and
+gateway settings for Engaging. You do not need to configure these manually.</p>
+<details>
+<summary>Split into two steps (if you need to walk away during the build)</summary>
+
+Run the build without a TTY (no prompts), then run onboarding interactively:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--build-only
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00<span class="w"> </span>./apptainer/setup.sh<span class="w"> </span>--onboard-only
+</span></code></pre></div>
+
+The `--build-only` step does not need `--pty` since it has no interactive
+prompts. The `--onboard-only` step skips the container build.
+
+</details>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may see skill install failures mentioning "brew not installed." These
+are non-fatal — Homebrew is not available on HPC nodes, but the core agent
+functionality works without these optional skills.</p>
+</div>
+<h2 id="step-3-activate-the-openclaw-command-one-time">Step 3: Activate the <code>openclaw</code> Command (one-time)<a class="headerlink" href="#step-3-activate-the-openclaw-command-one-time" title="Permanent link">&para;</a></h2>
+<p><code>setup.sh</code> installs the Lmod modulefile to <code>~/modulefiles/openclaw.lua</code>.
+Use the module only (there is no <code>source …/openclaw-env.sh</code> / <code>.bashrc</code> shortcut):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;module use ~/modulefiles&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module<span class="w"> </span>load<span class="w"> </span>openclaw
+</span></code></pre></div>
+<p>This sets up the <code>openclaw</code> command and enables <code>--containall</code> by default.
+You no longer need to type <code>apptainer exec ...</code> for every operation. In future
+sessions, <code>module load openclaw</code> is automatically available.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>openclaw<span class="w"> </span>--help
+</span></code></pre></div>
+<h2 id="step-4-test-the-agent">Step 4: Test the Agent<a class="headerlink" href="#step-4-test-the-agent" title="Permanent link">&para;</a></h2>
+<p>Send a quick test message to confirm everything is working:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Hello from Engaging!&quot;</span>
+</span></code></pre></div>
+<p>You can also start an interactive session on a compute node with data access:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00:00<span class="w"> </span>bash
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Explore CSV files in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+</span></code></pre></div>
+<h2 id="step-5-launch-the-web-dashboard">Step 5: Launch the Web Dashboard<a class="headerlink" href="#step-5-launch-the-web-dashboard" title="Permanent link">&para;</a></h2>
+<p>The web dashboard provides a browser-based chat interface for interacting with
+your agent.</p>
+<div class="admonition important">
+<p class="admonition-title">No GPU needed</p>
+<p>The gateway is a lightweight Node.js server — it needs only <strong>1 CPU and
+4 GB RAM</strong>. Do <strong>not</strong> request a GPU partition (<code>--gres=gpu:*</code> or
+<code>-p gpu-*</code>). GPU nodes are a scarce shared resource and provide no
+benefit here. The default partition works perfectly. When GPU compute is
+needed, the agent can submit separate SLURM jobs that request their own
+GPUs — see <a href="#gpu-compute">GPU Compute</a>.</p>
+</div>
+<p>The 1-click launcher submits the SLURM job, waits for it to start,
+and prints the SSH tunnel command and dashboard URL:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch/oclaw/openclaw-engaging
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>./apptainer/start-gateway.sh
+</span></code></pre></div>
+<p>The gateway binds to <strong>localhost only</strong> — it is not reachable from the
+network. You access it exclusively through an SSH tunnel.</p>
+<div class="admonition note">
+<p class="admonition-title">Manual alternative</p>
+<p>You can also launch manually with <code>sbatch apptainer/slurm-gateway.sh</code>,
+then check <code>cat openclaw-gw-&lt;jobid&gt;.out</code> for the connection details.</p>
+</div>
+<p>The output will include an SSH tunnel command and a dashboard URL with an
+authentication token:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>SSH tunnel command:
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  lsof -ti:18790 | xargs kill -9 2&gt;/dev/null; sleep 1; ssh -f -N -J &lt;username&gt;@orcd-login.mit.edu -L 18790:localhost:18790 &lt;username&gt;@&lt;node&gt;
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Dashboard URL:
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>  http://localhost:18790/?token=&lt;your-token&gt;
+</span></code></pre></div>
+<p>On your <strong>local machine</strong>, run the SSH tunnel command from the output:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>lsof<span class="w"> </span>-ti:18790<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="p">;</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>ssh<span class="w"> </span>-f<span class="w"> </span>-N<span class="w"> </span>-J<span class="w"> </span>&lt;username&gt;@orcd-login.mit.edu<span class="w"> </span>-L<span class="w"> </span><span class="m">18790</span>:localhost:18790<span class="w"> </span>&lt;username&gt;@&lt;node&gt;
+</span></code></pre></div>
+<p>The <code>lsof ... | xargs kill</code> clears any stale tunnel on that port. The
+<code>sleep 1</code> gives the OS time to release the port (TCP TIME_WAIT). The <code>-J</code>
+flag uses the login node as a ProxyJump to reach the compute node directly.
+The whole line is safe to copy-paste every time.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The gateway auto-detects a free port in the range 18790–18799 if the
+default port is busy. Check the job output for the actual port used.</p>
+</div>
+<p>Then open the dashboard URL in your browser.</p>
+<p><img alt="OpenClaw web dashboard showing a chat session with the agent" src="../../images/openclaw/openclaw_dashboard_chat.png" /></p>
+<h2 id="staying-updated">Staying Updated<a class="headerlink" href="#staying-updated" title="Permanent link">&para;</a></h2>
+<p>Both <code>setup.sh</code> and the gateway launcher automatically check for upstream
+OpenClaw updates. In interactive mode you are prompted to merge; in
+non-interactive mode (e.g., <code>sbatch</code>) updates are applied automatically.</p>
+<p>To apply updates manually:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>./apptainer/update.sh
+</span></code></pre></div>
+<p>This fetches the latest changes from upstream, merges them, and optionally
+rebuilds the container. You can also check for updates without applying them:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./apptainer/update.sh<span class="w"> </span>--check
+</span></code></pre></div>
+<h2 id="tips-and-customization">Tips and Customization<a class="headerlink" href="#tips-and-customization" title="Permanent link">&para;</a></h2>
+<h3 id="slurm-job-management-from-the-agent">SLURM Job Management from the Agent<a class="headerlink" href="#slurm-job-management-from-the-agent" title="Permanent link">&para;</a></h3>
+<p>The agent can submit and manage SLURM jobs directly from inside the container.
+Set <code>OPENCLAW_SLURM_BINDS=1</code> to bind-mount the host's SLURM commands
+(<code>sbatch</code>, <code>squeue</code>, <code>scancel</code>, <code>sinfo</code>, <code>srun</code>, <code>sacct</code>) into the container:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./apptainer/start-gateway.sh
+</span></code></pre></div>
+<p>With this enabled, your agent can write batch scripts, submit them with
+<code>sbatch</code>, and monitor job status — all within the same conversation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Write a SLURM batch script for my analysis and submit it&quot;</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">SLURM binds and container boundaries</p>
+<p>When <code>OPENCLAW_SLURM_BINDS=1</code> is enabled, the agent can submit SLURM jobs
+that run <strong>outside the container</strong> with full filesystem access. This is by
+design — it is the feature — but it means the agent can effectively escape
+the Apptainer boundary. <code>--containall</code> does not prevent this since
+submitted jobs run on fresh nodes without container isolation. Only enable
+SLURM binds when you trust the agent's task and have reviewed what it
+will do.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SLURM binds rely on the host and container having compatible libraries.
+If you see errors about missing libraries, the agent can still write batch
+scripts for you to submit outside the container.</p>
+</div>
+<h3 id="accessing-research-data">Accessing Research Data<a class="headerlink" href="#accessing-research-data" title="Permanent link">&para;</a></h3>
+<p>Since <code>--containall</code> is enabled by default, the agent can only see the repo
+directory and <code>/tmp</code>. Grant access with <code>APPTAINER_BIND</code> in front of
+<code>openclaw</code> (not <code>apptainer exec -B</code>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the datasets in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+</span></code></pre></div>
+<p>You can bind multiple paths:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;/pool/lab-data,~/orcd/scratch/results&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Compare data in /pool/lab-data/ with ~/orcd/scratch/results/&quot;</span>
+</span></code></pre></div>
+<p>For batch jobs, set <code>APPTAINER_BIND</code> on the same line as <code>sbatch</code> so the job
+inherits it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;/orcd/data/your-group/datasets&quot;</span><span class="w"> </span>sbatch<span class="w"> </span>apptainer/slurm-openclaw.sh
+</span></code></pre></div>
+<h3 id="gpu-compute">GPU Compute<a class="headerlink" href="#gpu-compute" title="Permanent link">&para;</a></h3>
+<p>The agent itself does not need a GPU — do not add GPU requests to the
+gateway or agent SLURM scripts. When your task requires GPU compute (e.g.,
+training a model, running inference locally), the agent can submit a
+separate SLURM job that requests its own GPU. Enable
+<code>OPENCLAW_SLURM_BINDS=1</code> so the agent can use <code>sbatch</code> directly:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Submit a SLURM job on a GPU node to train my model in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+</span></code></pre></div>
+<p>The submitted job runs outside the container on a GPU node with full
+access to the cluster's GPU partitions. See
+<a href="../../running-jobs/requesting-resources/#gpus">Requesting Resources</a> for
+available GPU types and partitions.</p>
+<h3 id="changing-the-model">Changing the Model<a class="headerlink" href="#changing-the-model" title="Permanent link">&para;</a></h3>
+<p>You do not need to re-run the full setup wizard to switch models. Use the
+config command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>agent.model<span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-6&quot;</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">API Usage Limits</p>
+<p>Autonomous agents can generate significant API traffic. Some providers
+have suspended accounts for exceeding automated usage thresholds.
+Monitor usage and costs, especially with batch jobs.</p>
+</div>
+<h3 id="session-persistence">Session Persistence<a class="headerlink" href="#session-persistence" title="Permanent link">&para;</a></h3>
+<p>All conversation history, agent configuration, and workspace state is stored in
+<code>.openclaw/</code> next to the repo directory. Your clone location determines where
+state lives — no extra configuration needed.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>~/orcd/scratch/oclaw/                 # container $HOME (parent of repo)
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>├── openclaw-engaging/                # the repo
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>│   ├── apptainer/
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>│   ├── docs/
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>│   └── ...
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>└── .openclaw/                        # config, sessions, memory
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    ├── .env
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    ├── openclaw.json
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    └── agents/
+</span></code></pre></div>
+<p>The scripts set the container's <code>$HOME</code> to the <strong>parent</strong> of the repo
+directory (<code>~/orcd/scratch/oclaw/</code>). This means:</p>
+<ul>
+<li><code>.openclaw/</code> lives at <code>~/orcd/scratch/oclaw/.openclaw/</code> — off your home quota</li>
+<li>Sessions survive SLURM job preemptions — just resubmit the gateway job and
+  reconnect</li>
+<li>You can switch between compute nodes freely</li>
+<li>Your agent remembers previous conversations</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Scratch may be purged after ~90 days of inactivity. Periodically back up
+<code>.openclaw/openclaw.json</code> and <code>.openclaw/credentials/</code>. PI/group storage
+(<code>/orcd/data/&lt;pi-group&gt;/</code>) is not auto-purged. See
+<a href="../../filesystems-file-transfer/filesystems/">Storage and Filesystems</a>
+for available storage options.</p>
+</div>
+<h3 id="sandboxing">Sandboxing<a class="headerlink" href="#sandboxing" title="Permanent link">&para;</a></h3>
+<p>OpenClaw's internal sandbox requires Docker, which is not available on HPC
+nodes. The setup wizard disables it automatically so the agent can run
+commands and manage files. Apptainer with <code>--containall</code> is the security
+boundary instead.</p>
+<p>By default, all scripts run with <code>--containall</code> enabled. This means:</p>
+<ul>
+<li>The agent <strong>cannot</strong> see <code>~/.ssh</code>, <code>~/.gnupg</code>, or your real home directory</li>
+<li>Only the repo directory, <code>.openclaw/</code>, and <code>/tmp</code> are visible</li>
+<li>The container filesystem is read-only — the agent can't modify the host OS
+  or affect other users</li>
+</ul>
+<p>To grant the agent access to a data directory, use <code>APPTAINER_BIND</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the data in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Setting <code>OPENCLAW_CONTAINALL=0</code> disables <code>--containall</code> and exposes your
+entire home directory to the agent, including SSH keys, GPG keys, and
+shell configuration. This is <strong>not recommended</strong>.</p>
+</div>
+<h2 id="advanced-usage">Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permanent link">&para;</a></h2>
+<h3 id="cluster-aware-agents">Cluster-Aware Agents<a class="headerlink" href="#cluster-aware-agents" title="Permanent link">&para;</a></h3>
+<p>After setup, run the workspace initialization script to give your agent
+knowledge of the Engaging cluster (SLURM partitions, storage paths, module
+system, ORCD documentation links):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>./apptainer/orcd-workspace-init.sh
+</span></code></pre></div>
+<p>The agent loads this context automatically at the start of every session.</p>
+<h3 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h3>
+<p>All scripts support these environment variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENCLAW_SLURM_BINDS</code></td>
+<td>off</td>
+<td>Bind SLURM commands (<code>sbatch</code>, <code>squeue</code>, etc.) into the container</td>
+</tr>
+<tr>
+<td><code>OPENCLAW_CONTAINALL</code></td>
+<td><strong>on</strong></td>
+<td>Strict filesystem isolation (<code>--containall</code>). Set to <code>0</code> to disable (not recommended)</td>
+</tr>
+<tr>
+<td><code>OPENCLAW_GATEWAY_PORT</code></td>
+<td><code>18790</code></td>
+<td>Gateway port (gateway scripts only)</td>
+</tr>
+<tr>
+<td><code>OPENCLAW_LOGIN_NODE</code></td>
+<td><code>orcd-login.mit.edu</code></td>
+<td>Login node for SSH tunnel info</td>
+</tr>
+<tr>
+<td><code>OPENCLAW_AGENT</code></td>
+<td><code>main</code></td>
+<td>Agent name (batch/gateway scripts)</td>
+</tr>
+<tr>
+<td><code>OPENCLAW_PROMPT</code></td>
+<td><em>(greeting)</em></td>
+<td>Task prompt (batch script only)</td>
+</tr>
+<tr>
+<td><code>APPTAINER_BIND</code></td>
+<td><em>(none)</em></td>
+<td>Extra directories to bind into the container</td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="dashboard-asks-for-a-pairing-code">Dashboard asks for a pairing code<a class="headerlink" href="#dashboard-asks-for-a-pairing-code" title="Permanent link">&para;</a></h3>
+<p>If the dashboard prompts for device pairing instead of showing the chat
+interface, disable device authentication:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gateway.controlUi.dangerouslyDisableDeviceAuth<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>Then restart the gateway (cancel the SLURM job and relaunch with
+<code>./apptainer/start-gateway.sh</code>).</p>
+<h3 id="token-not-auto-filling-device-identity-required">Token not auto-filling / "Device Identity Required"<a class="headerlink" href="#token-not-auto-filling-device-identity-required" title="Permanent link">&para;</a></h3>
+<p>Some browsers may not auto-fill the token from the URL. You may see
+<code>OPENCLAW_GATEWAY_TOKEN (optional)</code> in the token field, or a "Device
+Identity Required" prompt, even after clicking the tokenized URL.</p>
+<ol>
+<li>Copy the token from the URL — it's the string after <code>?token=</code>:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>http://localhost:18790/?token=abc123def456...
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>                              ^^^^^^^^^^^^^^ copy this part
+</span></code></pre></div></li>
+<li>Paste it into the token input field on the dashboard and submit.</li>
+<li>If you still see "Device Identity Required", ensure device auth is
+   disabled:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>gateway.controlUi.dangerouslyDisableDeviceAuth<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+   Then restart the gateway (<code>scancel &lt;jobid&gt;</code> and relaunch).</li>
+<li>If the token field doesn't appear, try a private/incognito window or
+   append <code>/?token=&lt;your-token&gt;</code> manually to <code>http://localhost:18790/</code>.</li>
+</ol>
+<p><strong>Finding your token</strong> if you've lost the gateway output:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import json; print(json.load(open(&#39;.openclaw/openclaw.json&#39;))[&#39;gateway&#39;][&#39;auth&#39;][&#39;token&#39;])&quot;</span>
+</span></code></pre></div>
+<h3 id="enotdir-error-after-moving-the-repo-or-openclaw">ENOTDIR error after moving the repo or <code>.openclaw</code><a class="headerlink" href="#enotdir-error-after-moving-the-repo-or-openclaw" title="Permanent link">&para;</a></h3>
+<p>If the gateway fails with <code>ENOTDIR</code> after moving the repo directory or
+creating a symlink, the running gateway still has stale file handles to the
+old path. Cancel the SLURM job and relaunch — the new gateway process will
+resolve the new paths correctly.</p>
+<h3 id="out-of-memory-during-setup">Out of memory during setup<a class="headerlink" href="#out-of-memory-during-setup" title="Permanent link">&para;</a></h3>
+<p>The onboarding wizard can exceed 1 GB of memory. If <code>setup.sh</code> is killed
+with an OOM error, re-run with more memory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>./apptainer/setup.sh
+</span></code></pre></div>
+<h3 id="nodejs-or-module-errors">Node.js or module errors<a class="headerlink" href="#nodejs-or-module-errors" title="Permanent link">&para;</a></h3>
+<p>If you see <code>SyntaxError</code> or module resolution failures after updating,
+rebuild the container:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>module<span class="w"> </span>load<span class="w"> </span>apptainer/1.4.2
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>srun<span class="w"> </span>--mem<span class="o">=</span>8G<span class="w"> </span>--time<span class="o">=</span><span class="m">01</span>:00:00<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">2</span><span class="w"> </span>apptainer<span class="w"> </span>build<span class="w"> </span>apptainer/openclaw.sif<span class="w"> </span>apptainer/openclaw.def
+</span></code></pre></div>
+<h2 id="hpc-vs-cloud-differences">HPC vs. Cloud Differences<a class="headerlink" href="#hpc-vs-cloud-differences" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you have used OpenClaw on
+<a href="https://marketplace.digitalocean.com/apps/openclaw">DigitalOcean</a>, here are
+the key differences on Engaging:</p>
+<ul>
+<li><strong>No always-on gateway</strong>: SLURM jobs have wall-time limits. When the job
+  ends, resubmit with <code>./apptainer/start-gateway.sh</code>. Your sessions
+  persist automatically.</li>
+<li><strong>SSH tunnel required</strong>: Engaging compute nodes are not directly reachable
+  from the internet. The SSH tunnel through a login node provides secure
+  access to the dashboard.</li>
+<li><strong>No systemd</strong>: There is no service manager on compute nodes. The gateway
+  runs as a foreground process inside the SLURM job.</li>
+<li><strong>GPU</strong>: Not needed — agent submits GPU jobs via SLURM when compute is
+  required (<code>OPENCLAW_SLURM_BINDS=1</code>). Do not request GPU partitions for the
+  gateway or agent session.</li>
+</ul>
+<p>These are fundamental HPC constraints, not Apptainer limitations. The
+<code>openclaw</code> shortcut and persistent state directory keep the experience
+close to the cloud deployment.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Detailed guide</p>
+<p>For full details — troubleshooting, advanced config, gateway setup, session
+persistence — see the
+<a href="https://github.com/qsimeon/openclaw-engaging/blob/main/docs/engaging-apptainer-guide.md">OpenClaw Engaging guide</a>.</p>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="March 27, 2026 03:04:58 UTC">March 27, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://accessibility.mit.edu/">Accessibility</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
