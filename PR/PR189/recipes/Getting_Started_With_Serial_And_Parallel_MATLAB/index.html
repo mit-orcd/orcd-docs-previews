@@ -2403,7 +2403,6 @@
 
 
 
-<p><a id="M_1a8d"></a></p>
 <h1 id="parallel-computing-with-matlab-on-the-engaging-hpc-cluster"><span style="color:rgb(213,80,0)">Parallel Computing with MATLAB on the Engaging HPC Cluster</span><a class="headerlink" href="#parallel-computing-with-matlab-on-the-engaging-hpc-cluster" title="Permanent link">&para;</a></h1>
 <p>This document provides the steps to configure MATLAB to submit jobs to a cluster, retrieve results, and debug errors.</p>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
@@ -2430,7 +2429,6 @@
 </p>
 
 <p>Follow the prompts to create a new cluster profile.  Jobs will run across multiple nodes on the cluster rather than on the host machine.</p>
-<p><a id="M_0dfa"></a></p>
 <h2 id="if-cluster-discovery-fails-use-alternate-method">If Cluster Discovery Fails: Use Alternate Method<a class="headerlink" href="#if-cluster-discovery-fails-use-alternate-method" title="Permanent link">&para;</a></h2>
 <p>After logging into the cluster, start MATLAB. Call <code>configCluster</code> to create a new cluster profile.</p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">configCluster</span>
@@ -2439,21 +2437,18 @@
 <h2 id="initial-configuration-running-matlab-on-the-desktop">Initial Configuration - Running MATLAB on the Desktop<a class="headerlink" href="#initial-configuration-running-matlab-on-the-desktop" title="Permanent link">&para;</a></h2>
 <p>This setup is intended for job submission when MATLAB is installed on your machine and jobs are run remotely on the cluster.  This setup needs to be done once per cluster, per version of MATLAB installed on your machine.</p>
 <p>Start MATLAB and run <code>userpath</code></p>
-<p><div class="language-matlab highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">userpath</span>
+<div class="language-matlab highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">userpath</span>
 </span></code></pre></div>
-<a id="M_7364"></a></p>
 <p>Download the MATLAB plugin scripts from <a href="http://www.mathworks.com">here</a>.  The contents of the ZIP file should be extracted into the folder returned by the call to <code>userpath</code>.</p>
 <p>Create a new cluster profile</p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">configCluster</span>
 </span></code></pre></div>
 <p>Jobs will now run on the cluster rather than on the local machine.</p>
-<p><a id="M_60e5"></a></p>
 <p>Submission to the cluster requires SSH credentials. You will be prompted for username and password or identity file (private key) upon submitting your first job. The username and location of the private key will be stored in MATLAB for future sessions.</p>
 <p><strong>NOTE</strong>: To run jobs on the local machine instead of the cluster, use the <code>Processes</code> profile.</p>
-<p><div class="language-matlab highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c">% Get a handle to the local resources</span>
+<div class="language-matlab highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c">% Get a handle to the local resources</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parcluster</span><span class="p">(</span><span class="s">&#39;Processes&#39;</span><span class="p">);</span>
 </span></code></pre></div>
-<a id="M_745e"></a></p>
 <h2 id="configuring-jobs">Configuring Jobs<a class="headerlink" href="#configuring-jobs" title="Permanent link">&para;</a></h2>
 <p>Prior to submitting the job, various scheduler flags can be assigned, such as queue, e-mail, walltime, etc.  While no parameters are mandatory to submit a job, they may default to non-ideal values and cause your job to fail.  It is therefore recommended to tailor these values to your particular job. </p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c">% Get a handle to the cluster</span>
@@ -2463,42 +2458,41 @@
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c">% OPTIONAL</span>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="o">&lt;</span><span class="n">a</span><span class="w"> </span><span class="n">id</span><span class="p">=</span><span class="s">&quot;M_M_M_M_54b8&quot;</span><span class="o">&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c">% Specify an account</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">AccountName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;account-name&#39;</span><span class="p">;</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c">% Specify a constraint</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Constraint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;feature-name&#39;</span><span class="p">;</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c">% Request email notification of job status</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">EmailAddress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;mit-kerberos@mit.edu&#39;</span><span class="p">;</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="c">% Specify number of GPUs (default: 0)</span>
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUsPerNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="c">% Specify a particular GPU card</span>
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUCard</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;gpu-card&#39;</span><span class="p">;</span>
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="c">% Specify memory to use, per core (default: 4GB)</span>
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">MemPerCPU</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;6GB&#39;</span><span class="p">;</span>
-</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="c">% Specify the partition</span>
-</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Partition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;partition-name&#39;</span><span class="p">;</span>
-</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>
-</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="c">% Specify cores per node (default: 0)</span>
-</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">ProcsPerNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
-</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>
-</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="c">% Specify Quality of Service (QoS)</span>
-</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">QoS</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;quality-of-service-value&#39;</span><span class="p">;</span>
-</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>
-</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="c">% Set node exclusivity (default: false)</span>
-</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">RequireExclusiveNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>
-</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="c">% Specify a reservation</span>
-</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Reservation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;reservation-name&#39;</span><span class="p">;</span>
-</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>
-</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="c">% Specify the wall time (e.g., 1 day, 5 hours, 30 minutes)</span>
-</span><span id="__span-6-43"><a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">WallTime</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;1-05:30&#39;</span><span class="p">;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c">% Specify an account</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">AccountName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;account-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c">% Specify a constraint</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Constraint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;feature-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c">% Request email notification of job status</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">EmailAddress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;mit-kerberos@mit.edu&#39;</span><span class="p">;</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c">% Specify number of GPUs (default: 0)</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUsPerNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="c">% Specify a particular GPU card</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUCard</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;gpu-card&#39;</span><span class="p">;</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="c">% Specify memory to use, per core (default: 4GB)</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">MemPerCPU</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;6GB&#39;</span><span class="p">;</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="c">% Specify the partition</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Partition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;partition-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="c">% Specify cores per node (default: 0)</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">ProcsPerNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="c">% Specify Quality of Service (QoS)</span>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">QoS</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;quality-of-service-value&#39;</span><span class="p">;</span>
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="c">% Set node exclusivity (default: false)</span>
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">RequireExclusiveNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="c">% Specify a reservation</span>
+</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Reservation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;reservation-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>
+</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="c">% Specify the wall time (e.g., 1 day, 5 hours, 30 minutes)</span>
+</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">WallTime</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;1-05:30&#39;</span><span class="p">;</span>
 </span></code></pre></div>
 <p>To persist changes made to <code>AdditionalProperties</code> between MATLAB sessions, save the profile</p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">c</span><span class="p">.</span><span class="n">saveProfile</span>
@@ -2661,16 +2655,52 @@
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="mi">25539</span>
 </span></code></pre></div>
 <h2 id="helper-functions">Helper Functions<a class="headerlink" href="#helper-functions" title="Permanent link">&para;</a></h2>
-<p><a id="M_3d65"></a>
-| Function <br>  | Description <br>  | Notes <br>   |
-| :-- | :-- | :-- |
-| clusterFeatures <br>  | Lists cluster features/constraints <br>  |   |
-| clusterGpuCards <br>  | Lists cluster GPU cards <br>  |   |
-| clusterPartitionNames <br>  | Lists cluster partition/queue names <br>  |   |
-| disableArchiving <br>  | Modifies file archiving to resolve file mirroring issues <br>  | Applicable only to Desktop <br>   |
-| fixConnection <br>  | Reestablishes cluster connection (e.g., after reconnection of VPN) <br>  | Applicable only to Desktop <br>   |
-| seff <br>  | Displays Slurm statistics related to the efficiency of resource usage by the job <br>  |   |
-| willRun <br>  | Explains why job is queued <br>  |   |</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Function <br></th>
+<th style="text-align: left;">Description <br></th>
+<th style="text-align: left;">Notes <br></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">clusterFeatures <br></td>
+<td style="text-align: left;">Lists cluster features/constraints <br></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">clusterGpuCards <br></td>
+<td style="text-align: left;">Lists cluster GPU cards <br></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">clusterPartitionNames <br></td>
+<td style="text-align: left;">Lists cluster partition/queue names <br></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">disableArchiving <br></td>
+<td style="text-align: left;">Modifies file archiving to resolve file mirroring issues <br></td>
+<td style="text-align: left;">Applicable only to Desktop <br></td>
+</tr>
+<tr>
+<td style="text-align: left;">fixConnection <br></td>
+<td style="text-align: left;">Reestablishes cluster connection (e.g., after reconnection of VPN) <br></td>
+<td style="text-align: left;">Applicable only to Desktop <br></td>
+</tr>
+<tr>
+<td style="text-align: left;">seff <br></td>
+<td style="text-align: left;">Displays Slurm statistics related to the efficiency of resource usage by the job <br></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">willRun <br></td>
+<td style="text-align: left;">Explains why job is queued <br></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
 <h2 id="to-learn-more">To Learn More<a class="headerlink" href="#to-learn-more" title="Permanent link">&para;</a></h2>
 <p>To learn more about the MATLAB Parallel Computing Toolbox, check out these resources:</p>
 <ul>
@@ -2701,7 +2731,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 28, 2026 19:49:21 UTC">May 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="May 28, 2026 20:03:07 UTC">May 28, 2026</span>
   </span>
 
     
