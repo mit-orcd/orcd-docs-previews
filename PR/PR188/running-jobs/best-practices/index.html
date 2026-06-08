@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#best-practices-for-requesting-resources" class="md-skip">
+        <a href="#best-practices-for-submitting-jobs" class="md-skip">
           Skip to content
         </a>
       
@@ -1088,10 +1088,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#maximize-the-resources-available-to-your-job" class="md-nav__link">
+  <a href="#request-cpu-and-memory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maximize the resources available to your job
+        Request CPU and memory
       
     </span>
   </a>
@@ -1099,10 +1099,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#avoid-unnecessary-pending-time" class="md-nav__link">
+  <a href="#request-gpus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Avoid unnecessary pending time
+        Request GPUs
       
     </span>
   </a>
@@ -1110,10 +1110,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#right-size-your-requests-with-feedback" class="md-nav__link">
+  <a href="#use-resources-efficiently" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Right-size your requests with feedback
+        Use resources efficiently
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-job-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check job info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-your-jobs-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure your jobs efficiently
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-your-jobs-reproducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make your jobs reproducible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-and-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage and I/O
       
     </span>
   </a>
@@ -2160,10 +2204,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#maximize-the-resources-available-to-your-job" class="md-nav__link">
+  <a href="#request-cpu-and-memory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maximize the resources available to your job
+        Request CPU and memory
       
     </span>
   </a>
@@ -2171,10 +2215,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#avoid-unnecessary-pending-time" class="md-nav__link">
+  <a href="#request-gpus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Avoid unnecessary pending time
+        Request GPUs
       
     </span>
   </a>
@@ -2182,10 +2226,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#right-size-your-requests-with-feedback" class="md-nav__link">
+  <a href="#use-resources-efficiently" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Right-size your requests with feedback
+        Use resources efficiently
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-job-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check job info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-your-jobs-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structure your jobs efficiently
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-your-jobs-reproducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make your jobs reproducible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-and-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage and I/O
       
     </span>
   </a>
@@ -2209,51 +2297,98 @@
 
 
 
-<h1 id="best-practices-for-requesting-resources">Best Practices for Requesting Resources<a class="headerlink" href="#best-practices-for-requesting-resources" title="Permanent link">&para;</a></h1>
-<p>The following recommendations will help your jobs start sooner and avoid spending unnecessary time in the queue.</p>
-<h2 id="maximize-the-resources-available-to-your-job">Maximize the resources available to your job<a class="headerlink" href="#maximize-the-resources-available-to-your-job" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p>Submit to as many eligible partitions as possible, for example: <code>-p mit_normal_gpu,mit_preemptable</code>.</p>
-</li>
-<li>
-<p>If your job can run on any type of GPU, request a generic GPU with <code>--gres=gpu:1</code>. To request a specific type, use <code>--gres=gpu:l40s:1</code> for an L40S or <code>--gres=gpu:h200:1</code> for an H200.</p>
-</li>
-</ul>
-<p>Typical cases that require H200s include:</p>
-<ul>
-<li>AI training with large models.</li>
-<li>Simulations that require FP64 precision.</li>
-<li>
-<p>Any job that requires 48–144 GB of GPU memory.</p>
-</li>
-<li>
-<p>For multi-GPU jobs, verify that your code actually scales before requesting more GPUs — extra GPUs that aren't used will just delay scheduling without speeding up your job.</p>
-</li>
-</ul>
-<h2 id="avoid-unnecessary-pending-time">Avoid unnecessary pending time<a class="headerlink" href="#avoid-unnecessary-pending-time" title="Permanent link">&para;</a></h2>
+<h1 id="best-practices-for-submitting-jobs">Best Practices for Submitting Jobs<a class="headerlink" href="#best-practices-for-submitting-jobs" title="Permanent link">&para;</a></h1>
+<p>The following recommendations will help you make efficient use of the available resources, get your jobs started sooner, and avoid spending unnecessary time in the queue.</p>
+<h2 id="request-cpu-and-memory">Request CPU and memory<a class="headerlink" href="#request-cpu-and-memory" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p>Specify <code>--ntasks</code>, <code>--cpus-per-task</code>, and <code>--mem</code> (or <code>--mem-per-cpu</code>) explicitly rather than relying on defaults — defaults are rarely optimal for your workload.</p>
 </li>
 <li>
+<p>Make sure your program actually uses the cores you request. For multithreading programs, such as OpenMP or NumPy programs, set thread counts such as <code>OMP_NUM_THREADS</code> to match <code>--cpus-per-task</code> so you neither under-use nor oversubscribe your cores. For distributed jobs, launch tasks with <code>mpirun</code> or <code>srun</code> so they land on the allocated resources.</p>
+</li>
+<li>
+<p><strong>Request only as much memory as your program actually needs, since requesting more than necessary can delay scheduling.</strong> Note that <code>--mem</code> specifies the memory per node, so when scaling on multiple cores, prefer <code>--mem-per-cpu</code> over <code>--mem</code> so that memory scales with the CPU count.</p>
+</li>
+<li>
+<p>Submit to as many eligible partitions as possible to maximize your usage up to your per-user limit, for example: <code>-p mit_normal,mit_preemptable</code>.</p>
+</li>
+</ul>
+<h2 id="request-gpus">Request GPUs<a class="headerlink" href="#request-gpus" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>If your job can run on any type of GPU, request a generic GPU with <code>--gres=gpu:1</code>. To request a specific type, use <code>--gres=gpu:l40s:1</code> for an L40S or <code>--gres=gpu:h200:1</code> for an H200.</p>
+</li>
+<li>
+<p>If your job does not specifically require an H200, <strong>prefer an L40S</strong>. The L40S is sufficient for many workloads (especially those using less than 48 GB of GPU memory) and is far more available, which usually means shorter queue times.</p>
+</li>
+<li>
+<p><strong>Request an H200 only when necessary.</strong> Typical cases that require an H200 include:</p>
+<ul>
+<li>AI training with large models.</li>
+<li>Simulations that require FP64 precision.</li>
+<li>Any job that requires 48–144 GB of GPU memory.</li>
+</ul>
+</li>
+<li>
 <p>Request no more than 4 CPU cores per GPU when possible. Our Slurm configuration reserves 4 CPU cores per GPU for GPU jobs, so requesting more than that can delay scheduling.</p>
 <blockquote>
-<p><strong>Note:</strong> Many deep learning workloads need more than 4 CPU cores per GPU, since data loading and preprocessing (for example, PyTorch <code>DataLoader</code> workers) are CPU-bound and can otherwise starve the GPU. In that case, request 6–8 CPU cores per GPU as a good starting point, and increase only if you confirm the data pipeline is still the bottleneck. Keep in mind that nodes provide roughly 15–16 CPU cores per GPU, so stay below that limit to avoid being allocated extra GPUs and delaying scheduling.</p>
+<p><strong>Note:</strong> Many deep learning workloads need more than 4 CPU cores per GPU, since data loading and preprocessing (for example, PyTorch <code>DataLoader</code> workers) are CPU-bound and can otherwise starve the GPU. In that case, request 6–8 CPU cores per GPU as a good starting point, and increase only if you confirm the data pipeline is still the bottleneck. Keep in mind that nodes provide roughly 16 CPU cores per GPU, so try to stay below that limit to avoid being blocked by a shortage of available CPU cores and delaying scheduling.</p>
 </blockquote>
 </li>
 <li>
-<p>Request only as much memory as your program actually needs, since requesting more than necessary can delay scheduling. Note that <code>--mem</code> specifies the memory per node, so when scaling across nodes, prefer <code>--mem-per-cpu</code> over <code>--mem</code> so that memory scales with the CPU count.</p>
+<p>For multi-GPU jobs, verify that your code actually scales before requesting more GPUs — extra GPUs that aren't used will just delay scheduling without speeding up your job.</p>
 </li>
+<li>
+<p>Try to keep all of your GPUs within a single node, and use multi-node, multi-GPU jobs only when necessary — for example, distributed deep learning or MPI simulations that require more memory than the combined memory of 8 GPUs.</p>
+</li>
+<li>
+<p>Submit to as many eligible partitions as possible to maximize your usage up to your per-user limit, for example: <code>-p mit_normal_gpu,mit_preemptable</code>.</p>
+</li>
+</ul>
+<h2 id="use-resources-efficiently">Use resources efficiently<a class="headerlink" href="#use-resources-efficiently" title="Permanent link">&para;</a></h2>
+<ul>
 <li>
 <p>Set a realistic <code>--time</code> limit — just long enough to cover your job's expected run time. Shorter walltimes can backfill into scheduling gaps and start sooner.</p>
 </li>
 <li>
-<p>If your job does not specifically require an H200, prefer an L40S. The L40S is sufficient for many workloads (especially those using less than 48 GB of GPU memory) and is far more available, which usually means shorter queue times.</p>
+<p>Release interactive sessions when you step away. For both CPU and GPU jobs, an idle interactive session still holds its allocated resources, counts against your allocation, lowers your fair-share factor, and blocks other users.</p>
 </li>
 </ul>
-<h2 id="right-size-your-requests-with-feedback">Right-size your requests with feedback<a class="headerlink" href="#right-size-your-requests-with-feedback" title="Permanent link">&para;</a></h2>
+<h2 id="check-job-info">Check job info<a class="headerlink" href="#check-job-info" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>While a job is pending, run <code>squeue --me</code> and check the <code>NODELIST(REASON)</code> column to see why it is waiting (for example, <code>Priority</code>, <code>Resources</code>, or a QOS limit). This tells you whether the delay comes from your request or from cluster load.</p>
+</li>
+<li>
 <p>After a job finishes, run <code>jobstats &lt;jobid&gt;</code> to see the actual CPU, memory, and GPU usage. Use that information to tune your next submission — over-requesting resources keeps your jobs in the queue longer and blocks others.</p>
+</li>
+</ul>
+<h2 id="structure-your-jobs-efficiently">Structure your jobs efficiently<a class="headerlink" href="#structure-your-jobs-efficiently" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Test your job in a short interactive session before submitting a large batch job. This catches configuration errors cheaply, without waiting in the queue or wasting a large allocation.</p>
+</li>
+<li>
+<p>Use job arrays (<code>--array</code>) to run many similar tasks instead of submitting them as separate jobs. Arrays are easier to manage and friendlier to the scheduler.</p>
+</li>
+<li>
+<p>Checkpoint long-running jobs so they can resume rather than restart from scratch. <strong>This is especially important on <code>mit_preemptable</code></strong>, where a job can be preempted at any time, and for any job that approaches its <code>--time</code> limit.</p>
+</li>
+</ul>
+<h2 id="make-your-jobs-reproducible">Make your jobs reproducible<a class="headerlink" href="#make-your-jobs-reproducible" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Pin your software environment in the job script — specific module versions, a named conda environment, or a fixed container image. This keeps results reproducible and prevents your job from breaking when defaults change.</li>
+</ul>
+<h2 id="storage-and-io">Storage and I/O<a class="headerlink" href="#storage-and-io" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Keep heavy I/O off your pool directory</strong> (<code>~/orcd/pool</code>). Reading and writing many or large files on shared filesystems slows down both your job and everyone else's. Stage temporary data on the scratch directory (<code>~/orcd/scratch</code>), then copy only the results back when the job finishes.</p>
+</li>
+<li>
+<p><strong>Avoid working with very large numbers of small files.</strong> Bundling data into archives or container formats (for example, tar, HDF5, or WebDataset) reduces stress on the parallel filesystem and usually speeds up your job.</p>
+</li>
+</ul>
 
 
 
@@ -2274,7 +2409,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 8, 2026 18:33:43 UTC">June 8, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 8, 2026 19:39:42 UTC">June 8, 2026</span>
   </span>
 
     
