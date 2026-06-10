@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/filesystems-file-transfer/filesystems/">
+        <link rel="canonical" href="https://orcd.mit.edu/accessing-orcd/ssh-troubleshooting/">
       
       
-        <link rel="prev" href="../../accessing-orcd/ssh-troubleshooting/">
+        <link rel="prev" href="../control-channels/">
       
       
-        <link rel="next" href="../transferring-files/">
+        <link rel="next" href="../../filesystems-file-transfer/filesystems/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>General Use Filesystems - ORCD Docs</title>
+        <title>SSH Troubleshooting - ORCD Docs</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#general-use-filesystems" class="md-skip">
+        <a href="#ssh-troubleshooting" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              General Use Filesystems
+              SSH Troubleshooting
             
           </span>
         </div>
@@ -282,18 +282,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -314,7 +316,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -332,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../accessing-orcd/ondemand-login/" class="md-nav__link">
+      <a href="../ondemand-login/" class="md-nav__link">
         
   
   
@@ -360,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../accessing-orcd/ssh-login/" class="md-nav__link">
+      <a href="../ssh-login/" class="md-nav__link">
         
   
   
@@ -388,7 +390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../accessing-orcd/ssh-setup/" class="md-nav__link">
+      <a href="../ssh-setup/" class="md-nav__link">
         
   
   
@@ -444,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../accessing-orcd/control-channels/" class="md-nav__link">
+      <a href="../control-channels/" class="md-nav__link">
         
   
   
@@ -469,90 +471,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../accessing-orcd/ssh-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SSH Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Filesystems and File Transfer
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Filesystems and File Transfer
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
     
   
   
@@ -572,7 +490,7 @@
   <span class="md-ellipsis">
     
   
-    General Use Filesystems
+    SSH Troubleshooting
   
 
     
@@ -590,7 +508,7 @@
   <span class="md-ellipsis">
     
   
-    General Use Filesystems
+    SSH Troubleshooting
   
 
     
@@ -616,10 +534,109 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pi-shared-group-storage" class="md-nav__link">
+  <a href="#connection-refused-or-timeout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PI Shared Group Storage
+        Connection Refused or Timeout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Denied
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-key-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host Key Warning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#too-many-authentication-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Too Many Authentication Failures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgot-ssh-key-passphrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forgot SSH Key Passphrase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropped-or-slow-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropped or Slow Connections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cannot-connect-to-a-compute-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cannot Connect to a Compute Node
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip-address-blocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IP Address Blocked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account-locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account Locked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-having-trouble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Having Trouble?
       
     </span>
   </a>
@@ -635,6 +652,60 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystems and File Transfer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Filesystems and File Transfer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -642,7 +713,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../transferring-files/" class="md-nav__link">
+      <a href="../../filesystems-file-transfer/filesystems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Use Filesystems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filesystems-file-transfer/transferring-files/" class="md-nav__link">
         
   
   
@@ -2194,10 +2293,109 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pi-shared-group-storage" class="md-nav__link">
+  <a href="#connection-refused-or-timeout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PI Shared Group Storage
+        Connection Refused or Timeout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Denied
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-key-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host Key Warning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#too-many-authentication-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Too Many Authentication Failures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgot-ssh-key-passphrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forgot SSH Key Passphrase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropped-or-slow-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropped or Slow Connections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cannot-connect-to-a-compute-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cannot Connect to a Compute Node
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip-address-blocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IP Address Blocked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account-locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account Locked
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-having-trouble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Having Trouble?
       
     </span>
   </a>
@@ -2219,67 +2417,143 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:logging-in" class="md-tag">Logging In</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:ssh" class="md-tag">SSH</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:troubleshooting" class="md-tag">Troubleshooting</a>
+      
+    
+  </nav>
 
 
-<h1 id="general-use-filesystems">General Use Filesystems<a class="headerlink" href="#general-use-filesystems" title="Permanent link">&para;</a></h1>
-<p>Everyone on Engaging gets three spaces to store files: home, pool, and scratch. Each of these have a different purpose, size, and characteristics.</p>
-<ul>
-<li><strong>Home</strong>: Your Home Directory is meant for your most important files, as it is backed up with snapshots. We recommend keeping your software and code in your home directory. Home is located on fast flash storage.</li>
-<li><strong>Pool</strong>: Pool is a larger space meant as a staging area for larger datasets. It is a place to keep files that still need to be on Engaging, but aren't currently being used for computation. Pool is located on disk storage. Pool is <strong>not backed up</strong>.</li>
-<li><strong>Scratch</strong>: Scratch space is meant for data used in actively running jobs. It will be faster to access Scratch during your job for the majority of workloads, but it is <strong>not backed up</strong> and should not be used for long term storage.</li>
-</ul>
-<p>Both Pool and Scratch are <strong>not backed up</strong>. Any files that cannot be easily replaced should either be stored in Home, or backed up outside of Engaging. PIs can request an additional 5TB of shared Pool storage for their lab (see <a href="#pi-shared-group-storage">below</a>) and <a href="../../services/storage-services/">additional storage can be purchased</a>.</p>
-<p>See the table below for a description of each storage space.</p>
-<table>
-<thead>
-<tr>
-<th>Storage Type</th>
-<th><div style="width:18em">Path</div></th>
-<th>Quota</th>
-<th>Backed up</th>
-<th>Purpose/Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Home Directory <br> Flash</td>
-<td><code>/home/&lt;username&gt;</code></td>
-<td>200 GB</td>
-<td>Backed up with snapshots</td>
-<td>Use for important files and software</td>
-</tr>
-<tr>
-<td>Pool <br> Hard Disk</td>
-<td><code>/home/&lt;username&gt;/orcd/pool</code></td>
-<td>1 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Storing larger datasets</td>
-</tr>
-<tr>
-<td>PI Shared Pool <br> Hard Disk</td>
-<td><code>/orcd/pool/&lt;number&gt;/&lt;pikerb&gt;_shared</code></td>
-<td>5 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Storing larger datasets, shared group storage</td>
-</tr>
-<tr>
-<td>Scratch <br> Flash</td>
-<td><code>/home/&lt;username&gt;/orcd/scratch</code></td>
-<td>1 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Scratch space for I/O heavy jobs</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Scratch and Pool are Not Backed Up</p>
-<p>Scratch is meant for temporary storage while running compute jobs. It is not meant for long term storage and <strong>is not backed up</strong>. <strong>If you have not logged in for 6 months files in scratch will be deleted</strong>. Any files that you would like to keep long-term should be copied onto another storage location with backup.</p>
-<p>Pool, while meant for longer-term storage than Scratch, is also not backed up.</p>
+
+<h1 id="ssh-troubleshooting">SSH Troubleshooting<a class="headerlink" href="#ssh-troubleshooting" title="Permanent link">&para;</a></h1>
+<h2 id="connection-refused-or-timeout">Connection Refused or Timeout<a class="headerlink" href="#connection-refused-or-timeout" title="Permanent link">&para;</a></h2>
+<p>Make sure you are using the correct login command:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>USERNAME@orcd-login.mit.edu
+</span></code></pre></div></p>
+<p>If the connection hangs or times out, you may be on a network that blocks SSH, or your IP address has been blocked (see <a href="#ip-address-blocked">below</a>). Try a different network or contact <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a>.</p>
+<h2 id="permission-denied">Permission Denied<a class="headerlink" href="#permission-denied" title="Permanent link">&para;</a></h2>
+<p><strong>Check your username:</strong> Make sure you are using your MIT Kerberos username.</p>
+<p><strong>Check your SSH key permissions:</strong> Run these commands on your laptop:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.ssh
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_rsa
+</span></code></pre></div></p>
+<p><strong>Key not uploaded:</strong> If you have not yet set up SSH keys, see the <a href="../ssh-setup/">SSH Key Setup</a> page.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even with SSH keys set up, you will still be prompted for your MIT Kerberos password and Duo. This is expected.</p>
 </div>
-<p>To observe your current quota report, look at <code>~/orcd/.quota</code> file in your home directory. The <code>.quota</code> file is updated every 30 minutes.</p>
-<h2 id="pi-shared-group-storage">PI Shared Group Storage<a class="headerlink" href="#pi-shared-group-storage" title="Permanent link">&para;</a></h2>
-<p>PIs can request 5TB of additional pool that can be shared with their group. We will set up a <a href="../../services/accessing-group-resources/">Moira list</a> so PIs and their designated group admins can control access to the shared storage. To request a shared pool space send an email to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
-<p>If your group needs more than 5TB of storage, or needs additional storage for a specific project, you can <a href="../../services/storage-services/">rent storage</a> from ORCD.</p>
+<h2 id="host-key-warning">Host Key Warning<a class="headerlink" href="#host-key-warning" title="Permanent link">&para;</a></h2>
+<p>If you see a message like <code>WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED</code> or <code>This host key is known by the following other names</code>, run:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh-keygen<span class="w"> </span>-R<span class="w"> </span>orcd-login.mit.edu
+</span></code></pre></div>
+Then reconnect and type <code>yes</code> when prompted. This is sometimes happens after system maintenance.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If this happens repeatedly without any maintenance, contact <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a>.</p>
+</div>
+<h2 id="too-many-authentication-failures">Too Many Authentication Failures<a class="headerlink" href="#too-many-authentication-failures" title="Permanent link">&para;</a></h2>
+<p>If you see:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Received disconnect from ... : Too many authentication failures
+</span></code></pre></div></p>
+<p>Add the following to your <code>~/.ssh/config</code>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Host orcd-login.mit.edu
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    IdentityFile ~/.ssh/id_rsa
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    IdentitiesOnly yes
+</span></code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This setting only applies to connections to <code>orcd-login.mit.edu</code> and will not affect SSH connections to any other servers.</p>
+</div>
+<h2 id="forgot-ssh-key-passphrase">Forgot SSH Key Passphrase<a class="headerlink" href="#forgot-ssh-key-passphrase" title="Permanent link">&para;</a></h2>
+<p>There is no way to recover a forgotten passphrase. Generate a new SSH key pair and upload it to Engaging following the <a href="../ssh-setup/">SSH Key Setup</a> instructions.</p>
+<h2 id="dropped-or-slow-connections">Dropped or Slow Connections<a class="headerlink" href="#dropped-or-slow-connections" title="Permanent link">&para;</a></h2>
+<p>Add the following to your <code>~/.ssh/config</code> to keep sessions alive:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Host orcd-login.mit.edu
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    ServerAliveInterval 60
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    ServerAliveCountMax 10
+</span></code></pre></div></p>
+<p>If your connection is slow to establish — particularly when connecting from off-campus — also add <code>GSSAPIAuthentication no</code>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Host orcd-login.mit.edu
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    ServerAliveInterval 60
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    ServerAliveCountMax 10
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    GSSAPIAuthentication no
+</span></code></pre></div></p>
+<p>By default, SSH attempts Kerberos (GSSAPI) authentication before trying your password or SSH key. This requires a handshake with MIT's Kerberos infrastructure, which can add several seconds to your connection time if you are on a slow or off-campus network. Disabling it tells SSH to skip straight to password and key authentication. This has no effect on users who do not use Kerberos tickets to authenticate.</p>
+<details class="info">
+<summary>Other factors that can affect connection stability</summary>
+<ul>
+<li><strong>Wi-Fi instability</strong> — a flaky wireless connection will drop SSH sessions regardless of keepalive settings. Try a wired connection if you experience frequent drops.</li>
+<li><strong>MIT VPN</strong> — being connected to the MIT VPN can add latency depending on your network path.</li>
+<li><strong>Server-side idle timeout</strong> — the server may enforce its own idle timeout. Client-side keepalives help but are not a guarantee against disconnection.</li>
+<li><strong>Large data transfers</strong> — data transfers to or from your local machine can saturate your network connection and make your SSH session appear slow or unresponsive.</li>
+</ul>
+</details>
+<h2 id="cannot-connect-to-a-compute-node">Cannot Connect to a Compute Node<a class="headerlink" href="#cannot-connect-to-a-compute-node" title="Permanent link">&para;</a></h2>
+<p>Compute nodes are not directly accessible from outside the cluster, and you must have a running job on the node to connect to it. SSH to the login node first, then connect to the compute node:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ssh<span class="w"> </span>USERNAME@orcd-login.mit.edu
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ssh<span class="w"> </span>nodeXXXX
+</span></code></pre></div></p>
+<p>To connect directly from your laptop in one step using ProxyJump, see <a href="../../recipes/vscode/#setting-up-your-config-file">Setting up your Config File</a> in the VS Code recipe for an example config.</p>
+<h2 id="ip-address-blocked">IP Address Blocked<a class="headerlink" href="#ip-address-blocked" title="Permanent link">&para;</a></h2>
+<p>If you have had repeated failed login attempts, our systems may have temporarily blocked your IP address. This will look like a connection timeout or <code>Connection refused</code> rather than an authentication error — your connection will not reach the server at all.</p>
+<p>If you suspect your IP address has been blocked, stop attempting to connect and wait 10 minutes. The block will lift automatically if no further failed attempts are made during that time.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have VS Code open with a Remote SSH session, it may attempt to reconnect automatically in the background, which will reset the 10-minute timer and keep the block in place. Close VS Code before waiting for the block to clear.</p>
+</div>
+<p>If the block does not clear after 10 minutes, open a ticket with <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a> and include your IP address. You can find it with:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">macOS/Linux</label><label for="__tabbed_1_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl<span class="w"> </span>ifconfig.me
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl ifconfig.me
+</span></code></pre></div>
+If that does not work, try:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>(Invoke-WebRequest -Uri &quot;ifconfig.me&quot;).Content
+</span></code></pre></div></p>
+</div>
+</div>
+</div>
+<h2 id="account-locked">Account Locked<a class="headerlink" href="#account-locked" title="Permanent link">&para;</a></h2>
+<p>10 failed Duo attempts will lock your account. This lock is managed by <a href="https://ist.mit.edu/duo-security/duo">MIT IS&amp;T</a>, not ORCD, and will lift automatically after 90 minutes provided no further failed login attempts are made during that time.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have VS Code open with a Remote SSH session, it may attempt to reconnect automatically in the background, resetting the 90-minute timer and keeping your account locked. Close VS Code before waiting for the lock to clear.</p>
+</div>
+<p>To prevent this from happening again:</p>
+<ul>
+<li>Log into <a href="https://orcd-ood.mit.edu">ORCD OnDemand</a> — this satisfies Duo authentication and removes the Duo requirement for SSH for a few hours.</li>
+<li>Use <a href="../control-channels/">SSH Control Channels</a> to reduce how often you need to authenticate with Duo.</li>
+<li>If you use VS Code, adjust the <a href="../../recipes/vscode/#adjust-the-remotessh-extension-settings">VS Code Remote SSH settings</a> to limit reconnection attempts.</li>
+</ul>
+<p>If your account does not unlock after 90 minutes, contact <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a>.</p>
+<h2 id="still-having-trouble">Still Having Trouble?<a class="headerlink" href="#still-having-trouble" title="Permanent link">&para;</a></h2>
+<p>If you have worked through this guide and are still unable to connect, run the following command and include the output in your ticket to <a href="mailto:orcd-help@mit.edu">orcd-help@mit.edu</a>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ssh<span class="w"> </span>-vvv<span class="w"> </span>USERNAME@orcd-login.mit.edu
+</span></code></pre></div>
+The <code>-vvv</code> flag enables verbose output and gives the support team detailed information about where the connection is failing.</p>
 
 
 
@@ -2300,7 +2574,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 1, 2026 21:52:03 UTC">June 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 10, 2026 18:51:29 UTC">June 10, 2026</span>
   </span>
 
     
