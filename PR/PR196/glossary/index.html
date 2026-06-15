@@ -14,8 +14,6 @@
         <link rel="prev" href="../faqs/">
       
       
-        <link rel="next" href="../tags/">
-      
       
         
       
@@ -32,12 +30,12 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/classic/main.a2001754.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.fba56155.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../assets/stylesheets/classic/palette.7dc9a0ad.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -51,8 +49,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
     
@@ -72,7 +70,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -104,7 +102,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -129,7 +127,31 @@
     
     
     
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun-moon" viewBox="0 0 24 24"><path d="M12 2v2M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715M16 12a4 4 0 0 0-4-4M19 5l-1.256 1.256M20 12h2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
     
   
 </form>
@@ -144,7 +166,7 @@
       
         <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
         <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
   <button type="button" class="md-search__button">
@@ -1964,8 +1986,6 @@
     <li class="md-nav__item md-nav__item--active">
       
       
-        <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
       
       
         
@@ -2457,32 +2477,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tags/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Index
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -2493,6 +2487,18 @@
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -2957,84 +2963,161 @@
 
 <h1 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h1>
 <h4 id="apptainer-singularity">Apptainer / Singularity<a class="headerlink" href="#apptainer-singularity" title="Permanent link">&para;</a></h4>
-<p>A container platform designed for high-performance computing (HPC) environments. It allows users to create and run containers that encapsulate their applications and dependencies, ensuring reproducibility and portability across different systems.</p>
+<dl>
+<dd>A container platform designed for high-performance computing (HPC) environments. It allows users to create and run containers that encapsulate their applications and dependencies, ensuring reproducibility and portability across different systems.</dd>
+</dl>
 <h4 id="batch-job">Batch Job<a class="headerlink" href="#batch-job" title="Permanent link">&para;</a></h4>
-<p>A type of job submitted to the scheduler to run in the background without direct interactive supervision. These are typically used for longer-running programs and are submitted using a script.</p>
+<dl>
+<dd>A type of job submitted to the scheduler to run in the background without direct interactive supervision. These are typically used for longer-running programs and are submitted using a script.</dd>
+</dl>
 <h4 id="binary-executable-file">Binary / Executable File<a class="headerlink" href="#binary-executable-file" title="Permanent link">&para;</a></h4>
-<p>A pre-built program file that can be run directly without needing to be compiled from source code. These are often placed in the <code>bin</code> directory of a software installation.</p>
+<dl>
+<dd>A pre-built program file that can be run directly without needing to be compiled from source code. These are often placed in the <code>bin</code> directory of a software installation.</dd>
+</dl>
 <h4 id="cli-command-line-interface">CLI (Command Line Interface)<a class="headerlink" href="#cli-command-line-interface" title="Permanent link">&para;</a></h4>
-<p>A text-based user interface used to interact with software and operating systems by typing commands into a console or terminal.</p>
+<dl>
+<dd>A text-based user interface used to interact with software and operating systems by typing commands into a console or terminal.</dd>
+</dl>
 <h4 id="conda-environment">Conda Environment<a class="headerlink" href="#conda-environment" title="Permanent link">&para;</a></h4>
-<p>A self-contained directory that includes a set of installed packages and libraries, managed by the Conda package manager. Conda is typically used to manage Python environments.</p>
+<dl>
+<dd>A self-contained directory that includes a set of installed packages and libraries, managed by the Conda package manager. Conda is typically used to manage Python environments.</dd>
+</dl>
 <h4 id="container">Container<a class="headerlink" href="#container" title="Permanent link">&para;</a></h4>
-<p>A lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools. Containers are isolated from each other and the host system, allowing for consistent and reproducible environments across different computing platforms.</p>
+<dl>
+<dd>A lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, libraries, and system tools. Containers are isolated from each other and the host system, allowing for consistent and reproducible environments across different computing platforms.</dd>
+</dl>
 <h4 id="container-image">Container Image<a class="headerlink" href="#container-image" title="Permanent link">&para;</a></h4>
-<p>A static file that contains the complete filesystem and configuration needed to run a containerized application. It serves as a blueprint for creating containers.</p>
+<dl>
+<dd>A static file that contains the complete filesystem and configuration needed to run a containerized application. It serves as a blueprint for creating containers.</dd>
+</dl>
 <h4 id="compute-node">Compute Node<a class="headerlink" href="#compute-node" title="Permanent link">&para;</a></h4>
-<p>The primary nodes within an HPC cluster where the actual computational work of user jobs is performed.</p>
+<dl>
+<dd>The primary nodes within an HPC cluster where the actual computational work of user jobs is performed.</dd>
+</dl>
 <h4 id="computing-cluster">Computing Cluster<a class="headerlink" href="#computing-cluster" title="Permanent link">&para;</a></h4>
-<p>A collection of interconnected computers (nodes) that work together to perform complex computations.</p>
+<dl>
+<dd>A collection of interconnected computers (nodes) that work together to perform complex computations.</dd>
+</dl>
 <h4 id="cpu-core">CPU Core<a class="headerlink" href="#cpu-core" title="Permanent link">&para;</a></h4>
-<p>The smallest unit of processing on a node that can be used by a job. In HPC, jobs can request a specific number of CPU cores to perform parallel tasks.</p>
+<dl>
+<dd>The smallest unit of processing on a node that can be used by a job. In HPC, jobs can request a specific number of CPU cores to perform parallel tasks.</dd>
+</dl>
 <h4 id="engaging">Engaging<a class="headerlink" href="#engaging" title="Permanent link">&para;</a></h4>
-<p>The main computing cluster managed by ORCD. This cluster is available to the entire MIT community and has a mixture of CPU and GPU resources.</p>
+<dl>
+<dd>The main computing cluster managed by ORCD. This cluster is available to the entire MIT community and has a mixture of CPU and GPU resources.</dd>
+</dl>
 <h4 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h4>
-<p>The overall configuration and settings in which a program or job runs, including system variables, paths, and loaded modules.</p>
+<dl>
+<dd>The overall configuration and settings in which a program or job runs, including system variables, paths, and loaded modules.</dd>
+</dl>
 <h4 id="environment-variable">Environment Variable<a class="headerlink" href="#environment-variable" title="Permanent link">&para;</a></h4>
-<p>Named values in your shell environment that store configuration information for the operating system and running programs. Examples include <code>$PATH</code> (which tells Linux where to look for executable files) or <code>$SLURM_ARRAY_JOB_ID</code> (set by the scheduler during job execution).</p>
+<dl>
+<dd>Named values in your shell environment that store configuration information for the operating system and running programs. Examples include <code>$PATH</code> (which tells Linux where to look for executable files) or <code>$SLURM_ARRAY_JOB_ID</code> (set by the scheduler during job execution).</dd>
+</dl>
 <h4 id="filesystem">Filesystem<a class="headerlink" href="#filesystem" title="Permanent link">&para;</a></h4>
-<p>The method and structure by which files and directories are organized and stored on a computer. ORCD's clusters use a shared filesystem accessible by all nodes in the cluster.</p>
+<dl>
+<dd>The method and structure by which files and directories are organized and stored on a computer. ORCD's clusters use a shared filesystem accessible by all nodes in the cluster.</dd>
+</dl>
 <h4 id="globus">Globus<a class="headerlink" href="#globus" title="Permanent link">&para;</a></h4>
-<p>A data management service that enables secure, reliable, and efficient transfer of files across multiple systems and locations.</p>
+<dl>
+<dd>A data management service that enables secure, reliable, and efficient transfer of files across multiple systems and locations.</dd>
+</dl>
 <h4 id="gpu-graphics-processing-unit">GPU (Graphics Processing Unit)<a class="headerlink" href="#gpu-graphics-processing-unit" title="Permanent link">&para;</a></h4>
-<p>A specialized processor designed to accelerate graphics rendering and parallel processing tasks, commonly used in high-performance computing for tasks such as machine learning and simulations.</p>
+<dl>
+<dd>A specialized processor designed to accelerate graphics rendering and parallel processing tasks, commonly used in high-performance computing for tasks such as machine learning and simulations.</dd>
+</dl>
 <h4 id="gui-graphical-user-interface">GUI (Graphical User Interface)<a class="headerlink" href="#gui-graphical-user-interface" title="Permanent link">&para;</a></h4>
-<p>A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation.</p>
+<dl>
+<dd>A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation.</dd>
+</dl>
 <h4 id="hard-disk-drive-hdd">Hard Disk Drive (HDD)<a class="headerlink" href="#hard-disk-drive-hdd" title="Permanent link">&para;</a></h4>
-<p>A type of storage device that uses spinning disks to read and write data. HDDs are commonly used for bulk storage in HPC environments, but they are slower than SSDs in terms of data access and transfer speeds.</p>
+<dl>
+<dd>A type of storage device that uses spinning disks to read and write data. HDDs are commonly used for bulk storage in HPC environments, but they are slower than SSDs in terms of data access and transfer speeds.</dd>
+</dl>
 <h4 id="home-directory">Home Directory<a class="headerlink" href="#home-directory" title="Permanent link">&para;</a></h4>
-<p>A personal directory allocated to each user on the cluster, located at <code>/home/$USER</code>. This is the default working directory for users when they log in.</p>
+<dl>
+<dd>A personal directory allocated to each user on the cluster, located at <code>/home/$USER</code>. This is the default working directory for users when they log in.</dd>
+</dl>
 <h4 id="hpc-high-performance-computing">HPC (High-Performance Computing)<a class="headerlink" href="#hpc-high-performance-computing" title="Permanent link">&para;</a></h4>
-<p>The use of supercomputers and parallel processing techniques to solve complex computational problems that require significant processing power and memory.</p>
+<dl>
+<dd>The use of supercomputers and parallel processing techniques to solve complex computational problems that require significant processing power and memory.</dd>
+</dl>
 <h4 id="interactive-job">Interactive Job<a class="headerlink" href="#interactive-job" title="Permanent link">&para;</a></h4>
-<p>A job that allows users to interact with the application or process while it is running, typically through a command line interface or graphical user interface.</p>
-<!-- CHECK -->
+<dl>
+<dd>A job that allows users to interact with the application or process while it is running, typically through a command line interface or graphical user interface.</dd>
+</dl>
 <h4 id="io-inputoutput">I/O (Input/Output)<a class="headerlink" href="#io-inputoutput" title="Permanent link">&para;</a></h4>
-<p>The communication between a program and the filesystem, including reading from and writing to files. I/O performance can be a critical factor in the efficiency of HPC applications.</p>
+<dl>
+<dd>The communication between a program and the filesystem, including reading from and writing to files. I/O performance can be a critical factor in the efficiency of HPC applications.</dd>
+</dl>
 <h4 id="job">Job<a class="headerlink" href="#job" title="Permanent link">&para;</a></h4>
-<p>A unit of work submitted to the scheduler (e.g., Slurm) to be executed on the compute nodes of an HPC cluster</p>
+<dl>
+<dd>A unit of work submitted to the scheduler (e.g., Slurm) to be executed on the compute nodes of an HPC cluster</dd>
+</dl>
 <h4 id="local-filesystem">Local Filesystem<a class="headerlink" href="#local-filesystem" title="Permanent link">&para;</a></h4>
-<p>The storage system that is physically attached to a node, as opposed to shared or networked filesystems. Local filesystems typically offer faster access times but are limited to the storage capacity of the individual node.</p>
+<dl>
+<dd>The storage system that is physically attached to a node, as opposed to shared or networked filesystems. Local filesystems typically offer faster access times but are limited to the storage capacity of the individual node.</dd>
+</dl>
 <h4 id="login-node">Login Node<a class="headerlink" href="#login-node" title="Permanent link">&para;</a></h4>
-<p>A specialized node within an HPC cluster that users first connect to via SSH or a web portal. It is intended for tasks like file editing, package installation, data downloads, and submitting jobs to compute nodes, but not for heavy computations.</p>
+<dl>
+<dd>A specialized node within an HPC cluster that users first connect to via SSH or a web portal. It is intended for tasks like file editing, package installation, data downloads, and submitting jobs to compute nodes, but not for heavy computations.</dd>
+</dl>
 <h4 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h4>
-<p>The hardware component (such as RAM or cache) where data and applications are temporarily stored for active use by the processor. Data in memory is volatile and is lost when the computer is powered off or restarted.</p>
+<dl>
+<dd>The hardware component (such as RAM or cache) where data and applications are temporarily stored for active use by the processor. Data in memory is volatile and is lost when the computer is powered off or restarted.</dd>
+</dl>
 <h4 id="module">Module<a class="headerlink" href="#module" title="Permanent link">&para;</a></h4>
-<p>A software tool that allows users to easily manage different versions of software, libraries, and compilers in a shared computing environment. Users can load or unload modules to configure their environment for specific tasks.</p>
+<dl>
+<dd>A software tool that allows users to easily manage different versions of software, libraries, and compilers in a shared computing environment. Users can load or unload modules to configure their environment for specific tasks.</dd>
+</dl>
 <h4 id="mpi-message-passing-interface">MPI (Message Passing Interface)<a class="headerlink" href="#mpi-message-passing-interface" title="Permanent link">&para;</a></h4>
-<p>A standardized library of functions for parallel computing that enables data communication between processes running across multiple CPU cores or nodes. It's primarily used for distributed-memory parallelism, where each process has its own memory.</p>
+<dl>
+<dd>A standardized library of functions for parallel computing that enables data communication between processes running across multiple CPU cores or nodes. It's primarily used for distributed-memory parallelism, where each process has its own memory.</dd>
+</dl>
 <h4 id="node">Node<a class="headerlink" href="#node" title="Permanent link">&para;</a></h4>
-<p>An individual computing unit within an HPC cluster, which can be a physical or virtual machine. Each node has its own CPU cores and memory.</p>
+<dl>
+<dd>An individual computing unit within an HPC cluster, which can be a physical or virtual machine. Each node has its own CPU cores and memory.</dd>
+</dl>
 <h4 id="openmp">OpenMP<a class="headerlink" href="#openmp" title="Permanent link">&para;</a></h4>
-<p>A shared-memory parallelism technique where different parts of a program run concurrently as "threads" within a single process, sharing the same memory space. OpenMP is a common standard for implementing multithreading.</p>
+<dl>
+<dd>A shared-memory parallelism technique where different parts of a program run concurrently as "threads" within a single process, sharing the same memory space. OpenMP is a common standard for implementing multithreading.</dd>
+</dl>
 <h4 id="partition">Partition<a class="headerlink" href="#partition" title="Permanent link">&para;</a></h4>
-<p>A logical grouping of compute nodes within an HPC cluster, managed by the scheduler (Slurm). Different partitions may have varying CPU types, GPU availability, memory limits, or time limits, and jobs are submitted to specific partitions.</p>
+<dl>
+<dd>A logical grouping of compute nodes within an HPC cluster, managed by the scheduler (Slurm). Different partitions may have varying CPU types, GPU availability, memory limits, or time limits, and jobs are submitted to specific partitions.</dd>
+</dl>
 <h4 id="pool-storage">Pool storage<a class="headerlink" href="#pool-storage" title="Permanent link">&para;</a></h4>
-<p>A storage space on Engaging that is meant for handling large data sets but is not optimized for high I/O. Typically, pool storage is hosted on HDDs.</p>
+<dl>
+<dd>A storage space on Engaging that is meant for handling large data sets but is not optimized for high I/O. Typically, pool storage is hosted on HDDs.</dd>
+</dl>
 <h4 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h4>
-<p>An instance of a running program, which can consist of one or more threads. Each process has its own memory space.</p>
+<dl>
+<dd>An instance of a running program, which can consist of one or more threads. Each process has its own memory space.</dd>
+</dl>
 <h4 id="python-virtual-environment">Python Virtual Environment<a class="headerlink" href="#python-virtual-environment" title="Permanent link">&para;</a></h4>
-<p>A self-contained directory that includes a set of installed Python packages. This allows users to manage dependencies and avoid conflicts between different projects.</p>
+<dl>
+<dd>A self-contained directory that includes a set of installed Python packages. This allows users to manage dependencies and avoid conflicts between different projects.</dd>
+</dl>
 <h4 id="scratch-storage">Scratch Storage<a class="headerlink" href="#scratch-storage" title="Permanent link">&para;</a></h4>
-<p>Temporary, high-speed storage areas optimized for I/O-heavy jobs. Data stored here is typically not backed up and is meant for actively running jobs rather than long-term storage. Scratch storage is hosted on SSDs.</p>
+<dl>
+<dd>Temporary, high-speed storage areas optimized for I/O-heavy jobs. Data stored here is typically not backed up and is meant for actively running jobs rather than long-term storage. Scratch storage is hosted on SSDs.</dd>
+</dl>
 <h4 id="slurm-scheduler">Slurm / Scheduler<a class="headerlink" href="#slurm-scheduler" title="Permanent link">&para;</a></h4>
-<p>An open-source workload manager designed for high-performance computing (HPC) clusters. It is used to allocate resources, schedule jobs, and manage job queues on the cluster.</p>
+<dl>
+<dd>An open-source workload manager designed for high-performance computing (HPC) clusters. It is used to allocate resources, schedule jobs, and manage job queues on the cluster.</dd>
+</dl>
 <h4 id="solid-state-drive-ssd">Solid State Drive (SSD)<a class="headerlink" href="#solid-state-drive-ssd" title="Permanent link">&para;</a></h4>
-<p>A type of storage device that uses flash memory to provide faster data access and improved reliability compared to traditional hard disk drives (HDDs).</p>
+<dl>
+<dd>A type of storage device that uses flash memory to provide faster data access and improved reliability compared to traditional hard disk drives (HDDs).</dd>
+</dl>
 <h4 id="terminal-shell-command-line-console">Terminal / Shell / Command Line / Console<a class="headerlink" href="#terminal-shell-command-line-console" title="Permanent link">&para;</a></h4>
-<p>A text-based interface used to interact with the operating system and run commands.</p>
+<dl>
+<dd>A text-based interface used to interact with the operating system and run commands.</dd>
+</dl>
 <h4 id="thread">Thread<a class="headerlink" href="#thread" title="Permanent link">&para;</a></h4>
-<p>A smaller unit of a process that can run concurrently with other threads within the same process, sharing the same memory space.</p>
+<dl>
+<dd>A smaller unit of a process that can run concurrently with other threads within the same process, sharing the same memory space.</dd>
+</dl>
 
 
 
@@ -3092,7 +3175,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.tabs.link"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../assets/javascripts/bundle.6e5f0216.min.js"></script>
