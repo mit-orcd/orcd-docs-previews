@@ -11,25 +11,25 @@
         <link rel="canonical" href="https://orcd.mit.edu/running-jobs/best-practices/">
       
       
-        <link rel="prev" href="../job-arrays/">
+        <link rel="prev" href="../application-analysis/">
       
       
-        <link rel="next" href="../available-resources/">
+        <link rel="next" href="../../recipes/many-jobs/">
       
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Best practices - ORCD Docs</title>
+        <title>Best Practices - ORCD Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Best practices
+              Best Practices
             
           </span>
         </div>
@@ -1053,6 +1053,62 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../available-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Available Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1072,7 +1128,7 @@
   <span class="md-ellipsis">
     
   
-    Best practices
+    Best Practices
   
 
     
@@ -1090,7 +1146,7 @@
   <span class="md-ellipsis">
     
   
-    Best practices
+    Best Practices
   
 
     
@@ -1196,62 +1252,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../available-resources/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Available Resources
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../application-analysis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Application Analysis
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2361,13 +2361,10 @@
 <p>Specify <code>--ntasks</code>, <code>--cpus-per-task</code>, and <code>--mem</code> (or <code>--mem-per-cpu</code>) explicitly rather than relying on defaults — defaults are rarely optimal for your workload.</p>
 </li>
 <li>
-<p>Make sure your program actually uses the cores you request. For multithreading programs, such as OpenMP or NumPy programs, set thread counts such as <code>OMP_NUM_THREADS</code> to match <code>--cpus-per-task</code> so you neither under-use nor oversubscribe your cores. For distributed jobs, launch tasks with <code>mpirun</code> or <code>srun</code> so they land on the allocated resources.</p>
+<p>Make sure your program actually uses the cores you request. For multithreaded programs, such as OpenMP or NumPy programs, set thread counts such as <code>OMP_NUM_THREADS</code> to match <code>--cpus-per-task</code> so you neither under-use nor oversubscribe your cores. For distributed jobs, launch tasks with <code>mpirun</code> or <code>srun</code> so they land on the allocated resources.</p>
 </li>
 <li>
 <p><strong>Request only as much memory as your program actually needs, since requesting more than necessary can delay scheduling.</strong> Note that <code>--mem</code> specifies the memory per node, so when scaling on multiple cores, prefer <code>--mem-per-cpu</code> over <code>--mem</code> so that memory scales with the CPU count. Each <code>mit_normal</code> node has 96 cores and 377 GB of RAM (roughly 4 GB per core), so keep your request within that per-node limit.</p>
-</li>
-<li>
-<p>Submit to as many eligible partitions as possible to maximize your usage up to your per-user limit, for example: <code>-p mit_normal,mit_preemptable</code>.</p>
 </li>
 </ul>
 <h2 id="request-gpus">Request GPUs<a class="headerlink" href="#request-gpus" title="Permanent link">&para;</a></h2>
@@ -2389,18 +2386,18 @@
 <li>
 <p>Request no more than 4 CPU cores per GPU when possible. Our Slurm configuration reserves 4 CPU cores per GPU for GPU jobs, so requesting more than that can delay scheduling.</p>
 <div class="admonition note">
-<p class="admonition-title">CPU cores per GPU for deep learning applications.</p>
-<p>Many deep learning workloads need more than 4 CPU cores per GPU, since data loading and preprocessing (for example, PyTorch <code>DataLoader</code> workers) are CPU-bound and can otherwise starve the GPU. In that case, request 6–8 CPU cores per GPU as a good starting point, and increase only if you confirm the data pipeline is still the bottleneck. Keep in mind that GPU nodes provide 16 CPU cores per GPU (L40S nodes have 64 cores and 4 GPUs; H200 nodes have 128 cores and 8 GPUs), so try to stay below that limit to avoid being blocked by a shortage of available CPU cores and delaying scheduling.</p>
+<p class="admonition-title">CPU cores per GPU for deep learning applications</p>
+<p>Many deep learning workloads need more than 4 CPU cores per GPU, since data loading and preprocessing (for example, PyTorch <code>DataLoader</code> workers) are CPU-bound and can otherwise starve the GPU. In that case, request 6–8 CPU cores per GPU as a good starting point, and increase only if you confirm the data pipeline is still the bottleneck. Keep in mind that GPU nodes provide 15 or 16 CPU cores per GPU (H200 nodes have 120 cores and 8 GPUs; L40S nodes have 64 cores and 4 GPUs), so try to stay below that limit to avoid being blocked by a shortage of available CPU cores and delaying scheduling.</p>
 </div>
 </li>
 <li>
 <p>Request enough host (system) memory for your GPU job, but no more than you need.</p>
 <div class="admonition note">
-<p class="admonition-title">Host memory per GPU for deep learning applications.</p>
-<p>Small-batch on-GPU training can run fine with less than the GPU memory, but the safe default is host RAM ≥ GPU memory. A good starting point is about 1.5–2× the GPU memory per GPU. In the <code>mit_normal_gpu</code> partition, each L40S node has 1 TB of RAM (256 GB per GPU) and each H200 node has 2 TB (256 GB per GPU). For an L40S, it is best to request 2 × 48 GB = 96 GB per GPU, up to the 256 GB available per GPU. For an H200, 2 × 144 GB = 288 GB exceeds the 256 GB available per GPU, so it is best to request 256 GB per H200. Use <code>--mem-per-gpu</code> to scale memory with the number of GPUs and stay within the node's limit.</p>
+<p class="admonition-title">Host memory per GPU for deep learning applications</p>
+<p>Small-batch on-GPU training can run fine with less host RAM than the GPU memory, but the safe default is host RAM ≥ GPU memory. A good starting point is about 1.5–2× the GPU memory per GPU. In the <code>mit_normal_gpu</code> partition, each L40S node has 1 TB of RAM (256 GB per GPU) and each H200 node has 2 TB (256 GB per GPU). For an L40S, it is best to request 2 × 48 GB = 96 GB per GPU, up to the 256 GB available per GPU. For an H200, 2 × 144 GB = 288 GB exceeds the 256 GB available per GPU, so it is best to request 256 GB per H200. Use <code>--mem-per-gpu</code> to scale memory with the number of GPUs and stay within the node's limit.</p>
 </div>
 <details class="note">
-<summary>Host memory is used for the following in deep learning applications.</summary>
+<summary>What host memory is used for in deep learning applications</summary>
 <ul>
 <li>Data loading and prefetching — more <code>DataLoader</code> workers and larger prefetch need more RAM.</li>
 <li>Pinned (page-locked) memory for fast host→device transfers.</li>
@@ -2415,9 +2412,6 @@
 <li>
 <p>Try to keep all of your GPUs within a single node, and use multi-node, multi-GPU jobs only when necessary — for example, distributed deep learning or MPI simulations that require more memory than the combined memory of 8 GPUs.</p>
 </li>
-<li>
-<p>Submit to as many eligible partitions as possible to maximize your usage up to your per-user limit, for example: <code>-p mit_normal_gpu,mit_preemptable</code>.</p>
-</li>
 </ul>
 <h2 id="use-resources-efficiently">Use resources efficiently<a class="headerlink" href="#use-resources-efficiently" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2425,7 +2419,13 @@
 <p>Set a realistic <code>--time</code> limit — just long enough to cover your job's expected run time. Shorter walltimes can backfill into scheduling gaps and start sooner.</p>
 </li>
 <li>
-<p>Release interactive sessions when you don't need it. For both CPU and GPU jobs, an idle interactive session still holds its allocated resources, counts against your allocation, lowers your fair-share factor, and blocks other users.</p>
+<p>Release interactive sessions when you don't need them. For both CPU and GPU jobs, an idle interactive session still holds its allocated resources, counts against your allocation, lowers your fair-share factor, and blocks other users.</p>
+</li>
+<li>
+<p>Every user has a fair-share factor. The more jobs you run, the longer they run, and the more resources they use, the more this factor drops — and the longer your future jobs will wait in the queue. Request only the resources and walltime you actually need.</p>
+</li>
+<li>
+<p>Consider submitting additional jobs to the <code>mit_preemptable</code> partition. This partition allows you to run <a href="https://orcd-docs.mit.edu/running-jobs/overview/#preemptable-jobs">preemptable jobs</a> on idle resources with higher resource limits.</p>
 </li>
 </ul>
 <h2 id="check-job-info">Check job info<a class="headerlink" href="#check-job-info" title="Permanent link">&para;</a></h2>
@@ -2434,7 +2434,7 @@
 <p>While a job is pending, run <code>squeue --me</code> and check the <code>NODELIST(REASON)</code> column to see why it is waiting (for example, <code>Priority</code>, <code>Resources</code>, or a QOS limit). This tells you whether the delay comes from your request or from cluster load.</p>
 </li>
 <li>
-<p>After a job finishes, <strong>run <code>jobstats &lt;jobid&gt;</code> to see the actual CPU, memory, and GPU usage.</strong> Use that information to tune your next submission — over-requesting resources keeps your jobs in the queue longer and blocks others.</p>
+<p>After a job finishes, <strong>run <code>jobstats &lt;jobid&gt;</code> to see the actual CPU, memory, and GPU usage.</strong> Use that information to tune your next submission — over-requesting resources keeps your jobs in the queue longer and blocks others. Refer to <a href="https://orcd-docs.mit.edu/running-jobs/application-analysis/#jobstats">this page</a> for how to use <code>jobstats</code>.</p>
 </li>
 </ul>
 <h2 id="structure-your-jobs-efficiently">Structure your jobs efficiently<a class="headerlink" href="#structure-your-jobs-efficiently" title="Permanent link">&para;</a></h2>
@@ -2456,7 +2456,7 @@
 <h2 id="storage-and-io">Storage and I/O<a class="headerlink" href="#storage-and-io" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong>Keep heavy I/O off your pool directory</strong> (<code>~/orcd/pool</code>). Reading and writing many or large files on shared filesystems slows down both your job and everyone else's. Stage temporary data on the scratch directory (<code>~/orcd/scratch</code>), then copy only the results back when the job finishes.</p>
+<p><strong>Keep heavy I/O off your pool directory</strong> (<code>~/orcd/pool</code>). Reading and writing many or large files on shared filesystems slows down both your job and everyone else's. Stage temporary data in the scratch directory (<code>~/orcd/scratch</code>), then copy only the results back when the job finishes.</p>
 </li>
 <li>
 <p><strong>Avoid working with very large numbers of small files.</strong> Bundling data into archives or container formats (for example, tar, HDF5, or WebDataset) reduces stress on the parallel filesystem and usually speeds up your job.</p>
@@ -2482,7 +2482,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 10, 2026 19:12:03 UTC">June 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 12, 2026 22:09:35 UTC">August 12, 2026</span>
   </span>
 
     
@@ -2541,7 +2541,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
