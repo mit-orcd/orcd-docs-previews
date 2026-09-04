@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.46">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
@@ -32,12 +32,12 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -1226,6 +1226,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Best Practices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2141,6 +2168,32 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Index
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2412,8 +2465,8 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Load Anaconda Module</span>
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"My SLURM_ARRAY_TASK_ID: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Number of Tasks: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>python<span class="w"> </span>iterate_over_arr.py<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span></code></pre></div>
@@ -2428,8 +2481,8 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Load Anaconda Module</span>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>module<span class="w"> </span>load<span class="w"> </span>julia
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"My SLURM_ARRAY_TASK_ID: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Number of Tasks: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
 </span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>julia<span class="w"> </span>iterate_over_arr.jl<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span></code></pre></div>
@@ -2514,15 +2567,15 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="c1">#SBATCH -a 0-31</span>
 </span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"My SLURM_ARRAY_TASK_ID: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Number of Tasks: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a>
 </span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MAX_NUM</span><span class="o">=</span><span class="m">256</span>
 </span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12"></a>
 </span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="nv">my_array</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$MAX_NUM</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
 </span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14"></a>
 </span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="c1"># Iterate over my_array</span>
-</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
 </span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$IDX</span>
 </span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="k">done</span>
 </span></code></pre></div></td></tr></table></div>
@@ -2540,7 +2593,7 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 <span class="normal"><a href="#__codelineno-18-16">16</a></span>
 <span class="normal"><a href="#__codelineno-18-17">17</a></span>
 <span class="normal"><a href="#__codelineno-18-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15"></a><span class="c1"># Iterate over my_array</span>
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">my_array</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
 </span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$IDX</span>
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18"></a><span class="k">done</span>
 </span></code></pre></div></td></tr></table></div>
@@ -2594,21 +2647,21 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
 </span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="c1">#SBATCH -a 1-4</span>
 </span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7"></a>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"My SLURM_ARRAY_TASK_ID: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Number of Tasks: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10"></a>
 </span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="c1"># Specify Input File</span>
 </span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="nv">INPUT_FILE</span><span class="o">=</span>file.txt
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">"</span>
 </span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14"></a>
 </span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15"></a><span class="c1"># Distribute line numbers</span>
 </span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16"></a><span class="nv">MY_LINE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="nv">$NUM_LINES</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
 </span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17"></a>
 </span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18"></a><span class="c1"># Iterate over $MY_LINE_NUMS</span>
-</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19"></a><span class="k">for</span><span class="w"> </span>LINE_IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_LINE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19"></a><span class="k">for</span><span class="w"> </span>LINE_IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">MY_LINE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
 </span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20"></a>
 </span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21"></a><span class="w">    </span><span class="c1"># Get the $LINE_IDX-th line from $INPUT_FILE</span>
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="w">    </span><span class="nv">INPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d&quot;</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22"></a><span class="w">    </span><span class="nv">INPUT</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d"</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">"</span>
 </span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23"></a>
 </span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24"></a><span class="w">    </span><span class="c1"># Run my_cmd on $INPUT</span>
 </span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25"></a><span class="w">    </span>my_cmd<span class="w"> </span><span class="nv">$INPUT</span>
@@ -2627,12 +2680,12 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 <span class="normal"><a href="#__codelineno-22-12">12</a></span>
 <span class="normal"><a href="#__codelineno-22-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="c1"># Specify Input File</span>
 </span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="nv">INPUT_FILE</span><span class="o">=</span>file.txt
-</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="nv">NUM_LINES</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">"</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Line 22 within loop above uses the <code>sed</code> command to extract the current iteration's line from the file. The <code>sed</code> (Stream Editor) command can be used for many things, including extracting parts of a file as well as replacing or deleting text from a file. The <code>sed</code> command uses one-based indexing (it starts counting at 1 instead of 0), so it is easiest to start job array indices at 1 (see line 6 above).</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-21">21</a></span>
 <span class="normal"><a href="#__codelineno-23-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21"></a><span class="c1"># Get the $LINE_IDX-th line from $INPUT_FILE</span>
-</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22"></a><span class="nv">INPUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d&quot;</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22"></a><span class="nv">INPUT</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>sed<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">LINE_IDX</span><span class="si">}</span><span class="s2">q;d"</span><span class="w"> </span><span class="nv">$INPUT_FILE</span><span class="k">)</span><span class="s2">"</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="files-as-inputs">Files as Inputs<a class="headerlink" href="#files-as-inputs" title="Permanent link">&para;</a></h3>
 <p>This example shows how to pass in a directory of files as inputs.</p>
@@ -2669,8 +2722,8 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="c1">#SBATCH -o myout.log-%A-%a</span>
 </span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="c1">#SBATCH -a 0-3</span>
 </span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a>
-</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My SLURM_ARRAY_TASK_ID: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
-</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of Tasks: &quot;</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"My SLURM_ARRAY_TASK_ID: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Number of Tasks: "</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span>
 </span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10"></a>
 </span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="c1"># Specify Input Directory</span>
 </span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="nv">INPUT_DIR</span><span class="o">=</span>inputs/*
@@ -2678,10 +2731,10 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
 </span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="nv">NUM_FILES</span><span class="o">=</span><span class="si">${#</span><span class="nv">FILES</span><span class="p">[@]</span><span class="si">}</span>
 </span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15"></a>
 </span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="c1"># Distribute files</span>
-</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="nv">MY_FILE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">$NUM_FILES</span><span class="o">-</span><span class="m">1</span><span class="k">))</span><span class="s2">&quot;</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="nv">MY_FILE_NUMS</span><span class="o">=(</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_COUNT</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="nv">$NUM_FILES</span><span class="o">-</span><span class="m">1</span><span class="k">))</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">)</span>
 </span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18"></a>
 </span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="c1"># Iterate over $MY_FILE_NUMS</span>
-</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_FILE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20"></a><span class="k">for</span><span class="w"> </span>IDX<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">MY_FILE_NUMS</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
 </span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21"></a>
 </span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22"></a><span class="w">    </span><span class="c1"># Get the $IDX-th file from $FILES</span>
 </span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23"></a><span class="w">    </span><span class="nv">INPUT_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">FILES</span><span class="p">[</span><span class="nv">$IDX</span><span class="p">]</span><span class="si">}</span>
@@ -2769,10 +2822,10 @@ Here we are taking the array of inputs <code>arr</code>, extracting the elements
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

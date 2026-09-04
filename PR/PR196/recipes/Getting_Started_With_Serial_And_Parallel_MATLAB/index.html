@@ -21,23 +21,23 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.46">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
-        <title>Parallel Computing with MATLAB on the Engaging HPC Cluster - ORCD Docs</title>
+        <title>MATLAB Parallel Server - ORCD Docs</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Parallel Computing with MATLAB on the Engaging HPC Cluster
+              MATLAB Parallel Server
             
           </span>
         </div>
@@ -1076,6 +1076,33 @@
     
   
   Application Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Best Practices
 
     
   </span>
@@ -2173,6 +2200,32 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Index
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2393,7 +2446,7 @@
 <p>Submission to the cluster requires SSH credentials. You will be prompted for username and password or identity file (private key) upon submitting your first job. The username and location of the private key will be stored in MATLAB for future sessions.</p>
 <p><strong>NOTE</strong>: To run jobs on the local machine instead of the cluster, use the <code>Processes</code> profile.</p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c">% Get a handle to the local resources</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parcluster</span><span class="p">(</span><span class="s">&#39;Processes&#39;</span><span class="p">);</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parcluster</span><span class="p">(</span><span class="s">'Processes'</span><span class="p">);</span>
 </span></code></pre></div>
 <h2 id="configuring-jobs">Configuring Jobs<a class="headerlink" href="#configuring-jobs" title="Permanent link">&para;</a></h2>
 <p>Prior to submitting the job, various scheduler flags can be assigned, such as queue, e-mail, walltime, etc.  While no parameters are mandatory to submit a job, they may default to non-ideal values and cause your job to fail.  It is therefore recommended to tailor these values to your particular job. </p>
@@ -2405,40 +2458,40 @@
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c">% OPTIONAL</span>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c">% Specify an account</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">AccountName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;account-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">AccountName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'account-name'</span><span class="p">;</span>
 </span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
 </span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c">% Specify a constraint</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Constraint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;feature-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Constraint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'feature-name'</span><span class="p">;</span>
 </span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c">% Request email notification of job status</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">EmailAddress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;mit-kerberos@mit.edu&#39;</span><span class="p">;</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">EmailAddress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'mit-kerberos@mit.edu'</span><span class="p">;</span>
 </span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
 </span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c">% Specify number of GPUs (default: 0)</span>
 </span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUsPerNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
 </span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="c">% Specify a particular GPU card</span>
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUCard</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;gpu-card&#39;</span><span class="p">;</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">GPUCard</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'gpu-card'</span><span class="p">;</span>
 </span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
 </span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="c">% Specify memory to use, per core (default: 4GB)</span>
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">MemPerCPU</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;6GB&#39;</span><span class="p">;</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">MemPerCPU</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'6GB'</span><span class="p">;</span>
 </span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
 </span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="c">% Specify the partition</span>
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Partition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;partition-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Partition</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'partition-name'</span><span class="p">;</span>
 </span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
 </span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="c">% Specify cores per node (default: 0)</span>
 </span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">ProcsPerNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
 </span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
 </span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="c">% Specify Quality of Service (QoS)</span>
-</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">QoS</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;quality-of-service-value&#39;</span><span class="p">;</span>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">QoS</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'quality-of-service-value'</span><span class="p">;</span>
 </span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>
 </span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="c">% Set node exclusivity (default: false)</span>
 </span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">RequireExclusiveNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 </span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>
 </span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="c">% Specify a reservation</span>
-</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Reservation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;reservation-name&#39;</span><span class="p">;</span>
+</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">Reservation</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'reservation-name'</span><span class="p">;</span>
 </span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>
 </span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="c">% Specify the wall time (e.g., 1 day, 5 hours, 30 minutes)</span>
-</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">WallTime</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;1-05:30&#39;</span><span class="p">;</span>
+</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">WallTime</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">'1-05:30'</span><span class="p">;</span>
 </span></code></pre></div>
 <p>To persist changes made to <code>AdditionalProperties</code> between MATLAB sessions, save the profile</p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">saveProfile</span>
@@ -2448,9 +2501,9 @@
 </span></code></pre></div>
 <p>Unset a value when no longer needed.</p>
 <div class="language-matlab highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c">% Turn off email notifications</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">EmailAddress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">EmailAddress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">''</span><span class="p">;</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c">% Don&#39;t request an entire node</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c">% Don't request an entire node</span>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">AdditionalProperties</span><span class="p">.</span><span class="n">RequireExclusiveNode</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 </span></code></pre></div>
 <h2 id="interactive-jobs"><strong>Interactive Jobs</strong><a class="headerlink" href="#interactive-jobs" title="Permanent link">&para;</a></h2>
@@ -2490,8 +2543,8 @@
 </span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c">%   1                 - number of output arguments the function returns</span>
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="c">%   {}                - cell array of input arguments to the function</span>
 </span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c">%                       (empty, since pwd takes no arguments)</span>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c">%   &#39;CurrentFolder&#39;, &#39;.&#39; - run the job in the current working directory</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">batch</span><span class="p">(@</span><span class="nb">pwd</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="s">&#39;CurrentFolder&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;.&#39;</span><span class="p">);</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c">%   'CurrentFolder', '.' - run the job in the current working directory</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">batch</span><span class="p">(@</span><span class="nb">pwd</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="s">'CurrentFolder'</span><span class="p">,</span><span class="w"> </span><span class="s">'.'</span><span class="p">);</span>
 </span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
 </span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="c">% Query job for state</span>
 </span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="p">.</span><span class="n">State</span>
@@ -2523,13 +2576,13 @@
 <p>MATLAB can be launched on either the HPC Cluster or Desktop in this section.</p>
 </div>
 <p>The <code>batch</code> command can also support parallel workflows. Let’s use the following example for a parallel job, which you should save separately as <code>parallel_example.m</code>.</p>
-<div class="language-matlab highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">function</span><span class="w"> </span><span class="nf">[sim_t, A] = parallel_example</span><span class="p">(</span>iter<span class="p">)</span>
+<div class="language-matlab highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">function</span><span class="w"> </span><span class="p">[</span>sim_t, A<span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">parallel_example</span><span class="p">(</span>iter<span class="p">)</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">if</span><span class="w"> </span><span class="nb">nargin</span><span class="o">==</span><span class="mi">0</span>
 </span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="n">iter</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">end</span>
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Start sim&#39;</span><span class="p">)</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="nb">disp</span><span class="p">(</span><span class="s">'Start sim'</span><span class="p">)</span>
 </span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
 </span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">nan</span><span class="p">(</span><span class="n">iter</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 </span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">t0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">tic</span><span class="p">;</span>
@@ -2540,7 +2593,7 @@
 </span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="k">end</span>
 </span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="n">sim_t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">toc</span><span class="p">(</span><span class="n">t0</span><span class="p">);</span>
 </span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>
-</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Sim completed&#39;</span><span class="p">)</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="nb">disp</span><span class="p">(</span><span class="s">'Sim completed'</span><span class="p">)</span>
 </span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>
 </span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="nb">save</span><span class="w"> </span><span class="n">RESULTS</span><span class="w"> </span><span class="n">A</span>
 </span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
@@ -2551,7 +2604,7 @@
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parcluster</span><span class="p">;</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c">% Submit a batch pool job using 4 workers for 16 simulations</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">batch</span><span class="p">(@</span><span class="n">parallel_example</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">16</span><span class="p">},</span><span class="w"> </span><span class="s">&#39;CurrentFolder&#39;</span><span class="p">,</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Pool&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">batch</span><span class="p">(@</span><span class="n">parallel_example</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">16</span><span class="p">},</span><span class="w"> </span><span class="s">'CurrentFolder'</span><span class="p">,</span><span class="s">'.'</span><span class="p">,</span><span class="w"> </span><span class="s">'Pool'</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 </span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
 </span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c">% View current job status</span>
 </span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="p">.</span><span class="n">State</span>
@@ -2572,7 +2625,7 @@
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parcluster</span><span class="p">;</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c">% Submit a batch pool job using 8 workers for 16 simulations</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">batch</span><span class="p">(@</span><span class="n">parallel_example</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">16</span><span class="p">},</span><span class="w"> </span><span class="s">&#39;CurrentFolder&#39;</span><span class="p">,</span><span class="s">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Pool&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">batch</span><span class="p">(@</span><span class="n">parallel_example</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">16</span><span class="p">},</span><span class="w"> </span><span class="s">'CurrentFolder'</span><span class="p">,</span><span class="s">'.'</span><span class="p">,</span><span class="w"> </span><span class="s">'Pool'</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
 </span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c">% Get the job ID</span>
 </span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">job</span><span class="p">.</span><span class="n">ID</span>
@@ -2587,7 +2640,7 @@
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">parcluster</span><span class="p">;</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c">% Find the old job</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">findJob</span><span class="p">(</span><span class="s">&#39;ID&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">findJob</span><span class="p">(</span><span class="s">'ID'</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
 </span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
 </span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c">% Retrieve the state of the job</span>
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">job</span><span class="p">.</span><span class="n">State</span>
@@ -2687,14 +2740,14 @@
       
       
       
-        <span class="md-tag">MATLAB</span>
+        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
       
     
       
       
       
       
-        <span class="md-tag">Howto Recipes</span>
+        <a href="../../tags/#tag:matlab" class="md-tag">MATLAB</a>
       
     
   </nav>
@@ -2757,10 +2810,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

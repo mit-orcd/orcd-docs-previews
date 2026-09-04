@@ -21,23 +21,23 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.46">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
-        <title>Installing CryoSPARC on Engaging - ORCD Docs</title>
+        <title>CryoSPARC - ORCD Docs</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing CryoSPARC on Engaging
+              CryoSPARC
             
           </span>
         </div>
@@ -1076,6 +1076,33 @@
     
   
   Application Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Best Practices
 
     
   </span>
@@ -2141,6 +2168,32 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Index
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2298,11 +2351,11 @@ adapted from <a href="https://guide.cryosparc.com/setup-configuration-and-manage
 <p>You will need to obtain a CryoSPARC license ID <a href="https://guide.cryosparc.com/setup-configuration-and-management/how-to-download-install-and-configure/obtaining-a-license-id">here</a>.
 Licenses are free for academic use. Once you have received your license ID, save
 it as an environment variable for future uses:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export CRYOSPARC_LICENSE_ID=&quot;your_license_id&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'export CRYOSPARC_LICENSE_ID="your_license_id"'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span><span class="w"> </span>~/.bash_profile
 </span></code></pre></div>
 <p>Next, choose a working directory to use for your installation:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export CRYOSPARC_WORKDIR=&quot;/path/to/workdir&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'export CRYOSPARC_WORKDIR="/path/to/workdir"'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bash_profile
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>~/.bash_profile
 </span></code></pre></div>
 <p>Download and extract the master and worker software:</p>
@@ -2330,7 +2383,7 @@ an interactive job:</p>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_master
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nv">DB_PATH</span><span class="o">=</span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_database
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nv">PORT</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import socket; s=socket.socket(); s.bind((&quot;&quot;, 0)); print(s.getsockname()[1]); s.close()&#39;</span><span class="k">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nv">PORT</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">'import socket; s=socket.socket(); s.bind(("", 0)); print(s.getsockname()[1]); s.close()'</span><span class="k">)</span>
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
 </span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>./install.sh<span class="w"> </span>--license<span class="w"> </span><span class="nv">$CRYOSPARC_LICENSE_ID</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">             </span>--hostname<span class="w"> </span><span class="k">$(</span>hostname<span class="k">)</span><span class="w"> </span><span class="se">\</span>
@@ -2341,12 +2394,12 @@ an interactive job:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Add cryosparc_master to your path:</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_master/bin:<span class="nv">$PATH</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Ensure that CryoSPARC recognizes the master node you are using:</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export CRYOSPARC_FORCE_HOSTNAME=true&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CRYOSPARC_WORKDIR</span><span class="s2">/cryosparc_master/config.sh&quot;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'export CRYOSPARC_FORCE_HOSTNAME=true'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$CRYOSPARC_WORKDIR</span><span class="s2">/cryosparc_master/config.sh"</span>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># Start cryosparc:</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>cryosparcm<span class="w"> </span>start
 </span></code></pre></div>
 <p>To log in to the user interface, you need to register yourself as a user:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cryosparcm<span class="w"> </span>createuser<span class="w"> </span>--email<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="s2">@mit.edu&quot;</span><span class="w"> </span><span class="se">\</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cryosparcm<span class="w"> </span>createuser<span class="w"> </span>--email<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">USER</span><span class="si">}</span><span class="s2">@mit.edu"</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">                      </span>--password<span class="w"> </span>&lt;your_password&gt;<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">                      </span>--username<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">                      </span>--firstname<span class="w"> </span>&lt;your_first_name&gt;<span class="w"> </span><span class="se">\</span>
@@ -2367,14 +2420,14 @@ variable will not work).</p>
 <div class="tabbed-block">
 <p>Create a directory <code>${CRYOSPARC_WORKDIR}/cryosparc_master/cluster_mit_normal_gpu</code> and create the following two files within it:</p>
 <div class="language-bash highlight"><span class="filename">cluster_info.json</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">{</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;mit_normal_gpu&quot;</span>,
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="s2">&quot;worker_bin_path&quot;</span>:<span class="w"> </span><span class="s2">&quot;/path/to/cryosparc_worker/bin/cryosparcw&quot;</span>,
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="s2">&quot;cache_path&quot;</span>:<span class="w"> </span><span class="s2">&quot;~/orcd/scratch&quot;</span>,
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="s2">&quot;send_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;{{ command }}&quot;</span>,
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="s2">&quot;qsub_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/sbatch {{ script_path_abs }}&quot;</span>,
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="s2">&quot;qstat_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/squeue -j {{ cluster_job_id }}&quot;</span>,
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="s2">&quot;qdel_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/scancel {{ cluster_job_id }}&quot;</span>,
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="s2">&quot;qinfo_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/sinfo&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="s2">"name"</span>:<span class="w"> </span><span class="s2">"mit_normal_gpu"</span>,
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="s2">"worker_bin_path"</span>:<span class="w"> </span><span class="s2">"/path/to/cryosparc_worker/bin/cryosparcw"</span>,
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="s2">"cache_path"</span>:<span class="w"> </span><span class="s2">"~/orcd/scratch"</span>,
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="s2">"send_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"{{ command }}"</span>,
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="s2">"qsub_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/sbatch {{ script_path_abs }}"</span>,
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="s2">"qstat_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/squeue -j {{ cluster_job_id }}"</span>,
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="s2">"qdel_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/scancel {{ cluster_job_id }}"</span>,
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="s2">"qinfo_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/sinfo"</span>
 </span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="o">}</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><span class="filename">cluster_script.sh</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/usr/bin/env bash</span>
@@ -2383,7 +2436,7 @@ variable will not work).</p>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">#SBATCH --cpus-per-task={{ num_cpu }}</span>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1">#SBATCH --gres=gpu:{{ num_gpu }}</span>
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1">#SBATCH --mem={{ ram_gb|int }}G</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">#SBATCH --comment=&quot;created by {{ cryosparc_username }}&quot;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">#SBATCH --comment="created by {{ cryosparc_username }}"</span>
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">#SBATCH --output={{ job_dir_abs }}/{{ project_uid }}_{{ job_uid }}_slurm.out</span>
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1">#SBATCH --error={{ job_dir_abs }}/{{ project_uid }}_{{ job_uid }}_slurm.err</span>
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1">#SBATCH -p mit_normal_gpu</span>
@@ -2408,14 +2461,14 @@ have a reservation, add your reservation ID to
 <div class="tabbed-block">
 <p>Create a directory <code>${CRYOSPARC_WORKDIR}/cryosparc_master/cluster_mit_preemptable</code> and create the following two files within it:</p>
 <div class="language-bash highlight"><span class="filename">cluster_info.json</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">{</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;mit_preemptable&quot;</span>,
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="s2">&quot;worker_bin_path&quot;</span>:<span class="w"> </span><span class="s2">&quot;/path/to/cryosparc_worker/bin/cryosparcw&quot;</span>,
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="s2">&quot;cache_path&quot;</span>:<span class="w"> </span><span class="s2">&quot;~/orcd/scratch&quot;</span>,
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="s2">&quot;send_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;{{ command }}&quot;</span>,
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="s2">&quot;qsub_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/sbatch {{ script_path_abs }}&quot;</span>,
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="s2">&quot;qstat_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/squeue -j {{ cluster_job_id }}&quot;</span>,
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="s2">&quot;qdel_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/scancel {{ cluster_job_id }}&quot;</span>,
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="s2">&quot;qinfo_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/sinfo&quot;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="s2">"name"</span>:<span class="w"> </span><span class="s2">"mit_preemptable"</span>,
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="s2">"worker_bin_path"</span>:<span class="w"> </span><span class="s2">"/path/to/cryosparc_worker/bin/cryosparcw"</span>,
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="s2">"cache_path"</span>:<span class="w"> </span><span class="s2">"~/orcd/scratch"</span>,
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="s2">"send_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"{{ command }}"</span>,
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="s2">"qsub_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/sbatch {{ script_path_abs }}"</span>,
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="s2">"qstat_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/squeue -j {{ cluster_job_id }}"</span>,
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="s2">"qdel_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/scancel {{ cluster_job_id }}"</span>,
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="s2">"qinfo_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/sinfo"</span>
 </span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="o">}</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><span class="filename">cluster_script.sh</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="ch">#!/usr/bin/env bash</span>
@@ -2424,7 +2477,7 @@ have a reservation, add your reservation ID to
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">#SBATCH --cpus-per-task={{ num_cpu }}</span>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1">#SBATCH --gres=gpu:{{ num_gpu }}</span>
 </span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1">#SBATCH --mem={{ ram_gb|int }}G</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1">#SBATCH --comment=&quot;created by {{ cryosparc_username }}&quot;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1">#SBATCH --comment="created by {{ cryosparc_username }}"</span>
 </span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="c1">#SBATCH --output={{ job_dir_abs }}/{{ project_uid }}_{{ job_uid }}_slurm.out</span>
 </span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1">#SBATCH --error={{ job_dir_abs }}/{{ project_uid }}_{{ job_uid }}_slurm.err</span>
 </span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1">#SBATCH -p mit_preemptable</span>
@@ -2438,14 +2491,14 @@ have a reservation, add your reservation ID to
 <div class="tabbed-block">
 <p>Create a directory <code>${CRYOSPARC_WORKDIR}/cryosparc_master/cluster_mit_normal</code> and create the following two files within it:</p>
 <div class="language-bash highlight"><span class="filename">cluster_info.json</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">{</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;mit_normal&quot;</span>,
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="s2">&quot;worker_bin_path&quot;</span>:<span class="w"> </span><span class="s2">&quot;/path/to/cryosparc_worker/bin/cryosparcw&quot;</span>,
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="s2">&quot;cache_path&quot;</span>:<span class="w"> </span><span class="s2">&quot;~/orcd/scratch&quot;</span>,
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="s2">&quot;send_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;{{ command }}&quot;</span>,
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="s2">&quot;qsub_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/sbatch {{ script_path_abs }}&quot;</span>,
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="s2">&quot;qstat_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/squeue -j {{ cluster_job_id }}&quot;</span>,
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="s2">&quot;qdel_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/scancel {{ cluster_job_id }}&quot;</span>,
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="s2">&quot;qinfo_cmd_tpl&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/sinfo&quot;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="s2">"name"</span>:<span class="w"> </span><span class="s2">"mit_normal"</span>,
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="s2">"worker_bin_path"</span>:<span class="w"> </span><span class="s2">"/path/to/cryosparc_worker/bin/cryosparcw"</span>,
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="s2">"cache_path"</span>:<span class="w"> </span><span class="s2">"~/orcd/scratch"</span>,
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="s2">"send_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"{{ command }}"</span>,
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="s2">"qsub_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/sbatch {{ script_path_abs }}"</span>,
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="s2">"qstat_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/squeue -j {{ cluster_job_id }}"</span>,
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="s2">"qdel_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/scancel {{ cluster_job_id }}"</span>,
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="s2">"qinfo_cmd_tpl"</span>:<span class="w"> </span><span class="s2">"/usr/bin/sinfo"</span>
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="o">}</span>
 </span></code></pre></div>
 <div class="language-bash highlight"><span class="filename">cluster_script.sh</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="ch">#!/usr/bin/env bash</span>
@@ -2454,7 +2507,7 @@ have a reservation, add your reservation ID to
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1">#SBATCH --cpus-per-task={{ num_cpu }}</span>
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1">#SBATCH --gres=gpu:{{ num_gpu }}</span>
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1">#SBATCH --mem={{ ram_gb|int }}G</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1">#SBATCH --comment=&quot;created by {{ cryosparc_username }}&quot;</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1">#SBATCH --comment="created by {{ cryosparc_username }}"</span>
 </span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1">#SBATCH --output={{ job_dir_abs }}/{{ project_uid }}_{{ job_uid }}_slurm.out</span>
 </span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">#SBATCH --error={{ job_dir_abs }}/{{ project_uid }}_{{ job_uid }}_slurm.err</span>
 </span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1">#SBATCH -p mit_normal</span>
@@ -2496,18 +2549,18 @@ adapted here:</p>
 </span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1">#SBATCH -t 12:00:00</span>
 </span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="c1">#SBATCH -J cryosparc_master</span>
 </span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="c1">#SBATCH -o output/cryosparc_master-%N-%j.out</span>
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1">#SBATCH --signal=B:10@60 # send the signal &#39;10&#39; at 60s before job finishes</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1">#SBATCH --signal=B:10@60 # send the signal '10' at 60s before job finishes</span>
 </span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
 </span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_master/bin:<span class="nv">$PATH</span>
 </span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
 </span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="k">function</span><span class="w"> </span>cleanup<span class="o">()</span>
 </span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="o">{</span>
 </span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span>date
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;Shutting down CryoSPARC @ &quot;</span><span class="p">;</span><span class="w"> </span>date
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"Shutting down CryoSPARC @ "</span><span class="p">;</span><span class="w"> </span>date
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">    </span>cryosparcm<span class="w"> </span>start
-</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">    </span>cryosparcm<span class="w"> </span>cli<span class="w"> </span><span class="s2">&quot;remove_scheduler_target_node(&#39;</span><span class="nv">$worker_host</span><span class="s2">&#39;)&quot;</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">    </span>cryosparcm<span class="w"> </span>cli<span class="w"> </span><span class="s2">"remove_scheduler_target_node('</span><span class="nv">$worker_host</span><span class="s2">')"</span>
 </span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">    </span>cryosparcm<span class="w"> </span>stop
-</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Done&quot;</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Done"</span>
 </span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="o">}</span>
 </span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
 </span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="c1"># Shut down CryoSPARC cleanly when timeout is imminent</span>
@@ -2519,8 +2572,8 @@ adapted here:</p>
 </span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MASTER_HOST</span><span class="o">=</span><span class="k">$(</span>hostname<span class="k">)</span>
 </span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>
 </span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a><span class="c1"># Allow master node software to run on different nodes:</span>
-</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">&#39;s/export CRYOSPARC_MASTER_HOSTNAME.*$/export CRYOSPARC_MASTER_HOSTNAME=\&quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MASTER_HOST</span><span class="s2">&quot;</span><span class="s1">&#39;\&quot;/g&#39;</span><span class="w"> </span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_master/config.sh
-</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>grep<span class="w"> </span>-qxF<span class="w"> </span><span class="s2">&quot;export CRYOSPARC_FORCE_HOSTNAME=true&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CRYOSPARC_WORKDIR</span><span class="s2">/cryosparc_master/config.sh&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export CRYOSPARC_FORCE_HOSTNAME=true&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$CRYOSPARC_WORKDIR</span><span class="s2">/cryosparc_master/config.sh&quot;</span>
+</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">'s/export CRYOSPARC_MASTER_HOSTNAME.*$/export CRYOSPARC_MASTER_HOSTNAME=\"'</span><span class="s2">"</span><span class="nv">$MASTER_HOST</span><span class="s2">"</span><span class="s1">'\"/g'</span><span class="w"> </span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_master/config.sh
+</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>grep<span class="w"> </span>-qxF<span class="w"> </span><span class="s2">"export CRYOSPARC_FORCE_HOSTNAME=true"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$CRYOSPARC_WORKDIR</span><span class="s2">/cryosparc_master/config.sh"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'export CRYOSPARC_FORCE_HOSTNAME=true'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$CRYOSPARC_WORKDIR</span><span class="s2">/cryosparc_master/config.sh"</span>
 </span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>
 </span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="nb">source</span><span class="w"> </span><span class="nv">$CRYOSPARC_WORKDIR</span>/cryosparc_master/config.sh
 </span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>
@@ -2537,7 +2590,7 @@ adapted here:</p>
 </span><span id="__span-18-48"><a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a>
 </span><span id="__span-18-49"><a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a><span class="s">Now, point your web browser to http://localhost:${CRYOSPARC_BASE_PORT}</span>
 </span><span id="__span-18-50"><a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>
-</span><span id="__span-18-51"><a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a><span class="s">When you&#39;re finished, run:</span>
+</span><span id="__span-18-51"><a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a><span class="s">When you're finished, run:</span>
 </span><span id="__span-18-52"><a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a>
 </span><span id="__span-18-53"><a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a><span class="s">scancel $SLURM_JOB_ID</span>
 </span><span id="__span-18-54"><a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a>
@@ -2602,21 +2655,21 @@ will simply pend until the other jobs have finished.</p>
       
       
       
-        <span class="md-tag">CryoEM</span>
+        <a href="../../tags/#tag:cryoem" class="md-tag">CryoEM</a>
       
     
       
       
       
       
-        <span class="md-tag">Install Recipes</span>
+        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
       
     
       
       
       
       
-        <span class="md-tag">Engaging</span>
+        <a href="../../tags/#tag:install-recipes" class="md-tag">Install Recipes</a>
       
     
   </nav>
@@ -2679,10 +2732,10 @@ will simply pend until the other jobs have finished.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

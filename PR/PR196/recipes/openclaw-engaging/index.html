@@ -21,23 +21,23 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.46">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
-        <title>Running a Personal OpenClaw AI Assistant on Engaging - ORCD Docs</title>
+        <title>OpenClaw - ORCD Docs</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Running a Personal OpenClaw AI Assistant on Engaging
+              OpenClaw
             
           </span>
         </div>
@@ -1076,6 +1076,33 @@
     
   
   Application Analysis
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Best Practices
 
     
   </span>
@@ -2345,6 +2372,32 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Index
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2829,7 +2882,7 @@ functionality works without these optional skills.</p>
 <h2 id="step-3-activate-the-openclaw-command-one-time">Step 3: Activate the <code>openclaw</code> Command (one-time)<a class="headerlink" href="#step-3-activate-the-openclaw-command-one-time" title="Permanent link">&para;</a></h2>
 <p><code>setup.sh</code> installs the Lmod modulefile to <code>~/modulefiles/openclaw.lua</code>.
 Use the module only (there is no <code>source …/openclaw-env.sh</code> / <code>.bashrc</code> shortcut):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;module use ~/modulefiles&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'module use ~/modulefiles'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module<span class="w"> </span>load<span class="w"> </span>openclaw
 </span></code></pre></div>
 <p>This sets up the <code>openclaw</code> command and enables <code>--containall</code> by default.
@@ -2839,11 +2892,11 @@ sessions, <code>module load openclaw</code> is automatically available.</p>
 </span></code></pre></div>
 <h2 id="step-4-test-the-agent">Step 4: Test the Agent<a class="headerlink" href="#step-4-test-the-agent" title="Permanent link">&para;</a></h2>
 <p>Send a quick test message to confirm everything is working:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Hello from Engaging!&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Hello from Engaging!"</span>
 </span></code></pre></div>
 <p>You can also start an interactive session on a compute node with data access:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>srun<span class="w"> </span>--pty<span class="w"> </span>--mem<span class="o">=</span>4G<span class="w"> </span>--time<span class="o">=</span><span class="m">02</span>:00:00<span class="w"> </span>bash
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Explore CSV files in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">"~/orcd/scratch/oclaw/workdata"</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Explore CSV files in ~/orcd/scratch/oclaw/workdata/"</span>
 </span></code></pre></div>
 <h2 id="step-5-launch-the-web-dashboard">Step 5: Launch the Web Dashboard<a class="headerlink" href="#step-5-launch-the-web-dashboard" title="Permanent link">&para;</a></h2>
 <p>The web dashboard provides a browser-based chat interface for interacting with
@@ -2911,7 +2964,7 @@ Set <code>OPENCLAW_SLURM_BINDS=1</code> to bind-mount the host's SLURM commands
 </span></code></pre></div>
 <p>With this enabled, your agent can write batch scripts, submit them with
 <code>sbatch</code>, and monitor job status — all within the same conversation:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Write a SLURM batch script for my analysis and submit it&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Write a SLURM batch script for my analysis and submit it"</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">SLURM binds and container boundaries</p>
@@ -2933,14 +2986,14 @@ scripts for you to submit outside the container.</p>
 <p>Since <code>--containall</code> is enabled by default, the agent can only see the repo
 directory and <code>/tmp</code>. Grant access with <code>APPTAINER_BIND</code> in front of
 <code>openclaw</code> (not <code>apptainer exec -B</code>):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the datasets in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">"~/orcd/scratch/oclaw/workdata"</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Analyze the datasets in ~/orcd/scratch/oclaw/workdata/"</span>
 </span></code></pre></div>
 <p>You can bind multiple paths:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;/pool/lab-data,~/orcd/scratch/results&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Compare data in /pool/lab-data/ with ~/orcd/scratch/results/&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">"/pool/lab-data,~/orcd/scratch/results"</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Compare data in /pool/lab-data/ with ~/orcd/scratch/results/"</span>
 </span></code></pre></div>
 <p>For batch jobs, set <code>APPTAINER_BIND</code> on the same line as <code>sbatch</code> so the job
 inherits it:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;/orcd/data/your-group/datasets&quot;</span><span class="w"> </span>sbatch<span class="w"> </span>apptainer/slurm-openclaw.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">"/orcd/data/your-group/datasets"</span><span class="w"> </span>sbatch<span class="w"> </span>apptainer/slurm-openclaw.sh
 </span></code></pre></div>
 <h3 id="gpu-compute">GPU Compute<a class="headerlink" href="#gpu-compute" title="Permanent link">&para;</a></h3>
 <p>The agent itself does not need a GPU — do not add GPU requests to the
@@ -2948,7 +3001,7 @@ gateway or agent SLURM scripts. When your task requires GPU compute (e.g.,
 training a model, running inference locally), the agent can submit a
 separate SLURM job that requests its own GPU. Enable
 <code>OPENCLAW_SLURM_BINDS=1</code> so the agent can use <code>sbatch</code> directly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Submit a SLURM job on a GPU node to train my model in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">OPENCLAW_SLURM_BINDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">"~/orcd/scratch/oclaw/workdata"</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Submit a SLURM job on a GPU node to train my model in ~/orcd/scratch/oclaw/workdata/"</span>
 </span></code></pre></div>
 <p>The submitted job runs outside the container on a GPU node with full
 access to the cluster's GPU partitions. See
@@ -2957,7 +3010,7 @@ available GPU types and partitions.</p>
 <h3 id="changing-the-model">Changing the Model<a class="headerlink" href="#changing-the-model" title="Permanent link">&para;</a></h3>
 <p>You do not need to re-run the full setup wizard to switch models. Use the
 config command:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>agent.model<span class="w"> </span><span class="s2">&quot;anthropic/claude-opus-4-6&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>openclaw<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>agent.model<span class="w"> </span><span class="s2">"anthropic/claude-opus-4-6"</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">API Usage Limits</p>
@@ -3009,7 +3062,7 @@ boundary instead.</p>
   or affect other users</li>
 </ul>
 <p>To grant the agent access to a data directory, use <code>APPTAINER_BIND</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">&quot;~/orcd/scratch/oclaw/workdata&quot;</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Analyze the data in ~/orcd/scratch/oclaw/workdata/&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nv">APPTAINER_BIND</span><span class="o">=</span><span class="s2">"~/orcd/scratch/oclaw/workdata"</span><span class="w"> </span>openclaw<span class="w"> </span>agent<span class="w"> </span>--local<span class="w"> </span>--agent<span class="w"> </span>main<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Analyze the data in ~/orcd/scratch/oclaw/workdata/"</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3100,7 +3153,7 @@ Identity Required" prompt, even after clicking the tokenized URL.</p>
    append <code>/?token=&lt;your-token&gt;</code> manually to <code>http://localhost:18790/</code>.</li>
 </ol>
 <p><strong>Finding your token</strong> if you've lost the gateway output:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import json; print(json.load(open(&#39;.openclaw/openclaw.json&#39;))[&#39;gateway&#39;][&#39;auth&#39;][&#39;token&#39;])&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import json; print(json.load(open('.openclaw/openclaw.json'))['gateway']['auth']['token'])"</span>
 </span></code></pre></div>
 <h3 id="enotdir-error-after-moving-the-repo-or-openclaw">ENOTDIR error after moving the repo or <code>.openclaw</code><a class="headerlink" href="#enotdir-error-after-moving-the-repo-or-openclaw" title="Permanent link">&para;</a></h3>
 <p>If the gateway fails with <code>ENOTDIR</code> after moving the repo directory or
@@ -3155,28 +3208,28 @@ persistence — see the
       
       
       
-        <span class="md-tag">LLM</span>
+        <a href="../../tags/#tag:containers" class="md-tag">Containers</a>
       
     
       
       
       
       
-        <span class="md-tag">Containers</span>
+        <a href="../../tags/#tag:engaging" class="md-tag">Engaging</a>
       
     
       
       
       
       
-        <span class="md-tag">Howto Recipes</span>
+        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
       
     
       
       
       
       
-        <span class="md-tag">Engaging</span>
+        <a href="../../tags/#tag:llm" class="md-tag">LLM</a>
       
     
   </nav>
@@ -3239,10 +3292,10 @@ persistence — see the
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

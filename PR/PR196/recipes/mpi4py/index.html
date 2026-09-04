@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.46">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
@@ -32,12 +32,12 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -1088,6 +1088,33 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../running-jobs/best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Best Practices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2085,6 +2112,32 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Index
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2193,7 +2246,7 @@
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">:</span> <span class="mf">3.14</span><span class="p">}</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -2209,11 +2262,11 @@
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># passing MPI datatypes explicitly</span>
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'i'</span><span class="p">)</span>
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">comm</span><span class="o">.</span><span class="n">Send</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">MPI</span><span class="o">.</span><span class="n">INT</span><span class="p">],</span> <span class="n">dest</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="mi">77</span><span class="p">)</span>
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">elif</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'i'</span><span class="p">)</span>
 </span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="n">comm</span><span class="o">.</span><span class="n">Recv</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">MPI</span><span class="o">.</span><span class="n">INT</span><span class="p">],</span> <span class="n">source</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="mi">77</span><span class="p">)</span>
 </span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
 </span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
@@ -2252,21 +2305,21 @@
       
       
       
-        <span class="md-tag">MPI</span>
+        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
       
     
       
       
       
       
-        <span class="md-tag">Python</span>
+        <a href="../../tags/#tag:mpi" class="md-tag">MPI</a>
       
     
       
       
       
       
-        <span class="md-tag">Howto Recipes</span>
+        <a href="../../tags/#tag:python" class="md-tag">Python</a>
       
     
   </nav>
@@ -2329,10 +2382,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

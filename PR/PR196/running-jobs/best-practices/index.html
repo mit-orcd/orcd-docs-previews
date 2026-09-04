@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://orcd.mit.edu/recipes/mujoco/">
+        <link rel="canonical" href="https://orcd.mit.edu/running-jobs/best-practices/">
       
       
+        <link rel="prev" href="../application-analysis/">
+      
+      
+        <link rel="next" href="../../recipes/many-jobs/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>Installing and Using MuJoCo - ORCD Docs</title>
+        <title>Best Practices - ORCD Docs</title>
       
     
     
@@ -77,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-and-using-mujoco" class="md-skip">
+        <a href="#best-practices-for-submitting-jobs" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing and Using MuJoCo
+              Best Practices
             
           </span>
         </div>
@@ -422,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vscode/" class="md-nav__link">
+      <a href="../../recipes/vscode/" class="md-nav__link">
         
   
   
@@ -908,18 +912,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -939,7 +945,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -956,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running-jobs/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -983,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running-jobs/requesting-resources/" class="md-nav__link">
+      <a href="../requesting-resources/" class="md-nav__link">
         
   
   
@@ -1010,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running-jobs/job-arrays/" class="md-nav__link">
+      <a href="../job-arrays/" class="md-nav__link">
         
   
   
@@ -1037,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running-jobs/available-resources/" class="md-nav__link">
+      <a href="../available-resources/" class="md-nav__link">
         
   
   
@@ -1064,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../running-jobs/application-analysis/" class="md-nav__link">
+      <a href="../application-analysis/" class="md-nav__link">
         
   
   
@@ -1088,10 +1094,36 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../running-jobs/best-practices/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Best Practices
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1106,6 +1138,104 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#request-cpu-and-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Request CPU and memory
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request-gpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Request GPUs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-resources-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Use resources efficiently
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-job-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Check job info
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-your-jobs-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structure your jobs efficiently
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-your-jobs-reproducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Make your jobs reproducible
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-and-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Storage and I/O
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1170,7 +1300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../many-jobs/" class="md-nav__link">
+      <a href="../../recipes/many-jobs/" class="md-nav__link">
         
   
   
@@ -1197,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../af3/" class="md-nav__link">
+      <a href="../../recipes/af3/" class="md-nav__link">
         
   
   
@@ -1224,7 +1354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cryosparc/" class="md-nav__link">
+      <a href="../../recipes/cryosparc/" class="md-nav__link">
         
   
   
@@ -1251,7 +1381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gromacs/" class="md-nav__link">
+      <a href="../../recipes/gromacs/" class="md-nav__link">
         
   
   
@@ -1278,7 +1408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../intel/" class="md-nav__link">
+      <a href="../../recipes/intel/" class="md-nav__link">
         
   
   
@@ -1305,7 +1435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jupyter/" class="md-nav__link">
+      <a href="../../recipes/jupyter/" class="md-nav__link">
         
   
   
@@ -1332,7 +1462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Getting_Started_With_Serial_And_Parallel_MATLAB/" class="md-nav__link">
+      <a href="../../recipes/Getting_Started_With_Serial_And_Parallel_MATLAB/" class="md-nav__link">
         
   
   
@@ -1359,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mpi4py/" class="md-nav__link">
+      <a href="../../recipes/mpi4py/" class="md-nav__link">
         
   
   
@@ -1386,7 +1516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mpi/" class="md-nav__link">
+      <a href="../../recipes/mpi/" class="md-nav__link">
         
   
   
@@ -1413,7 +1543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
+      <a href="../../recipes/nvhpc-a100-with-cuda-and-mpi-example/" class="md-nav__link">
         
   
   
@@ -1440,7 +1570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../openclaw-engaging/" class="md-nav__link">
+      <a href="../../recipes/openclaw-engaging/" class="md-nav__link">
         
   
   
@@ -1467,7 +1597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../orca/" class="md-nav__link">
+      <a href="../../recipes/orca/" class="md-nav__link">
         
   
   
@@ -1494,7 +1624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pycharm/" class="md-nav__link">
+      <a href="../../recipes/pycharm/" class="md-nav__link">
         
   
   
@@ -1521,7 +1651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../torch-gpu/" class="md-nav__link">
+      <a href="../../recipes/torch-gpu/" class="md-nav__link">
         
   
   
@@ -1548,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../torch-gpu-intermediate/" class="md-nav__link">
+      <a href="../../recipes/torch-gpu-intermediate/" class="md-nav__link">
         
   
   
@@ -1575,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rag/" class="md-nav__link">
+      <a href="../../recipes/rag/" class="md-nav__link">
         
   
   
@@ -1602,7 +1732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../relion/" class="md-nav__link">
+      <a href="../../recipes/relion/" class="md-nav__link">
         
   
   
@@ -1629,7 +1759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../build-vasp-gcc-cpu/" class="md-nav__link">
+      <a href="../../recipes/build-vasp-gcc-cpu/" class="md-nav__link">
         
   
   
@@ -1656,7 +1786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vscode/" class="md-nav__link">
+      <a href="../../recipes/vscode/" class="md-nav__link">
         
   
   
@@ -1683,7 +1813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../X11/" class="md-nav__link">
+      <a href="../../recipes/X11/" class="md-nav__link">
         
   
   
@@ -2093,10 +2223,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-the-mujoco-binaries" class="md-nav__link">
+  <a href="#request-cpu-and-memory" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Install the MuJoCo Binaries
+        Request CPU and memory
       </span>
     </span>
   </a>
@@ -2104,10 +2234,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-mujoco-py" class="md-nav__link">
+  <a href="#request-gpus" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Install Mujoco-Py
+        Request GPUs
       </span>
     </span>
   </a>
@@ -2115,10 +2245,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-mujoco-in-a-job" class="md-nav__link">
+  <a href="#use-resources-efficiently" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Using MuJoCo in a Job
+        Use resources efficiently
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-job-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Check job info
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-your-jobs-efficiently" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structure your jobs efficiently
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#make-your-jobs-reproducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Make your jobs reproducible
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-and-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Storage and I/O
       </span>
     </span>
   </a>
@@ -2140,100 +2314,115 @@
                 
                   
 
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This page has been archived. The information present is not updated and may no longer be accurate.</p>
+<h1 id="best-practices-for-submitting-jobs">Best Practices for Submitting Jobs<a class="headerlink" href="#best-practices-for-submitting-jobs" title="Permanent link">&para;</a></h1>
+<p>The following recommendations will help you make efficient use of the available resources, get your jobs started sooner, and avoid spending unnecessary time in the queue.</p>
+<h2 id="request-cpu-and-memory">Request CPU and memory<a class="headerlink" href="#request-cpu-and-memory" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Specify <code>--ntasks</code>, <code>--cpus-per-task</code>, and <code>--mem</code> (or <code>--mem-per-cpu</code>) explicitly rather than relying on defaults — defaults are rarely optimal for your workload.</p>
+</li>
+<li>
+<p>Make sure your program actually uses the cores you request. For multithreaded programs, such as OpenMP or NumPy programs, set thread counts such as <code>OMP_NUM_THREADS</code> to match <code>--cpus-per-task</code> so you neither under-use nor oversubscribe your cores. For distributed jobs, launch tasks with <code>mpirun</code> or <code>srun</code> so they land on the allocated resources.</p>
+</li>
+<li>
+<p><strong>Request only as much memory as your program actually needs, since requesting more than necessary can delay scheduling.</strong> Note that <code>--mem</code> specifies the memory per node, so when scaling on multiple cores, prefer <code>--mem-per-cpu</code> over <code>--mem</code> so that memory scales with the CPU count. Each <code>mit_normal</code> node has 96 cores and 377 GB of RAM (roughly 4 GB per core), so keep your request within that per-node limit.</p>
+</li>
+</ul>
+<h2 id="request-gpus">Request GPUs<a class="headerlink" href="#request-gpus" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>If your job can run on any type of GPU, request a generic GPU with <code>-G 1</code>. To request a specific type, use <code>-G l40s:1</code> for an L40S or <code>-G h200:1</code> for an H200.</p>
+</li>
+<li>
+<p>If your job does not specifically require an H200, <strong>prefer an L40S</strong>. The L40S is sufficient for many workloads (especially those using less than 48 GB of GPU memory) and is far more available, which usually means shorter queue times.</p>
+</li>
+<li>
+<p><strong>Request an H200 only when necessary.</strong> Typical cases that require an H200 include:</p>
+<ul>
+<li>AI training with large models.</li>
+<li>Simulations that require FP64 precision.</li>
+<li>Any job that requires 48–144 GB of GPU memory.</li>
+</ul>
+</li>
+<li>
+<p>Request no more than 4 CPU cores per GPU when possible. Our Slurm configuration reserves 4 CPU cores per GPU for GPU jobs, so requesting more than that can delay scheduling.</p>
+<div class="admonition note">
+<p class="admonition-title">CPU cores per GPU for deep learning applications</p>
+<p>Many deep learning workloads need more than 4 CPU cores per GPU, since data loading and preprocessing (for example, PyTorch <code>DataLoader</code> workers) are CPU-bound and can otherwise starve the GPU. In that case, request 6–8 CPU cores per GPU as a good starting point, and increase only if you confirm the data pipeline is still the bottleneck. Keep in mind that GPU nodes provide 15 or 16 CPU cores per GPU (H200 nodes have 120 cores and 8 GPUs; L40S nodes have 64 cores and 4 GPUs), so try to stay below that limit to avoid being blocked by a shortage of available CPU cores and delaying scheduling.</p>
 </div>
-<h1 id="installing-and-using-mujoco">Installing and Using MuJoCo<a class="headerlink" href="#installing-and-using-mujoco" title="Permanent link">&para;</a></h1>
-<p>MuJoCo is a free and open source physics engine that aims to facilitate research and development in robotics, biomechanics, graphics and animation, and other areas where fast and accurate simulation is needed.</p>
-<p>You can learn about MuJoCo here: <a href="https://mujoco.org">https://mujoco.org</a>.</p>
-<p>You’ll first have to install the MuJoCo binaries.</p>
-<h2 id="install-the-mujoco-binaries">Install the MuJoCo Binaries<a class="headerlink" href="#install-the-mujoco-binaries" title="Permanent link">&para;</a></h2>
-<p>First, install MuJoCo itself somewhere in your home directory. This is as simple as downloading the MuJoCo binaries, which can be found on their web page. For the release that you want, select the file that ends with “linux-x86_64.tar.gz”, for example for 2.3.0 select <a href="https://github.com/deepmind/mujoco/releases/download/2.3.0/mujoco-2.3.0-linux-x86_64.tar.gz">mujoco-2.3.0-linux-x86_64.tar.gz</a>. Right click, and copy the link address. Then you can download on one of the login nodes with the “wget” command, and untar:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span>https://github.com/deepmind/mujoco/releases/download/2.3.0/mujoco-2.3.0-linux-x86_64.tar.gz
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>mujoco-2.3.0-linux-x86_64.tar.gz
-</span></code></pre></div>
-<p>In order for mujoco-py to find the MuJoCo binaries, set the following paths:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">MUJOCO_PY_MUJOCO_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/path/to/mujoco-2.3.0/
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:<span class="nv">$MUJOCO_PY_MUJOCO_PATH</span>/bin
-</span></code></pre></div>
-<h2 id="install-mujoco-py">Install Mujoco-Py<a class="headerlink" href="#install-mujoco-py" title="Permanent link">&para;</a></h2>
-<p>First, make sure the <code>MUJOCO_PY_MUJOCO_PATH</code> and <code>LD_LIBRARY_PATH</code> environment variables are set pointing to your mujoco installation. You can use the “echo” command to do this:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">echo</span><span class="w"> </span>MUJOCO_PY_MUJOCO_PATH
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">echo</span><span class="w"> </span>LD_LIBRARY_PATH
-</span></code></pre></div>
-<p>If any of these are not set properly you can set them as described above (see <a href="#install-the-mujoco-binaries">here for MUJOCO_PY_MUJOCO_PATH and LD_LIBRARY_PATH</a>).</p>
-<p>Next load either a Python or Anaconda module. In this example I loaded the <code>miniforge</code> module (run <code>module avail miniforge</code> to see the current list of available Anaconda modules):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge
-</span></code></pre></div>
-<p>From here on you can follow the <a href="https://github.com/openai/mujoco-py">standard instructions to install mujoco-py</a>, using the <code>--user</code> flag where appropriate to install in your home directory, or install in an anaconda or virtual environment (do not use the <code>--user</code> flag if you want to install in a conda or virtual environment). Here I am installing in my home directory with <code>--user</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span><span class="s1">'mujoco-py&lt;2.2,&gt;=2.1'</span>
-</span></code></pre></div>
-<p>Start up python and import <code>mujoco_py</code> to complete the build process:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">mujoco_py</span>
-</span></code></pre></div>
-<p>If you’d like you can run the few example lines listed on install section of the mujoco-py github page to verify the install went through properly:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">mujoco_py</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">mj_path</span> <span class="o">=</span> <span class="n">mujoco_py</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">discover_mujoco</span><span class="p">()</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">xml_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mj_path</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,</span> <span class="s1">'humanoid.xml'</span><span class="p">)</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">model</span> <span class="o">=</span> <span class="n">mujoco_py</span><span class="o">.</span><span class="n">load_model_from_path</span><span class="p">(</span><span class="n">xml_path</span><span class="p">)</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">sim</span> <span class="o">=</span> <span class="n">mujoco_py</span><span class="o">.</span><span class="n">MjSim</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">qpos</span><span class="p">)</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">qpos</span><span class="p">)</span>
-</span></code></pre></div>
-<h2 id="using-mujoco-in-a-job">Using MuJoCo in a Job<a class="headerlink" href="#using-mujoco-in-a-job" title="Permanent link">&para;</a></h2>
-<p>To use MuJoCo you’ll need to first load the same Python or Anaconda module you used to install mujoco-py. If you installed it into a conda environment or python virtual environment, load that environment as well. We recommend you do this in your job submission script rather than in your <code>.bashrc</code> or at the command line before you submit the job. This way you know your job is configured properly every time it runs.</p>
-<p>You can use the following test scripts to test your MuJoCo setup in a job environment, and as a starting point for your own job:</p>
-<div class="language-py highlight"><span class="filename">mujoco_test.py</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">mujoco_py</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">mj_path</span> <span class="o">=</span> <span class="n">mujoco_py</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">discover_mujoco</span><span class="p">()</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">xml_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mj_path</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,</span> <span class="s1">'humanoid.xml'</span><span class="p">)</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">model</span> <span class="o">=</span> <span class="n">mujoco_py</span><span class="o">.</span><span class="n">load_model_from_path</span><span class="p">(</span><span class="n">xml_path</span><span class="p">)</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">sim</span> <span class="o">=</span> <span class="n">mujoco_py</span><span class="o">.</span><span class="n">MjSim</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">qpos</span><span class="p">)</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">sim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">qpos</span><span class="p">)</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><span class="filename">submit_test.sh</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># Load the same python/anaconda module you used to install mujoco-py</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>module<span class="w"> </span>load<span class="w"> </span>python/3.8.3
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Run the script</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>python<span class="w"> </span>mujoco_test.py
-</span></code></pre></div>
-
-
-  <nav class="md-tags" >
-    
-      
-      
-      
-      
-        <a href="../../tags/#tag:howto-recipes" class="md-tag">Howto Recipes</a>
-      
-    
-      
-      
-      
-      
-        <a href="../../tags/#tag:install-recipe" class="md-tag">Install Recipe</a>
-      
-    
-      
-      
-      
-      
-        <a href="../../tags/#tag:physics" class="md-tag">Physics</a>
-      
-    
-  </nav>
+</li>
+<li>
+<p>Request enough host (system) memory for your GPU job, but no more than you need.</p>
+<div class="admonition note">
+<p class="admonition-title">Host memory per GPU for deep learning applications</p>
+<p>Small-batch on-GPU training can run fine with less host RAM than the GPU memory, but the safe default is host RAM ≥ GPU memory. A good starting point is about 1.5–2× the GPU memory per GPU. In the <code>mit_normal_gpu</code> partition, each L40S node has 1 TB of RAM (256 GB per GPU) and each H200 node has 2 TB (256 GB per GPU). For an L40S, it is best to request 2 × 48 GB = 96 GB per GPU, up to the 256 GB available per GPU. For an H200, 2 × 144 GB = 288 GB exceeds the 256 GB available per GPU, so it is best to request 256 GB per H200. Use <code>--mem-per-gpu</code> to scale memory with the number of GPUs and stay within the node's limit.</p>
+</div>
+<details class="note">
+<summary>What host memory is used for in deep learning applications</summary>
+<ul>
+<li>Data loading and prefetching — more <code>DataLoader</code> workers and larger prefetch need more RAM.</li>
+<li>Pinned (page-locked) memory for fast host→device transfers.</li>
+<li>CPU offloading (e.g., DeepSpeed ZeRO-Offload, FSDP) — can need several times the GPU memory.</li>
+<li>Checkpointing, dataset caching, and framework/CUDA overhead.</li>
+</ul>
+</details>
+</li>
+<li>
+<p>For multi-GPU jobs, verify that your code actually scales before requesting more GPUs — extra GPUs that aren't used will just delay scheduling without speeding up your job.</p>
+</li>
+<li>
+<p>Try to keep all of your GPUs within a single node, and use multi-node, multi-GPU jobs only when necessary — for example, distributed deep learning or MPI simulations that require more memory than the combined memory of 8 GPUs.</p>
+</li>
+</ul>
+<h2 id="use-resources-efficiently">Use resources efficiently<a class="headerlink" href="#use-resources-efficiently" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Set a realistic <code>--time</code> limit — just long enough to cover your job's expected run time. Shorter walltimes can backfill into scheduling gaps and start sooner.</p>
+</li>
+<li>
+<p>Release interactive sessions when you don't need them. For both CPU and GPU jobs, an idle interactive session still holds its allocated resources, counts against your allocation, lowers your fair-share factor, and blocks other users.</p>
+</li>
+<li>
+<p>Every user has a fair-share factor. The more jobs you run, the longer they run, and the more resources they use, the more this factor drops — and the longer your future jobs will wait in the queue. Request only the resources and walltime you actually need.</p>
+</li>
+<li>
+<p>Consider submitting additional jobs to the <code>mit_preemptable</code> partition. This partition allows you to run <a href="https://orcd-docs.mit.edu/running-jobs/overview/#preemptable-jobs">preemptable jobs</a> on idle resources with higher resource limits.</p>
+</li>
+</ul>
+<h2 id="check-job-info">Check job info<a class="headerlink" href="#check-job-info" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>While a job is pending, run <code>squeue --me</code> and check the <code>NODELIST(REASON)</code> column to see why it is waiting (for example, <code>Priority</code>, <code>Resources</code>, or a QOS limit). This tells you whether the delay comes from your request or from cluster load.</p>
+</li>
+<li>
+<p>After a job finishes, <strong>run <code>jobstats &lt;jobid&gt;</code> to see the actual CPU, memory, and GPU usage.</strong> Use that information to tune your next submission — over-requesting resources keeps your jobs in the queue longer and blocks others. Refer to <a href="https://orcd-docs.mit.edu/running-jobs/application-analysis/#jobstats">this page</a> for how to use <code>jobstats</code>.</p>
+</li>
+</ul>
+<h2 id="structure-your-jobs-efficiently">Structure your jobs efficiently<a class="headerlink" href="#structure-your-jobs-efficiently" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Test your job in a short interactive session before submitting a large batch job. This catches configuration errors cheaply, without waiting in the queue or wasting a large allocation.</p>
+</li>
+<li>
+<p>Use job arrays (<code>--array</code>) to run many similar tasks instead of submitting them as separate jobs. Arrays are easier to manage and friendlier to the scheduler.</p>
+</li>
+<li>
+<p>Checkpoint long-running jobs so they can resume rather than restart from scratch. <strong>This is especially important on <code>mit_preemptable</code></strong>, where a job can be preempted at any time, and for any job that approaches its <code>--time</code> limit.</p>
+</li>
+</ul>
+<h2 id="make-your-jobs-reproducible">Make your jobs reproducible<a class="headerlink" href="#make-your-jobs-reproducible" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Pin your software environment in the job script — specific module versions, a named conda environment, or a fixed container image. This keeps results reproducible and prevents your job from breaking when defaults change.</li>
+</ul>
+<h2 id="storage-and-io">Storage and I/O<a class="headerlink" href="#storage-and-io" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Keep heavy I/O off your pool directory</strong> (<code>~/orcd/pool</code>). Reading and writing many or large files on shared filesystems slows down both your job and everyone else's. Stage temporary data in the scratch directory (<code>~/orcd/scratch</code>), then copy only the results back when the job finishes.</p>
+</li>
+<li>
+<p><strong>Avoid working with very large numbers of small files.</strong> Bundling data into archives or container formats (for example, tar, HDF5, or WebDataset) reduces stress on the parallel filesystem and usually speeds up your job.</p>
+</li>
+</ul>
 
 
 
@@ -2242,8 +2431,6 @@
 
 
 
-  
-  
 
 
 

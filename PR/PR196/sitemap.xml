@@ -76,6 +76,9 @@
         <loc>https://orcd.mit.edu/running-jobs/application-analysis/</loc>
       </url>
       <url>
+        <loc>https://orcd.mit.edu/running-jobs/best-practices/</loc>
+      </url>
+      <url>
         <loc>https://orcd.mit.edu/recipes/many-jobs/</loc>
       </url>
       <url>
@@ -164,5 +167,8 @@
       </url>
       <url>
         <loc>https://orcd.mit.edu/glossary/</loc>
+      </url>
+      <url>
+        <loc>https://orcd.mit.edu/tags/</loc>
       </url>
 </urlset>
