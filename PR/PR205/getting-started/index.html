@@ -2450,7 +2450,7 @@
 <h1 id="getting-started-tutorial">Getting Started Tutorial<a class="headerlink" href="#getting-started-tutorial" title="Permanent link">&para;</a></h1>
 <p>This page contains the most common steps for setting up and getting
 started with your Engaging account. We provide this page as a
-convenient reference to get started. Each system has its own in-depth documentation which can be found on the <a href="../orcd-systems/">Engaging System</a> page.</p>
+convenient reference to get started. This site has more in-depth documentation which we refer to throughout this tutorial. Following along with this tutorial and reading through the suggested pages will give you a good introduction to using Engaging.</p>
 <h2 id="getting-an-account">Getting an Account<a class="headerlink" href="#getting-an-account" title="Permanent link">&para;</a></h2>
 <p>If you don't already have an account, login into the ORCD OnDemand Portal <a href="https://orcd-ood.mit.edu">https://orcd-ood.mit.edu</a> using your MIT kerberos credentials. The system will then be prompted to create your account automatically. Wait a few minutes for the system to create all the pieces for your account before submitting your first job. On rare occasions this could take up to an hour.</p>
 <h2 id="logging-in">Logging In<a class="headerlink" href="#logging-in" title="Permanent link">&para;</a></h2>
@@ -2461,7 +2461,7 @@ you can log in. Engaging provides multiple ways to log in, including both SSH an
 <p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>USERNAME@orcd-login.mit.edu
 </span></code></pre></div>
 By default you will be prompted for your Kerberos password and then for Duo two-factor authentication.</p>
-<p>You can also <a href="../accessing-orcd/ssh-setup/">create SSH keys</a> and log in with those. Once you create and install your keys, first log into the <a href="https://orcd-ood.mit.edu">ORCD OnDemand site</a>. After this you should be able to SSH into Engaging with SSH keys only, without supplying a password or Duo authentication. Logging into OnDemand satisfies the two-factor authentication requirement for about a day.</p>
+<p>You can also <a href="../accessing-orcd/ssh-setup/">create SSH keys</a> and use those to authenticate in place of a password and Duo. Once you create and install your keys, log into the <a href="https://orcd-ood.mit.edu">ORCD OnDemand site</a>. After this you should be able to SSH into Engaging with SSH keys only, without supplying a password or Duo authentication. Logging into OnDemand satisfies the two-factor authentication requirement for about a day. Anytime you get prompted for a password, log into <a href="https://orcd-ood.mit.edu">ORCD OnDemand</a> and you should then be able to log in with your SSH keys.</p>
 <p>See <a href="../accessing-orcd/ssh-login/#logging-in-via-ssh">Logging in with SSH</a> for more information.</p>
 <h3 id="ondemand">OnDemand<a class="headerlink" href="#ondemand" title="Permanent link">&para;</a></h3>
 <p>You can log into OnDemand Web Portal with the link: <a href="https://orcd-ood.mit.edu">https://orcd-ood.mit.edu</a>. For full detailed instructions please see the <a href="../accessing-orcd/ondemand-login/">OnDemand Documentation</a>.</p>
@@ -2489,13 +2489,13 @@ run anything unless it is submitted properly through the scheduler.</p>
 software and packages you need. We have installed a lot of software and
 packages on the system already, even though it may not be immediately
 obvious that it is there. There are several pages in the "Software" section of this site.  We recommend reading through both the <a href="../software/overview/">Overview</a> and <a href="../software/modules/">Modules</a> pages, and then select the additional pages most relevant to you.</p>
-<p>If you are ever unsure if we have a particular
+<p>If you are ever unsure whether we have a particular
 software, and you cannot find it, please send us an email and ask before
 you spend a lot of time trying to install it. If we have it, we can
 point you to it, provide advice on how to use it, and if we don't have
 it we can often give pointers on how to install it. Further, if a lot of
-people request the same software, we may consider adding it to the
-system image.</p>
+people request the same software, we may consider adding it to out modules.</p>
+<p>Python is available through any of the <code>miniforge</code> modules. The <code>miniforge</code> modules each contain a version of Python, conda, mamba, pip, venv, and uv. Wee the <a href="../software/python/">Python</a> page for more information.</p>
 <h2 id="linux-command-line">Linux Command Line<a class="headerlink" href="#linux-command-line" title="Permanent link">&para;</a></h2>
 <p>Engaging runs Linux, so much of what you do on the cluster
 involves the Linux command line. That doesn't mean you have to be a
@@ -2595,10 +2595,12 @@ text, but you can try it out yourself and watch the short demonstration
 <p>One of the first tasks is to get your code, data, and any other files
 you need into your home directory on the system. If your code is in
 GitHub you can use git commands on the system to clone your repository
-to your home directory. You can also transfer your files to one of your Engaging directories from your computer by using:
-- <a href="../filesystems-file-transfer/transferring-files/#ondemand">OnDemand File browser</a>
-- <a href="../filesystems-file-transfer/transferring-files/#globus">Globus</a>
-- The <code>scp</code> or <code>rsync</code> commands in your terminal</p>
+to your home directory. You can also transfer your files to one of your Engaging directories from your computer by using:</p>
+<ul>
+<li><a href="../filesystems-file-transfer/transferring-files/#ondemand">OnDemand File browser</a></li>
+<li><a href="../filesystems-file-transfer/transferring-files/#globus">Globus</a></li>
+<li>The <code>scp</code> or <code>rsync</code> commands in your terminal</li>
+</ul>
 <p>Read the page on <a href="../filesystems-file-transfer/transferring-files/">Transferring Files</a> to learn more about how to transfer what you need to Engaging.</p>
 <h2 id="running-your-first-job">Running your First Job<a class="headerlink" href="#running-your-first-job" title="Permanent link">&para;</a></h2>
 <p>At this point you may want to do a test-run of your code. You always
@@ -2635,7 +2637,7 @@ memory, or requires a GPU you should request <a href="../running-jobs/requesting
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 1, 2026 15:53:58 UTC">October 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 1, 2026 18:50:01 UTC">October 1, 2026</span>
   </span>
 
     
