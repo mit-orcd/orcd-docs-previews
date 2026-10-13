@@ -2805,7 +2805,7 @@
 <li>Connecting to a compute node with the <a href="#remotessh">RemoteSSH</a> VSCode Extension</li>
 <li>Connecting to a compute node with the <a href="#remote-tunnel">RemoteTunnel</a> VSCode Extension</li>
 </ul>
-<p>The easiest and least error-prone is to use the Code Server OnDemand app. If for some reason this doesn't work with you, another option is to connect your desktop VSCode to a compute node on Engaging with either the RemoteSSH or RemoteTunnel VSCode extension. If you are using Cursor you will have to connect with RemoteSSH.</p>
+<p>The easiest and least error-prone is to use the Code Server OnDemand app. If for some reason this doesn't work for you, another option is to connect your desktop VSCode to a compute node on Engaging with either the RemoteSSH or RemoteTunnel VSCode extension. If you are using Cursor you will have to connect with RemoteSSH.</p>
 <div class="admonition warning">
 <p class="admonition-title">Do not run VSCode on the login nodes</p>
 <p>Please do not run VSCode or Cursor on the login nodes. The login nodes have resource limits that may cause VSCode or Cursor to disconnect. Instead, follow the instructions below to run VSCode or Cursor on a compute node.</p>
@@ -2836,7 +2836,7 @@
 </div>
 <h4 id="setting-up-your-ssh-key-and-config-file">Setting up your SSH Key and Config File<a class="headerlink" href="#setting-up-your-ssh-key-and-config-file" title="Permanent link">&para;</a></h4>
 <p>You will need an SSH Key to run VSCode or Cursor on a compute node. If you haven't set up SSH keys yet, refer to the <a href="../../accessing-orcd/ssh-setup/">SSH Key Setup guide</a>.</p>
-<p>To set up your SSH Config file, click the "Open a Remote Window" button in the bottom left corner of your VSCode window (It is a small blue rectangle labeled with <code>&gt;&lt;</code>). In the bar at the top of the page select "Connect to Host...", then "Configure SSH Hosts", and select first option, which will differ depending on your operating system. This will open your config file in a VSCode tab.</p>
+<p>To set up your SSH Config file, click the "Open a Remote Window" button in the bottom left corner of your VSCode window (It is a small blue rectangle labeled with <code>&gt;&lt;</code>). In the bar at the top of the page select "Connect to Host...", then "Configure SSH Hosts", and select the first option, which will differ depending on your operating system. This will open your config file in a VSCode tab.</p>
 <p>To run on a compute node you will need at least 2 entries in this file. The first will be a login node that you'll "jump" through and the second will be the compute node that is your final destination.</p>
 <div class="language-yaml highlight"><span class="filename">config</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="l l-Scalar l-Scalar-Plain">Host orcd-login</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">HostName orcd-login.mit.edu</span>
@@ -2873,7 +2873,7 @@
 <p><img alt="Interactive job on Engaging in a VSCode terminal" src="../../images/vscode/vscode_interactive_job.png" /></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>salloc<span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>:00:00<span class="w"> </span>-p<span class="w"> </span>mit_normal
 </span></code></pre></div>
-<p>Note that the scheduler will also tell you which node you are allocated in its output. In this screenshot my node name is <code>node2704</code>.</p>
+<p>Note that the scheduler will also tell you which node you have been allocated in its output. In this screenshot my node name is <code>node2704</code>.</p>
 <h4 id="step-2-update-your-config-file">Step 2: Update your Config File<a class="headerlink" href="#step-2-update-your-config-file" title="Permanent link">&para;</a></h4>
 <p>Update the <code>HostName</code> of your compute node entry in your config file. If your config file is not open, follow the instructions <a href="#setting-up-your-ssh-key-and-config-file">above</a> to open it again. Then replace whatever you have for <code>HostName</code> in your config file with the output of the <code>hostname</code> command you ran in your interactive session, or got from <code>squeue --me</code>.</p>
 <p>If your compute node is <code>node1234</code> then your config file should look something like:</p>
@@ -2896,7 +2896,7 @@
 <p>Here is what this might look like:</p>
 <p><img alt="Starting up VSCode on an Engaging Compute node" src="../../images/vscode/vscode_connect_to_compute.png" /></p>
 <h2 id="remote-tunnel">Remote Tunnel<a class="headerlink" href="#remote-tunnel" title="Permanent link">&para;</a></h2>
-<p>The Remote Tunnel extension allows you fairly easily start VSCode as a job on Engaging and connect to it with VSCode running on your own computer. While it works well for VSCode, it is unavailable in Cursor.</p>
+<p>The Remote Tunnel extension allows you to fairly easily start VSCode as a job on Engaging and connect to it with VSCode running on your own computer. While it works well for VSCode, it is unavailable in Cursor.</p>
 <h3 id="step-1-create-a-job-script-and-submit-as-a-job">Step 1: Create a Job Script and Submit as a Job<a class="headerlink" href="#step-1-create-a-job-script-and-submit-as-a-job" title="Permanent link">&para;</a></h3>
 <p>Step 1 is to submit the job with the attached script. You can adjust the job flags as needed (for example, use your group's partition if you'd like). This job should run for as long as the time limit, and if your VSCode session ever gets disconnected you can easily reconnect.</p>
 <div class="language-bash highlight"><span class="filename">vscode_tunnel.sh</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="ch">#!/bin/bash</span>
@@ -2928,9 +2928,9 @@
 <p>Do not run this job in a shared directory. Anyone who has access to your log file will be able to connect to your VSCode Tunnel. Instead, keep this script in your Home Directory and run it from there.</p>
 </div>
 <h3 id="step-2-check-the-log-file">Step 2: Check the Log File<a class="headerlink" href="#step-2-check-the-log-file" title="Permanent link">&para;</a></h3>
-<p>Once the job is running, check the bottom of the log file <code>vscode_tunnel.out</code>. There will be a code it'll instruct you to enter at <a href="https://login.microsoft.com/device">https://login.microsoft.com/device</a>. After you enter the code log in with your MIT Kerberos.</p>
+<p>Once the job is running, check the bottom of the log file <code>vscode_tunnel.out</code>. The log will contain a code that it'll instruct you to enter at <a href="https://login.microsoft.com/device">https://login.microsoft.com/device</a>. After you enter the code log in with your MIT Kerberos.</p>
 <h3 id="step-3-connect-to-your-tunnel">Step 3: Connect To Your Tunnel<a class="headerlink" href="#step-3-connect-to-your-tunnel" title="Permanent link">&para;</a></h3>
-<p>Open VSCode on your desktop. Click the "Open a Remote Window" button in the bottom left corner of your VSCode window. It is a small blue rectangle labeled with <code>&gt;&lt;</code>, the same to open a RemoteSSH session. Choose "Connect to Tunnel" and select "Microsoft Account" for authentication. You'll be prompted to log in through your browser.</p>
+<p>Open VSCode on your desktop. Click the "Open a Remote Window" button in the bottom left corner of your VSCode window. It is a small blue rectangle labeled with <code>&gt;&lt;</code>, the same button used to open a RemoteSSH session. Choose "Connect to Tunnel" and select "Microsoft Account" for authentication. You'll be prompted to log in through your browser.</p>
 <p>After that you should see an option for <code>engagingtunnel</code>.</p>
 <p>If you don't see the "Connect to Tunnel" option you may need to install the Remote Tunnel extension first.</p>
 <h2 id="other-vscode-best-practices-tips-and-tricks">Other VSCode Best Practices, Tips, and Tricks<a class="headerlink" href="#other-vscode-best-practices-tips-and-tricks" title="Permanent link">&para;</a></h2>
@@ -2965,7 +2965,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 13, 2026 20:09:46 UTC">October 13, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 13, 2026 20:34:07 UTC">October 13, 2026</span>
   </span>
 
     
