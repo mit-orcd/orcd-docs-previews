@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://orcd.mit.edu/filesystems-file-transfer/filesystems/">
       
       
-        <link rel="prev" href="../../accessing-orcd/ssh-troubleshooting/">
+        <link rel="prev" href="../../recipes/vscode/">
       
       
         <link rel="next" href="../transferring-files/">
@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -367,7 +367,7 @@
   <span class="md-ellipsis">
     
   
-    Logging in with SSH via Terminal
+    Logging in with SSH
   
 
     
@@ -396,34 +396,6 @@
     
   
     SSH Key Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/vscode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VSCode
   
 
     
@@ -480,6 +452,34 @@
     
   
     SSH Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSCode
   
 
     
@@ -2235,7 +2235,7 @@
 <tr>
 <th>Storage Type</th>
 <th><div style="width:18em">Path</div></th>
-<th>Quota</th>
+<th>Size <br> Quota</th>
 <th>Backed up</th>
 <th>Purpose/Notes</th>
 </tr>
@@ -2245,38 +2245,39 @@
 <td>Home Directory <br> Flash</td>
 <td><code>/home/&lt;username&gt;</code></td>
 <td>200 GB</td>
-<td>Backed up with snapshots</td>
-<td>Use for important files and software</td>
+<td>Yes <br> (snapshots)</td>
+<td>Important files and software</td>
 </tr>
 <tr>
 <td>Pool <br> Hard Disk</td>
 <td><code>/home/&lt;username&gt;/orcd/pool</code></td>
 <td>1 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Storing larger datasets</td>
+<td><strong>No</strong></td>
+<td>Larger datasets</td>
 </tr>
 <tr>
 <td>PI Shared Pool <br> Hard Disk</td>
 <td><code>/orcd/pool/&lt;number&gt;/&lt;pikerb&gt;_shared</code></td>
 <td>5 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Storing larger datasets, shared group storage</td>
+<td><strong>No</strong></td>
+<td>Larger datasets, <br> shared group storage</td>
 </tr>
 <tr>
 <td>Scratch <br> Flash</td>
 <td><code>/home/&lt;username&gt;/orcd/scratch</code></td>
 <td>1 TB</td>
-<td><strong>Not backed up</strong></td>
-<td>Scratch space for I/O heavy jobs</td>
+<td><strong>No</strong></td>
+<td>I/O heavy jobs</td>
 </tr>
 </tbody>
 </table>
+<p>In addition to the size quotas above, there is a limit on the number of files you can store: 1 million files each in Home, Pool, and Scratch, and 1.5 million files in PI Shared Pool.</p>
+<p>To observe your current quota report, look at <code>~/orcd/.quota</code> file in your home directory. The <code>.quota</code> file is updated every 30 minutes.</p>
 <div class="admonition warning">
 <p class="admonition-title">Scratch and Pool are Not Backed Up</p>
 <p>Scratch is meant for temporary storage while running compute jobs. It is not meant for long term storage and <strong>is not backed up</strong>. <strong>If you have not logged in for 6 months files in scratch will be deleted</strong>. Any files that you would like to keep long-term should be copied onto another storage location with backup.</p>
 <p>Pool, while meant for longer-term storage than Scratch, is also not backed up.</p>
 </div>
-<p>To observe your current quota report, look at <code>~/orcd/.quota</code> file in your home directory. The <code>.quota</code> file is updated every 30 minutes.</p>
 <h2 id="pi-shared-group-storage">PI Shared Group Storage<a class="headerlink" href="#pi-shared-group-storage" title="Permanent link">&para;</a></h2>
 <p>PIs can request 5TB of additional pool that can be shared with their group. We will set up a <a href="../../services/accessing-group-resources/">Moira list</a> so PIs and their designated group admins can control access to the shared storage. To request a shared pool space send an email to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;">&#111;&#114;&#99;&#100;&#45;&#104;&#101;&#108;&#112;&#45;&#101;&#110;&#103;&#97;&#103;&#105;&#110;&#103;&#64;&#109;&#105;&#116;&#46;&#101;&#100;&#117;</a>.</p>
 <p>If your group needs more than 5TB of storage, or needs additional storage for a specific project, you can <a href="../../services/storage-services/">rent storage</a> from ORCD.</p>
@@ -2300,7 +2301,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 1, 2026 21:52:03 UTC">June 1, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 16:25:44 UTC">October 14, 2026</span>
   </span>
 
     
@@ -2356,10 +2357,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
         <script src="../../js/open_in_new_tab.js"></script>
       
