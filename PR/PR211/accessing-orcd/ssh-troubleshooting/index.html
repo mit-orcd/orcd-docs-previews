@@ -2491,7 +2491,7 @@ Then reconnect and type <code>yes</code> when prompted. This is sometimes happen
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    ServerAliveInterval 60
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    ServerAliveCountMax 10
 </span></code></pre></div></p>
-<p>This configuration tells your computer to periodically check that its SSH connection <code>orcd-login.mit.edu</code> is still responsive. Specifically, <code>ServerAliveInterval 60</code> sends a keepalive message every 60 seconds and <code>ServerAliveCountMax 10</code> allows up to 10 unanswered messages before SSH closes the connection.</p>
+<p>This configuration tells your computer to periodically check that its SSH connection to <code>orcd-login.mit.edu</code> is still responsive. Specifically, <code>ServerAliveInterval 60</code> sends a keepalive message every 60 seconds and <code>ServerAliveCountMax 10</code> allows up to 10 unanswered messages before SSH closes the connection.</p>
 <p>If your connection is slow to establish — particularly when connecting from off-campus — also add <code>GSSAPIAuthentication no</code>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Host orcd-login.mit.edu
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    ServerAliveInterval 60
@@ -2575,7 +2575,7 @@ The <code>-vvv</code> flag enables verbose output and gives the support team det
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 31, 2026 13:20:59 UTC">October 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 31, 2026 13:35:15 UTC">October 31, 2026</span>
   </span>
 
     
