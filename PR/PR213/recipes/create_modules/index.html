@@ -1473,10 +1473,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#module-path" class="md-nav__link">
+  <a href="#loading-your-module" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module Path
+        Loading Your Module
       
     </span>
   </a>
@@ -2273,10 +2273,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#module-path" class="md-nav__link">
+  <a href="#loading-your-module" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Module Path
+        Loading Your Module
       
     </span>
   </a>
@@ -2309,20 +2309,19 @@
 <p>In an HPC context, a <a href="../../software/modules/">module</a> is simply a file that can be used to set up your <a href="../../glossary/#environment">environment</a> for a particular workflow. The ORCD administration team uses modules to make commonly-used software available to Engaging users, but they can be used for personally-installed software as well. This document explains how to leverage modules to streamline environment setup and configuration.</p>
 <h2 id="modulefile-basics">Modulefile Basics<a class="headerlink" href="#modulefile-basics" title="Permanent link">&para;</a></h2>
 <p>To understand how modulefiles are structured, let's look at an existing module that ORCD has set up for Julia 1.12.6:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>secorey@login008<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>show<span class="w"> </span>julia/1.12.6
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>secorey@login006<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>show<span class="w"> </span>julia/1.12.6
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>-----------------------------------------------------------------------------
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>/orcd/software/core/001/modulefiles/julia/1.12.6.lua:
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>-----------------------------------------------------------------------------
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>whatis<span class="o">(</span><span class="s2">"Name : Julia"</span><span class="o">)</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>whatis<span class="o">(</span><span class="s2">"Version : 1.12.6"</span><span class="o">)</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>whatis<span class="o">(</span><span class="s2">"Target : x86_64"</span><span class="o">)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>whatis<span class="o">(</span><span class="s2">"Short description : Julia is a high-level, high-performance dynamic progr</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">amming language for technical computing."</span><span class="o">)</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>conflict<span class="o">(</span><span class="s2">"julia"</span><span class="o">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>prepend_path<span class="o">{</span><span class="s2">"PATH"</span>,<span class="s2">"/orcd/software/core/001/pkg/julia/1.12.6/bin"</span>,delim<span class="o">=</span><span class="s2">":"</span><span class="o">}</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>whatis<span class="o">(</span><span class="s2">"Short description : Julia is a high-level, high-performance dynamic programming language for technical computing."</span><span class="o">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>conflict<span class="o">(</span><span class="s2">"julia"</span><span class="o">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>prepend_path<span class="o">{</span><span class="s2">"PATH"</span>,<span class="s2">"/orcd/software/core/001/pkg/julia/1.12.6/bin"</span>,delim<span class="o">=</span><span class="s2">":"</span><span class="o">}</span>
 </span></code></pre></div>
-<p>When we run <code>module show</code>, we can see the details of a module and know what happens when we load it. Note that this also reveals where the modulefile is located, which contains all of the information revealed by <code>module show</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>secorey@login008<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>cat<span class="w"> </span>/orcd/software/core/001/modulefiles/julia/1.12.6.lua
+<p>When we run <code>module show</code>, we can see the details of a module and know what happens when we load it. Note that this also reveals the location of the modulefile, which contains all of the information revealed by <code>module show</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">[</span>secorey@login006<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>cat<span class="w"> </span>/orcd/software/core/001/modulefiles/julia/1.12.6.lua
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>--<span class="w"> </span>-*-<span class="w"> </span>lua<span class="w"> </span>-*-
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>--
@@ -2331,27 +2330,26 @@
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>whatis<span class="o">([[</span>Version<span class="w"> </span>:<span class="w"> </span><span class="m">1</span>.12.6<span class="o">]])</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>whatis<span class="o">([[</span>Target<span class="w"> </span>:<span class="w"> </span>x86_64<span class="o">]])</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>whatis<span class="o">([[</span>Short<span class="w"> </span>description<span class="w"> </span>:<span class="w"> </span>Julia<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>high-level,<span class="w"> </span>high-performance<span class="w"> </span>dynamic<span class="w"> </span>pro
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>gramming<span class="w"> </span>language<span class="w"> </span><span class="k">for</span><span class="w"> </span>technical<span class="w"> </span>computing.<span class="o">]])</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">local</span><span class="w"> </span><span class="nv">ver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1.12.6"</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">local</span><span class="w"> </span><span class="nv">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pathJoin<span class="o">(</span><span class="s2">"/orcd/software/core/001/pkg/julia/"</span>,ver<span class="o">)</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>conflict<span class="o">(</span><span class="s2">"julia"</span><span class="o">)</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>prepend_path<span class="o">(</span><span class="s2">"PATH"</span>,<span class="w"> </span>pathJoin<span class="o">(</span>base,<span class="w"> </span><span class="s2">"bin/"</span><span class="o">)</span>,<span class="w"> </span><span class="s2">":"</span><span class="o">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>whatis<span class="o">([[</span>Short<span class="w"> </span>description<span class="w"> </span>:<span class="w"> </span>Julia<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>high-level,<span class="w"> </span>high-performance<span class="w"> </span>dynamic<span class="w"> </span>programming<span class="w"> </span>language<span class="w"> </span><span class="k">for</span><span class="w"> </span>technical<span class="w"> </span>computing.<span class="o">]])</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nb">local</span><span class="w"> </span><span class="nv">ver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1.12.6"</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">local</span><span class="w"> </span><span class="nv">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>pathJoin<span class="o">(</span><span class="s2">"/orcd/software/core/001/pkg/julia/"</span>,ver<span class="o">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>conflict<span class="o">(</span><span class="s2">"julia"</span><span class="o">)</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>prepend_path<span class="o">(</span><span class="s2">"PATH"</span>,<span class="w"> </span>pathJoin<span class="o">(</span>base,<span class="w"> </span><span class="s2">"bin/"</span><span class="o">)</span>,<span class="w"> </span><span class="s2">":"</span><span class="o">)</span>
 </span></code></pre></div>
-<p>This modulefile provides basic information about the software it points to and sets/updates <a href="../../glossary/#environment-variable">environment variables</a> that will make the software available in your environment. Using the <code>prepend_path()</code> function, the key environment variable that this edits is <code>PATH</code>, which tells your shell session where to look for executables (e.g., the <code>julia</code> command). We can see how this behaves in practice:</p>
+<p>This modulefile provides basic information about the software it points to and sets/updates <a href="../../glossary/#environment-variable">environment variables</a> that will make the software available in your environment. It uses the <code>prepend_path()</code> function to edit <code>PATH</code>, the key environment variable that tells your shell session where to look for executables (e.g., the <code>julia</code> command). We can see how this behaves in practice:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>secorey@login006<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>secorey@login006<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>julia/1.12.6<span class="w"> </span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>secorey@login006<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>julia/1.12.6
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="o">[</span>secorey@login006<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>/orcd/software/core/001/pkg/julia/1.12.6/bin:/orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 </span></code></pre></div>
 <p>After we load the module, the PATH environment variable has been updated, so now we can run <code>julia</code> commands. This is often all that is happening under the hood when you load a module. You can also use the <code>prepend_path()</code> function to edit other environment variables, like <code>LD_LIBRARY_PATH</code> or other software-specific options.</p>
 <p>This modulefile contains other components as well, but these are less important. All the <code>whatis()</code> lines are purely informational and not required for the modulefile to work. The <code>conflict()</code> function will raise an error if you try to load this module and you already have a module named <code>julia</code> loaded.</p>
 <h2 id="modulefile-template">Modulefile Template<a class="headerlink" href="#modulefile-template" title="Permanent link">&para;</a></h2>
-<p>Below we provide a template on how to create a basic modulefile that adds software to your <code>PATH</code>:</p>
+<p>Below we provide a template for creating a basic modulefile that adds software to your <code>PATH</code>:</p>
 <div class="language-lua highlight"><span class="filename">example_module.lua</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- -*- lua -*-</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">--</span>
@@ -2368,12 +2366,18 @@
 <p>You may also find some of these additional functions useful:</p>
 <div class="language-lua highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nf">setenv</span><span class="p">(</span><span class="s2">"MY_ENV_VAR"</span><span class="p">,</span><span class="w"> </span><span class="s2">"value"</span><span class="p">)</span><span class="w"> </span><span class="c1">-- sets an environment variable</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nf">depends_on</span><span class="p">(</span><span class="s2">"other_module_1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"other_module_2"</span><span class="p">)</span><span class="w"> </span><span class="c1">-- automatically loads other modules when this one gets loaded</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nf">source_sh</span><span class="p">(</span><span class="s2">"shell_name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"shell_script"</span><span class="p">)</span><span class="w"> </span><span class="c1">-- automatically source a shell script when this module gets loaded</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nf">conflict</span><span class="p">(</span><span class="s2">"other_module_1"</span><span class="p">)</span><span class="w"> </span><span class="c1">-- raise an error if another module is loaded</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nf">source_sh</span><span class="p">(</span><span class="s2">"shell_name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"shell_script"</span><span class="p">)</span><span class="w"> </span><span class="c1">-- automatically sources a shell script when this module gets loaded</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nf">conflict</span><span class="p">(</span><span class="s2">"other_module_1"</span><span class="p">)</span><span class="w"> </span><span class="c1">-- raises an error if `other_module_1` is loaded</span>
 </span></code></pre></div>
-<p>For more information on modulefile functions, refer to the <a href="https://lmod.readthedocs.io/en/latest/050_lua_modulefiles.html">lmod documentation</a>.</p>
-<h3 id="module-path">Module Path<a class="headerlink" href="#module-path" title="Permanent link">&para;</a></h3>
-<p>If you create a modulefile, lmod will not find it unless it knows where to look. This can be done using the <code>module use</code> command. For example, if you have placed your modulefile in <code>~/software/modulefiles</code>, then you would need to run <code>module use ~/software/modulefiles</code> before you can load your module. However, it's best practice to place your modulefiles in <code>~/privatemodules</code>, because lmod will look there by default.</p>
+<p>For more information on modulefile functions, refer to the <a href="https://lmod.readthedocs.io/en/latest/050_lua_modulefiles.html">Lmod documentation</a>.</p>
+<h3 id="loading-your-module">Loading Your Module<a class="headerlink" href="#loading-your-module" title="Permanent link">&para;</a></h3>
+<p>If you create a modulefile, Lmod will not find it unless it knows where to look. This can be done using the <code>module use</code> command. For example, if you have placed your modulefile in <code>~/software/modulefiles</code>, then you would need to run <code>module use ~/software/modulefiles</code> before you can load your module.</p>
+<p>Once you have run <code>module use</code>, you can run <code>module load example_module</code> to load your module.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can add this <code>module use</code> line to your <code>~/.bash_profile</code> or <code>~/.bashrc</code> to make things easier.</p>
+</div>
+<p>If you maintain multiple versions of a piece of software, it's common practice to order the modulefiles as <code>&lt;name&gt;/&lt;version&gt;.lua</code>, for example <code>~/software/modulefiles/example_module/1.0.0.lua</code>. Then, when running <code>module load example_module</code>, it will choose the latest version by default. You can also be explicit and run <code>module load example_module/1.0.0</code>.</p>
 
 
 
@@ -2394,7 +2398,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 11:50:08 UTC">November 18, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 18, 2026 12:08:24 UTC">November 18, 2026</span>
   </span>
 
     
