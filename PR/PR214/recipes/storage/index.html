@@ -2130,6 +2130,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#storage-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#home-directory" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2139,8 +2151,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#data-storage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2150,8 +2162,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#scratch-storage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2161,8 +2173,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#compute-storage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2172,8 +2184,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#archive-storage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2181,6 +2193,33 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies-and-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policies and Ownership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2193,9 +2232,49 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Small Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-small-files-are-a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Small Files Are a Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips-to-reduce-the-number-of-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips to Reduce the Number of Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#hdf5-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2233,8 +2312,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#archive-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2244,15 +2323,9 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2294,19 +2367,20 @@
 <h1 id="best-practices-for-data-storages">Best Practices for Data Storages<a class="headerlink" href="#best-practices-for-data-storages" title="Permanent link">&para;</a></h1>
 <p>Engaging provides several types of storage. Each type is designed for a specific purpose and I/O pattern. Choosing the right storage keeps your jobs running efficiently and prevents your jobs from slowing down other users' jobs.</p>
 <p>This page has three parts. First, it describes the storage types on Engaging (home, data, scratch, compute, and archive storage) and the purpose of each type. Second, it explains the small-files problem: why a large number of small files slows down the filesystem, and how to avoid it. Third, it gives examples that show how to combine small files into HDF5 files and tar archives.</p>
+<h2 id="storage-types">Storage Types<a class="headerlink" href="#storage-types" title="Permanent link">&para;</a></h2>
 <p>To choose a storage type, first determine the I/O load of your job. The sections below use two levels of I/O load:</p>
 <ul>
 <li><strong>Heavy I/O</strong>: reading or writing large volumes of data, or many files, repeatedly during a job. Examples: writing checkpoints frequently, many small writes, or many tasks accessing files at the same time.</li>
 <li><strong>Light I/O</strong>: occasional reads and writes. Examples: loading input data once at the start of a job, or writing final results at the end.</li>
 </ul>
-<h2 id="home-directory">Home Directory<a class="headerlink" href="#home-directory" title="Permanent link">&para;</a></h2>
+<h3 id="home-directory">Home Directory<a class="headerlink" href="#home-directory" title="Permanent link">&para;</a></h3>
 <p>Path: <code>/home/&lt;username&gt;</code></p>
 <p>Your home directory is the place for documents, source code, software installations, and small test data. Its I/O performance is the same as compute storage. Do not store large datasets in your home directory; use data or compute storage instead.</p>
-<h2 id="data-storage">Data Storage<a class="headerlink" href="#data-storage" title="Permanent link">&para;</a></h2>
+<h3 id="data-storage">Data Storage<a class="headerlink" href="#data-storage" title="Permanent link">&para;</a></h3>
 <p>Paths: <code>~/orcd/pool</code> (per user) and <code>/orcd/data</code> (lab or department)</p>
 <p>Data storage is designed for long-term storage of datasets, code outputs, and results. The per-user path and the lab or department path have the same performance.</p>
 <p>Jobs with light I/O can run on data storage. Do not run heavy I/O jobs here, because they slow down both your job and other users' jobs. Run heavy I/O jobs on scratch or compute storage instead.</p>
-<h2 id="scratch-storage">Scratch Storage<a class="headerlink" href="#scratch-storage" title="Permanent link">&para;</a></h2>
+<h3 id="scratch-storage">Scratch Storage<a class="headerlink" href="#scratch-storage" title="Permanent link">&para;</a></h3>
 <p>Paths: <code>~/orcd/scratch</code> (per user) and <code>/orcd/scratch</code> (lab or department)</p>
 <p>Scratch storage is designed for heavy I/O jobs and for temporary or intermediate files. The per-user path and the lab or department path have the same performance.</p>
 <p>Scratch storage is not purged automatically. Delete files you no longer need when your job is done, so that space remains available for active work.</p>
@@ -2317,13 +2391,14 @@
 <li>Copy the results back to data storage.</li>
 <li>Delete the files on scratch storage.</li>
 </ol>
-<h2 id="compute-storage">Compute Storage<a class="headerlink" href="#compute-storage" title="Permanent link">&para;</a></h2>
+<h3 id="compute-storage">Compute Storage<a class="headerlink" href="#compute-storage" title="Permanent link">&para;</a></h3>
 <p>Path: <code>/orcd/compute</code> (lab or department)</p>
 <p>Compute storage is designed for running heavy I/O jobs, and it can also be used for long-term storage. However, it costs much more than data storage. Keep only data that needs high I/O performance on compute storage, and keep other data on data storage.</p>
-<h2 id="archive-storage">Archive Storage<a class="headerlink" href="#archive-storage" title="Permanent link">&para;</a></h2>
+<h3 id="archive-storage">Archive Storage<a class="headerlink" href="#archive-storage" title="Permanent link">&para;</a></h3>
 <p>Path: <code>/orcd/archive</code> (lab or department)</p>
 <p>Archive storage is provided by the Northeast Storage Exchange (NESE). NESE is a storage system hosted on a Harvard cluster at the MGHPCC and mounted on Engaging. Although both clusters are in the same building, the network connection between them has low bandwidth, so reading and writing NESE from Engaging is slow.</p>
 <p>For this reason, use archive storage only for long-term storage of data that is not actively used. Do not run jobs on archive storage; copy the data to scratch or compute storage before running jobs. Before copying data to archive storage, pack small files into large archive files (see <a href="#archive-example">Archive Example</a>).</p>
+<h3 id="policies-and-ownership">Policies and Ownership<a class="headerlink" href="#policies-and-ownership" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Policies</p>
 <p>Policies (backup, quota, purge, and purchase) are described on these pages and are not repeated here:</p>
@@ -2339,91 +2414,7 @@
 <li>Lab or department data storage, scratch storage, compute storage, and archive storage are purchased by labs or departments and shared by their members.</li>
 </ul>
 </div>
-<h2 id="small-files">Small Files<a class="headerlink" href="#small-files" title="Permanent link">&para;</a></h2>
-<p>Every file uses one inode, which stores the metadata of the file. File operations such as opening, closing, listing, or deleting files read or update this metadata, and the metadata server of the filesystem handles each of these operations. As a result, millions of small files overload the metadata server.</p>
-<p>Common commands that perform metadata operations include:</p>
-<ul>
-<li><code>ls</code>: reads the list of files in a directory.</li>
-<li><code>ls -l</code>: also reads the metadata (size, owner, permissions, and timestamps) of every file in the list.</li>
-<li><code>rm</code>: removes a file and frees its inode, one metadata operation for each file.</li>
-</ul>
-<p>On a directory with millions of files, each of these commands can hang and add heavy load to the metadata server.</p>
-<details class="note">
-<summary>What is an inode?</summary>
-<p>An inode is a data structure that the filesystem uses to store information about a file, such as its size, owner, permissions, and location on disk. Each file or directory uses one inode, regardless of its size.</p>
-</details>
-<div class="admonition warning">
-<p class="admonition-title">Too many small files slow down the filesystem</p>
-<p>Creating or accessing very large numbers of small files substantially slows down the filesystem. This affects not only your jobs but also other users' jobs.</p>
-</div>
-<p>Each file also counts against the per-user file count (inode) quota. See <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a> for the quota.</p>
-<p>To keep the number of files low, follow these tips:</p>
-<ul>
-<li>Combine many small files into a few large files, such as HDF5 files or tar archives. See the <a href="#hdf5-example">HDF5 Example</a> and <a href="#archive-example">Archive Example</a> below.</li>
-<li>Do not write one output file per step or per sample.</li>
-<li>Check the number of files in a directory:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>find<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
-</span></code></pre></div></li>
-</ul>
-<h2 id="hdf5-example">HDF5 Example<a class="headerlink" href="#hdf5-example" title="Permanent link">&para;</a></h2>
-<p>HDF5 stores many arrays in a single file. Use one HDF5 file instead of thousands of small files.</p>
-<p>Load the newest Miniforge module and create Conda environments for the examples:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/25.11.0-0
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>h5py<span class="w">                              </span><span class="c1"># serial h5py</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5mpi<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="s2">"h5py=*=mpi_openmpi*"</span><span class="w"> </span>mpi4py<span class="w">   </span><span class="c1"># h5py built with MPI</span>
-</span></code></pre></div>
-<h3 id="serial-io">Serial I/O<a class="headerlink" href="#serial-io" title="Permanent link">&para;</a></h3>
-<p>Store 1000 samples in one dataset of one file, instead of 1000 files. Save the code as <code>serial_h5.py</code>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"samples"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># 1000 samples in one dataset</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"samples"</span><span class="p">][</span><span class="mi">42</span><span class="p">]</span>  <span class="c1"># read only sample 42 from disk</span>
-</span></code></pre></div>
-<p>Run it:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/25.11.0-0
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python<span class="w"> </span>serial_h5.py
-</span></code></pre></div>
-<h3 id="parallel-io">Parallel I/O<a class="headerlink" href="#parallel-io" title="Permanent link">&para;</a></h3>
-<p>Each MPI rank writes its own rows into one shared file. Save the code as <code>parallel_h5.py</code>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># rows per rank</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"parallel.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">"mpio"</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># all ranks open the same file</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">dset</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>           <span class="c1"># collective: all ranks create it</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">dset</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">*</span> <span class="n">n</span><span class="p">:(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span>             <span class="c1"># each rank writes its own rows</span>
-</span></code></pre></div>
-<p>Submit it with this job script:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#SBATCH -n 4</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">#SBATCH -t 00:10:00</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/25.11.0-0
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5mpi
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch<span class="w">                      </span><span class="c1"># run heavy I/O on scratch storage</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/parallel_h5.py
-</span></code></pre></div>
-<h2 id="archive-example">Archive Example<a class="headerlink" href="#archive-example" title="Permanent link">&para;</a></h2>
-<p>Pack a directory of small files into one tar file for long-term storage. The same approach applies before copying data to archive storage.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/pool
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>tar<span class="w"> </span>-czf<span class="w"> </span>mydata.tar.gz<span class="w"> </span>mydata/<span class="w">   </span><span class="c1"># pack and compress the directory into one file</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>tar<span class="w"> </span>-tzf<span class="w"> </span>mydata.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w">    </span><span class="c1"># list the contents to check</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>rm<span class="w"> </span>-r<span class="w"> </span>mydata/<span class="w">                    </span><span class="c1"># remove the small files after checking</span>
-</span></code></pre></div>
-<p>Before running a job, extract the archive to scratch storage:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>~/orcd/pool/mydata.tar.gz<span class="w"> </span>-C<span class="w"> </span>~/orcd/scratch/
-</span></code></pre></div>
-<p>For data that is already compressed (such as images or <code>.gz</code> files), omit <code>-z</code> (use <code>tar -cf</code>) to save time.</p>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2466,6 +2457,93 @@
 </tr>
 </tbody>
 </table>
+<h2 id="small-files">Small Files<a class="headerlink" href="#small-files" title="Permanent link">&para;</a></h2>
+<h3 id="why-small-files-are-a-problem">Why Small Files Are a Problem<a class="headerlink" href="#why-small-files-are-a-problem" title="Permanent link">&para;</a></h3>
+<p>Every file uses one inode, which stores the metadata of the file. File operations such as opening, closing, listing, or deleting files read or update this metadata, and the metadata server of the filesystem handles each of these operations. As a result, millions of small files overload the metadata server.</p>
+<p>Common commands that perform metadata operations include:</p>
+<ul>
+<li><code>ls</code>: reads the list of files in a directory.</li>
+<li><code>ls -l</code>: also reads the metadata (size, owner, permissions, and timestamps) of every file in the list.</li>
+<li><code>rm</code>: removes a file and frees its inode, one metadata operation for each file.</li>
+</ul>
+<p>On a directory with millions of files, each of these commands can hang and add heavy load to the metadata server.</p>
+<details class="note">
+<summary>What is an inode?</summary>
+<p>An inode is a data structure that the filesystem uses to store information about a file, such as its size, owner, permissions, and location on disk. Each file or directory uses one inode, regardless of its size.</p>
+</details>
+<div class="admonition warning">
+<p class="admonition-title">Too many small files slow down the filesystem</p>
+<p>Creating or accessing very large numbers of small files substantially slows down the filesystem. This affects not only your jobs but also other users' jobs.</p>
+</div>
+<p>Each file also counts against the per-user file count (inode) quota. See <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a> for the quota.</p>
+<h3 id="tips-to-reduce-the-number-of-files">Tips to Reduce the Number of Files<a class="headerlink" href="#tips-to-reduce-the-number-of-files" title="Permanent link">&para;</a></h3>
+<p>To keep the number of files low, follow these tips:</p>
+<ul>
+<li>Combine many small files into a few large files, such as HDF5 files or tar archives. See the <a href="#hdf5-example">HDF5 Example</a> and <a href="#archive-example">Archive Example</a> below.</li>
+<li>Do not write one output file per step or per sample.</li>
+<li>Check the number of files in a directory:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>find<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div></li>
+</ul>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="hdf5-example">HDF5 Example<a class="headerlink" href="#hdf5-example" title="Permanent link">&para;</a></h3>
+<p>HDF5 stores many arrays in a single file. Use one HDF5 file instead of thousands of small files.</p>
+<p>Load the newest Miniforge module and create Conda environments for the examples:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/25.11.0-0
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>h5py<span class="w">                              </span><span class="c1"># serial h5py</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5mpi<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="s2">"h5py=*=mpi_openmpi*"</span><span class="w"> </span>mpi4py<span class="w">   </span><span class="c1"># h5py built with MPI</span>
+</span></code></pre></div>
+<h4 id="serial-io">Serial I/O<a class="headerlink" href="#serial-io" title="Permanent link">&para;</a></h4>
+<p>Store 1000 samples in one dataset of one file, instead of 1000 files. Save the code as <code>serial_h5.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"samples"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># 1000 samples in one dataset</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"samples"</span><span class="p">][</span><span class="mi">42</span><span class="p">]</span>  <span class="c1"># read only sample 42 from disk</span>
+</span></code></pre></div>
+<p>Run it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/25.11.0-0
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python<span class="w"> </span>serial_h5.py
+</span></code></pre></div>
+<h4 id="parallel-io">Parallel I/O<a class="headerlink" href="#parallel-io" title="Permanent link">&para;</a></h4>
+<p>Each MPI rank writes its own rows into one shared file. Save the code as <code>parallel_h5.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># rows per rank</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"parallel.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">"mpio"</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># all ranks open the same file</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">dset</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>           <span class="c1"># collective: all ranks create it</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">dset</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">*</span> <span class="n">n</span><span class="p">:(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span>             <span class="c1"># each rank writes its own rows</span>
+</span></code></pre></div>
+<p>Submit it with this job script:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#SBATCH -n 4</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">#SBATCH -t 00:10:00</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/25.11.0-0
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5mpi
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch<span class="w">                      </span><span class="c1"># run heavy I/O on scratch storage</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/parallel_h5.py
+</span></code></pre></div>
+<h3 id="archive-example">Archive Example<a class="headerlink" href="#archive-example" title="Permanent link">&para;</a></h3>
+<p>Pack a directory of small files into one tar file for long-term storage. The same approach applies before copying data to archive storage.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/pool
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>tar<span class="w"> </span>-czf<span class="w"> </span>mydata.tar.gz<span class="w"> </span>mydata/<span class="w">   </span><span class="c1"># pack and compress the directory into one file</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>tar<span class="w"> </span>-tzf<span class="w"> </span>mydata.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w">    </span><span class="c1"># list the contents to check</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>rm<span class="w"> </span>-r<span class="w"> </span>mydata/<span class="w">                    </span><span class="c1"># remove the small files after checking</span>
+</span></code></pre></div>
+<p>Before running a job, extract the archive to scratch storage:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>~/orcd/pool/mydata.tar.gz<span class="w"> </span>-C<span class="w"> </span>~/orcd/scratch/
+</span></code></pre></div>
+<p>For data that is already compressed (such as images or <code>.gz</code> files), omit <code>-z</code> (use <code>tar -cf</code>) to save time.</p>
 
 
 
@@ -2486,7 +2564,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 18:06:50 UTC">November 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 18:08:31 UTC">November 21, 2026</span>
   </span>
 
     
