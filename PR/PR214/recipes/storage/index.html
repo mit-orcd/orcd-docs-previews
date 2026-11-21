@@ -2293,12 +2293,6 @@
 
 <h1 id="best-practices-for-data-storages">Best Practices for Data Storages<a class="headerlink" href="#best-practices-for-data-storages" title="Permanent link">&para;</a></h1>
 <p>Engaging provides several types of storage. Each type is designed for a specific purpose and I/O pattern. Choosing the right storage keeps your jobs running efficiently and prevents your jobs from slowing down other users' jobs.</p>
-<p>Policies (backup, quota, purge, and purchase) are described on these pages and are not repeated here:</p>
-<ul>
-<li>Home directory, <code>~/orcd/pool</code>, and <code>~/orcd/scratch</code>: <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a></li>
-<li><code>/orcd/data</code> and <code>/orcd/compute</code>: <a href="../../services/storage-services/">Storage Services</a></li>
-</ul>
-<p>Storage under <code>/home/&lt;username&gt;</code> and <code>~/orcd</code> is provided to each user. Storage under <code>/orcd/data</code>, <code>/orcd/scratch</code>, <code>/orcd/compute</code>, and <code>/orcd/archive</code> is purchased by labs or departments and shared by their members.</p>
 <p>In this page, the I/O load of a job is described as follows:</p>
 <ul>
 <li><strong>Heavy I/O</strong>: reading or writing large volumes of data, or many files, repeatedly during a job. Examples: writing checkpoints frequently, many small writes, or many tasks accessing files at the same time.</li>
@@ -2350,6 +2344,21 @@
 <li>Do not run jobs on archive storage. Copy the data to data, scratch, or compute storage before running jobs.</li>
 <li>Pack small files into large archive files (see <a href="#archive-example">Archive Example</a>) before copying them to archive storage.</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Policies</p>
+<p>Policies (backup, quota, purge, and purchase) are described on these pages and are not repeated here:</p>
+<ul>
+<li>Home directory, per-user data storage, and per-user scratch storage: <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a></li>
+<li>Lab or department data storage and compute storage: <a href="../../services/storage-services/">Storage Services</a></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Ownership</p>
+<ul>
+<li>The home directory, per-user data storage, and per-user scratch storage are provided to each user.</li>
+<li>Lab or department data storage, scratch storage, compute storage, and archive storage are purchased by labs or departments and shared by their members.</li>
+</ul>
+</div>
 <h2 id="small-files">Small Files<a class="headerlink" href="#small-files" title="Permanent link">&para;</a></h2>
 <p>Every file uses one inode. Every file operation such as open, close, or <code>stat</code> is a metadata operation handled by the metadata server of the filesystem. Millions of small files overload the metadata server.</p>
 <div class="admonition warning">
@@ -2486,7 +2495,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 20, 2026 19:44:32 UTC">November 20, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 16:19:12 UTC">November 21, 2026</span>
   </span>
 
     
