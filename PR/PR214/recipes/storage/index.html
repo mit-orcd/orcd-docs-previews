@@ -2309,10 +2309,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#parallel-io-with-small-job-array" class="md-nav__link">
+  <a href="#parallel-io-with-job-array" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parallel I/O with Small Job Array
+        Parallel I/O with Job Array
       
     </span>
   </a>
@@ -2519,7 +2519,7 @@
 <p>Typical cases that create many small files, and how to avoid them:</p>
 <ul>
 <li>Saving output in a loop, with one file per step, iteration, or sample (see the <a href="#bad-example-many-small-files">Bad Example</a>). <strong>Solution:</strong> Write all results into one file, such as an HDF5 file (see the <a href="#hdf5-example">HDF5 Example</a>).</li>
-<li>Writing many output files from each task in a job array, such as one file per sample. <strong>Solution:</strong> Write all results of a task into one HDF5 file, so that the job array creates one file per task (see <a href="#parallel-io-with-small-job-array">Parallel I/O with Small Job Array</a>).</li>
+<li>Writing many output files from each task in a job array, such as one file per sample. <strong>Solution:</strong> Write all results of a task into one HDF5 file, so that the job array creates one file per task (see <a href="#parallel-io-with-job-array">Parallel I/O with Job Array</a>).</li>
 <li>Running a job array with many tasks, which creates many output files even with one file per task. <strong>Solution:</strong> Merge the output files into one file after the array finishes (see <a href="#merging-outputs-of-large-job-array">Merging Outputs of Large Job Array</a>).</li>
 <li>Writing a separate output file from each MPI rank. <strong>Solution:</strong> Write the data of all ranks into one shared HDF5 file with parallel HDF5 (see <a href="#parallel-io-with-mpi">Parallel I/O with MPI</a>).</li>
 <li>Saving a checkpoint file at every step and keeping all of them. <strong>Solution:</strong> Save a checkpoint every <em>n</em> steps, keep only the latest one, and delete the previous ones.</li>
@@ -2574,8 +2574,8 @@
 <li>The data is too large to fit in the memory of one node.</li>
 <li>The computation runs in parallel, and collecting all the data in one process for I/O is slow.</li>
 </ul>
-<p>In these cases, use parallel I/O, in which multiple processes read and write data at the same time. Each process handles only its own part of the data, and together the processes use more of the bandwidth of the parallel filesystem. The next sections show parallel I/O with a small job array, how to merge the outputs of a large job array, and parallel I/O with MPI.</p>
-<h4 id="parallel-io-with-small-job-array">Parallel I/O with Small Job Array<a class="headerlink" href="#parallel-io-with-small-job-array" title="Permanent link">&para;</a></h4>
+<p>In these cases, use parallel I/O, in which multiple processes read and write data at the same time. Each process handles only its own part of the data, and together the processes use more of the bandwidth of the parallel filesystem. The next sections show parallel I/O with a job array, how to merge the outputs of a large job array, and parallel I/O with MPI.</p>
+<h4 id="parallel-io-with-job-array">Parallel I/O with Job Array<a class="headerlink" href="#parallel-io-with-job-array" title="Permanent link">&para;</a></h4>
 <p>Each task of a job array reads its own rows from one shared input file and writes its results into its own output file. Each task is an independent process that uses serial HDF5, the same <code>h5</code> environment as in the serial I/O example. Serial HDF5 does not support writing to one file from independent processes, so each task writes its own output file. This creates one file per task instead of one file per sample. In this example, the job array has only 4 tasks, so it creates 4 output files. This works well when the array has a small number of tasks.</p>
 <p>This code reads <code>samples.h5</code> from the <a href="#serial-io">Serial I/O</a> example. Save it as <code>array_h5.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -2608,7 +2608,7 @@
 </span></code></pre></div>
 <h4 id="merging-outputs-of-large-job-array">Merging Outputs of Large Job Array<a class="headerlink" href="#merging-outputs-of-large-job-array" title="Permanent link">&para;</a></h4>
 <p>Some workloads need a job array with many tasks, such as a parameter sweep or the processing of many independent inputs. Such a job array creates many output files. To avoid keeping too many files, merge the output files into one file in a follow-up job that runs after the array finishes.</p>
-<p>The following example shows how to merge the output files. For simplicity, it uses the 4 output files from the <a href="#parallel-io-with-small-job-array">small job array</a> example. The code merges them into one file and then deletes them. Save it as <code>merge_h5.py</code>:</p>
+<p>The following example shows how to merge the output files. For simplicity, it uses the 4 output files from the <a href="#parallel-io-with-job-array">job array</a> example. The code merges them into one file and then deletes them. Save it as <code>merge_h5.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -2637,9 +2637,9 @@
 </span></code></pre></div>
 <p>Submit the job array, then submit the merge job so that it starts only after all array tasks succeed:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">jid</span><span class="o">=</span><span class="k">$(</span>sbatch<span class="w"> </span>--parsable<span class="w"> </span>array_h5.sh<span class="k">)</span><span class="w">          </span><span class="c1"># job ID of the array</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sbatch<span class="w"> </span>--dependency<span class="o">=</span>afterok:<span class="nv">$jid</span><span class="w"> </span>merge_h5.sh<span class="w">  </span><span class="c1"># start after all array tasks succeed</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sbatch<span class="w"> </span>--dependency<span class="o">=</span>afterok:<span class="nv">$jid</span><span class="w"> </span>--kill-on-invalid-dep<span class="o">=</span>yes<span class="w"> </span>merge_h5.sh<span class="w">  </span><span class="c1"># start after all array tasks succeed</span>
 </span></code></pre></div>
-<p>If any array task fails, the merge job never starts and stays pending with the reason <code>DependencyNeverSatisfied</code>. In this case, cancel it with <code>scancel</code>, fix the problem, and submit both jobs again.</p>
+<p>If any array task fails, the option <code>--kill-on-invalid-dep=yes</code> cancels the merge job automatically.</p>
 <p>Slurm also writes one log file for each array task, named <code>slurm-&lt;jobid&gt;_&lt;task&gt;.out</code> by default. These log files are small files too, so delete them after you check them.</p>
 <h4 id="parallel-io-with-mpi">Parallel I/O with MPI<a class="headerlink" href="#parallel-io-with-mpi" title="Permanent link">&para;</a></h4>
 <p>Parallel HDF5 uses MPI-IO, the parallel I/O layer of MPI. All MPI ranks of a job open the same file together, and each rank reads or writes only its own part of the file at the same time. Operations that change the file structure, such as creating a dataset, are collective: all ranks must call them. Unlike the job array examples, MPI-IO creates one output file, no matter how many ranks the job uses. It requires h5py built with parallel HDF5, which the <code>h5mpi</code> environment provides.</p>
@@ -2760,7 +2760,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 03:29:20 UTC">November 22, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 03:36:57 UTC">November 22, 2026</span>
   </span>
 
     
