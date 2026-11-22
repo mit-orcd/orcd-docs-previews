@@ -21,7 +21,7 @@
     
     
       
-        <title>Best Practices for Data Storages - ORCD Docs</title>
+        <title>Best Practices for Using Storage - ORCD Docs</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#best-practices-for-data-storages" class="md-skip">
+        <a href="#best-practices-for-using-storage" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Best Practices for Data Storages
+              Best Practices for Using Storage
             
           </span>
         </div>
@@ -2197,10 +2197,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#policies-and-ownership" class="md-nav__link">
+  <a href="#policies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Policies and Ownership
+        Policies
       
     </span>
   </a>
@@ -2224,22 +2224,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#small-files" class="md-nav__link">
+  <a href="#avoiding-many-small-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Small Files
+        Avoiding Many Small Files
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Small Files">
+    <nav class="md-nav" aria-label="Avoiding Many Small Files">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#why-small-files-are-a-problem" class="md-nav__link">
+  <a href="#why-many-small-files-are-a-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why Small Files Are a Problem
+        Why Many Small Files Are a Problem
       
     </span>
   </a>
@@ -2263,15 +2263,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#examples-hdf5-webdataset-and-archives" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Examples
+        Examples: HDF5, WebDataset, and Archives
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="Examples: HDF5, WebDataset, and Archives">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2309,10 +2309,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#parallel-io" class="md-nav__link">
+  <a href="#parallel-io-with-small-job-array" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Parallel I/O
+        Parallel I/O with Small Job Array
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merging-outputs-of-large-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merging Outputs of Large Job Array
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-io-with-mpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel I/O with MPI
       
     </span>
   </a>
@@ -2321,6 +2343,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webdataset-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebDataset Example
+      
+    </span>
+  </a>
   
 </li>
         
@@ -2375,9 +2408,15 @@
 
 
 
-<h1 id="best-practices-for-data-storages">Best Practices for Data Storages<a class="headerlink" href="#best-practices-for-data-storages" title="Permanent link">&para;</a></h1>
+<h1 id="best-practices-for-using-storage">Best Practices for Using Storage<a class="headerlink" href="#best-practices-for-using-storage" title="Permanent link">&para;</a></h1>
 <p>Engaging provides several types of storage. Each type is designed for a specific purpose and I/O pattern. Choosing the right storage keeps your jobs running efficiently and prevents your jobs from slowing down other users' jobs.</p>
-<p>This page has three parts. First, it describes the storage types on Engaging (home, data, scratch, compute, and archive storage) and the purpose of each type. Second, it explains the small-files problem: why a large number of small files slows down the filesystem, and how to avoid it. Third, it gives examples of HDF5 files, which store large datasets efficiently, and tar archives, which pack many files into one.</p>
+<p>This page has three parts. First, it describes the storage types on Engaging (home, data, scratch, compute, and archive storage) and the purpose of each type. Second, it explains the small-files problem: why a large number of small files slows down the filesystem, and how to avoid it. Third, it gives examples of three formats: HDF5 files, which store large datasets efficiently; WebDataset shards, which pack datasets for PyTorch; and tar archives, which pack many files into one.</p>
+<p>Contents:</p>
+<ul>
+<li><a href="#storage-types">Storage Types</a></li>
+<li><a href="#avoiding-many-small-files">Avoiding Many Small Files</a></li>
+<li><a href="#examples-hdf5-webdataset-and-archives">Examples: HDF5, WebDataset, and Archives</a></li>
+</ul>
 <h2 id="storage-types">Storage Types<a class="headerlink" href="#storage-types" title="Permanent link">&para;</a></h2>
 <p>To choose a storage type, first determine the I/O load of your job. The sections below use two levels of I/O load:</p>
 <ul>
@@ -2386,7 +2425,7 @@
 </ul>
 <h3 id="home-directory">Home Directory<a class="headerlink" href="#home-directory" title="Permanent link">&para;</a></h3>
 <p>Path: <code>/home/&lt;username&gt;</code></p>
-<p>Your home directory is the place for documents, source code, software installations, and small test data. Its I/O performance is the same as compute storage. Do not store large datasets in your home directory; use data or compute storage instead.</p>
+<p>Your home directory is the place for documents, source code, software installations, and small test data. Its I/O performance is the same as that of compute storage. Do not store large datasets in your home directory; use data or compute storage instead.</p>
 <h3 id="data-storage">Data Storage<a class="headerlink" href="#data-storage" title="Permanent link">&para;</a></h3>
 <p>Paths: <code>~/orcd/pool</code> (per user) and <code>/orcd/data</code> (lab or department)</p>
 <p>Data storage is designed for long-term storage of datasets, code outputs, and results. The per-user path and the lab or department path have the same performance.</p>
@@ -2407,24 +2446,14 @@
 <p>Compute storage is designed for running heavy I/O jobs, and it can also be used for long-term storage. However, it costs much more than data storage. Keep only data that needs high I/O performance on compute storage, and keep other data on data storage.</p>
 <h3 id="archive-storage">Archive Storage<a class="headerlink" href="#archive-storage" title="Permanent link">&para;</a></h3>
 <p>Path: <code>/orcd/archive</code> (lab or department)</p>
-<p>Archive storage is provided by the Northeast Storage Exchange (NESE). NESE is a storage system hosted on a Harvard cluster at the MGHPCC and mounted on Engaging. Although both clusters are in the same building, the network connection between them has low bandwidth, so reading and writing NESE from Engaging is slow.</p>
+<p>Archive storage is provided by the Northeast Storage Exchange (NESE). NESE is a storage system hosted on a Harvard computing cluster at the MGHPCC and mounted on Engaging. Although both clusters are in the same building, the network connection between them has low bandwidth, so reading and writing NESE from Engaging is slow.</p>
 <p>For this reason, use archive storage only for long-term storage of data that is not actively used. Do not run jobs on archive storage; copy the data to scratch or compute storage before running jobs. Before copying data to archive storage, pack small files into large archive files (see <a href="#archive-example">Archive Example</a>).</p>
-<h3 id="policies-and-ownership">Policies and Ownership<a class="headerlink" href="#policies-and-ownership" title="Permanent link">&para;</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Policies</p>
-<p>Policies (backup, quota, purge, and purchase) are described on these pages and are not repeated here:</p>
+<h3 id="policies">Policies<a class="headerlink" href="#policies" title="Permanent link">&para;</a></h3>
+<p>Policies for backup, quota, purge, and purchase are described on these pages and are not repeated here:</p>
 <ul>
-<li>Home directory, per-user data storage, and per-user scratch storage: <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a></li>
-<li>Lab or department data storage and compute storage: <a href="../../services/storage-services/">Storage Services</a></li>
+<li>The home directory, per-user data storage, and per-user scratch storage are provided to each user: <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a></li>
+<li>Lab or department data storage, scratch storage, compute storage, and archive storage are purchased by labs or departments and shared by their members: <a href="../../services/storage-services/">Storage Services</a></li>
 </ul>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Ownership</p>
-<ul>
-<li>The home directory, per-user data storage, and per-user scratch storage are provided to each user.</li>
-<li>Lab or department data storage, scratch storage, compute storage, and archive storage are purchased by labs or departments and shared by their members.</li>
-</ul>
-</div>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2468,39 +2497,39 @@
 </tr>
 </tbody>
 </table>
-<h2 id="small-files">Small Files<a class="headerlink" href="#small-files" title="Permanent link">&para;</a></h2>
-<h3 id="why-small-files-are-a-problem">Why Small Files Are a Problem<a class="headerlink" href="#why-small-files-are-a-problem" title="Permanent link">&para;</a></h3>
-<p>Every file uses one inode, which stores the metadata of the file. File operations such as opening, closing, listing, or deleting files read or update this metadata, and the metadata server of the filesystem handles each of these operations. As a result, millions of small files overload the metadata server.</p>
+<h2 id="avoiding-many-small-files">Avoiding Many Small Files<a class="headerlink" href="#avoiding-many-small-files" title="Permanent link">&para;</a></h2>
+<p>All the storage types above are shared filesystems, where a large number of small files slows down I/O for all users. Typically, a file smaller than 1 MB is considered a small file.</p>
+<h3 id="why-many-small-files-are-a-problem">Why Many Small Files Are a Problem<a class="headerlink" href="#why-many-small-files-are-a-problem" title="Permanent link">&para;</a></h3>
+<p>Every file uses one inode, which stores the metadata of the file. File operations such as opening, closing, listing, or deleting files read or update this metadata, and the metadata server of the filesystem handles each of these operations. As a result, a large number of small files overloads the metadata server.</p>
 <p>Common commands that perform metadata operations include:</p>
 <ul>
 <li><code>ls</code>: reads the list of files in a directory.</li>
 <li><code>ls -l</code>: also reads the metadata (size, owner, permissions, and timestamps) of every file in the list.</li>
 <li><code>rm</code>: removes a file and frees its inode, one metadata operation for each file.</li>
 </ul>
-<p>On a directory with millions of files, each of these commands can hang and add heavy load to the metadata server.</p>
+<p>On a directory with a very large number of files, each of these commands can hang and add heavy load to the metadata server.</p>
 <details class="note">
 <summary>What is an inode?</summary>
 <p>An inode is a data structure that the filesystem uses to store information about a file, such as its size, owner, permissions, and location on disk. Each file or directory uses one inode, regardless of its size.</p>
 </details>
-<div class="admonition warning">
-<p class="admonition-title">Too many small files slow down the filesystem</p>
-<p>Creating or accessing very large numbers of small files substantially slows down the filesystem. This affects not only your jobs but also other users' jobs.</p>
-</div>
 <p>Each file also counts against the per-user file count (inode) quota. See <a href="../../filesystems-file-transfer/filesystems/">General Use Filesystems</a> for the quota.</p>
 <h3 id="tips-to-reduce-the-number-of-files">Tips to Reduce the Number of Files<a class="headerlink" href="#tips-to-reduce-the-number-of-files" title="Permanent link">&para;</a></h3>
+<p>Keep your files larger than 1 MB; larger files are better. As a guideline, keep no more than 1 million files per TB of data.</p>
 <p>Typical cases that create many small files, and how to avoid them:</p>
 <ul>
-<li><strong>Saving output in a loop</strong>, with one file per step, iteration, or sample (see the <a href="#bad-example-many-small-files">Bad Example</a>). Write all results into one file, such as an HDF5 file (see the <a href="#hdf5-example">HDF5 Example</a>).</li>
-<li><strong>Writing a separate output or log file for each task</strong> in a job array or each MPI rank. Write to one shared file (see <a href="#parallel-io">HDF5 Parallel I/O</a>), or combine the files when the job is done.</li>
-<li><strong>Saving a new checkpoint file at every checkpoint.</strong> Keep only the latest few checkpoints and delete the old ones.</li>
-<li><strong>Storing a dataset as many individual files</strong>, such as images, text documents, or training samples. Pack the files into HDF5 files or tar archives (see the <a href="#archive-example">Archive Example</a>).</li>
-<li><strong>Extracting a large archive into many small files.</strong> Extract it to scratch storage only when a job needs the files, and delete them when the job is done.</li>
-<li><strong>Creating Conda environments or installing Python packages.</strong> These create tens of thousands of files, and this cannot be avoided. Install them in your home directory, remove environments you no longer use (<code>conda env remove -n &lt;name&gt;</code>), and delete cached package files (<code>conda clean --all</code>).</li>
+<li>Saving output in a loop, with one file per step, iteration, or sample (see the <a href="#bad-example-many-small-files">Bad Example</a>). <strong>Solution:</strong> Write all results into one file, such as an HDF5 file (see the <a href="#hdf5-example">HDF5 Example</a>).</li>
+<li>Writing many output files from each task in a job array, such as one file per sample. <strong>Solution:</strong> Write all results of a task into one HDF5 file, so that the job array creates one file per task (see <a href="#parallel-io-with-small-job-array">Parallel I/O with Small Job Array</a>).</li>
+<li>Running a job array with many tasks, which creates many output files even with one file per task. <strong>Solution:</strong> Merge the output files into one file after the array finishes (see <a href="#merging-outputs-of-large-job-array">Merging Outputs of Large Job Array</a>).</li>
+<li>Writing a separate output file from each MPI rank. <strong>Solution:</strong> Write the data of all ranks into one shared HDF5 file with parallel HDF5 (see <a href="#parallel-io-with-mpi">Parallel I/O with MPI</a>).</li>
+<li>Saving a checkpoint file at every step and keeping all of them. <strong>Solution:</strong> Save a checkpoint every <em>n</em> steps, keep only the latest one, and delete the previous ones.</li>
+<li>Storing a dataset as many individual files, such as images, text documents, or training samples. <strong>Solution:</strong> Pack the files into HDF5 files (see the <a href="#hdf5-example">HDF5 Example</a>), WebDataset shards for PyTorch (see the <a href="#webdataset-example">WebDataset Example</a>), or tar archives (see the <a href="#archive-example">Archive Example</a>).</li>
+<li>Extracting a large archive into many small files and keeping them. <strong>Solution:</strong> Extract it to scratch storage only when a job needs the files, and delete them when the job is done (see the <a href="#archive-example">Archive Example</a>).</li>
+<li>Creating Conda environments or installing Python packages, which creates tens of thousands of files that cannot be avoided. <strong>Solution:</strong> Install them in your home directory, remove environments you no longer use (<code>conda env remove -n &lt;name&gt;</code>), and delete cached package files (<code>conda clean --all</code>).</li>
 </ul>
 <p>To check the number of files in a directory, run:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>find<span class="w"> </span>&lt;dir&gt;<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 </span></code></pre></div>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h2 id="examples-hdf5-webdataset-and-archives">Examples: HDF5, WebDataset, and Archives<a class="headerlink" href="#examples-hdf5-webdataset-and-archives" title="Permanent link">&para;</a></h2>
 <h3 id="bad-example-many-small-files">Bad Example: Many Small Files<a class="headerlink" href="#bad-example-many-small-files" title="Permanent link">&para;</a></h3>
 <p>This code saves each sample to a separate file, so 1000 samples create 1000 small files. It is the first case in <a href="#tips-to-reduce-the-number-of-files">Tips to Reduce the Number of Files</a>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -2515,13 +2544,15 @@
 <li><strong>Replace many small files with one file.</strong> One HDF5 file holds many arrays, so thousands of small outputs fit in one file. This reduces the load on the metadata server.</li>
 <li><strong>Store a large array efficiently.</strong> A program can read part of an array without loading the whole file, and many MPI processes can write to the same file in parallel.</li>
 </ul>
-<p>Load the newest Miniforge module and create Conda environments for the examples:</p>
+<p>Create Conda environments for the examples. The <code>h5mpi</code> environment uses the Open MPI module on Engaging (<code>external_*</code> build) instead of installing its own Open MPI:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>h5py<span class="w">                              </span><span class="c1"># serial h5py</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5mpi<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="s2">"h5py=*=mpi_openmpi*"</span><span class="w"> </span>mpi4py<span class="w">   </span><span class="c1"># h5py built with MPI</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>h5py<span class="w">   </span><span class="c1"># serial h5py</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi/5.0.8
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5mpi<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span><span class="s2">"h5py=*=mpi_openmpi*"</span><span class="w"> </span>mpi4py<span class="w"> </span><span class="s2">"openmpi=5.*=external_*"</span><span class="w">   </span><span class="c1"># h5py built with MPI</span>
 </span></code></pre></div>
 <h4 id="serial-io">Serial I/O<a class="headerlink" href="#serial-io" title="Permanent link">&para;</a></h4>
-<p>This code stores the same 1000 samples as the <a href="#bad-example-many-small-files">Bad Example</a> in one dataset of one file. Only one file is created, and a program can read a single sample without reading the others. Save the code as <code>serial_h5.py</code>:</p>
+<p>This code stores 1000 samples in one dataset of one file. Only one file is created, and a program can read a single sample without reading the others. Save the code as <code>serial_h5.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
@@ -2529,48 +2560,185 @@
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"samples"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># 1000 samples in one dataset</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"samples"</span><span class="p">][</span><span class="mi">42</span><span class="p">]</span>  <span class="c1"># read only sample 42 from disk</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"samples"</span><span class="p">][</span><span class="mi">32</span><span class="p">]</span>  <span class="c1"># read only sample 32 from disk</span>
 </span></code></pre></div>
 <p>Run it:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python<span class="w"> </span>serial_h5.py
 </span></code></pre></div>
-<h4 id="parallel-io">Parallel I/O<a class="headerlink" href="#parallel-io" title="Permanent link">&para;</a></h4>
-<p>Each MPI rank writes its own rows into one shared file. Save the code as <code>parallel_h5.py</code>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+<p>In the example above, one process reads and writes all the data. This serial I/O works well for small data, but it becomes a limitation when:</p>
+<ul>
+<li>The data is large, and one process reads or writes it too slowly.</li>
+<li>The data is too large to fit in the memory of one node.</li>
+<li>The computation runs in parallel, and collecting all the data in one process for I/O is slow.</li>
+</ul>
+<p>In these cases, use parallel I/O, in which multiple processes read and write data at the same time. Each process handles only its own part of the data, and together the processes use more of the bandwidth of the parallel filesystem. The next sections show parallel I/O with a small job array, how to merge the outputs of a large job array, and parallel I/O with MPI.</p>
+<h4 id="parallel-io-with-small-job-array">Parallel I/O with Small Job Array<a class="headerlink" href="#parallel-io-with-small-job-array" title="Permanent link">&para;</a></h4>
+<p>Each task of a job array reads its own rows from one shared input file and writes its results into its own output file. Each task is an independent process that uses serial HDF5, the same <code>h5</code> environment as in the serial I/O example. Serial HDF5 does not support writing to one file from independent processes, so each task writes its own output file. This creates one file per task instead of one file per sample. In this example, the job array has only 4 tasks, so it creates 4 output files. This works well when the array has a small number of tasks.</p>
+<p>This code reads <code>samples.h5</code> from the <a href="#serial-io">Serial I/O</a> example. Save it as <code>array_h5.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># rows per rank</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"parallel.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">"mpio"</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># all ranks open the same file</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">dset</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>           <span class="c1"># collective: all ranks create it</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">dset</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">*</span> <span class="n">n</span><span class="p">:(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span>             <span class="c1"># each rank writes its own rows</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">task</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"SLURM_ARRAY_TASK_ID"</span><span class="p">])</span>  <span class="c1"># 0, 1, 2, or 3</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">250</span>                                         <span class="c1"># rows per task</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>              <span class="c1"># all tasks read the same file</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"samples"</span><span class="p">][</span><span class="n">task</span> <span class="o">*</span> <span class="n">n</span><span class="p">:(</span><span class="n">task</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">]</span>        <span class="c1"># read only this task's rows</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                          <span class="c1"># example computation: mean of each sample</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="sa">f</span><span class="s2">"result_</span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>   <span class="c1"># one output file per task</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"result"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>      <span class="c1"># all results of the task in one dataset</span>
 </span></code></pre></div>
-<p>Submit it with this job script:</p>
+<p>Copy <code>samples.h5</code> to <code>~/orcd/scratch</code>, and use this job script for the job array:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">#SBATCH -p mit_normal</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">#SBATCH -n 4</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">#SBATCH -a 0-3</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">#SBATCH -t 00:10:00</span>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5mpi
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch<span class="w">                      </span><span class="c1"># run heavy I/O on scratch storage</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/parallel_h5.py
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/array_h5.py
+</span></code></pre></div>
+<p>Save the job script as <code>array_h5.sh</code> and submit it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch<span class="w"> </span>array_h5.sh
+</span></code></pre></div>
+<h4 id="merging-outputs-of-large-job-array">Merging Outputs of Large Job Array<a class="headerlink" href="#merging-outputs-of-large-job-array" title="Permanent link">&para;</a></h4>
+<p>Some workloads need a job array with many tasks, such as a parameter sweep or the processing of many independent inputs. Such a job array creates many output files. To avoid keeping too many files, merge the output files into one file in a follow-up job that runs after the array finishes.</p>
+<p>The following example shows how to merge the output files. For simplicity, it uses the 4 output files from the <a href="#parallel-io-with-small-job-array">small job array</a> example. The code merges them into one file and then deletes them. Save it as <code>merge_h5.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"result_</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">.h5"</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>   <span class="c1"># one file per array task</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">"result"</span><span class="p">][:])</span>               <span class="c1"># read the result of each task</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"merged.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"result"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># all results in one dataset</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>                            <span class="c1"># delete the per-task files</span>
+</span></code></pre></div>
+<p>Save this job script for the merge job as <code>merge_h5.sh</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">#SBATCH -t 00:10:00</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch<span class="w">                      </span><span class="c1"># the output files of the job array</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/merge_h5.py
+</span></code></pre></div>
+<p>Submit the job array, then submit the merge job so that it starts only after all array tasks succeed:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">jid</span><span class="o">=</span><span class="k">$(</span>sbatch<span class="w"> </span>--parsable<span class="w"> </span>array_h5.sh<span class="k">)</span><span class="w">          </span><span class="c1"># job ID of the array</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sbatch<span class="w"> </span>--dependency<span class="o">=</span>afterok:<span class="nv">$jid</span><span class="w"> </span>merge_h5.sh<span class="w">  </span><span class="c1"># start after all array tasks succeed</span>
+</span></code></pre></div>
+<p>If any array task fails, the merge job never starts and stays pending with the reason <code>DependencyNeverSatisfied</code>. In this case, cancel it with <code>scancel</code>, fix the problem, and submit both jobs again.</p>
+<p>Slurm also writes one log file for each array task, named <code>slurm-&lt;jobid&gt;_&lt;task&gt;.out</code> by default. These log files are small files too, so delete them after you check them.</p>
+<h4 id="parallel-io-with-mpi">Parallel I/O with MPI<a class="headerlink" href="#parallel-io-with-mpi" title="Permanent link">&para;</a></h4>
+<p>Parallel HDF5 uses MPI-IO, the parallel I/O layer of MPI. All MPI ranks of a job open the same file together, and each rank reads or writes only its own part of the file at the same time. Operations that change the file structure, such as creating a dataset, are collective: all ranks must call them. Unlike the job array examples, MPI-IO creates one output file, no matter how many ranks the job uses. It requires h5py built with parallel HDF5, which the <code>h5mpi</code> environment provides.</p>
+<p>In this example, each MPI rank writes its own rows into one shared file, and then reads them back.</p>
+<p>This code writes the file. Save it as <code>write_mpi_h5.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># rows per rank</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"parallel.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">"mpio"</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># all ranks open the same file</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="n">dset</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="p">(</span><span class="n">comm</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>           <span class="c1"># collective: all ranks create it</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="n">dset</span><span class="p">[</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">*</span> <span class="n">n</span><span class="p">:(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span>             <span class="c1"># each rank writes its own rows</span>
+</span></code></pre></div>
+<p>This code reads the file. Save it as <code>read_mpi_h5.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># rows per rank</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"parallel.h5"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s2">"mpio"</span><span class="p">,</span> <span class="n">comm</span><span class="o">=</span><span class="n">comm</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># all ranks open the same file</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s2">"data"</span><span class="p">][</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">*</span> <span class="n">n</span><span class="p">:(</span><span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="p">]</span>                <span class="c1"># each rank reads its own rows</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># do some computation on x here</span>
+</span></code></pre></div>
+<p>Submit both with this job script:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH -n 4</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">#SBATCH -t 00:10:00</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi/5.0.8
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>conda<span class="w"> </span>activate<span class="w"> </span>h5mpi
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch<span class="w">                      </span><span class="c1"># run heavy I/O on scratch storage</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/write_mpi_h5.py<span class="w">   </span><span class="c1"># write the file</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/read_mpi_h5.py<span class="w">    </span><span class="c1"># read the file</span>
+</span></code></pre></div>
+<h3 id="webdataset-example">WebDataset Example<a class="headerlink" href="#webdataset-example" title="Permanent link">&para;</a></h3>
+<p>PyTorch is widely used for deep learning, and its training datasets often consist of a large number of small files, such as images or text samples. <a href="https://github.com/webdataset/webdataset">WebDataset</a> is a dataset format designed for this case. It packs many samples into a few large tar files, called shards, and PyTorch reads the samples from the shards sequentially. Use it instead of storing a PyTorch dataset as many individual files.</p>
+<p>Create a Conda environment with PyTorch and WebDataset:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>pytorch<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>pytorch
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>conda<span class="w"> </span>activate<span class="w"> </span>pytorch
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>pip<span class="w"> </span>install<span class="w"> </span>webdataset
+</span></code></pre></div>
+<p>On a node without a GPU, this installs a CPU build of PyTorch, which is sufficient for this example. To install PyTorch for GPUs, see <a href="../torch-gpu/#installing-pytorch">Deep Learning with PyTorch on GPUs</a>.</p>
+<p>Write 10,000 samples into 10 shards. Save the code as <code>write_wds.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">webdataset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wds</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># 1000 samples per shard; %03d is a 3-digit shard number: shard-000.tar, shard-001.tar, ...</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">with</span> <span class="n">wds</span><span class="o">.</span><span class="n">ShardWriter</span><span class="p">(</span><span class="s2">"shard-</span><span class="si">%03d</span><span class="s2">.tar"</span><span class="p">,</span> <span class="n">maxcount</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="k">as</span> <span class="n">sink</span><span class="p">:</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="n">sink</span><span class="o">.</span><span class="n">write</span><span class="p">({</span><span class="s2">"__key__"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"sample</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">06d</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>              <span class="c1"># unique name of the sample</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>                    <span class="s2">"npy"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float32"</span><span class="p">),</span>  <span class="c1"># input array</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>                    <span class="s2">"cls"</span><span class="p">:</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">10</span><span class="p">})</span>                            <span class="c1"># class label</span>
+</span></code></pre></div>
+<p>Put many samples in each shard, so that the dataset has only a small number of shards. Too many shards create a large number of files again. A typical shard size is 100 MB to 1 GB. The shards in this example are smaller, only for demonstration.</p>
+<p>Read the shards with a PyTorch <code>DataLoader</code>. Save the code as <code>read_wds.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">webdataset</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wds</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">dataset</span> <span class="o">=</span> <span class="p">(</span><span class="n">wds</span><span class="o">.</span><span class="n">WebDataset</span><span class="p">(</span><span class="s2">"shard-{000..009}.tar"</span><span class="p">,</span> <span class="n">shardshuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># the 10 shards</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>           <span class="o">.</span><span class="n">decode</span><span class="p">()</span>                  <span class="c1"># decode .npy and .cls files</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>           <span class="o">.</span><span class="n">to_tuple</span><span class="p">(</span><span class="s2">"npy"</span><span class="p">,</span> <span class="s2">"cls"</span><span class="p">))</span>   <span class="c1"># yield (input, label) pairs</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 2 workers, 5 shards each</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">:</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># torch.Size([64, 100]) torch.Size([64])</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="k">break</span>
+</span></code></pre></div>
+<p>Run both scripts with this job script. It requests 2 CPU cores, one for each worker:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1">#SBATCH -p mit_normal</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1">#SBATCH -c 2</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1">#SBATCH -t 00:10:00</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>conda<span class="w"> </span>activate<span class="w"> </span>pytorch
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/scratch<span class="w">                      </span><span class="c1"># run heavy I/O on scratch storage</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/write_wds.py<span class="w">  </span><span class="c1"># write the shards</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>python<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>/read_wds.py<span class="w">   </span><span class="c1"># read the shards</span>
+</span></code></pre></div>
+<p>Save the job script as <code>wds.sh</code> and submit it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sbatch<span class="w"> </span>wds.sh
 </span></code></pre></div>
 <h3 id="archive-example">Archive Example<a class="headerlink" href="#archive-example" title="Permanent link">&para;</a></h3>
 <p>Pack a directory of small files into one tar file for long-term storage. The same approach applies before copying data to archive storage.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/pool
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>tar<span class="w"> </span>-czf<span class="w"> </span>mydata.tar.gz<span class="w"> </span>mydata/<span class="w">   </span><span class="c1"># pack and compress the directory into one file</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>tar<span class="w"> </span>-tzf<span class="w"> </span>mydata.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w">    </span><span class="c1"># list the contents to check</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>rm<span class="w"> </span>-r<span class="w"> </span>mydata/<span class="w">                    </span><span class="c1"># remove the small files after checking</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>~/orcd/pool
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>tar<span class="w"> </span>-czf<span class="w"> </span>mydata.tar.gz<span class="w"> </span>mydata/<span class="w">   </span><span class="c1"># pack and compress the directory into one file</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>tar<span class="w"> </span>-tzf<span class="w"> </span>mydata.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w">    </span><span class="c1"># list the contents to check</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>rm<span class="w"> </span>-r<span class="w"> </span>mydata/<span class="w">                    </span><span class="c1"># remove the small files after checking</span>
 </span></code></pre></div>
 <p>Before running a job, extract the archive to scratch storage:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>~/orcd/pool/mydata.tar.gz<span class="w"> </span>-C<span class="w"> </span>~/orcd/scratch/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>~/orcd/pool/mydata.tar.gz<span class="w"> </span>-C<span class="w"> </span>~/orcd/scratch/
 </span></code></pre></div>
-<p>For data that is already compressed (such as images or <code>.gz</code> files), omit <code>-z</code> (use <code>tar -cf</code>) to save time.</p>
+<p>For data that is already compressed (such as images or <code>.gz</code> files), omit <code>-z</code> to save time: pack with <code>tar -cf</code> and extract with <code>tar -xf</code>.</p>
 
 
 
@@ -2591,7 +2759,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 21, 2026 18:45:16 UTC">November 21, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 03:20:00 UTC">November 22, 2026</span>
   </span>
 
     
