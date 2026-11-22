@@ -2263,15 +2263,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples-hdf5-webdataset-and-archives" class="md-nav__link">
+  <a href="#examples-fewer-files-and-efficient-io" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Examples: HDF5, WebDataset, and Archives
+        Examples: Fewer Files and Efficient I/O
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples: HDF5, WebDataset, and Archives">
+    <nav class="md-nav" aria-label="Examples: Fewer Files and Efficient I/O">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2410,7 +2410,7 @@
 
 <h1 id="best-practices-for-using-storage">Best Practices for Using Storage<a class="headerlink" href="#best-practices-for-using-storage" title="Permanent link">&para;</a></h1>
 <p>Engaging provides several types of storage. Each type is designed for a specific purpose and I/O pattern. Choosing the right storage keeps your jobs running efficiently and prevents your jobs from slowing down other users' jobs.</p>
-<p>This page has three parts. First, it describes the storage types on Engaging (home, data, scratch, compute, and archive storage) and the purpose of each type. Second, it explains the small-files problem: why a large number of small files slows down the filesystem, and how to avoid it. Third, it gives examples of three formats: HDF5 files, which store large datasets efficiently; WebDataset shards, which pack datasets for PyTorch; and tar archives, which pack many files into one.</p>
+<p>This page has three parts. First, it describes the storage types on Engaging (home, data, scratch, compute, and archive storage) and the purpose of each type. Second, it explains the small-files problem: why a large number of small files slows down the filesystem, and how to avoid it. Third, it gives examples of three formats: HDF5 files, which store large numerical data efficiently; WebDataset shards, which pack datasets for PyTorch; and tar archives, which pack many files into one.</p>
 <h2 id="storage-types">Storage Types<a class="headerlink" href="#storage-types" title="Permanent link">&para;</a></h2>
 <p>To choose a storage type, first determine the I/O load of your job. The sections below use two levels of I/O load:</p>
 <ul>
@@ -2524,9 +2524,9 @@
 <li>Extracting a large archive into many small files and keeping them. <strong>Solution:</strong> Extract it to scratch storage only when a job needs the files, and delete them when the job is done (see the <a href="#archive-example">Archive Example</a>).</li>
 <li>Creating Conda environments or installing Python packages, which creates tens of thousands of files that cannot be avoided. <strong>Solution:</strong> Install them in your home directory, remove environments you no longer use (<code>conda env remove -n &lt;name&gt;</code>), and delete cached package files (<code>conda clean --all</code>).</li>
 </ul>
-<h2 id="examples-hdf5-webdataset-and-archives">Examples: HDF5, WebDataset, and Archives<a class="headerlink" href="#examples-hdf5-webdataset-and-archives" title="Permanent link">&para;</a></h2>
+<h2 id="examples-fewer-files-and-efficient-io">Examples: Fewer Files and Efficient I/O<a class="headerlink" href="#examples-fewer-files-and-efficient-io" title="Permanent link">&para;</a></h2>
 <h3 id="bad-example-many-small-files">Bad Example: Many Small Files<a class="headerlink" href="#bad-example-many-small-files" title="Permanent link">&para;</a></h3>
-<p>This code saves each sample of 100 values to its own file, so 1000 samples create 1000 small files. It is the first case in <a href="#tips-to-reduce-the-number-of-files">Tips to Reduce the Number of Files</a>. In the examples on this page, a sample is a small NumPy array:</p>
+<p>This code saves each sample of 100 values to its own file, so 1000 samples create 1000 small files. It is the first case in <a href="#tips-to-reduce-the-number-of-files">Tips to Reduce the Number of Files</a>. Here, a sample is a small NumPy array:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
@@ -2534,10 +2534,10 @@
 </span></code></pre></div>
 <p>Each file uses one inode and needs its own metadata operations to create, open, and delete. With more samples, this overloads the metadata server.</p>
 <h3 id="hdf5-example">HDF5 Example<a class="headerlink" href="#hdf5-example" title="Permanent link">&para;</a></h3>
-<p>HDF5 is a file format for large numerical data. Use HDF5 for two purposes:</p>
+<p>HDF5 is a file format for large numerical data. An HDF5 file holds one or more <em>HDF5 datasets</em>; an HDF5 dataset is a named array, such as <code>data</code> in the examples. Use HDF5 for two purposes:</p>
 <ul>
 <li><strong>Replace many small files with one file.</strong> One HDF5 file holds many samples, so thousands of small files become one file. This reduces the load on the metadata server.</li>
-<li><strong>Read and write large data efficiently.</strong> A program can read part of a dataset without loading the whole file, and many MPI processes can write to the same file in parallel.</li>
+<li><strong>Read and write large data efficiently.</strong> A program can read part of the data without loading the whole file, and many MPI processes can write to the same file in parallel.</li>
 </ul>
 <p>First, create Conda environments for the examples.</p>
 <p>For serial HDF5, create the <code>h5</code> environment with h5py from conda-forge:</p>
@@ -2553,12 +2553,12 @@
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">HDF5_MPI</span><span class="o">=</span>ON<span class="w"> </span><span class="nv">HDF5_DIR</span><span class="o">=</span><span class="k">$(</span>dirname<span class="w"> </span><span class="k">$(</span>dirname<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>h5pcc<span class="k">)))</span><span class="w"> </span><span class="nv">CC</span><span class="o">=</span>mpicc<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-binary<span class="o">=</span>h5py<span class="w"> </span>h5py<span class="w">   </span><span class="c1"># build h5py with the HDF5 module</span>
 </span></code></pre></div>
 <h4 id="serial-io">Serial I/O<a class="headerlink" href="#serial-io" title="Permanent link">&para;</a></h4>
-<p>This code stores the same 1000 samples as the rows of one 2-D dataset in one file. Only one file is created. Save the code as <code>write_h5.py</code>:</p>
+<p>This code stores the same 1000 samples as the rows of one 2-D HDF5 dataset in one file. Only one file is created. Save the code as <code>write_h5.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># 1000 samples of 100 values, stored as rows of one dataset</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>  <span class="c1"># 1000 samples of 100 values, stored as rows of one HDF5 dataset</span>
 </span></code></pre></div>
 <p>This code reads all samples and computes the mean of each sample. Save the code as <code>read_h5.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
@@ -2636,7 +2636,7 @@
 </span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s2">"data"</span><span class="p">][:])</span>                 <span class="c1"># read the samples of each task</span>
 </span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
 </span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s2">"samples_all.h5"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># all 4000 samples in one dataset</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="c1"># all 4000 samples in one HDF5 dataset</span>
 </span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
 </span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
 </span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>                            <span class="c1"># delete the per-task files</span>
@@ -2657,7 +2657,7 @@
 </span></code></pre></div>
 <p>Slurm also writes one log file for each job array task, named <code>slurm-&lt;jobid&gt;_&lt;task&gt;.out</code> by default. These log files are small files too, so delete them after you check them.</p>
 <h4 id="parallel-io-with-mpi">Parallel I/O with MPI<a class="headerlink" href="#parallel-io-with-mpi" title="Permanent link">&para;</a></h4>
-<p>Parallel HDF5 uses MPI-IO, the parallel I/O layer of MPI. All MPI ranks of a job open the same file together, and each rank reads or writes only its own part of the file at the same time. Operations that change the file structure, such as creating a dataset, are collective: all ranks must call them. Unlike the job array examples, MPI-IO creates one output file, no matter how many ranks the job uses. It requires h5py built with parallel HDF5, which the <code>h5mpi</code> environment provides.</p>
+<p>Parallel HDF5 uses MPI-IO, the parallel I/O layer of MPI. All MPI ranks of a job open the same file together, and each rank reads or writes only its own part of the file at the same time. Operations that change the file structure, such as creating an HDF5 dataset, are collective: all ranks must call them. Unlike the job array examples, MPI-IO creates one output file, no matter how many ranks the job uses. It requires h5py built with parallel HDF5, which the <code>h5mpi</code> environment provides.</p>
 <p>In this example, each MPI rank writes 1000 samples, the same size as the file in the <a href="#serial-io">Serial I/O</a> example, into one shared file. Then each rank reads its own samples back and computes the mean of each sample.</p>
 <p>This code writes the file. Save it as <code>write_mpi_h5.py</code>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
@@ -2778,7 +2778,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 20:33:17 UTC">November 22, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 23:30:33 UTC">November 22, 2026</span>
   </span>
 
     
