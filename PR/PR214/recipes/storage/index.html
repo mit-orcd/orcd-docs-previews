@@ -2544,7 +2544,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>h5py
 </span></code></pre></div>
-<p>For parallel HDF5, create the <code>h5mpi</code> environment. Its mpi4py and h5py are built against the Open MPI and parallel HDF5 modules on Engaging:</p>
+<p>For parallel HDF5, create the <code>h5mpi</code> environment. In this environment, the mpi4py and h5py packages are built from source against the Open MPI and parallel HDF5 modules on Engaging:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>module<span class="w"> </span>load<span class="w"> </span>miniforge/26.7.2-0
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>module<span class="w"> </span>load<span class="w"> </span>openmpi/4.1.4<span class="w"> </span>hdf5/1.14.3<span class="w">    </span><span class="c1"># Open MPI and parallel HDF5 modules</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>h5mpi<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>python<span class="w"> </span>numpy<span class="w"> </span>pip
@@ -2778,7 +2778,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 23:30:33 UTC">November 22, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 22, 2026 23:38:47 UTC">November 22, 2026</span>
   </span>
 
     
