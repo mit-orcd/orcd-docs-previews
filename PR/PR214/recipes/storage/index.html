@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://orcd.mit.edu/recipes/storage/">
       
       
+        <link rel="prev" href="../relion/">
+      
+      
+        <link rel="next" href="../build-vasp-gcc-cpu/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>Best Practices for Using Storage - ORCD Docs</title>
+        <title>Using Storage - ORCD Docs</title>
       
     
     
@@ -105,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Best Practices for Using Storage
+              Using Storage
             
           </span>
         </div>
@@ -1138,18 +1142,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1170,7 +1176,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1652,6 +1658,325 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Storage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#storage-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#home-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Home Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scratch-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scratch Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archive-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#avoiding-many-small-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Avoiding Many Small Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Avoiding Many Small Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-many-small-files-are-a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Many Small Files Are a Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips-to-reduce-the-number-of-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips to Reduce the Number of Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-fewer-files-and-efficient-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples: Fewer Files and Efficient I/O
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples: Fewer Files and Efficient I/O">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-many-small-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bad Example: Many Small Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdf5-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HDF5 Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HDF5 Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serial-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serial I/O
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-io-with-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel I/O with Job Array
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merging-outputs-of-large-job-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merging Outputs of Large Job Array
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallel-io-with-mpi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallel I/O with MPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webdataset-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebDataset Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archive-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
