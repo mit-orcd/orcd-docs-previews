@@ -3093,7 +3093,7 @@
 <p>The <code>DataLoader</code> reads the shards in three steps:</p>
 <ol>
 <li><strong>Assign shards to workers.</strong> The <code>DataLoader</code> starts 4 worker processes (<code>num_workers=4</code>), and <code>wds.split_by_worker</code> gives each worker one shard: worker 0 reads <code>shard-00.tar</code>, worker 1 reads <code>shard-01.tar</code>, and so on.</li>
-<li><strong>Decode and form batches in each worker.</strong> Each worker reads its shard from start to end (<code>wds.tarfile_to_samples</code>), decodes each sample into a NumPy array and a label (<code>wds.decode</code>), and groups every 64 consecutive samples into a batch (<code>batch_size=64</code>), so a batch contains samples from only one shard. The 4 workers do this at the same time.</li>
+<li><strong>Read, decode, and form batches in each worker.</strong> Each worker goes through its shard from start to end, one sample at a time. For each sample, the worker reads its member files (<code>wds.tarfile_to_samples</code>), decodes the <code>.npy</code> file into a NumPy array and the <code>.cls</code> file into an integer label (<code>wds.decode</code>), and adds the sample to the current batch. When the batch has 64 samples (<code>batch_size=64</code>), the worker passes it to the main process and starts the next batch. Therefore, a batch contains samples from only one shard, and a worker keeps only its current batch and up to 2 finished batches in memory (<code>prefetch_factor=2</code> by default), never the whole shard. The 4 workers do this at the same time.</li>
 <li><strong>Collect batches in the main process.</strong> The main process takes one batch from each worker in turn, so the loop receives the batches in this order:</li>
 </ol>
 <table>
@@ -3139,7 +3139,13 @@
 </tbody>
 </table>
 <p>Each shard has 1000 samples, so each worker forms 15 batches of 64 samples and one last batch of 40 samples. The loop ends after 64 batches (16 from each worker), when all 4000 samples are read. This example does not shuffle the samples, but a real training process should shuffle them.</p>
-<p>In real training, step 2 takes most of the time: workers read large amounts of data from storage, decode compressed data such as images or audio, and apply transforms such as cropping and resizing. Running several workers in parallel speeds up this step. Steps 1 and 3 are cheap: step 1 assigns the shards once at the start, and in step 3 the main process only receives finished batches, one at a time.</p>
+<p>In real training, the main process trains on each batch it receives in step 3. The three steps take very different amounts of time:</p>
+<ul>
+<li>Step 1 runs only once, at the start.</li>
+<li>Step 2 takes most of the time: workers read large amounts of data from storage, decode compressed data such as images or audio, and apply transforms such as cropping and resizing.</li>
+<li>Step 3 is fast, because the main process only receives a finished batch.</li>
+</ul>
+<p>A training step on a GPU is usually faster than step 2 for one batch. For example, suppose one worker needs 0.4 seconds to prepare a batch and a training step takes 0.1 seconds. Then a single worker delivers a batch only every 0.4 seconds, and the GPU is idle 75% of the time. With 4 workers preparing batches in parallel, a new batch is ready about every 0.1 seconds. While the main process trains on one batch, the workers already prepare the next ones, so the training step does not wait for data.</p>
 </details>
 <p>Use the following job script for both the write job array and the read job. Save it as <code>wds.sh</code>:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="ch">#!/bin/bash</span>
@@ -3188,7 +3194,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 24, 2026 21:08:02 UTC">November 24, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 24, 2026 21:38:19 UTC">November 24, 2026</span>
   </span>
 
     
