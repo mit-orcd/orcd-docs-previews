@@ -1,4 +1,6 @@
 
+
+
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,6 +13,8 @@
         <link rel="canonical" href="https://orcd.mit.edu/orcd-systems/">
       
       
+      
+      
         <link rel="prev" href="./..">
       
       
@@ -21,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.59">
+      <meta name="generator" content="zensical-0.1.3">
     
     
       
@@ -32,12 +36,13 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/classic/main.38807bfb.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/classic/main.0006804e.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../assets/stylesheets/classic/palette.c7ab7c71.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/classic/palette.813d4b3f.min.css">
+      
       
       
 
@@ -77,14 +82,11 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#orcd-engaging-system" class="md-skip">
-          Skip to content
-        </a>
-      
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
     </div>
     <div data-md-component="announce">
       
@@ -102,9 +104,10 @@
   <img src="../images/ORCD_logo_icononly.png" alt="ORCD Docs">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+    <label class="md-header__button md-icon" for="__drawer">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -166,9 +169,10 @@
     
       
       
-        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+        <label class="md-header__button md-icon" for="__search">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <span class="md-visually-hidden">Search</span>
         </label>
         <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
   <button type="button" class="md-search__button">
@@ -421,18 +425,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Accessing Engaging
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -456,10 +461,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -472,7 +477,7 @@
   <span class="md-ellipsis">
     
   
-  Logging in with SSH via Terminal
+  Logging in with SSH
 
     
   </span>
@@ -483,10 +488,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -510,37 +515,10 @@
     </li>
   
 
-              
-            
+                
               
                 
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../recipes/vscode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  VSCode Remote SSH
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
+                  
   
   
   
@@ -564,10 +542,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -591,10 +569,38 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/vscode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  VSCode
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -635,18 +641,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Filesystems and File Transfer
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -670,10 +677,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -697,10 +704,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -741,18 +749,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Software
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -776,10 +785,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -803,10 +812,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -830,10 +839,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -857,10 +866,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -884,10 +893,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -911,10 +920,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -938,10 +947,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -965,10 +974,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -992,10 +1001,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1036,18 +1046,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Running Jobs
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1071,10 +1082,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1098,10 +1109,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1125,10 +1136,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1152,10 +1163,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1179,10 +1190,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1206,10 +1217,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1250,18 +1262,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   ORCD Recipes
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1285,10 +1298,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1312,10 +1325,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1339,10 +1352,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1366,10 +1379,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1393,10 +1406,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1420,10 +1433,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1447,10 +1460,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1474,10 +1487,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1501,10 +1514,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1528,10 +1541,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1555,10 +1568,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1582,10 +1595,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1609,10 +1622,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1636,10 +1649,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1663,10 +1676,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1690,10 +1703,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1717,10 +1730,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1744,10 +1757,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1771,10 +1784,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1798,10 +1811,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1842,18 +1856,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Services
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1877,10 +1892,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1904,10 +1919,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1931,10 +1946,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1958,10 +1973,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -2233,8 +2249,10 @@
             <div class="md-content" data-md-component="content">
               
               <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
                 
                   
+
 
 <h1 id="orcd-engaging-system">ORCD Engaging System<a class="headerlink" href="#orcd-engaging-system" title="Permanent link">&para;</a></h1>
 <p>ORCD primarily operates and provides support and training for the Engaging system, which is available to all researchers. Engaging runs with a Slurm scheduler and has a web portal for interactive computing.</p>
@@ -2263,6 +2281,27 @@ Connecting to the cluster for the first time through its <a href="https://orcd-o
 
 
 
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 12, 2026 21:41:45 UTC">February 12, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
 
 
 
@@ -2303,7 +2342,7 @@ Connecting to the cluster for the first time through its <a href="https://orcd-o
 </footer>
       
     </div>
-    <div class="md-dialog" data-md-component="dialog">
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
@@ -2311,10 +2350,15 @@ Connecting to the cluster for the first time through its <a href="https://orcd-o
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.tabs.link","content.tooltips"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["content.code.copy","content.tabs.link","content.tooltips"],"redirect":null,"search":"../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.6970bfe9.min.js"></script>
+      <script src="../assets/javascripts/bundle.9e76c64c.min.js"></script>
+      
       
     
   </body>
