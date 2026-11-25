@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -2363,16 +2363,16 @@
 
 
 <h1 id="advanced-job-array">Advanced Job Array<a class="headerlink" href="#advanced-job-array" title="Permanent link">&para;</a></h1>
-<p>Users often need to submit many jobs to run a program many times with different input parameters or files.  </p>
-<p>It is straightforward to execute the command <code>sbatch</code> in a loop, but this approach is inefficient for job scheduling. When the iteration number is large, it will slow down the Slurm scheduler and affect all users.</p>
-<p>A good practice is to use a job array, which is much more efficient. Refer to <a href="https://orcd-docs.mit.edu/running-jobs/job-arrays/">this page</a> for details of job array. </p>
-<p>However, if a user submits too many jobs in a short time, even with a job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user is set to be 500, so that there are not too many jobs queuing in a given time period. A user can submit up to 500 jobs with a job array.</p>
+<p>Users often need to run the same program many times with different input parameters or files.</p>
+<p>It is straightforward to submit multiple jobs by executing the command <code>sbatch</code> in a loop, but this approach is inefficient for job scheduling. When the number of iterations is large, it will slow down the Slurm scheduler and affect all users.</p>
+<p>A better practice is to use a job array, which is much more efficient. Refer to <a href="https://orcd-docs.mit.edu/running-jobs/job-arrays/">this page</a> for details on running job arrays.</p>
+<p>However, if a user submits too many jobs in a short time, even with a job array, it will still slow down the Slurm scheduler. The maximum number of jobs per user is set to be 500 to prevent too many jobs from queuing in a given time period. A user can submit up to 500 jobs with a job array.</p>
 <details>
 <summary>Terminology: job and job array</summary>
-<p>On this page, the word job means either an individual job or a task in a job array. For example, submitting a job array with 100 tasks means submitting 100 jobs. </p>
+<p>On this page, the word job means either an individual job or a task in a job array. For example, submitting a job array with 100 tasks means submitting 100 jobs.</p>
 </details>
 <p>When a user needs to run a program more than 500 times, it is recommended to combine serial execution and/or parallel execution with a job array.</p>
-<p>On this page, we will introduce serial execution and parallel execution, and how to integrate them with a job array. A simple Python code named <a href="../scripts/many-jobs/mycode.py">mycode.py</a> is used for all examples. </p>
+<p>On this page, we will introduce serial execution and parallel execution, and how to integrate them with a job array. A simple Python code named <a href="../scripts/many-jobs/mycode.py">mycode.py</a> is used for all examples.</p>
 <h2 id="serial-execution">Serial execution<a class="headerlink" href="#serial-execution" title="Permanent link">&para;</a></h2>
 <p>Serial execution means executing multiple programs serially within a job. Here is an example job script that runs 10 programs serially. </p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#!/bin/bash
@@ -2390,14 +2390,14 @@
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>done
 </span></code></pre></div>
 <p>Each program uses 2 CPU cores and 2 GB of memory.</p>
-<p>The program is executed 10 times with different input parameters (i.e. the loop index ) each time. The next execution will start after the current execution is completed. </p>
+<p>The program is executed 10 times with different input parameters (i.e. the loop index) each time. The next execution will start after the current execution is completed.</p>
 <p>Note that the serial execution increases the total run time. Request a wall time that is long enough for all the programs to complete. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>This approach is good for programs with short run times.</strong> If each program requires a long run time, the total run time may exceed the maximum wall time limit.    </p>
 </div>
 <h2 id="integrate-serial-execution-and-job-array">Integrate serial execution and job array<a class="headerlink" href="#integrate-serial-execution-and-job-array" title="Permanent link">&para;</a></h2>
-<p>To scale up the number of programs, use a job array together with serial execution. Here is an example job script.</p>
+<p>To scale up the number of program executions, use a job array combined with serial execution. Here is an example job script.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>#!/bin/bash
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>#SBATCH -t 02:00:00             # Two hours
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>#SBATCH -N 1                    # 1 node
@@ -2418,7 +2418,7 @@
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>done
 </span></code></pre></div>
 <p>The number of jobs (tasks) of the array is 100 and each job runs 10 programs serially, so <code>10 * 100 = 1,000</code> programs are submitted.</p>
-<p>The array task ID (<code>$SLURM_ARRAY_TASK_ID</code>) and total number of tasks in the array (<code>$SLURM_ARRAY_TASK_COUNT</code>) are used to calculate the global index. Use the global index as the input parameter for the program.</p>
+<p>The <code>--array=0-99</code> option tells Slurm to create a job array with array task IDs 0 through 99. The array task ID (<code>$SLURM_ARRAY_TASK_ID</code>) and total number of tasks in the array (<code>$SLURM_ARRAY_TASK_COUNT</code>) are used to calculate the global index. Use the global index as the input parameter for the program.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>This approach is useful for submitting a large number of short-run-time programs.</strong></p>
@@ -2526,7 +2526,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 13, 2025 22:51:46 UTC">August 13, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 8, 2026 18:40:20 UTC">November 8, 2026</span>
   </span>
 
     
